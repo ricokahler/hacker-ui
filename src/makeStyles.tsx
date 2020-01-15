@@ -39,7 +39,7 @@ type GetComponentProps<
 
 function hashStyleObj(styleObj: { [key: string]: string | undefined }) {
   return Object.keys(styleObj)
-    .map(key => `${key}_${styleObj[key] || ''}`)
+    .map(key => `${key}_${styleObj[key]}`)
     .join('__|__');
 }
 
