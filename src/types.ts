@@ -12,3 +12,9 @@ export interface Theme {
     surface: string;
   };
 }
+
+export interface DynamicColorPalette {
+  asBackground: string;
+  onSurface: string;
+  bgContrast: string;
+}

@@ -1,6 +1,8 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
+import { DynamicColorPalette } from './types';
 import useTheme from './useTheme';
+import createDynamicColorPalette from './createDynamicColorPalette';
 
 export interface StyleProps<UseStylesFn> {
   on?: string;
@@ -35,16 +37,11 @@ type GetComponentProps<
   ? JSX.IntrinsicElements[ComponentType]
   : any;
 
-interface DynamicColorPalette {
-  asBackground: string;
-  onSurface: string;
-  bgContrast: string;
+function hashStyleObj(styleObj: { [key: string]: string | undefined }) {
+  return Object.keys(styleObj)
+    .map(key => styleObj[key] || '')
+    .join('__|__');
 }
-
-function createDynamicColorPalette(
-  color: string,
-  onColor: string,
-): DynamicColorPalette {}
 
 function makeStyles<Styles extends { [key: string]: string }>(
   stylesFn: (colors: DynamicColorPalette) => Styles,
@@ -68,33 +65,57 @@ function makeStyles<Styles extends { [key: string]: string }>(
       on = theme.colors.surface,
       style: incomingStyle,
       className: incomingClassName,
-      styles: incomingStyles,
+      styles: incomingStyles = {} as Styles,
       ...restOfProps
     } = props;
-    const colors = createDynamicColorPalette(color, on);
-    const styles = stylesFn(colors);
+
+    const mergedStyles = useMemo(() => {
+      const colors = createDynamicColorPalette(color, on);
+      const thisStyles = stylesFn(colors);
+
+      const thisStyleKeys = Object.keys(thisStyles) as Array<keyof Styles>;
+
+      return thisStyleKeys.reduce((merged, key) => {
+        const thisStyle = thisStyles[key];
+        const incomingStyle = incomingStyles[key];
+
+        merged[key] = classNames(
+          thisStyle,
+          incomingStyle,
+        ) as Styles[keyof Styles];
+
+        return merged;
+      }, {} as Styles);
+    }, [color, on, hashStyleObj(incomingStyles)]);
 
     const Component = (component || 'div') as React.ComponentType<any>;
 
-    const Root = forwardRef((props: InternalStyleProps<Styles>, ref: any) => {
-      const { className: rootClassName, style: rootStyles } = props;
+    // TODO: wrap `Root` in `useMemo`
+    const Root = forwardRef(
+      (rootProps: InternalStyleProps<Styles>, ref: any) => {
+        const { className: rootClassName, style: rootStyles } = rootProps;
 
-      return (
-        <Component
-          {...props}
-          ref={ref}
-          className={classNames(styles.root, rootClassName, incomingClassName)}
-          style={{
-            ...rootStyles,
-            ...incomingStyle,
-          }}
-        />
-      );
-    }) as React.ComponentType<GetComponentProps<ComponentType>>;
+        return (
+          <Component
+            {...rootProps}
+            ref={ref}
+            className={classNames(
+              mergedStyles.root,
+              rootClassName,
+              incomingClassName,
+            )}
+            style={{
+              ...rootStyles,
+              ...incomingStyle,
+            }}
+          />
+        );
+      },
+    ) as React.ComponentType<GetComponentProps<ComponentType>>;
 
     return {
       Root,
-      styles,
+      styles: mergedStyles,
       ...restOfProps,
     };
   }
