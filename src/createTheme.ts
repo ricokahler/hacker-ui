@@ -9,20 +9,29 @@ type RecursivePartial<T> = {
     : T[P];
 };
 
+function isObject(maybe: any) {
+  if (!maybe) return false;
+  return typeof maybe === 'object';
+}
+
 /**
  * recursively merges a base object with an incoming object
  */
-function recursiveMerge<T>(base: T, incoming: RecursivePartial<T>): T {
-  const keys = Object.keys(base) as Array<keyof T>;
+export function recursiveMerge<T>(
+  base: T,
+  incoming: RecursivePartial<T> = {},
+): T {
+  const keys = [...Object.keys(base), ...Object.keys(incoming)] as Array<
+    keyof T
+  >;
 
   const merged = keys.reduce((merged, key) => {
     const baseValue = base[key];
     const incomingValue = incoming[key];
 
-    const mergedValue =
-      Object.keys(baseValue).length > 0
-        ? recursiveMerge(baseValue, incomingValue as T[keyof T])
-        : ((incomingValue || baseValue) as T[keyof T]);
+    const mergedValue = isObject(baseValue)
+      ? recursiveMerge(baseValue, incomingValue as T[keyof T])
+      : ((incomingValue || baseValue) as T[keyof T]);
     merged[key] = mergedValue;
 
     return merged;
@@ -31,7 +40,7 @@ function recursiveMerge<T>(base: T, incoming: RecursivePartial<T>): T {
   return merged;
 }
 
-function createTheme(partialTheme: RecursivePartial<Theme>): Theme {
+function createTheme(partialTheme: RecursivePartial<Theme> = {}): Theme {
   return recursiveMerge(defaultTheme, partialTheme);
 }
 

@@ -86,6 +86,7 @@ function makeStyles<Styles extends { [key: string]: string }>(
 
         return merged;
       }, {} as Styles);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [color, on, hashStyleObj(incomingStyles)]);
 
     const Component = (component || 'div') as React.ComponentType<any>;
