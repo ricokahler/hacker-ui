@@ -39,9 +39,12 @@ type GetComponentProps<
 
 function hashStyleObj(styleObj: { [key: string]: string | undefined }) {
   return Object.keys(styleObj)
-    .map(key => styleObj[key] || '')
+    .map(key => `${key}_${styleObj[key] || ''}`)
     .join('__|__');
 }
+
+// preserve the object reference
+const empty = {};
 
 function makeStyles<Styles extends { [key: string]: string }>(
   stylesFn: (colors: DynamicColorPalette) => Styles,
@@ -65,9 +68,11 @@ function makeStyles<Styles extends { [key: string]: string }>(
       on = theme.colors.surface,
       style: incomingStyle,
       className: incomingClassName,
-      styles: incomingStyles = {} as Styles,
+      styles: incomingStyles = empty as Styles,
       ...restOfProps
     } = props;
+
+    const incomingStyleHash = hashStyleObj(incomingStyles);
 
     const mergedStyles = useMemo(() => {
       const colors = createDynamicColorPalette(color, on);
@@ -87,13 +92,12 @@ function makeStyles<Styles extends { [key: string]: string }>(
         return merged;
       }, {} as Styles);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [color, on, hashStyleObj(incomingStyles)]);
+    }, [color, on, incomingStyleHash]);
 
     const Component = (component || 'div') as React.ComponentType<any>;
 
-    // TODO: wrap `Root` in `useMemo`
-    const Root = forwardRef(
-      (rootProps: InternalStyleProps<Styles>, ref: any) => {
+    const Root = useMemo(() => {
+      return forwardRef((rootProps: InternalStyleProps<Styles>, ref: any) => {
         const { className: rootClassName, style: rootStyles } = rootProps;
 
         return (
@@ -111,8 +115,9 @@ function makeStyles<Styles extends { [key: string]: string }>(
             }}
           />
         );
-      },
-    ) as React.ComponentType<GetComponentProps<ComponentType>>;
+      }) as React.ComponentType<GetComponentProps<ComponentType>>;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [incomingClassName, incomingStyleHash, mergedStyles.root]);
 
     return {
       Root,

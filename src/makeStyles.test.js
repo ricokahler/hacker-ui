@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { act, create } from 'react-test-renderer';
+import delay from 'delay';
 import DeferredPromise from './DeferredPromise';
 import ThemeProvider from './ThemeProvider';
 import createTheme from './createTheme';
@@ -113,4 +114,132 @@ it('composes the classnames', () => {
       </h1>
     </div>
   `);
+});
+
+test("the root node doesn't remount when classnames changes", async () => {
+  const done = new DeferredPromise();
+
+  const useStyles = makeStyles(() => ({
+    root: 'style-root',
+    title: 'style-title',
+  }));
+
+  const rerenderHandler = jest.fn();
+  const rootClassHandler = jest.fn();
+
+  function Component(props) {
+    const { Root, styles } = useStyles(props);
+
+    useEffect(() => {
+      rerenderHandler();
+    }, []);
+
+    useEffect(() => {
+      rootClassHandler(styles.root);
+    }, [styles.root]);
+
+    return <Root>test</Root>;
+  }
+
+  function Parent() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+      (async () => {
+        for (let i = 0; i < 3; i += 1) {
+          await delay(0);
+          setCount(count => count + 1);
+        }
+        done.resolve();
+      })();
+    }, []);
+
+    return <Component styles={{ root: `count-${count}` }} />;
+  }
+
+  await act(async () => {
+    create(
+      <ThemeProvider theme={theme}>
+        <Parent />
+      </ThemeProvider>,
+    );
+    await done;
+  });
+
+  expect(rerenderHandler).toHaveBeenCalledTimes(1);
+
+  const classNamesOverTime = rootClassHandler.mock.calls.map(args => args[0]);
+  expect(classNamesOverTime).toMatchInlineSnapshot(`
+    Array [
+      "style-root count-0",
+      "style-root count-1",
+      "style-root count-2",
+      "style-root count-3",
+    ]
+  `);
+});
+
+it('memoizes the Root component reference and the styles reference', async () => {
+  const done = new DeferredPromise();
+
+  const useStyles = makeStyles(() => ({
+    root: 'style-root',
+    title: 'style-title',
+  }));
+
+  const rerenderHandler = jest.fn();
+  const rootComponentHandler = jest.fn();
+  const stylesHandler = jest.fn();
+
+  function Component(props) {
+    const { Root, styles } = useStyles(props);
+
+    useEffect(() => {
+      rerenderHandler();
+    }, []);
+
+    useEffect(() => {
+      rootComponentHandler(Root);
+    }, [Root]);
+
+    useEffect(() => {
+      stylesHandler(styles);
+    }, [styles]);
+
+    return <Root>test</Root>;
+  }
+
+  function Parent() {
+    const [, setCount] = useState(0);
+
+    useEffect(() => {
+      (async () => {
+        for (let i = 0; i < 3; i += 1) {
+          await delay(0);
+          setCount(count => count + 1);
+        }
+        done.resolve();
+      })();
+    }, []);
+
+    return (
+      <Component
+        style={{ border: '1px solid red' }}
+        styles={{ root: 'same-instance' }}
+      />
+    );
+  }
+
+  await act(async () => {
+    create(
+      <ThemeProvider theme={theme}>
+        <Parent />
+      </ThemeProvider>,
+    );
+    await done;
+  });
+
+  expect(rerenderHandler).toHaveBeenCalledTimes(1);
+  expect(rootComponentHandler).toHaveBeenCalledTimes(1);
+  expect(stylesHandler).toHaveBeenCalledTimes(1);
 });
