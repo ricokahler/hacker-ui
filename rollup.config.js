@@ -9,6 +9,7 @@ module.exports = [
     output: {
       file: './build/bundle.esm.js',
       format: 'esm',
+      sourcemap: true,
     },
     plugins,
   },
@@ -18,6 +19,7 @@ module.exports = [
       file: './build/bundle.umd.js',
       format: 'umd',
       name: 'HackerUi',
+      sourcemap: true,
     },
     plugins,
   },
