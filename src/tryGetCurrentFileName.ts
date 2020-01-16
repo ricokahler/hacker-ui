@@ -1,6 +1,7 @@
-function tryGetCurrentFileName() {
+function tryGetCurrentFileName(): string {
   if (process.env.NODE_ENV === 'production') return '';
 
+  // TODO: try this out in other browsers
   const e = new Error();
   const { stack } = e;
   if (!stack) return '';
