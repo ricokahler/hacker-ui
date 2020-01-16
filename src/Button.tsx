@@ -1,3 +1,4 @@
+/** @pragma export */
 import React, { forwardRef } from 'react';
 import createStyles, { StyleProps } from './createStyles';
 

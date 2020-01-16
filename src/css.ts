@@ -1,3 +1,4 @@
+/** @pragma export */
 function css(strings: TemplateStringsArray, ...values: string[]) {
   let combined = '';
 

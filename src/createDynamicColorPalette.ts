@@ -1,3 +1,4 @@
+/** @pragma export */
 import { getContrast, readableColor } from 'polished';
 import { DynamicColorPalette } from './types';
 
