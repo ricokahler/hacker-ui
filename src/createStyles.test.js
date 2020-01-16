@@ -7,6 +7,12 @@ import createTheme from './createTheme';
 import createStyles from './createStyles';
 
 const theme = createTheme();
+let mockIndex = 0;
+jest.mock('shortid', () => () => {
+  const mockId = `id-${mockIndex}`;
+  mockIndex += 1;
+  return mockId;
+});
 
 it('returns colors, styles, and the root component', async () => {
   const stylesHandler = jest.fn();
@@ -50,8 +56,8 @@ it('returns colors, styles, and the root component', async () => {
 
   expect(styles).toMatchInlineSnapshot(`
     Object {
-      "root": "root",
-      "title": "title",
+      "root": "hui_root_id-0",
+      "title": "hui_title_id-0",
     }
   `);
   expect(colors).toMatchInlineSnapshot(`
@@ -100,7 +106,7 @@ it('composes the classnames', () => {
 
   expect(result).toMatchInlineSnapshot(`
     <div
-      className="root-from-styles root-from-incoming-styles root-from-class-name"
+      className="hui_root_id-1 root-from-incoming-styles root-from-class-name"
       style={
         Object {
           "border": "1px solid red",
@@ -108,7 +114,7 @@ it('composes the classnames', () => {
       }
     >
       <h1
-        className="title-from-styles title-from-incoming-styles"
+        className="hui_title_id-1 title-from-incoming-styles"
       >
         test title
       </h1>
@@ -171,10 +177,10 @@ test("the root node doesn't remount when classnames changes", async () => {
   const classNamesOverTime = rootClassHandler.mock.calls.map(args => args[0]);
   expect(classNamesOverTime).toMatchInlineSnapshot(`
     Array [
-      "style-root count-0",
-      "style-root count-1",
-      "style-root count-2",
-      "style-root count-3",
+      "hui_root_id-2 count-0",
+      "hui_root_id-2 count-1",
+      "hui_root_id-2 count-2",
+      "hui_root_id-2 count-3",
     ]
   `);
 });
@@ -242,4 +248,48 @@ it('memoizes the Root component reference and the styles reference', async () =>
   expect(rerenderHandler).toHaveBeenCalledTimes(1);
   expect(rootComponentHandler).toHaveBeenCalledTimes(1);
   expect(stylesHandler).toHaveBeenCalledTimes(1);
+});
+
+it('adds a style sheet to the DOM', async () => {
+  const done = new DeferredPromise();
+
+  const useStyles = createStyles(css => ({
+    root: css`
+      background-color: red;
+    `,
+  }));
+
+  function Example(props) {
+    const { Root, styles } = useStyles(props);
+
+    useEffect(() => {
+      done.resolve(styles);
+    }, [styles]);
+
+    return <Root>blah</Root>;
+  }
+
+  let styles;
+  await act(async () => {
+    create(
+      <ThemeProvider theme={theme}>
+        <Example />
+      </ThemeProvider>,
+    );
+
+    styles = await done;
+  });
+
+  expect(styles).toMatchInlineSnapshot(`
+    Object {
+      "root": "hui_root_id-4",
+    }
+  `);
+  const styleEls = Array.from(document.querySelectorAll('style'));
+
+  const lastStyleEl = styleEls[styleEls.length - 1];
+
+  expect(lastStyleEl.innerHTML).toMatchInlineSnapshot(
+    `".hui_root_id-4{background-color:red;}"`,
+  );
 });

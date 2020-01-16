@@ -53,11 +53,12 @@ const empty = {};
 function makeStyles<Styles extends { [key: string]: string }>(
   stylesFn: (cssFn: typeof css, colors: DynamicColorPalette) => Styles,
 ) {
-  const sheetId = `s${shortId()}`;
+  const sheetId = shortId();
   const fileName = tryGetCurrentFileName();
 
   const sheetEl = document.createElement('style');
   sheetEl.dataset.hackerUi = 'true';
+  sheetEl.id = sheetId;
   document.head.appendChild(sheetEl);
 
   function useStyles<
@@ -94,7 +95,11 @@ function makeStyles<Styles extends { [key: string]: string }>(
     // calculate the class names
     const thisStyles = useMemo(() => {
       return Object.keys(unprocessedStyles)
-        .map(key => [key, `c${fileName}_${key}_${sheetId}`])
+        .map(key => [
+          key,
+          // the replace is ensure the class name only uses css safe characters
+          `${fileName || 'hui'}_${key}_${sheetId}`.replace(/[^a-z0-9-_]/gi, ''),
+        ])
         .reduce((acc, [key, className]) => {
           acc[key as keyof Styles] = className as Styles[keyof Styles];
           return acc;
