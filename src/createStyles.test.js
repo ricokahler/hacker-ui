@@ -16,12 +16,12 @@ jest.mock('shortid', () => () => {
 
 it('returns colors, styles, and the root component', async () => {
   const stylesHandler = jest.fn();
-  const colorHandler = jest.fn();
+  const createStylesHandler = jest.fn();
   const rootHandler = jest.fn();
   const done = new DeferredPromise();
 
-  const useStyles = createStyles((_, color) => {
-    colorHandler(color);
+  const useStyles = createStyles(({ color, theme, css }) => {
+    createStylesHandler({ color, theme, css });
 
     return {
       root: 'root',
@@ -51,7 +51,7 @@ it('returns colors, styles, and the root component', async () => {
   });
 
   const styles = stylesHandler.mock.calls[0][0];
-  const colors = colorHandler.mock.calls[0][0];
+  const createStylesValues = createStylesHandler.mock.calls[0][0];
   const Root = rootHandler.mock.calls[0][0];
 
   expect(styles).toMatchInlineSnapshot(`
@@ -60,11 +60,25 @@ it('returns colors, styles, and the root component', async () => {
       "title": "hui_title_id-0",
     }
   `);
-  expect(colors).toMatchInlineSnapshot(`
+  expect(createStylesValues).toMatchInlineSnapshot(`
     Object {
-      "asBackground": "#000",
-      "bgContrast": "#fff",
-      "onSurface": "#000",
+      "color": Object {
+        "asBackground": "#000",
+        "bgContrast": "#fff",
+        "onSurface": "#000",
+      },
+      "css": [Function],
+      "theme": Object {
+        "colors": Object {
+          "accent": "#2962ff",
+          "bland": "#ddd",
+          "brand": "#000",
+          "danger": "#eb002b",
+          "info": "#2962ff",
+          "surface": "#fff",
+          "warning": "#f56200",
+        },
+      },
     }
   `);
   expect(Root).toBeDefined();
@@ -253,7 +267,7 @@ it('memoizes the Root component reference and the styles reference', async () =>
 it('adds a style sheet to the DOM', async () => {
   const done = new DeferredPromise();
 
-  const useStyles = createStyles(css => ({
+  const useStyles = createStyles(({ css }) => ({
     root: css`
       background-color: red;
     `,

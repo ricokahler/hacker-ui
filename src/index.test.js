@@ -4,7 +4,7 @@ test('list all the modules', () => {
   expect(Object.keys(Index)).toMatchInlineSnapshot(`
     Array [
       "createTheme",
-      "Button",
+      "BaseButton",
       "ThemeContext",
       "ThemeProvider",
       "createDynamicColorPalette",

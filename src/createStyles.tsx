@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import shortId from 'shortid';
 import stylis from 'stylis';
 import css from './css';
-import { DynamicColorPalette } from './types';
+import { DynamicColorPalette, Theme } from './types';
 import useTheme from './useTheme';
 import createDynamicColorPalette from './createDynamicColorPalette';
 import tryGetCurrentFileName from './tryGetCurrentFileName';
@@ -51,12 +51,17 @@ function hashStyleObj(styleObj: { [key: string]: string | undefined }) {
 // preserve the object reference
 const empty = {};
 
-function makeStyles<Styles extends { [key: string]: string }>(
-  stylesFn: (cssFn: typeof css, colors: DynamicColorPalette) => Styles,
+function createStyles<Styles extends { [key: string]: string }>(
+  stylesFn: (args: {
+    css: typeof css;
+    color: DynamicColorPalette;
+    theme: Theme;
+  }) => Styles,
 ) {
   const sheetId = shortId();
   const fileName = tryGetCurrentFileName();
 
+  // TODO: possibly delay this side effect until component mount?
   const sheetEl = document.createElement('style');
   sheetEl.dataset.hackerUi = 'true';
   sheetEl.id = sheetId;
@@ -89,9 +94,9 @@ function makeStyles<Styles extends { [key: string]: string }>(
 
     // create a map of unprocessed styles
     const unprocessedStyles = useMemo(() => {
-      const colors = createDynamicColorPalette(color, on);
-      return stylesFn(css, colors);
-    }, [color, on]);
+      const dynamicColors = createDynamicColorPalette(color, on);
+      return stylesFn({ css, color: dynamicColors, theme });
+    }, [color, on, theme]);
 
     // calculate the class names
     const thisStyles = useMemo(() => {
@@ -180,4 +185,4 @@ function makeStyles<Styles extends { [key: string]: string }>(
   return useStyles;
 }
 
-export default makeStyles;
+export default createStyles;

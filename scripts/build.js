@@ -3,7 +3,7 @@ const path = require('path');
 const { promisify } = require('util');
 const { exec } = require('child_process');
 const md5 = require('md5');
-const generateExports = require('./generateExports');
+const generateExports = require('./generateExportsFn');
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
