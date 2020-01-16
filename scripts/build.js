@@ -10,8 +10,10 @@ const writeFile = promisify(fs.writeFile);
 
 function execute(command) {
   return new Promise((resolve, reject) => {
-    exec(command, (error, stdout) => {
+    exec(command, (error, stdout, stderr) => {
       if (error) {
+        console.error(stdout);
+        console.error(stderr);
         reject(error);
       } else {
         resolve(stdout);
@@ -23,9 +25,19 @@ function execute(command) {
 async function main() {
   await generateExports();
 
+  console.log('linting…');
+  const eslintResult = await execute('npx eslint src --ext .ts,.tsx,.js,.jsx');
+  eslintResult && console.log(eslintResult);
+
+  console.log('checking types…');
+  const tsResult = await execute('npx tsc');
+  tsResult && console.log(tsResult);
+
+  console.log('cleaning…');
   const rmRfResult = await execute('rm -rf build');
   rmRfResult && console.log(rmRfResult);
 
+  console.log('rolling…');
   const rollupResult = await execute('npx rollup -c');
   rollupResult && console.log(rollupResult);
 
@@ -34,6 +46,7 @@ async function main() {
   );
   const buildHash = md5(bundleContent.toString()).substring(0, 9);
 
+  console.log('writing build package.json…');
   const rawPackageJson = await readFile(
     path.join(__dirname, '../package.json'),
   );
@@ -58,6 +71,8 @@ async function main() {
     path.join(__dirname, '../build/package.json'),
     JSON.stringify(updatedPackageJson, null, 2),
   );
+
+  console.log('DONE!');
 }
 
 main()
