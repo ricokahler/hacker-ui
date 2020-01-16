@@ -1,4 +1,4 @@
-import css from './cssReexport';
+import css from './css';
 
 it("re-exports the string it's given", () => {
   const test = css`
