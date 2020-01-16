@@ -1,4 +1,4 @@
-/** @pragma export */
+// @pragma export
 import { Theme } from './types';
 
 const defaultTheme: Theme = {

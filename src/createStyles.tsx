@@ -1,4 +1,4 @@
-/** @pragma export */
+// @pragma export
 import React, { forwardRef, useMemo, useLayoutEffect } from 'react';
 import classNames from 'classnames';
 import shortId from 'shortid';

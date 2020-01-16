@@ -7,7 +7,7 @@ const readdir = promisify(fs.readdir);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
-async function main() {
+async function generateExports() {
   const prettierConfigRaw = await readFile(
     path.join(__dirname, '../.prettierrc'),
   );
@@ -55,9 +55,4 @@ async function main() {
   );
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch(e => {
-    console.error(e);
-    process.exit(1);
-  });
+module.exports = generateExports;
