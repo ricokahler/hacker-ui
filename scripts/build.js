@@ -25,17 +25,17 @@ function execute(command) {
 async function main() {
   await generateExports();
 
+  console.log('cleaning…');
+  const rmRfResult = await execute('rm -rf build');
+  rmRfResult && console.log(rmRfResult);
+
   console.log('linting…');
   const eslintResult = await execute('npx eslint src --ext .ts,.tsx,.js,.jsx');
   eslintResult && console.log(eslintResult);
 
-  console.log('checking types…');
+  console.log('generating types…');
   const tsResult = await execute('npx tsc');
   tsResult && console.log(tsResult);
-
-  console.log('cleaning…');
-  const rmRfResult = await execute('rm -rf build');
-  rmRfResult && console.log(rmRfResult);
 
   console.log('rolling…');
   const rollupResult = await execute('npx rollup -c');
@@ -65,6 +65,7 @@ async function main() {
     version: `0.0.0-${buildHash}`,
     module: './bundle.esm.js',
     main: './bundle.umd.js',
+    types: './types',
   };
 
   await writeFile(

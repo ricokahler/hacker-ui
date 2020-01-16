@@ -17,7 +17,7 @@ export interface StyleProps<UseStylesFn> {
   className?: string;
 }
 
-interface InternalStyleProps<StylesObj> {
+export interface InternalStyleProps<StylesObj> {
   on?: string;
   color?: string;
   style?: React.CSSProperties;
