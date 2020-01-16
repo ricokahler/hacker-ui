@@ -4,7 +4,7 @@ import delay from 'delay';
 import DeferredPromise from './DeferredPromise';
 import ThemeProvider from './ThemeProvider';
 import createTheme from './createTheme';
-import makeStyles from './makeStyles';
+import createStyles from './createStyles';
 
 const theme = createTheme();
 
@@ -14,7 +14,7 @@ it('returns colors, styles, and the root component', async () => {
   const rootHandler = jest.fn();
   const done = new DeferredPromise();
 
-  const useStyles = makeStyles((_, color) => {
+  const useStyles = createStyles((_, color) => {
     colorHandler(color);
 
     return {
@@ -65,7 +65,7 @@ it('returns colors, styles, and the root component', async () => {
 });
 
 it('composes the classnames', () => {
-  const useStyles = makeStyles(() => ({
+  const useStyles = createStyles(() => ({
     root: 'root-from-styles',
     title: 'title-from-styles',
   }));
@@ -119,7 +119,7 @@ it('composes the classnames', () => {
 test("the root node doesn't remount when classnames changes", async () => {
   const done = new DeferredPromise();
 
-  const useStyles = makeStyles(() => ({
+  const useStyles = createStyles(() => ({
     root: 'style-root',
     title: 'style-title',
   }));
@@ -182,7 +182,7 @@ test("the root node doesn't remount when classnames changes", async () => {
 it('memoizes the Root component reference and the styles reference', async () => {
   const done = new DeferredPromise();
 
-  const useStyles = makeStyles(() => ({
+  const useStyles = createStyles(() => ({
     root: 'style-root',
     title: 'style-title',
   }));

@@ -1,12 +1,12 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from './Button';
-import makeStyles from './makeStyles';
+import createStyles from './createStyles';
 import ThemeProvider from './ThemeProvider';
 import createTheme from './createTheme';
 const theme = createTheme();
 
-const useStyles = makeStyles(css => ({
+const useStyles = createStyles(css => ({
   button: css`
     background-color: red;
   `,

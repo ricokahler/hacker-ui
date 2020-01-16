@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import makeStyles, { StyleProps } from './makeStyles';
+import createStyles, { StyleProps } from './createStyles';
 
-const useStyles = makeStyles(css => ({
+const useStyles = createStyles(css => ({
   root: css`
     background-color: blue;
   `,
