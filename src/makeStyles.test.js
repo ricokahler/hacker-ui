@@ -14,7 +14,7 @@ it('returns colors, styles, and the root component', async () => {
   const rootHandler = jest.fn();
   const done = new DeferredPromise();
 
-  const useStyles = makeStyles(color => {
+  const useStyles = makeStyles((_, color) => {
     colorHandler(color);
 
     return {

@@ -1,8 +1,10 @@
 import React, { forwardRef } from 'react';
 import makeStyles, { StyleProps } from './makeStyles';
 
-const useStyles = makeStyles(color => ({
-  root: '',
+const useStyles = makeStyles(css => ({
+  root: css`
+    background-color: blue;
+  `,
 }));
 
 type ButtonProps = JSX.IntrinsicElements['button'];

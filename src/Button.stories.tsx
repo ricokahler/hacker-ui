@@ -1,15 +1,38 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from './Button';
+import makeStyles from './makeStyles';
+import ThemeProvider from './ThemeProvider';
+import createTheme from './createTheme';
+const theme = createTheme();
+
+const useStyles = makeStyles(css => ({
+  button: css`
+    background-color: red;
+  `,
+}));
 
 export default {
   component: Button,
   title: 'Button',
 };
 
-export const text = () => (
-  <Button onClick={action('clicked')}>Hello Button</Button>
-);
+export const test = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Example />
+    </ThemeProvider>
+  );
+};
+
+const Example = (props: any) => {
+  const { styles } = useStyles(props);
+  return (
+    <Button className={styles.button} onClick={action('clicked')}>
+      Hello Button
+    </Button>
+  );
+};
 
 export const emoji = () => (
   <Button onClick={action('clicked')}>

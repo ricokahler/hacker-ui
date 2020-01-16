@@ -1,8 +1,12 @@
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef, useMemo, useLayoutEffect } from 'react';
 import classNames from 'classnames';
+import shortId from 'shortid';
+import stylis from 'stylis';
+import css from './css';
 import { DynamicColorPalette } from './types';
 import useTheme from './useTheme';
 import createDynamicColorPalette from './createDynamicColorPalette';
+import tryGetCurrentFileName from './tryGetCurrentFileName';
 
 export interface StyleProps<UseStylesFn> {
   on?: string;
@@ -47,8 +51,15 @@ function hashStyleObj(styleObj: { [key: string]: string | undefined }) {
 const empty = {};
 
 function makeStyles<Styles extends { [key: string]: string }>(
-  stylesFn: (colors: DynamicColorPalette) => Styles,
+  stylesFn: (cssFn: typeof css, colors: DynamicColorPalette) => Styles,
 ) {
+  const sheetId = `s${shortId()}`;
+  const fileName = tryGetCurrentFileName();
+
+  const sheetEl = document.createElement('style');
+  sheetEl.dataset.hackerUi = 'true';
+  document.head.appendChild(sheetEl);
+
   function useStyles<
     Props extends InternalStyleProps<Styles>,
     ComponentType extends
@@ -74,10 +85,44 @@ function makeStyles<Styles extends { [key: string]: string }>(
 
     const incomingStyleHash = hashStyleObj(incomingStyles);
 
-    const mergedStyles = useMemo(() => {
+    // create a map of unprocessed styles
+    const unprocessedStyles = useMemo(() => {
       const colors = createDynamicColorPalette(color, on);
-      const thisStyles = stylesFn(colors);
+      return stylesFn(css, colors);
+    }, [color, on]);
 
+    // calculate the class names
+    const thisStyles = useMemo(() => {
+      return Object.keys(unprocessedStyles)
+        .map(key => [key, `c${fileName}_${key}_${sheetId}`])
+        .reduce((acc, [key, className]) => {
+          acc[key as keyof Styles] = className as Styles[keyof Styles];
+          return acc;
+        }, {} as Styles);
+    }, [unprocessedStyles]);
+
+    // mount the styles to the dom
+    useLayoutEffect(() => {
+      const keys = Object.keys(thisStyles);
+
+      const processedSheet = keys
+        .map(key => {
+          const className = thisStyles[key];
+          const unprocessedStyle = unprocessedStyles[key];
+
+          const processedStyle: string = stylis(
+            `.${className}`,
+            unprocessedStyle,
+          );
+
+          return processedStyle;
+        })
+        .join('\n\n');
+
+      sheetEl.innerHTML = processedSheet;
+    }, [thisStyles, unprocessedStyles]);
+
+    const mergedStyles = useMemo(() => {
       const thisStyleKeys = Object.keys(thisStyles) as Array<keyof Styles>;
 
       return thisStyleKeys.reduce((merged, key) => {
@@ -92,7 +137,7 @@ function makeStyles<Styles extends { [key: string]: string }>(
         return merged;
       }, {} as Styles);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [color, on, incomingStyleHash]);
+    }, [thisStyles, incomingStyleHash]);
 
     const Component = (component || 'div') as React.ComponentType<any>;
 
