@@ -85,10 +85,7 @@ function createStyles<Styles extends { [key: string]: string }>(
   >(
     props: Props = {} as any,
     component?: ComponentType,
-  ): Omit<
-    Props,
-    'on' | 'color' | 'style' | 'styles' | 'className' | 'component'
-  > & {
+  ): Omit<Props, 'on' | 'color' | 'style' | 'styles' | 'className'> & {
     Root: React.ComponentType<GetComponentProps<ComponentType>>;
     styles: Styles;
   } {
@@ -99,7 +96,7 @@ function createStyles<Styles extends { [key: string]: string }>(
       style: incomingStyle,
       className: incomingClassName,
       styles: incomingStyles = empty as Styles,
-      component: incomingComponent,
+      // component: incomingComponent,
       ...restOfProps
     } = props;
 
@@ -168,9 +165,7 @@ function createStyles<Styles extends { [key: string]: string }>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [thisStyles, incomingStyleHash]);
 
-    const Component = (component ||
-      incomingComponent ||
-      'div') as React.ComponentType<any>;
+    const Component = (component || 'div') as React.ComponentType<any>;
 
     const Root = useMemo(() => {
       return forwardRef((rootProps: StyleProps<Styles>, ref: any) => {

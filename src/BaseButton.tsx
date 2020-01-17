@@ -6,6 +6,11 @@ import createStyles, { PropsFromStyles } from './createStyles';
 const useStyles = createStyles(({ css, theme, color }) => ({
   root: css`
     ${theme.fonts.button}
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
     color: ${color.onSurface};
     padding: ${theme.space(0.75)} ${theme.space(1)};
     appearance: none;
@@ -34,7 +39,10 @@ interface Props extends PropsFromStyles<typeof useStyles>, ButtonProps {
 }
 
 const Button = forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
-  const { Root, styles, size, ...restOfProps } = useStyles(props, 'button');
+  const { Root, styles, size, component, ...restOfProps } = useStyles(
+    props,
+    props.component || 'button',
+  );
   return (
     <Root
       className={classNames({

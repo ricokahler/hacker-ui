@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   createStyles,
-  StyleProps,
+  PropsFromStyles,
   useTheme,
   FilledButton,
   GhostButton,
@@ -18,7 +18,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     ${theme.fonts.h3}
     margin-bottom: ${theme.space(1)};
   `,
-  group: css`
+  section: css`
     display: flex;
     flex-direction: column;
     margin-bottom: ${theme.gap(1)};
@@ -35,7 +35,7 @@ const useStyles = createStyles(({ css, theme }) => ({
       margin-right: ${theme.space(1)};
     }
   `,
-  ghostAndFilled: css`
+  card: css`
     background-color: ${theme.colors.surface};
     padding: ${theme.space(1)};
     box-shadow: ${theme.shadows.standard};
@@ -51,7 +51,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     ${theme.fonts.body2}
     margin-bottom: ${theme.space(1)};
   `,
-  buttonActions: css`
+  cardActions: css`
     display: flex;
     justify-content: flex-end;
     & > *:not(:first-child) {
@@ -67,7 +67,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
 }));
 
-interface Props extends StyleProps<typeof useStyles> {}
+interface Props extends PropsFromStyles<typeof useStyles> {}
 
 function Buttons(props: Props) {
   const { Root, styles } = useStyles(props);
@@ -76,7 +76,7 @@ function Buttons(props: Props) {
   return (
     <Root>
       <h1 className={styles.title}>Buttons</h1>
-      <div className={styles.group}>
+      <div className={styles.section}>
         <h2 className={styles.label}>Filled Buttons</h2>
         <p className={styles.description}>Use these for primary actions.</p>
         <div className={styles.buttons}>
@@ -87,7 +87,7 @@ function Buttons(props: Props) {
         </div>
       </div>
 
-      <section className={styles.group}>
+      <section className={styles.section}>
         <h2 className={styles.label}>Outline Buttons</h2>
         <p className={styles.description}>
           An in-between of the filled button and the ghost button
@@ -100,7 +100,7 @@ function Buttons(props: Props) {
         </div>
       </section>
 
-      <section className={styles.group}>
+      <section className={styles.section}>
         <h2 className={styles.label}>Ghost Buttons</h2>
         <p className={styles.description}>
           These don't have as much emphasis on the page but still signal to the
@@ -114,18 +114,18 @@ function Buttons(props: Props) {
         </div>
       </section>
 
-      <section className={styles.ghostAndFilled}>
+      <section className={styles.card}>
         <h2 className={styles.cardTitle}>Try them together!</h2>
         <p className={styles.cardDescription}>
           Pair the different buttons to put emphasis on certain actions.
         </p>
-        <div className={styles.buttonActions}>
+        <div className={styles.cardActions}>
           <GhostButton color={theme.colors.bland}>Cancel</GhostButton>
           <FilledButton color={theme.colors.brand}>Okay</FilledButton>
         </div>
       </section>
 
-      <section className={styles.group}>
+      <section className={styles.section}>
         <h2 className={styles.label}>Disabled Buttons</h2>
         <p className={styles.description}>Can’t click these.</p>
 
@@ -177,7 +177,23 @@ function Buttons(props: Props) {
         </div>
       </section>
 
-      <section className={styles.group}>
+      <section className={styles.section}>
+        <h2 className={styles.label}>Links and more</h2>
+        <p className={styles.description}>
+          You can pick any component to be the root component.
+        </p>
+        <div className={styles.buttons}>
+          <OutlineButton
+            color={theme.colors.accent}
+            // eslint-disable-next-line
+            component={props => <a href="#" {...props} />}
+          >
+            Link
+          </OutlineButton>
+        </div>
+      </section>
+
+      <section className={styles.section}>
         <h2 className={styles.label}>Sizes</h2>
         <p className={styles.description}>Small, standard, and large.</p>
 
