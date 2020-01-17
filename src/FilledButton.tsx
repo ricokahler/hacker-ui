@@ -2,6 +2,7 @@
 import React, { forwardRef } from 'react';
 import { transparentize } from 'polished';
 import BaseButton from './BaseButton';
+import { PropsOf } from './types';
 import createStyles, { StyleProps } from './createStyles';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
@@ -31,8 +32,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   `,
 }));
 
-type ButtonProps = JSX.IntrinsicElements['button'];
-interface Props extends StyleProps<typeof useStyles>, ButtonProps {}
+type BaseButtonProps = PropsOf<typeof BaseButton>;
+interface Props extends StyleProps<typeof useStyles>, BaseButtonProps {}
 
 const FilledButton = forwardRef(
   (props: Props, ref: React.Ref<HTMLButtonElement>) => {

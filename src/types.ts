@@ -47,3 +47,5 @@ export interface DynamicColorPalette {
   onSurface: string;
   bgContrast: string;
 }
+
+export type PropsOf<T> = T extends React.ComponentType<infer U> ? U : never;

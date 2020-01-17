@@ -42,7 +42,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: ${theme.gap(1)};
     align-self: flex-start;
     max-width: 100%;
-    width: ${theme.block(4)};
+    width: ${theme.block(4.5)};
   `,
   cardTitle: css`
     ${theme.fonts.h4}
@@ -87,7 +87,7 @@ function Buttons(props: Props) {
         </div>
       </div>
 
-      <div className={styles.group}>
+      <section className={styles.group}>
         <h2 className={styles.label}>Outline Buttons</h2>
         <p className={styles.description}>
           An in-between of the filled button and the ghost button
@@ -98,9 +98,9 @@ function Buttons(props: Props) {
           <OutlineButton color={theme.colors.bland}>Boring</OutlineButton>
           <OutlineButton color={theme.colors.danger}>Delete</OutlineButton>
         </div>
-      </div>
+      </section>
 
-      <div className={styles.group}>
+      <section className={styles.group}>
         <h2 className={styles.label}>Ghost Buttons</h2>
         <p className={styles.description}>
           These don't have as much emphasis on the page but still signal to the
@@ -112,9 +112,9 @@ function Buttons(props: Props) {
           <GhostButton color={theme.colors.bland}>Boring</GhostButton>
           <GhostButton color={theme.colors.danger}>Delete</GhostButton>
         </div>
-      </div>
+      </section>
 
-      <div className={styles.ghostAndFilled}>
+      <section className={styles.ghostAndFilled}>
         <h2 className={styles.cardTitle}>Try them together!</h2>
         <p className={styles.cardDescription}>
           Pair the different buttons to put emphasis on certain actions.
@@ -123,9 +123,9 @@ function Buttons(props: Props) {
           <GhostButton color={theme.colors.bland}>Cancel</GhostButton>
           <FilledButton color={theme.colors.brand}>Okay</FilledButton>
         </div>
-      </div>
+      </section>
 
-      <div className={styles.group}>
+      <section className={styles.group}>
         <h2 className={styles.label}>Disabled Buttons</h2>
         <p className={styles.description}>Can’t click these.</p>
 
@@ -175,7 +175,37 @@ function Buttons(props: Props) {
             </GhostButton>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className={styles.group}>
+        <h2 className={styles.label}>Sizes</h2>
+        <p className={styles.description}>Small, standard, and large.</p>
+
+        <div className={styles.buttonRows}>
+          <div className={styles.buttons}>
+            <FilledButton size="large">Large</FilledButton>
+            <OutlineButton size="large" color={theme.colors.accent}>
+              Okay
+            </OutlineButton>
+          </div>
+          <div className={styles.buttons}>
+            <FilledButton color={theme.colors.bland}>Click</FilledButton>
+            <FilledButton color={theme.colors.accent}>Click</FilledButton>
+            <GhostButton>Click</GhostButton>
+          </div>
+          <div className={styles.buttons}>
+            <FilledButton size="small" color={theme.colors.accent}>
+              Small
+            </FilledButton>
+            <FilledButton size="small" color={theme.colors.danger}>
+              Error
+            </FilledButton>
+            <OutlineButton size="small" disabled>
+              Disabled
+            </OutlineButton>
+          </div>
+        </div>
+      </section>
     </Root>
   );
 }

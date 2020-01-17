@@ -2,6 +2,7 @@
 import React, { forwardRef } from 'react';
 import { transparentize } from 'polished';
 import createStyles, { StyleProps } from './createStyles';
+import { PropsOf } from './types';
 import BaseButton from './BaseButton';
 
 const useStyles = createStyles(({ css, color, theme }) => ({
@@ -28,13 +29,13 @@ const useStyles = createStyles(({ css, color, theme }) => ({
   `,
 }));
 
-type ButtonProps = JSX.IntrinsicElements['button'];
-interface Props extends StyleProps<typeof useStyles>, ButtonProps {}
+type BaseButtonProps = PropsOf<typeof BaseButton>;
+interface Props extends StyleProps<typeof useStyles>, BaseButtonProps {}
 
 const OutlineButton = forwardRef(
   (props: Props, ref: React.Ref<HTMLButtonElement>) => {
     const { styles, Root, ...restOfProps } = useStyles(props, BaseButton);
-    return <Root ref={ref as any} {...restOfProps} />;
+    return <Root ref={ref} {...restOfProps} />;
   },
 );
 
