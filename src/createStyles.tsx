@@ -4,26 +4,38 @@ import classNames from 'classnames';
 import shortId from 'shortid';
 import stylis from 'stylis';
 import css from './css';
-import { DynamicColorPalette, Theme } from './types';
+import { DynamicColorPalette, Theme, PropsOf } from './types';
 import useTheme from './useTheme';
 import createDynamicColorPalette from './createDynamicColorPalette';
 import tryGetCurrentFileName from './tryGetCurrentFileName';
 
-export interface StyleProps<UseStylesFn> {
+export interface PropsFromStyles<UseStylesFn> {
   on?: string;
   color?: string;
   style?: React.CSSProperties;
   styles?: Partial<GetStyleObj<UseStylesFn>>;
   className?: string;
+  component?: ReactComponent;
 }
 
-export interface InternalStyleProps<StylesObj> {
+type ReactComponent =
+  | React.ComponentType<any>
+  | keyof JSX.IntrinsicElements
+  | string;
+
+export interface StyleProps<StylesObj> {
   on?: string;
   color?: string;
   style?: React.CSSProperties;
   styles?: Partial<StylesObj>;
   className?: string;
+  component?: ReactComponent;
 }
+
+export type OmitStyleProps<T> = Omit<T, keyof StyleProps<any>>;
+export type PropsFromComponent<
+  T extends React.ComponentType<any>
+> = OmitStyleProps<PropsOf<T>>;
 
 type GetStyleObj<UseStylesFn> = UseStylesFn extends (props: {
   styles: Partial<infer U>;
@@ -32,10 +44,7 @@ type GetStyleObj<UseStylesFn> = UseStylesFn extends (props: {
   : never;
 
 type GetComponentProps<
-  ComponentType extends
-    | React.ComponentType<any>
-    | keyof JSX.IntrinsicElements
-    | string
+  ComponentType extends ReactComponent
 > = ComponentType extends React.ComponentType<infer U>
   ? U
   : ComponentType extends keyof JSX.IntrinsicElements
@@ -51,12 +60,15 @@ function hashStyleObj(styleObj: { [key: string]: string | undefined }) {
 // preserve the object reference
 const empty = {};
 
+// for some reason, typescript doesn't let these be inline
+type StyleFnArgs = {
+  css: typeof css;
+  color: DynamicColorPalette;
+  theme: Theme;
+};
+
 function createStyles<Styles extends { [key: string]: string }>(
-  stylesFn: (args: {
-    css: typeof css;
-    color: DynamicColorPalette;
-    theme: Theme;
-  }) => Styles,
+  stylesFn: (args: StyleFnArgs) => Styles,
 ) {
   const sheetId = shortId();
   const fileName = tryGetCurrentFileName();
@@ -68,15 +80,15 @@ function createStyles<Styles extends { [key: string]: string }>(
   document.head.appendChild(sheetEl);
 
   function useStyles<
-    Props extends InternalStyleProps<Styles>,
-    ComponentType extends
-      | React.ComponentType<any>
-      | keyof JSX.IntrinsicElements
-      | string = 'div'
+    Props extends StyleProps<Styles>,
+    ComponentType extends ReactComponent = 'div'
   >(
     props: Props = {} as any,
     component?: ComponentType,
-  ): Omit<Props, 'on' | 'color' | 'style' | 'styles' | 'className'> & {
+  ): Omit<
+    Props,
+    'on' | 'color' | 'style' | 'styles' | 'className' | 'component'
+  > & {
     Root: React.ComponentType<GetComponentProps<ComponentType>>;
     styles: Styles;
   } {
@@ -87,6 +99,7 @@ function createStyles<Styles extends { [key: string]: string }>(
       style: incomingStyle,
       className: incomingClassName,
       styles: incomingStyles = empty as Styles,
+      component: incomingComponent,
       ...restOfProps
     } = props;
 
@@ -155,10 +168,12 @@ function createStyles<Styles extends { [key: string]: string }>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [thisStyles, incomingStyleHash]);
 
-    const Component = (component || 'div') as React.ComponentType<any>;
+    const Component = (component ||
+      incomingComponent ||
+      'div') as React.ComponentType<any>;
 
     const Root = useMemo(() => {
-      return forwardRef((rootProps: InternalStyleProps<Styles>, ref: any) => {
+      return forwardRef((rootProps: StyleProps<Styles>, ref: any) => {
         const { className: rootClassName, style: rootStyles } = rootProps;
 
         return (

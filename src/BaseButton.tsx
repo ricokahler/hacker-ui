@@ -1,7 +1,7 @@
 // @pragma export
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import createStyles, { StyleProps } from './createStyles';
+import createStyles, { PropsFromStyles } from './createStyles';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
   root: css`
@@ -29,7 +29,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
 
 type ButtonProps = JSX.IntrinsicElements['button'];
 
-interface Props extends StyleProps<typeof useStyles>, ButtonProps {
+interface Props extends PropsFromStyles<typeof useStyles>, ButtonProps {
   size?: 'small' | 'standard' | 'large';
 }
 

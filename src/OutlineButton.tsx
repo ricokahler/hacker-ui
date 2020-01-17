@@ -1,8 +1,10 @@
 // @pragma export
 import React, { forwardRef } from 'react';
 import { transparentize } from 'polished';
-import createStyles, { StyleProps } from './createStyles';
-import { PropsOf } from './types';
+import createStyles, {
+  PropsFromStyles,
+  PropsFromComponent,
+} from './createStyles';
 import BaseButton from './BaseButton';
 
 const useStyles = createStyles(({ css, color, theme }) => ({
@@ -29,8 +31,9 @@ const useStyles = createStyles(({ css, color, theme }) => ({
   `,
 }));
 
-type BaseButtonProps = PropsOf<typeof BaseButton>;
-interface Props extends StyleProps<typeof useStyles>, BaseButtonProps {}
+interface Props
+  extends PropsFromStyles<typeof useStyles>,
+    PropsFromComponent<typeof BaseButton> {}
 
 const OutlineButton = forwardRef(
   (props: Props, ref: React.Ref<HTMLButtonElement>) => {

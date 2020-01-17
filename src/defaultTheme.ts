@@ -2,7 +2,7 @@
 import { Theme } from './types';
 import css from './css';
 
-const golden = (n: number) => `${n ** 1.618 * 16 + 5}px`;
+const golden = (n: number) => `${n ** 1.618 * 16 + 8}px`;
 
 const defaultTheme: Theme = {
   fonts: {
