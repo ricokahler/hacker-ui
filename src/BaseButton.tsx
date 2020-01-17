@@ -2,6 +2,7 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import createStyles, { PropsFromStyles } from './createStyles';
+import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
   root: css`
@@ -16,6 +17,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     appearance: none;
     outline: none;
     border: none;
+    text-decoration: none;
     min-width: ${theme.block(1)};
     cursor: pointer;
 
@@ -36,6 +38,7 @@ type ButtonProps = JSX.IntrinsicElements['button'];
 
 interface Props extends PropsFromStyles<typeof useStyles>, ButtonProps {
   size?: 'small' | 'standard' | 'large';
+  component?: ReactComponent;
 }
 
 const Button = forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {

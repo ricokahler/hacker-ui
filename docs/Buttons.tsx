@@ -7,6 +7,7 @@ import {
   GhostButton,
   OutlineButton,
 } from 'hacker-ui';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -188,8 +189,14 @@ function Buttons(props: Props) {
             // eslint-disable-next-line
             component={props => <a href="#" {...props} />}
           >
-            Link
+            Standard Link
           </OutlineButton>
+          <FilledButton
+            color={theme.colors.accent}
+            component={props => <Link to="/buttons" {...props} />}
+          >
+            React Router Link
+          </FilledButton>
         </div>
       </section>
 

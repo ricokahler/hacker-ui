@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import shortId from 'shortid';
 import stylis from 'stylis';
 import css from './css';
-import { DynamicColorPalette, Theme, PropsOf } from './types';
+import { DynamicColorPalette, Theme, PropsOf, ReactComponent } from './types';
 import useTheme from './useTheme';
 import createDynamicColorPalette from './createDynamicColorPalette';
 import tryGetCurrentFileName from './tryGetCurrentFileName';
@@ -15,13 +15,7 @@ export interface PropsFromStyles<UseStylesFn> {
   style?: React.CSSProperties;
   styles?: Partial<GetStyleObj<UseStylesFn>>;
   className?: string;
-  component?: ReactComponent;
 }
-
-type ReactComponent =
-  | React.ComponentType<any>
-  | keyof JSX.IntrinsicElements
-  | string;
 
 export interface StyleProps<StylesObj> {
   on?: string;
@@ -29,7 +23,6 @@ export interface StyleProps<StylesObj> {
   style?: React.CSSProperties;
   styles?: Partial<StylesObj>;
   className?: string;
-  component?: ReactComponent;
 }
 
 export type OmitStyleProps<T> = Omit<T, keyof StyleProps<any>>;
@@ -96,7 +89,6 @@ function createStyles<Styles extends { [key: string]: string }>(
       style: incomingStyle,
       className: incomingClassName,
       styles: incomingStyles = empty as Styles,
-      // component: incomingComponent,
       ...restOfProps
     } = props;
 

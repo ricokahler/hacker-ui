@@ -49,3 +49,8 @@ export interface DynamicColorPalette {
 }
 
 export type PropsOf<T> = T extends React.ComponentType<infer U> ? U : never;
+
+export type ReactComponent =
+  | React.ComponentType<any>
+  | keyof JSX.IntrinsicElements
+  | string;
