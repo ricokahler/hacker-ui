@@ -5,6 +5,7 @@ import {
   useTheme,
   FilledButton,
   GhostButton,
+  OutlineButton,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -87,6 +88,19 @@ function Buttons(props: Props) {
       </div>
 
       <div className={styles.group}>
+        <h2 className={styles.label}>Outline Buttons</h2>
+        <p className={styles.description}>
+          An in-between of the filled button and the ghost button
+        </p>
+        <div className={styles.buttons}>
+          <OutlineButton color={theme.colors.brand}>Okay</OutlineButton>
+          <OutlineButton color={theme.colors.accent}>Done</OutlineButton>
+          <OutlineButton color={theme.colors.bland}>Boring</OutlineButton>
+          <OutlineButton color={theme.colors.danger}>Delete</OutlineButton>
+        </div>
+      </div>
+
+      <div className={styles.group}>
         <h2 className={styles.label}>Ghost Buttons</h2>
         <p className={styles.description}>
           These don't have as much emphasis on the page but still signal to the
@@ -129,6 +143,21 @@ function Buttons(props: Props) {
             <FilledButton disabled color={theme.colors.danger}>
               Delete
             </FilledButton>
+          </div>
+
+          <div className={styles.buttons}>
+            <OutlineButton disabled color={theme.colors.brand}>
+              Okay
+            </OutlineButton>
+            <OutlineButton disabled color={theme.colors.accent}>
+              Done
+            </OutlineButton>
+            <OutlineButton disabled color={theme.colors.bland}>
+              Boring
+            </OutlineButton>
+            <OutlineButton disabled color={theme.colors.danger}>
+              Delete
+            </OutlineButton>
           </div>
 
           <div className={styles.buttons}>

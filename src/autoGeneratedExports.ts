@@ -4,6 +4,8 @@ export { default as FilledButton } from './FilledButton';
 export * from './FilledButton';
 export { default as GhostButton } from './GhostButton';
 export * from './GhostButton';
+export { default as OutlineButton } from './OutlineButton';
+export * from './OutlineButton';
 export { default as ThemeContext } from './ThemeContext';
 export * from './ThemeContext';
 export { default as ThemeProvider } from './ThemeProvider';

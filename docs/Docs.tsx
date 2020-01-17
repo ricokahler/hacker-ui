@@ -21,11 +21,17 @@ const useStyles = createStyles(({ css, theme }) => ({
   content: css`
     flex: 1 1 auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   `,
   appBar: css`
     flex: 0 0 auto;
   `,
-  main: css``,
+  main: css`
+    flex: 1 1 auto;
+    display: flex;
+    overflow: auto;
+  `,
 }));
 
 interface Props extends StyleProps<typeof useStyles> {}
