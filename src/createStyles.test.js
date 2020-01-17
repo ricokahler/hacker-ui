@@ -69,6 +69,7 @@ it('returns colors, styles, and the root component', async () => {
       },
       "css": [Function],
       "theme": Object {
+        "block": [Function],
         "colors": Object {
           "accent": "#2962ff",
           "bland": "#ddd",
@@ -78,6 +79,54 @@ it('returns colors, styles, and the root component', async () => {
           "surface": "#fff",
           "warning": "#f56200",
         },
+        "fonts": Object {
+          "body1": "
+          font-size: 0px;
+          line-height: 1.3;
+          font-weight: 500;
+        ",
+          "body2": "
+          font-size: 0px;
+          line-height: 1.2;
+        ",
+          "button": "
+          font-weight: bold;
+          font-size: 1rem;
+        ",
+          "caption": "
+          font-size: 0.75rem;
+        ",
+          "h1": "
+          font-size: 150.74851706815767px;
+          font-weight: bold;
+        ",
+          "h2": "
+          font-size: 49.11187507202838px;
+          font-weight: bold;
+        ",
+          "h3": "
+          font-size: 49.11187507202838px;
+          font-weight: bold;
+        ",
+          "h4": "
+          font-size: 16px;
+          font-weight: bold;
+        ",
+          "overline": "",
+          "subtitle1": "
+          font-size: 16px;
+          font-weight: 300;
+          color: #444;
+        ",
+          "subtitle2": "
+          font-size: 0px;
+          font-weight: 300;
+          color: #444;
+        ",
+        },
+        "gap": [Function],
+        "golden": [Function],
+        "space": [Function],
       },
     }
   `);

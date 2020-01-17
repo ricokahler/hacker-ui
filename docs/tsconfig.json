@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "hacker-ui": ["../src/index.ts"]
+    }
+  },
+  "include": ["../docs", "../src"]
+}

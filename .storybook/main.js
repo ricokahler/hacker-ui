@@ -7,6 +7,11 @@ module.exports = {
       use: [
         {
           loader: require.resolve('ts-loader'),
+          options: {
+            compilerOptions: {
+              emitDeclarationOnly: false,
+            },
+          },
         },
         {
           loader: require.resolve('react-docgen-typescript-loader'),

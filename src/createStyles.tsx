@@ -74,7 +74,7 @@ function createStyles<Styles extends { [key: string]: string }>(
       | keyof JSX.IntrinsicElements
       | string = 'div'
   >(
-    props: Props,
+    props: Props = {} as any,
     component?: ComponentType,
   ): Omit<Props, 'on' | 'color' | 'style' | 'styles' | 'className'> & {
     Root: React.ComponentType<GetComponentProps<ComponentType>>;
@@ -82,7 +82,7 @@ function createStyles<Styles extends { [key: string]: string }>(
   } {
     const theme = useTheme();
     const {
-      color = theme.colors.bland,
+      color = theme.colors.brand,
       on = theme.colors.surface,
       style: incomingStyle,
       className: incomingClassName,
@@ -98,19 +98,24 @@ function createStyles<Styles extends { [key: string]: string }>(
       return stylesFn({ css, color: dynamicColors, theme });
     }, [color, on, theme]);
 
+    const styleId = useMemo(shortId, [unprocessedStyles]);
+
     // calculate the class names
     const thisStyles = useMemo(() => {
       return Object.keys(unprocessedStyles)
         .map(key => [
           key,
           // the replace is ensure the class name only uses css safe characters
-          `${fileName || 'hui'}_${key}_${sheetId}`.replace(/[^a-z0-9-_]/gi, ''),
+          `${fileName || 'hui'}_${key}_${sheetId}_${styleId}`.replace(
+            /[^a-z0-9-_]/gi,
+            '',
+          ),
         ])
         .reduce((acc, [key, className]) => {
           acc[key as keyof Styles] = className as Styles[keyof Styles];
           return acc;
         }, {} as Styles);
-    }, [unprocessedStyles]);
+    }, [styleId, unprocessedStyles]);
 
     // mount the styles to the dom
     useLayoutEffect(() => {
@@ -130,7 +135,7 @@ function createStyles<Styles extends { [key: string]: string }>(
         })
         .join('\n\n');
 
-      sheetEl.innerHTML = processedSheet;
+      sheetEl.innerHTML += processedSheet;
     }, [thisStyles, unprocessedStyles]);
 
     const mergedStyles = useMemo(() => {
