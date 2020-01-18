@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  useTheme,
-  FilledButton,
-  GhostButton,
-  OutlineButton,
-} from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme, Button } from 'hacker-ui';
 import { Link } from 'react-router-dom';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,6 +25,11 @@ const useStyles = createStyles(({ css, theme }) => ({
   description: css`
     ${theme.fonts.body2}
     margin-bottom: ${theme.space(1)};
+  `,
+  icons: css`
+    & > *:not(:last-child) {
+      margin-right: ${theme.space(1.5)};
+    }
   `,
   buttons: css`
     & > *:not(:last-child) {
@@ -83,10 +81,18 @@ function Buttons(props: Props) {
         <h2 className={styles.label}>Filled Buttons</h2>
         <p className={styles.description}>Use these for primary actions.</p>
         <div className={styles.buttons}>
-          <FilledButton color={theme.colors.brand}>Okay</FilledButton>
-          <FilledButton color={theme.colors.accent}>Done</FilledButton>
-          <FilledButton color={theme.colors.bland}>Boring</FilledButton>
-          <FilledButton color={theme.colors.danger}>Delete</FilledButton>
+          <Button variant="filled" color={theme.colors.brand}>
+            Okay
+          </Button>
+          <Button variant="filled" color={theme.colors.accent}>
+            Done
+          </Button>
+          <Button variant="filled" color={theme.colors.bland}>
+            Boring
+          </Button>
+          <Button variant="filled" color={theme.colors.danger}>
+            Delete
+          </Button>
         </div>
       </div>
 
@@ -96,10 +102,18 @@ function Buttons(props: Props) {
           An in-between of the filled button and the ghost button
         </p>
         <div className={styles.buttons}>
-          <OutlineButton color={theme.colors.brand}>Okay</OutlineButton>
-          <OutlineButton color={theme.colors.accent}>Done</OutlineButton>
-          <OutlineButton color={theme.colors.bland}>Boring</OutlineButton>
-          <OutlineButton color={theme.colors.danger}>Delete</OutlineButton>
+          <Button variant="outline" color={theme.colors.brand}>
+            Okay
+          </Button>
+          <Button variant="outline" color={theme.colors.accent}>
+            Done
+          </Button>
+          <Button variant="outline" color={theme.colors.bland}>
+            Boring
+          </Button>
+          <Button variant="outline" color={theme.colors.danger}>
+            Delete
+          </Button>
         </div>
       </section>
 
@@ -110,10 +124,18 @@ function Buttons(props: Props) {
           user that they're clickable.
         </p>
         <div className={styles.buttons}>
-          <GhostButton color={theme.colors.brand}>Okay</GhostButton>
-          <GhostButton color={theme.colors.accent}>Done</GhostButton>
-          <GhostButton color={theme.colors.bland}>Boring</GhostButton>
-          <GhostButton color={theme.colors.danger}>Delete</GhostButton>
+          <Button variant="ghost" color={theme.colors.brand}>
+            Okay
+          </Button>
+          <Button variant="ghost" color={theme.colors.accent}>
+            Done
+          </Button>
+          <Button variant="ghost" color={theme.colors.bland}>
+            Boring
+          </Button>
+          <Button variant="ghost" color={theme.colors.danger}>
+            Delete
+          </Button>
         </div>
       </section>
 
@@ -123,8 +145,12 @@ function Buttons(props: Props) {
           Pair the different buttons to put emphasis on certain actions.
         </p>
         <div className={styles.cardActions}>
-          <GhostButton color={theme.colors.bland}>Cancel</GhostButton>
-          <FilledButton color={theme.colors.brand}>Okay</FilledButton>
+          <Button variant="ghost" color={theme.colors.bland}>
+            Cancel
+          </Button>
+          <Button variant="filled" color={theme.colors.brand}>
+            Okay
+          </Button>
         </div>
       </section>
 
@@ -134,48 +160,48 @@ function Buttons(props: Props) {
 
         <div className={styles.buttonRows}>
           <div className={styles.buttons}>
-            <FilledButton disabled color={theme.colors.brand}>
+            <Button disabled color={theme.colors.brand}>
               Okay
-            </FilledButton>
-            <FilledButton disabled color={theme.colors.accent}>
+            </Button>
+            <Button disabled color={theme.colors.accent}>
               Done
-            </FilledButton>
-            <FilledButton disabled color={theme.colors.bland}>
+            </Button>
+            <Button disabled color={theme.colors.bland}>
               Boring
-            </FilledButton>
-            <FilledButton disabled color={theme.colors.danger}>
+            </Button>
+            <Button disabled color={theme.colors.danger}>
               Delete
-            </FilledButton>
+            </Button>
           </div>
 
           <div className={styles.buttons}>
-            <OutlineButton disabled color={theme.colors.brand}>
+            <Button variant="outline" disabled color={theme.colors.brand}>
               Okay
-            </OutlineButton>
-            <OutlineButton disabled color={theme.colors.accent}>
+            </Button>
+            <Button variant="outline" disabled color={theme.colors.accent}>
               Done
-            </OutlineButton>
-            <OutlineButton disabled color={theme.colors.bland}>
+            </Button>
+            <Button variant="outline" disabled color={theme.colors.bland}>
               Boring
-            </OutlineButton>
-            <OutlineButton disabled color={theme.colors.danger}>
+            </Button>
+            <Button variant="outline" disabled color={theme.colors.danger}>
               Delete
-            </OutlineButton>
+            </Button>
           </div>
 
           <div className={styles.buttons}>
-            <GhostButton disabled color={theme.colors.brand}>
+            <Button variant="ghost" disabled color={theme.colors.brand}>
               Okay
-            </GhostButton>
-            <GhostButton disabled color={theme.colors.accent}>
+            </Button>
+            <Button variant="ghost" disabled color={theme.colors.accent}>
               Done
-            </GhostButton>
-            <GhostButton disabled color={theme.colors.bland}>
+            </Button>
+            <Button variant="ghost" disabled color={theme.colors.bland}>
               Boring
-            </GhostButton>
-            <GhostButton disabled color={theme.colors.danger}>
+            </Button>
+            <Button variant="ghost" disabled color={theme.colors.danger}>
               Delete
-            </GhostButton>
+            </Button>
           </div>
         </div>
       </section>
@@ -186,19 +212,20 @@ function Buttons(props: Props) {
           You can pick any component to be the root component.
         </p>
         <div className={styles.buttons}>
-          <OutlineButton
+          <Button
+            variant="outline"
             color={theme.colors.accent}
             // eslint-disable-next-line
-            component={props => <a href="#" {...props} />}
+            component={(props: any) => <a href="#" {...props} />}
           >
             Standard Link
-          </OutlineButton>
-          <FilledButton
+          </Button>
+          <Button
             color={theme.colors.accent}
-            component={props => <Link to="/buttons" {...props} />}
+            component={(props: any) => <Link to="/buttons" {...props} />}
           >
             React Router Link
-          </FilledButton>
+          </Button>
         </div>
       </section>
 
@@ -208,29 +235,64 @@ function Buttons(props: Props) {
 
         <div className={styles.buttonRows}>
           <div className={styles.buttons}>
-            <FilledButton color={theme.colors.brand} size="large">
+            <Button color={theme.colors.brand} size="large">
               <span>Large</span>
               <FontAwesomeIcon icon={faArrowRight} />
-            </FilledButton>
-            <OutlineButton size="large" color={theme.colors.accent}>
+            </Button>
+            <Button variant="outline" size="large" color={theme.colors.accent}>
               Okay
-            </OutlineButton>
+            </Button>
           </div>
           <div className={styles.buttons}>
-            <FilledButton color={theme.colors.bland}>Click</FilledButton>
-            <FilledButton color={theme.colors.accent}>Click</FilledButton>
-            <GhostButton>Click</GhostButton>
+            <Button color={theme.colors.bland}>Click</Button>
+            <Button color={theme.colors.accent}>Click</Button>
+            <Button variant="ghost">Click</Button>
           </div>
           <div className={styles.buttons}>
-            <FilledButton size="small" color={theme.colors.accent}>
+            <Button size="small" color={theme.colors.accent}>
               Small
-            </FilledButton>
-            <FilledButton size="small" color={theme.colors.danger}>
+            </Button>
+            <Button size="small" color={theme.colors.danger}>
               Error
-            </FilledButton>
-            <OutlineButton size="small" disabled>
+            </Button>
+            <Button variant="outline" size="small" disabled>
               Disabled
-            </OutlineButton>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.label}>Icon Buttons</h2>
+        <p>There like button, but for icons.</p>
+        <div className={styles.buttonRows}>
+          <div className={styles.icons}>
+            <Button shape="icon" size="small">
+              <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
+            <Button shape="icon" color={theme.colors.accent} size="small">
+              <FontAwesomeIcon icon={faArrowRight} size="sm" />
+            </Button>
+          </div>
+          <div className={styles.icons}>
+            <Button shape="icon">
+              <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
+            <Button shape="icon" color={theme.colors.accent}>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
+          </div>
+
+          <div className={styles.buttons}>
+            <Button shape="icon" size="large">
+              <FontAwesomeIcon icon={faArrowRight} size="lg" />
+            </Button>
+            <Button shape="icon" size="large" color={theme.colors.accent}>
+              <FontAwesomeIcon icon={faArrowRight} size="lg" />
+            </Button>
+            <Button shape="icon" size="large" color={theme.colors.danger}>
+              <FontAwesomeIcon icon={faArrowRight} size="lg" />
+            </Button>
           </div>
         </div>
       </section>
