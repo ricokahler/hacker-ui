@@ -14,6 +14,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     height: 100%;
     overflow: hidden;
     display: flex;
+    background-color: ${theme.colors.surface};
   `,
   nav: css`
     flex: 0 0 auto;

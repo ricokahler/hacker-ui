@@ -8,6 +8,8 @@ import {
   OutlineButton,
 } from 'hacker-ui';
 import { Link } from 'react-router-dom';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -206,7 +208,10 @@ function Buttons(props: Props) {
 
         <div className={styles.buttonRows}>
           <div className={styles.buttons}>
-            <FilledButton size="large">Large</FilledButton>
+            <FilledButton color={theme.colors.brand} size="large">
+              <span>Large</span>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </FilledButton>
             <OutlineButton size="large" color={theme.colors.accent}>
               Okay
             </OutlineButton>

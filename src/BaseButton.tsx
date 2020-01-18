@@ -16,6 +16,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     padding: ${theme.space(0.75)} ${theme.space(1)};
     appearance: none;
     outline: none;
+    background: transparent;
     border: none;
     text-decoration: none;
     min-width: ${theme.block(1)};
@@ -23,6 +24,10 @@ const useStyles = createStyles(({ css, theme, color }) => ({
 
     &:disabled {
       cursor: not-allowed;
+    }
+
+    & > *:not(:last-child) {
+      margin-right: ${theme.space(1)};
     }
   `,
   small: css`
