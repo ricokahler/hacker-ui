@@ -5,9 +5,7 @@ import { useCssReset, createStyles, StyleProps } from 'hacker-ui';
 import Nav from './Nav';
 import AppBar from './AppBar';
 
-import NoRoute from './NoRoute';
-import Buttons from './Buttons';
-import Welcome from './Welcome';
+import routes from './routes';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -48,9 +46,9 @@ function Docs(props: Props) {
         <AppBar className={styles.appBar} />
         <main className={styles.main}>
           <Switch>
-            <Route path="/404" component={NoRoute} />
-            <Route path="/" exact component={Welcome} />
-            <Route path="/buttons" component={Buttons} />
+            {routes.map((route, index) => (
+              <Route key={index} {...route} />
+            ))}
             <Redirect to="/404" />
           </Switch>
         </main>

@@ -35,6 +35,12 @@ const defaultTheme: Theme = {
       line-height: 1.5;
       margin: 0;
     `,
+    h5: css`
+      font-size: 1rem;
+      font-weight: bold;
+      line-height: 1.5;
+      margin: 0;
+    `,
     // TODO
     overline: css``,
     subtitle1: css`
@@ -50,10 +56,14 @@ const defaultTheme: Theme = {
       margin: 0;
     `,
     body1: css`
+      font-weight: 400;
+      text-transform: none;
       font-size: 16px;
       margin: 0;
     `,
     body2: css`
+      font-weight: 400;
+      text-transform: none;
       font-size: 16px;
       margin: 0;
       color: #444;

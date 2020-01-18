@@ -5,6 +5,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     padding: ${theme.space(1)};
     box-shadow: ${theme.shadows.standard};
+    height: ${theme.block(0.75)};
   `,
   title: css``,
 }));
@@ -14,11 +15,7 @@ interface Props extends StyleProps<typeof useStyles> {}
 function AppBar(props: Props) {
   const { Root, styles } = useStyles(props);
 
-  return (
-    <Root>
-      <div className={styles.title}>Hacker UI</div>
-    </Root>
-  );
+  return <Root></Root>;
 }
 
 export default AppBar;
