@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, StyleProps, List, Button, useTheme } from 'hacker-ui';
+import { createStyles, StyleProps, List, ListItemButton } from 'hacker-ui';
 import { Link } from 'react-router-dom';
 import routes from './routes';
 
@@ -49,7 +49,6 @@ interface Props extends StyleProps<typeof useStyles> {}
 
 function Nav(props: Props) {
   const { Root, styles } = useStyles(props, 'aside');
-  const theme = useTheme();
 
   return (
     <Root>
@@ -61,15 +60,11 @@ function Nav(props: Props) {
         <List>
           {routes.map(route => (
             <li>
-              <Button
-                className={styles.button}
-                variant="ghost"
-                color={theme.colors.bland}
+              <ListItemButton
                 component={(props: any) => <Link to={route.path} {...props} />}
               >
                 <div className={styles.routeTitle}>{route.title}</div>
-                <div className={styles.routeBody}>Lorem ipsum</div>
-              </Button>
+              </ListItemButton>
             </li>
           ))}
         </List>

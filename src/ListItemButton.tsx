@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 import useTheme from './useTheme';
 import createStyles from './createStyles';
-import { ReactComponent, PropsFromStyles, PropsFromComponent } from './types';
+import { PropsFromStyles, PropsFromComponent } from './types';
 import Button from './Button';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     ${theme.fonts.body1}
     align-items: flex-start;
@@ -16,17 +16,12 @@ const useStyles = createStyles(({ css, theme, color }) => ({
 
 interface Props
   extends PropsFromStyles<typeof useStyles>,
-    PropsFromComponent<typeof Button> {
-  component?: ReactComponent;
-}
+    PropsFromComponent<typeof Button> {}
 
 const ListItemButton = forwardRef(
   (props: Props, ref: React.Ref<HTMLButtonElement>) => {
     const theme = useTheme();
-    const { Root, styles, component, ...restOfProps } = useStyles(
-      props,
-      props.component || Button,
-    );
+    const { Root, styles, ...restOfProps } = useStyles(props, Button);
 
     return (
       <Root
