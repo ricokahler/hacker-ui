@@ -1,7 +1,6 @@
-// @pragma export
 import React, { forwardRef } from 'react';
-import createStyles, { PropsFromStyles } from './createStyles';
-import { ReactComponent } from './types';
+import createStyles from './createStyles';
+import { ReactComponent, PropsFromStyles } from './types';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
   root: css`

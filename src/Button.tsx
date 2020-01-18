@@ -1,9 +1,8 @@
-// @pragma export
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { transparentize } from 'polished';
-import createStyles, { PropsFromStyles } from './createStyles';
-import { ReactComponent } from './types';
+import createStyles from './createStyles';
+import { ReactComponent, PropsFromStyles } from './types';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
   // button base styles

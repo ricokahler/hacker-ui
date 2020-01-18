@@ -3,7 +3,6 @@ const path = require('path');
 const { promisify } = require('util');
 const { exec } = require('child_process');
 const md5 = require('md5');
-const generateExports = require('./generateExportsFn');
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
@@ -23,8 +22,6 @@ function execute(command) {
 }
 
 async function main() {
-  await generateExports();
-
   console.log('cleaning…');
   const rmRfResult = await execute('rm -rf build');
   rmRfResult && console.log(rmRfResult);

@@ -7,8 +7,7 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "node ./scripts/build.js",
-    "generate-exports": "node ./scripts/generateExports.js"
+    "build": "node ./scripts/build.js"
   },
   "repository": {
     "type": "git",

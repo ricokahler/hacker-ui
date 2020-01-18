@@ -55,3 +55,30 @@ export type ReactComponent =
   | React.ComponentType<any>
   | keyof JSX.IntrinsicElements
   | string;
+
+type GetStyleObj<UseStylesFn> = UseStylesFn extends (props: {
+  styles: Partial<infer U>;
+}) => any
+  ? U
+  : never;
+
+export interface PropsFromStyles<UseStylesFn> {
+  on?: string;
+  color?: string;
+  style?: React.CSSProperties;
+  styles?: Partial<GetStyleObj<UseStylesFn>>;
+  className?: string;
+}
+
+export interface StyleProps<StylesObj> {
+  on?: string;
+  color?: string;
+  style?: React.CSSProperties;
+  styles?: Partial<StylesObj>;
+  className?: string;
+}
+
+export type OmitStyleProps<T> = Omit<T, keyof StyleProps<any>>;
+export type PropsFromComponent<
+  T extends React.ComponentType<any>
+> = OmitStyleProps<PropsOf<T>>;

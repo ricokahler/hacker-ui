@@ -1,4 +1,3 @@
-// @pragma export
 import { Theme } from './types';
 import css from './css';
 

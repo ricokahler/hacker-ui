@@ -1,40 +1,17 @@
-// @pragma export
 import React, { forwardRef, useMemo, useLayoutEffect } from 'react';
 import classNames from 'classnames';
 import shortId from 'shortid';
 import stylis from 'stylis';
 import css from './css';
-import { DynamicColorPalette, Theme, PropsOf, ReactComponent } from './types';
+import {
+  DynamicColorPalette,
+  Theme,
+  ReactComponent,
+  StyleProps,
+} from './types';
 import useTheme from './useTheme';
 import createDynamicColorPalette from './createDynamicColorPalette';
 import tryGetCurrentFileName from './tryGetCurrentFileName';
-
-export interface PropsFromStyles<UseStylesFn> {
-  on?: string;
-  color?: string;
-  style?: React.CSSProperties;
-  styles?: Partial<GetStyleObj<UseStylesFn>>;
-  className?: string;
-}
-
-export interface StyleProps<StylesObj> {
-  on?: string;
-  color?: string;
-  style?: React.CSSProperties;
-  styles?: Partial<StylesObj>;
-  className?: string;
-}
-
-export type OmitStyleProps<T> = Omit<T, keyof StyleProps<any>>;
-export type PropsFromComponent<
-  T extends React.ComponentType<any>
-> = OmitStyleProps<PropsOf<T>>;
-
-type GetStyleObj<UseStylesFn> = UseStylesFn extends (props: {
-  styles: Partial<infer U>;
-}) => any
-  ? U
-  : never;
 
 type GetComponentProps<
   ComponentType extends ReactComponent

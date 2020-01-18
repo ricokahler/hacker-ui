@@ -1,4 +1,3 @@
-// @pragma export
 function css(strings: TemplateStringsArray, ...values: Array<string | number>) {
   let combined = '';
 

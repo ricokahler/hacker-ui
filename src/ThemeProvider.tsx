@@ -1,4 +1,3 @@
-// @pragma export
 import React from 'react';
 import { Theme } from './types';
 import ThemeContext from './ThemeContext';

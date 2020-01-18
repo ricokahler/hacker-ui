@@ -1,4 +1,3 @@
-// @pragma export
 import { useLayoutEffect } from 'react';
 
 const normalize = `

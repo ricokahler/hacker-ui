@@ -1,4 +1,3 @@
-// @pragma export
 import { useContext } from 'react';
 import invariant from 'invariant';
 import ThemeContext from './ThemeContext';
