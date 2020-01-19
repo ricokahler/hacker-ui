@@ -44,6 +44,12 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
     filledHasError: css`
       background-color: ${transparentize(0.9, danger.asBackground)};
       color: ${readableColor(givenSurface)};
+      &:focus {
+        background-color: ${transparentize(0.85, danger.asBackground)};
+      }
+      &:hover {
+        background-color: ${transparentize(0.87, danger.asBackground)};
+      }
     `,
     outline: css`
       background-color: ${givenSurface};
@@ -62,7 +68,13 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       }
     `,
     outlineHasError: css`
-      border: 2px solid ${danger.onSurface};
+      border: 2px solid ${danger.asBackground};
+      &:focus {
+        border: 2px solid ${danger.asBackground};
+      }
+      &:hover {
+        border: 2px solid ${transparentize(0.3, danger.asBackground)};
+      }
     `,
   };
 });
