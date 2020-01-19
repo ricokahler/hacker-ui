@@ -88,7 +88,7 @@ interface Props extends PropsFromStyles<typeof useStyles>, TextAreaProps {
   component?: ReactComponent;
 }
 
-const TextInput = forwardRef(
+const TextArea = forwardRef(
   (props: Props, ref: React.Ref<HTMLTextAreaElement>) => {
     const {
       Root,
@@ -147,4 +147,4 @@ const TextInput = forwardRef(
   },
 );
 
-export default TextInput;
+export default TextArea;
