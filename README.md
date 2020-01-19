@@ -11,6 +11,10 @@ check back soon
 - Composable, atomic
 - Simple
 
+---
+
+This 👇 is what's currently planned. This is mostly a scratch pad of idea and will probably change.
+
 ## Colors
 
 - brand — main brand color
@@ -42,12 +46,12 @@ check back soon
 - radio button
 - switch
 - select (maybe just native select?)
+- tag
 - spinner
-- avatar
 - badge
 - tooltip
-- tag
-- slider?
+- inline code
+- code block
 
 ### complex ones?
 
