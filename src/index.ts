@@ -11,4 +11,8 @@ export { default as useTheme } from './useTheme';
 export { default as createTheme } from './createTheme';
 export { default as ListItemButton } from './ListItemButton';
 export { default as Anchor } from './Anchor';
+export { default as FormControl } from './FormControl';
+export { default as Label } from './Label';
+export { default as TextInput } from './TextInput';
+export { default as HelperText } from './HelperText';
 export * from './types';

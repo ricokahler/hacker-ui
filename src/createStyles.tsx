@@ -35,6 +35,8 @@ type StyleFnArgs = {
   css: typeof css;
   color: DynamicColorPalette;
   theme: Theme;
+  givenColor: string;
+  givenSurface: string;
 };
 
 function createStyles<Styles extends { [key: string]: string }>(
@@ -61,7 +63,7 @@ function createStyles<Styles extends { [key: string]: string }>(
   } {
     const theme = useTheme();
     const {
-      color = theme.colors.brand,
+      color = theme.colors.accent,
       on = theme.colors.surface,
       style: incomingStyle,
       className: incomingClassName,
@@ -74,7 +76,13 @@ function createStyles<Styles extends { [key: string]: string }>(
     // create a map of unprocessed styles
     const unprocessedStyles = useMemo(() => {
       const dynamicColors = createDynamicColorPalette(color, on);
-      return stylesFn({ css, color: dynamicColors, theme });
+      return stylesFn({
+        css,
+        color: dynamicColors,
+        theme,
+        givenColor: color,
+        givenSurface: on,
+      });
     }, [color, on, theme]);
 
     const styleId = useMemo(shortId, [unprocessedStyles]);

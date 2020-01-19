@@ -267,7 +267,7 @@ function Buttons(props: Props) {
         <p>There like button, but for icons.</p>
         <div className={styles.buttonRows}>
           <div className={styles.icons}>
-            <Button shape="icon" size="small">
+            <Button shape="icon" size="small" color={theme.colors.brand}>
               <FontAwesomeIcon icon={faArrowRight} />
             </Button>
             <Button shape="icon" color={theme.colors.accent} size="small">
@@ -275,7 +275,7 @@ function Buttons(props: Props) {
             </Button>
           </div>
           <div className={styles.icons}>
-            <Button shape="icon">
+            <Button shape="icon" color={theme.colors.brand}>
               <FontAwesomeIcon icon={faArrowRight} />
             </Button>
             <Button shape="icon" color={theme.colors.accent}>
@@ -284,7 +284,7 @@ function Buttons(props: Props) {
           </div>
 
           <div className={styles.buttons}>
-            <Button shape="icon" size="large">
+            <Button shape="icon" size="large" color={theme.colors.brand}>
               <FontAwesomeIcon icon={faArrowRight} size="lg" />
             </Button>
             <Button shape="icon" size="large" color={theme.colors.accent}>

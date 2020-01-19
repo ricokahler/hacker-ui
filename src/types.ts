@@ -82,3 +82,10 @@ export type OmitStyleProps<T> = Omit<T, keyof StyleProps<any>>;
 export type PropsFromComponent<
   T extends React.ComponentType<any>
 > = OmitStyleProps<PropsOf<T>>;
+
+export interface FormControlContext {
+  id: string;
+  focused: boolean;
+  setFocused: (isFocused: boolean) => void;
+  hasError: boolean;
+}
