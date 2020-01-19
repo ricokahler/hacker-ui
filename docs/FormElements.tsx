@@ -73,12 +73,12 @@ function FormElements(props: Props) {
 
       <FormControl hasError={hasError}>
         <Label>Test</Label>
-        <Radio name="blah" />
+        <Radio name="blah" value="test" />
       </FormControl>
 
       <FormControl hasError={hasError}>
         <Label>Thing</Label>
-        <Radio name="blah" />
+        <Radio name="blah" value="other" />
       </FormControl>
 
       <p className={styles.body1}>Do you agree?</p>

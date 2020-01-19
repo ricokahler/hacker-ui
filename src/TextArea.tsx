@@ -53,11 +53,13 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
     `,
     outline: css`
       background-color: ${givenSurface};
-      transition: border ${theme.durations.standard}ms;
+      transition: border ${theme.durations.standard}ms,
+        background-color ${theme.durations.standard}ms;
       border: 2px solid ${bland.asBackground};
 
       &:focus {
         border: 2px solid ${color.asBackground};
+        background-color: ${transparentize(0.93, color.asBackground)};
       }
       &:hover {
         border: 2px solid ${transparentize(0.3, color.asBackground)};
@@ -71,6 +73,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       border: 2px solid ${danger.asBackground};
       &:focus {
         border: 2px solid ${danger.asBackground};
+        background-color: ${transparentize(0.93, danger.asBackground)};
       }
       &:hover {
         border: 2px solid ${transparentize(0.3, danger.asBackground)};

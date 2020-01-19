@@ -36,11 +36,11 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       }
       & .checkbox:focus ~ .facade {
         border: 2px solid ${danger.asBackground};
-        background-color: ${transparentize(0.95, danger.asBackground)};
+        background-color: ${transparentize(0.93, danger.asBackground)};
       }
       & .checkbox:hover ~ .facade {
         border: 2px solid ${transparentize(0.3, danger.asBackground)};
-        background-color: ${transparentize(0.95, danger.asBackground)};
+        background-color: ${transparentize(0.93, danger.asBackground)};
       }
       & .checkbox:active ~ .facade {
         background-color: ${transparentize(0.9, danger.asBackground)};
@@ -54,11 +54,11 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
 
       &:focus ~ .facade {
         border: 2px solid ${color.asBackground};
-        background-color: ${transparentize(0.95, color.asBackground)};
+        background-color: ${transparentize(0.93, color.asBackground)};
       }
       &:hover ~ .facade {
         border: 2px solid ${transparentize(0.3, color.asBackground)};
-        background-color: ${transparentize(0.95, color.asBackground)};
+        background-color: ${transparentize(0.93, color.asBackground)};
       }
       &:active ~ .facade {
         background-color: ${transparentize(0.9, color.asBackground)};
