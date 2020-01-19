@@ -37,9 +37,10 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       }
       &:hover ~ .facade {
         border: 2px solid ${transparentize(0.3, color.asBackground)};
+        background-color: ${transparentize(0.95, color.asBackground)};
       }
       &:active ~ .facade {
-        background-color: ${transparentize(0.9, bland.bgContrast)};
+        background-color: ${transparentize(0.9, color.asBackground)};
       }
 
       &:disabled ~ .facade {
