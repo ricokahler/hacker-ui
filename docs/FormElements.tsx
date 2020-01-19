@@ -6,6 +6,7 @@ import {
   Label,
   TextInput,
   HelperText,
+  TextArea,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -74,6 +75,15 @@ function FormElements(props: Props) {
         <FormControl hasError={hasError}>
           <Label className={styles.label}>Email</Label>
           <TextInput variant="filled" placeholder="hello@example.com" />
+          <HelperText>This is some helper text.</HelperText>
+        </FormControl>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Text area</h2>
+        <FormControl hasError={hasError}>
+          <Label className={styles.label}>Describe your problem</Label>
+          <TextArea variant="filled" placeholder="hello@example.com" />
           <HelperText>This is some helper text.</HelperText>
         </FormControl>
       </section>

@@ -23,7 +23,7 @@ interface Props extends PropsFromStyles<typeof useStyles>, AnchorProps {
 const Anchor = forwardRef((props: Props, ref: React.Ref<HTMLAnchorElement>) => {
   const { Root, styles, component, ...restOfProps } = useStyles(
     props,
-    props.component || 'a',
+    props.component ?? 'a',
   );
 
   return <Root ref={ref} {...restOfProps} />;
