@@ -88,4 +88,5 @@ export interface FormControlContext {
   focused: boolean;
   setFocused: (isFocused: boolean) => void;
   hasError: boolean;
+  disabled: boolean;
 }

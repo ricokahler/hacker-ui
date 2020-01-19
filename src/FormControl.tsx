@@ -16,6 +16,7 @@ interface Props extends PropsFromStyles<typeof useStyles>, DivProps {
   component?: ReactComponent;
   focused?: boolean;
   hasError?: boolean;
+  disabled?: boolean;
 }
 
 const FormControl = forwardRef(
@@ -25,7 +26,8 @@ const FormControl = forwardRef(
       styles,
       component,
       focused: incomingFocused,
-      hasError: incomingHasError,
+      hasError = false,
+      disabled = false,
       ...restOfProps
     } = useStyles(props, props.component || 'div');
 
@@ -33,7 +35,6 @@ const FormControl = forwardRef(
     const [focusedState, setFocused] = useState(false);
 
     const focused = incomingFocused ?? focusedState;
-    const hasError = incomingHasError ?? false;
 
     const contextValue = useMemo(
       () => ({
@@ -41,8 +42,9 @@ const FormControl = forwardRef(
         focused,
         setFocused,
         hasError,
+        disabled,
       }),
-      [focused, hasError, id],
+      [disabled, focused, hasError, id],
     );
 
     return (

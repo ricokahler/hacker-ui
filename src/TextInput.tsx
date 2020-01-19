@@ -19,15 +19,24 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       appearance: none;
       background: none;
       margin: ${theme.space(0.5)} 0;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
     `,
     filled: css`
       background-color: ${transparentize(0.8, bland.asBackground)};
       color: ${readableColor(givenSurface)};
       transition: background-color ${theme.durations.standard}ms;
-    `,
-    filledFocused: css`
-      background-color: ${transparentize(0.9, color.asBackground)};
-      color: ${readableColor(givenSurface)};
+
+      &:focus {
+        background-color: ${transparentize(0.9, color.asBackground)};
+        color: ${readableColor(givenSurface)};
+      }
+
+      &:disabled {
+        background-color: ${transparentize(0.9, bland.asBackground)};
+      }
     `,
     filledHasError: css`
       background-color: ${transparentize(0.9, danger.asBackground)};
@@ -37,9 +46,15 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       background-color: ${givenSurface};
       transition: border ${theme.durations.standard}ms;
       border: 2px solid ${bland.asBackground};
-    `,
-    outlineFocused: css`
-      border: 2px solid ${color.onSurface};
+
+      &:focus {
+        border: 2px solid ${color.onSurface};
+      }
+
+      &:disabled {
+        border: 2px solid ${transparentize(0.7, bland.asBackground)};
+        background-color: ${transparentize(0.9, bland.asBackground)};
+      }
     `,
     outlineHasError: css`
       border: 2px solid ${danger.onSurface};
@@ -51,6 +66,7 @@ type InputProps = JSX.IntrinsicElements['input'];
 interface Props extends PropsFromStyles<typeof useStyles>, InputProps {
   focused?: boolean;
   hasError?: boolean;
+  disabled?: boolean;
   variant?: 'filled' | 'outline';
   component?: ReactComponent;
 }
@@ -61,8 +77,9 @@ const TextInput = forwardRef(
       Root,
       styles,
       variant = 'outline',
-      focused: incomingFocused,
+      focused: _focused,
       hasError: incomingHasError,
+      disabled: incomingDisabled,
       onFocus,
       onBlur,
       type = 'text',
@@ -72,8 +89,9 @@ const TextInput = forwardRef(
     const formControlContext = useContext(FormControlContext);
 
     const id = formControlContext?.id;
-    const focused = incomingFocused ?? formControlContext?.focused ?? false;
     const hasError = incomingHasError ?? formControlContext?.hasError ?? false;
+    const disabledFromFormControl = formControlContext?.disabled ?? false;
+    const disabled = incomingDisabled || disabledFromFormControl;
 
     const handleFocus = (e: React.FocusEvent<any>) => {
       if (onFocus) {
@@ -99,12 +117,11 @@ const TextInput = forwardRef(
         ref={ref}
         id={id}
         type={type}
+        disabled={disabled}
         className={classNames({
           [styles.outline]: variant === 'outline',
-          [styles.outlineFocused]: variant === 'outline' && focused,
           [styles.outlineHasError]: variant === 'outline' && hasError,
           [styles.filled]: variant === 'filled',
-          [styles.filledFocused]: variant === 'filled' && focused,
           [styles.filledHasError]: variant === 'filled' && hasError,
         })}
         onFocus={handleFocus}
