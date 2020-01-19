@@ -7,6 +7,7 @@ import {
   TextInput,
   HelperText,
   TextArea,
+  Checkbox,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -44,6 +45,14 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex: 1 1 auto;
     overflow: hidden;
   `,
+  checkboxControl: css`
+    flex-direction: row;
+    align-items: center;
+  `,
+  checkboxHorizontal: css`
+    margin-right: ${theme.space(1)};
+  `,
+  body1: theme.fonts.body1,
 }));
 
 interface Props extends PropsFromStyles<typeof useStyles> {}
@@ -55,17 +64,23 @@ function FormElements(props: Props) {
   return (
     <Root>
       <h1 className={styles.title}>Form elements</h1>
-      <input
-        type="checkbox"
-        checked={hasError}
-        onChange={() => setHasError(!hasError)}
-      />
+      <FormControl>
+        <Label>Stuff</Label>
+        <Checkbox checked={hasError} onChange={() => setHasError(!hasError)} />
+        <HelperText>The quick brown fox jumps.</HelperText>
+      </FormControl>
+
+      <p className={styles.body1}>Do you agree?</p>
+      <FormControl className={styles.checkboxControl}>
+        <Checkbox className={styles.checkboxHorizontal} />
+        <Label>I Agree</Label>
+      </FormControl>
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Outline Input</h2>
-        <FormControl hasError={hasError}>
+        <FormControl hasError={hasError} disabled>
           <Label className={styles.label}>Email</Label>
-          <TextInput placeholder="hello@example.com" />
+          <TextInput variant="filled" placeholder="hello@example.com" />
           <HelperText>This is some helper text.</HelperText>
         </FormControl>
       </section>

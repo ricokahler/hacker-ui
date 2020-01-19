@@ -16,4 +16,5 @@ export { default as Label } from './Label';
 export { default as TextInput } from './TextInput';
 export { default as HelperText } from './HelperText';
 export { default as TextArea } from './TextArea';
+export { default as Checkbox } from './Checkbox';
 export * from './types';
