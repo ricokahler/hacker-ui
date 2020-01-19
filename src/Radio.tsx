@@ -70,6 +70,10 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
         background-color: ${transparentize(0.9, bland.asBackground)};
       }
 
+      &:disabled {
+        cursor: not-allowed;
+      }
+
       &:checked ~ .facade .icon {
         opacity: 1;
       }
@@ -138,6 +142,7 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     id: incomingId,
     focused: incomingFocused,
     hasError: incomingHasError,
+    disabled: _incomingDisabled,
     onFocus,
     onBlur,
     inputRef,
@@ -150,6 +155,9 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   const id = incomingId ?? formControlContext?.id;
   const focused = incomingFocused ?? formControlContext?.focused ?? false;
   const hasError = incomingHasError ?? formControlContext?.hasError ?? false;
+  const incomingDisabled = _incomingDisabled ?? false;
+  const disabledFromContext = formControlContext?.disabled ?? false;
+  const disabled = incomingDisabled || disabledFromContext;
 
   const handleFocus = (e: React.FocusEvent<any>) => {
     if (onFocus) {
@@ -189,6 +197,7 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
         })}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        disabled={disabled}
         {...restOfProps}
       />
       <div
