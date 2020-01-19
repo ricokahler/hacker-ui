@@ -30,10 +30,13 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       transition: background-color ${theme.durations.standard}ms;
 
       &:focus {
+        background-color: ${transparentize(0.92, color.asBackground)};
+        color: ${readableColor(givenSurface)};
+      }
+      &:hover {
         background-color: ${transparentize(0.9, color.asBackground)};
         color: ${readableColor(givenSurface)};
       }
-
       &:disabled {
         background-color: ${transparentize(0.9, bland.asBackground)};
       }
@@ -48,9 +51,11 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       border: 2px solid ${bland.asBackground};
 
       &:focus {
-        border: 2px solid ${color.onSurface};
+        border: 2px solid ${color.asBackground};
       }
-
+      &:hover {
+        border: 2px solid ${transparentize(0.3, color.asBackground)};
+      }
       &:disabled {
         border: 2px solid ${transparentize(0.7, bland.asBackground)};
         background-color: ${transparentize(0.9, bland.asBackground)};
