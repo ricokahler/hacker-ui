@@ -8,6 +8,7 @@ import {
   HelperText,
   TextArea,
   Checkbox,
+  Radio,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -64,14 +65,24 @@ function FormElements(props: Props) {
   return (
     <Root>
       <h1 className={styles.title}>Form elements</h1>
-      <FormControl>
+      <FormControl hasError={hasError}>
         <Label>Stuff</Label>
         <Checkbox checked={hasError} onChange={() => setHasError(!hasError)} />
         <HelperText>The quick brown fox jumps.</HelperText>
       </FormControl>
 
+      <FormControl hasError={hasError}>
+        <Label>Test</Label>
+        <Radio name="blah" />
+      </FormControl>
+
+      <FormControl hasError={hasError}>
+        <Label>Thing</Label>
+        <Radio name="blah" />
+      </FormControl>
+
       <p className={styles.body1}>Do you agree?</p>
-      <FormControl className={styles.checkboxControl}>
+      <FormControl hasError={hasError} className={styles.checkboxControl}>
         <Checkbox className={styles.checkboxHorizontal} />
         <Label>I Agree</Label>
       </FormControl>
