@@ -14,6 +14,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       ${theme.fonts.body1};
       color: ${readableColor(theme.colors.surface)};
       transition: color ${theme.durations.standard}ms;
+      cursor: pointer;
     `,
     focused: css`
       color: ${color.onSurface};
@@ -63,7 +64,7 @@ const Label = forwardRef((props: Props, ref: React.Ref<HTMLLabelElement>) => {
         [styles.disabled]: disabled,
       })}
       ref={ref}
-      id={id}
+      htmlFor={id}
       {...restOfProps}
     />
   );
