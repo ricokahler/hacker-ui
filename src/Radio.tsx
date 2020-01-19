@@ -36,6 +36,7 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       }
       & .radio:focus ~ .facade {
         border: 2px solid ${danger.asBackground};
+        background-color: ${transparentize(0.95, danger.asBackground)};
       }
       & .radio:hover ~ .facade {
         border: 2px solid ${transparentize(0.3, danger.asBackground)};
@@ -53,6 +54,7 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
 
       &:focus ~ .facade {
         border: 2px solid ${color.asBackground};
+        background-color: ${transparentize(0.95, color.asBackground)};
       }
       &:hover ~ .facade {
         border: 2px solid ${transparentize(0.3, color.asBackground)};
