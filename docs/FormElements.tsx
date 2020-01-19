@@ -61,35 +61,46 @@ interface Props extends PropsFromStyles<typeof useStyles> {}
 function FormElements(props: Props) {
   const { Root, styles } = useStyles(props);
   const [hasError, setHasError] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <Root>
       <h1 className={styles.title}>Form elements</h1>
       <FormControl hasError={hasError}>
-        <Label>Stuff</Label>
+        <Label>Error</Label>
         <Checkbox checked={hasError} onChange={() => setHasError(!hasError)} />
         <HelperText>The quick brown fox jumps.</HelperText>
       </FormControl>
 
       <FormControl hasError={hasError}>
+        <Label>Disabled</Label>
+        <Checkbox checked={disabled} onChange={() => setDisabled(!disabled)} />
+        <HelperText>The quick brown fox jumps.</HelperText>
+      </FormControl>
+
+      <FormControl hasError={hasError} disabled={disabled}>
         <Label>Test</Label>
         <Radio name="blah" value="test" />
       </FormControl>
 
-      <FormControl hasError={hasError}>
+      <FormControl hasError={hasError} disabled={disabled}>
         <Label>Thing</Label>
         <Radio name="blah" value="other" />
       </FormControl>
 
       <p className={styles.body1}>Do you agree?</p>
-      <FormControl hasError={hasError} className={styles.checkboxControl}>
+      <FormControl
+        hasError={hasError}
+        disabled={disabled}
+        className={styles.checkboxControl}
+      >
         <Checkbox className={styles.checkboxHorizontal} />
         <Label>I Agree</Label>
       </FormControl>
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Outline Input</h2>
-        <FormControl hasError={hasError} disabled>
+        <FormControl hasError={hasError} disabled={disabled}>
           <Label className={styles.label}>Email</Label>
           <TextInput variant="filled" placeholder="hello@example.com" />
           <HelperText>This is some helper text.</HelperText>
@@ -98,7 +109,7 @@ function FormElements(props: Props) {
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Filled Input</h2>
-        <FormControl hasError={hasError}>
+        <FormControl hasError={hasError} disabled={disabled}>
           <Label className={styles.label}>Email</Label>
           <TextInput variant="filled" placeholder="hello@example.com" />
           <HelperText>This is some helper text.</HelperText>
@@ -107,7 +118,7 @@ function FormElements(props: Props) {
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Text area</h2>
-        <FormControl hasError={hasError}>
+        <FormControl hasError={hasError} disabled={disabled}>
           <Label className={styles.label}>Describe your problem</Label>
           <TextArea variant="filled" placeholder="hello@example.com" />
           <HelperText>This is some helper text.</HelperText>
@@ -116,7 +127,7 @@ function FormElements(props: Props) {
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Horizontal Layout</h2>
-        <FormControl hasError={hasError}>
+        <FormControl hasError={hasError} disabled={disabled}>
           <div className={styles.horizontalRow}>
             <Label className={styles.streetAddressLabel}>Address:</Label>
             <TextInput className={styles.streetAddressInput} />
@@ -126,7 +137,7 @@ function FormElements(props: Props) {
           </HelperText>
         </FormControl>
 
-        <FormControl hasError={hasError}>
+        <FormControl hasError={hasError} disabled={disabled}>
           <div className={styles.horizontalRow}>
             <Label className={styles.streetAddressLabel}>First name:</Label>
             <TextInput className={styles.streetAddressInput} />
