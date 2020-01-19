@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useEffect } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import { transparentize } from 'polished';
 import createDynamicColorPalette from './createDynamicColorPalette';
@@ -24,13 +24,32 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
     root: css`
       position: relative;
       margin: ${theme.space(0.5)} 0;
+      background-color: ${givenSurface};
+    `,
+    focused: css`
+      color: ${color.asBackground};
+    `,
+    hasError: css`
+      color: ${danger.asBackground};
+      & .facade {
+        border: 2px solid ${danger.asBackground};
+      }
+      & .checkbox:focus ~ .facade {
+        border: 2px solid ${danger.asBackground};
+      }
+      & .checkbox:hover ~ .facade {
+        border: 2px solid ${transparentize(0.3, danger.asBackground)};
+        background-color: ${transparentize(0.95, danger.asBackground)};
+      }
+      & .checkbox:active ~ .facade {
+        background-color: ${transparentize(0.9, danger.asBackground)};
+      }
     `,
     checkbox: css`
       opacity: 0;
       position: absolute;
       top: 0;
       left: 0;
-      border: 1px solid red;
 
       &:focus ~ .facade {
         border: 2px solid ${color.asBackground};
@@ -65,10 +84,6 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       width: ${widthLarge};
       height: ${heightLarge};
     `,
-    focused: css`
-      color: ${color.asBackground};
-    `,
-    hasError: css``,
     facade: css`
       width: ${width};
       height: ${height};
@@ -94,11 +109,6 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       width: ${widthLarge};
       height: ${heightLarge};
     `,
-    facadeFocused: css``,
-    facadeError: css`
-      background-color: ${givenSurface};
-      border: 2px solid ${danger.onSurface};
-    `,
     icon: css`
       width: 1rem;
       height: 1rem;
@@ -109,7 +119,7 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
   };
 });
 
-type InputProps = Omit<JSX.IntrinsicElements['input'], 'size'>;
+type InputProps = Omit<JSX.IntrinsicElements['input'], 'size' | 'type'>;
 interface Props extends PropsFromStyles<typeof useStyles>, InputProps {
   focused?: boolean;
   hasError?: boolean;
@@ -131,16 +141,12 @@ const Checkbox = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     icon: Icon = CheckIcon,
     size = 'standard',
     ...restOfProps
-  } = useStyles(props, 'div');
+  } = useStyles(props);
   const formControlContext = useContext(FormControlContext);
 
   const id = incomingId ?? formControlContext?.id;
   const focused = incomingFocused ?? formControlContext?.focused ?? false;
   const hasError = incomingHasError ?? formControlContext?.hasError ?? false;
-
-  useEffect(() => {
-    console.log({ focused, hasError });
-  }, [focused, hasError]);
 
   const handleFocus = (e: React.FocusEvent<any>) => {
     if (onFocus) {
@@ -171,21 +177,20 @@ const Checkbox = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     >
       <input
         type="checkbox"
-        className={classNames(styles.checkbox, {
+        id={id}
+        ref={inputRef}
+        className={classNames('checkbox', styles.checkbox, {
           [styles.checkboxSmall]: size === 'small',
           [styles.checkboxStandard]: size === 'standard',
           [styles.checkboxLarge]: size === 'large',
         })}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        id={id}
         {...restOfProps}
       />
       <div
-        aria-hidden
+        aria-hidden="true"
         className={classNames('facade', styles.facade, {
-          [styles.facadeFocused]: focused,
-          [styles.facadeError]: hasError,
           [styles.facadeSmall]: size === 'small',
           [styles.facadeStandard]: size === 'standard',
           [styles.facadeLarge]: size === 'large',
