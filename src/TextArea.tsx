@@ -51,7 +51,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
         background-color: ${transparentize(0.87, danger.asBackground)};
       }
     `,
-    outline: css`
+    outlined: css`
       background-color: ${givenSurface};
       transition: border ${theme.durations.standard}ms,
         background-color ${theme.durations.standard}ms;
@@ -69,7 +69,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
         background-color: ${transparentize(0.9, bland.asBackground)};
       }
     `,
-    outlineHasError: css`
+    outlinedHasError: css`
       border: 2px solid ${danger.asBackground};
       &:focus {
         border: 2px solid ${danger.asBackground};
@@ -87,7 +87,7 @@ interface Props extends PropsFromStyles<typeof useStyles>, TextAreaProps {
   focused?: boolean;
   hasError?: boolean;
   disabled?: boolean;
-  variant?: 'filled' | 'outline';
+  variant?: 'filled' | 'outlined';
   component?: ReactComponent;
 }
 
@@ -96,7 +96,7 @@ const TextArea = forwardRef(
     const {
       Root,
       styles,
-      variant = 'outline',
+      variant = 'outlined',
       focused: _focused,
       hasError: incomingHasError,
       disabled: incomingDisabled,
@@ -137,8 +137,8 @@ const TextArea = forwardRef(
         id={id}
         disabled={disabled}
         className={classNames({
-          [styles.outline]: variant === 'outline',
-          [styles.outlineHasError]: variant === 'outline' && hasError,
+          [styles.outlined]: variant === 'outlined',
+          [styles.outlinedHasError]: variant === 'outlined' && hasError,
           [styles.filled]: variant === 'filled',
           [styles.filledHasError]: variant === 'filled' && hasError,
         })}
