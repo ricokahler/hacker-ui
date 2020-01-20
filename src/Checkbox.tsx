@@ -38,7 +38,7 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
         border: 2px solid ${danger.asBackground};
         background-color: ${transparentize(0.93, danger.asBackground)};
       }
-      & .checkbox:hover ~ .facade {
+      & .checkbox:not([disabled]):hover ~ .facade {
         border: 2px solid ${transparentize(0.3, danger.asBackground)};
         background-color: ${transparentize(0.93, danger.asBackground)};
       }

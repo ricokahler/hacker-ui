@@ -47,7 +47,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       &:focus {
         background-color: ${transparentize(0.85, danger.asBackground)};
       }
-      &:hover {
+      &:not([disabled]):hover {
         background-color: ${transparentize(0.87, danger.asBackground)};
       }
     `,
@@ -75,7 +75,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
         border: 2px solid ${danger.asBackground};
         background-color: ${transparentize(0.93, danger.asBackground)};
       }
-      &:hover {
+      &:not([disabled]):hover {
         border: 2px solid ${transparentize(0.3, danger.asBackground)};
       }
     `,
