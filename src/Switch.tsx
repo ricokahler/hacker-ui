@@ -138,7 +138,8 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       pointer-events: none;
     `,
     dot: css`
-      transition: cx ${theme.durations.standard}ms;
+      transition: cx ${theme.durations.standard}ms,
+        fill ${theme.durations.standard}ms;
     `,
     dotSmall: css`
       r: 30;
