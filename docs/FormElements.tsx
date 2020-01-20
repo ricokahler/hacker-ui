@@ -11,6 +11,7 @@ import {
   Radio,
   RadioGroup,
   Switch,
+  useTheme,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -64,6 +65,7 @@ const useStyles = createStyles(({ css, theme }) => ({
 interface Props extends PropsFromStyles<typeof useStyles> {}
 
 function FormElements(props: Props) {
+  const theme = useTheme();
   const { Root, styles } = useStyles(props);
   const [hasError, setHasError] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -106,7 +108,11 @@ function FormElements(props: Props) {
         <Label>I Agree</Label>
       </FormControl>
 
-      <FormControl hasError={hasError} disabled={disabled}>
+      <FormControl
+        color={theme.colors.warning}
+        hasError={hasError}
+        disabled={disabled}
+      >
         <Label>Switch</Label>
         <Switch />
       </FormControl>

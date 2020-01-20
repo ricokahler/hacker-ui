@@ -22,4 +22,6 @@ export { default as CheckIcon } from './CheckIcon';
 export { default as CircleIcon } from './CircleIcon';
 export { default as RadioGroup } from './RadioGroup';
 export { default as Switch } from './Switch';
+export { default as ColorProvider } from './ColorProvider';
+export { default as useColorContext } from './useColorContext';
 export * from './types';

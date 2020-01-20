@@ -96,3 +96,8 @@ export interface RadioGroupContext {
   value: string | undefined;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface ColorContext {
+  color: string;
+  on: string;
+}

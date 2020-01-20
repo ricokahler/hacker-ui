@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useLayoutEffect } from 'react';
+import React, { forwardRef, useMemo, useLayoutEffect, useContext } from 'react';
 import classNames from 'classnames';
 import shortId from 'shortid';
 import stylis from 'stylis';
@@ -12,6 +12,7 @@ import {
 import useTheme from './useTheme';
 import createDynamicColorPalette from './createDynamicColorPalette';
 import tryGetCurrentFileName from './tryGetCurrentFileName';
+import ColorContext from './ColorContext';
 
 type GetComponentProps<
   ComponentType extends ReactComponent
@@ -62,9 +63,12 @@ function createStyles<Styles extends { [key: string]: string }>(
     styles: Styles;
   } {
     const theme = useTheme();
+    const colorContext = useContext(ColorContext);
+    const defaultColor = colorContext?.color ?? theme.colors.accent;
+    const defaultOnColor = colorContext?.on ?? theme.colors.surface;
     const {
-      color = theme.colors.accent,
-      on = theme.colors.surface,
+      color = defaultColor,
+      on = defaultOnColor,
       style: incomingStyle,
       className: incomingClassName,
       styles: incomingStyles = empty as Styles,
