@@ -58,8 +58,8 @@ function Nav(props: Props) {
       </div>
       <nav className={styles.body}>
         <List>
-          {routes.map(route => (
-            <li>
+          {routes.map((route, index) => (
+            <li key={index}>
               <ListItemButton
                 component={(props: any) => <Link to={route.path} {...props} />}
               >
