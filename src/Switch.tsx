@@ -14,10 +14,10 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
   const width = theme.space(3.5);
   const height = theme.space(2);
 
-  const widthSmall = theme.space(1.5);
+  const widthSmall = theme.space(2.75);
   const heightSmall = theme.space(1.5);
 
-  const widthLarge = theme.space(2.5);
+  const widthLarge = theme.space(4);
   const heightLarge = theme.space(2.5);
 
   return {
@@ -34,27 +34,27 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       & .facade {
         border: 2px solid ${danger.asBackground};
       }
-      & .checkbox:focus ~ .facade {
+      & .switch:focus ~ .facade {
         border: 2px solid ${danger.asBackground};
         background-color: ${transparentize(0.93, danger.asBackground)};
       }
-      & .checkbox:not([disabled]):hover ~ .facade {
+      & .switch:not([disabled]):hover ~ .facade {
         border: 2px solid ${transparentize(0.3, danger.asBackground)};
         background-color: ${transparentize(0.93, danger.asBackground)};
       }
-      & .checkbox:active ~ .facade {
+      & .switch:active ~ .facade {
         background-color: ${transparentize(0.9, danger.asBackground)};
       }
 
-      & .checkbox:checked ~ .facade {
+      & .switch:checked ~ .facade {
         background-color: ${transparentize(0.93, danger.asBackground)};
       }
 
-      & .checkbox:checked ~ .facade .dot {
+      & .switch:checked ~ .facade .dot {
         fill: ${danger.asBackground};
       }
     `,
-    checkbox: css`
+    switch: css`
       cursor: pointer;
       opacity: 0;
       position: absolute;
@@ -97,15 +97,15 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
         background-color: ${transparentize(0.9, color.asBackground)};
       }
     `,
-    checkboxStandard: css`
+    switchStandard: css`
       width: ${width};
       height: ${height};
     `,
-    checkboxSmall: css`
+    switchSmall: css`
       width: ${widthSmall};
       height: ${heightSmall};
     `,
-    checkboxLarge: css`
+    switchLarge: css`
       width: ${widthLarge};
       height: ${heightLarge};
     `,
@@ -144,6 +144,15 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
     dot: css`
       transition: cx ${theme.durations.standard}ms;
     `,
+    dotSmall: css`
+      r: 30;
+    `,
+    dotStandard: css`
+      r: 35;
+    `,
+    dotLarge: css`
+      r: 40;
+    `,
   };
 });
 
@@ -156,7 +165,7 @@ interface Props extends PropsFromStyles<typeof useStyles>, InputProps {
   size?: 'small' | 'standard' | 'large';
 }
 
-const Checkbox = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
+const Switch = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   const {
     Root,
     styles,
@@ -211,10 +220,10 @@ const Checkbox = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
         type="checkbox"
         id={id}
         ref={inputRef}
-        className={classNames('checkbox', styles.checkbox, {
-          [styles.checkboxSmall]: size === 'small',
-          [styles.checkboxStandard]: size === 'standard',
-          [styles.checkboxLarge]: size === 'large',
+        className={classNames('switch', styles.switch, {
+          [styles.switchSmall]: size === 'small',
+          [styles.switchStandard]: size === 'standard',
+          [styles.switchLarge]: size === 'large',
         })}
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -231,10 +240,13 @@ const Checkbox = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
       >
         <svg className={styles.icon} viewBox="0 0 175 100">
           <circle
-            className={classNames('dot', styles.dot)}
+            className={classNames('dot', styles.dot, {
+              [styles.dotSmall]: size === 'small',
+              [styles.dotStandard]: size === 'standard',
+              [styles.dotLarge]: size === 'large',
+            })}
             cx="50"
             cy="50"
-            r="35"
           />
         </svg>
       </div>
@@ -242,4 +254,4 @@ const Checkbox = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   );
 });
 
-export default Checkbox;
+export default Switch;
