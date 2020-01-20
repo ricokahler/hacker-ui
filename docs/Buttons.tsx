@@ -97,21 +97,21 @@ function Buttons(props: Props) {
       </div>
 
       <section className={styles.section}>
-        <h2 className={styles.label}>Outline Buttons</h2>
+        <h2 className={styles.label}>Outlined Buttons</h2>
         <p className={styles.description}>
           An in-between of the filled button and the ghost button
         </p>
         <div className={styles.buttons}>
-          <Button variant="outline" color={theme.colors.brand}>
+          <Button variant="outlined" color={theme.colors.brand}>
             Okay
           </Button>
-          <Button variant="outline" color={theme.colors.accent}>
+          <Button variant="outlined" color={theme.colors.accent}>
             Done
           </Button>
-          <Button variant="outline" color={theme.colors.bland}>
+          <Button variant="outlined" color={theme.colors.bland}>
             Boring
           </Button>
-          <Button variant="outline" color={theme.colors.danger}>
+          <Button variant="outlined" color={theme.colors.danger}>
             Delete
           </Button>
         </div>
@@ -175,16 +175,16 @@ function Buttons(props: Props) {
           </div>
 
           <div className={styles.buttons}>
-            <Button variant="outline" disabled color={theme.colors.brand}>
+            <Button variant="outlined" disabled color={theme.colors.brand}>
               Okay
             </Button>
-            <Button variant="outline" disabled color={theme.colors.accent}>
+            <Button variant="outlined" disabled color={theme.colors.accent}>
               Done
             </Button>
-            <Button variant="outline" disabled color={theme.colors.bland}>
+            <Button variant="outlined" disabled color={theme.colors.bland}>
               Boring
             </Button>
-            <Button variant="outline" disabled color={theme.colors.danger}>
+            <Button variant="outlined" disabled color={theme.colors.danger}>
               Delete
             </Button>
           </div>
@@ -213,7 +213,7 @@ function Buttons(props: Props) {
         </p>
         <div className={styles.buttons}>
           <Button
-            variant="outline"
+            variant="outlined"
             color={theme.colors.accent}
             // eslint-disable-next-line
             component={(props: any) => <a href="#" {...props} />}
@@ -239,7 +239,7 @@ function Buttons(props: Props) {
               <span>Large</span>
               <FontAwesomeIcon icon={faArrowRight} />
             </Button>
-            <Button variant="outline" size="large" color={theme.colors.accent}>
+            <Button variant="outlined" size="large" color={theme.colors.accent}>
               Okay
             </Button>
           </div>
@@ -255,7 +255,7 @@ function Buttons(props: Props) {
             <Button size="small" color={theme.colors.danger}>
               Error
             </Button>
-            <Button variant="outline" size="small" disabled>
+            <Button variant="outlined" size="small" disabled>
               Disabled
             </Button>
           </div>

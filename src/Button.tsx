@@ -36,7 +36,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     border-radius: 99999px;
   `,
   // variants
-  outline: css`
+  outlined: css`
     border: 1px solid ${color.onSurface};
     color: ${color.onSurface};
 
@@ -134,7 +134,7 @@ type ButtonProps = JSX.IntrinsicElements['button'];
 interface Props extends PropsFromStyles<typeof useStyles>, ButtonProps {
   size?: 'small' | 'standard' | 'large';
   shape?: 'standard' | 'icon';
-  variant?: 'filled' | 'ghost' | 'outline';
+  variant?: 'filled' | 'ghost' | 'outlined';
   component?: ReactComponent;
 }
 
@@ -153,7 +153,7 @@ const Button = forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
       className={classNames({
         [styles.icon]: shape === 'icon',
         [styles.standard]: shape === 'standard',
-        [styles.outline]: variant === 'outline',
+        [styles.outlined]: variant === 'outlined',
         [styles.ghost]: variant === 'ghost',
         [styles.filled]: variant === 'filled',
         [styles.iconSmall]: shape === 'icon' && size === 'small',

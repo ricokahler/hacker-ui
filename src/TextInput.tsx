@@ -51,7 +51,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
         background-color: ${transparentize(0.87, danger.asBackground)};
       }
     `,
-    outline: css`
+    outlined: css`
       background-color: ${givenSurface};
       transition: border ${theme.durations.standard}ms,
         background-color ${theme.durations.standard}ms;
@@ -69,7 +69,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
         background-color: ${transparentize(0.9, bland.asBackground)};
       }
     `,
-    outlineHasError: css`
+    outlinedHasError: css`
       border: 2px solid ${danger.asBackground};
       &:focus {
         border: 2px solid ${danger.asBackground};
@@ -86,7 +86,7 @@ type InputProps = JSX.IntrinsicElements['input'];
 interface Props extends PropsFromStyles<typeof useStyles>, InputProps {
   hasError?: boolean;
   disabled?: boolean;
-  variant?: 'filled' | 'outline';
+  variant?: 'filled' | 'outlined';
   component?: ReactComponent;
 }
 
@@ -95,7 +95,7 @@ const TextInput = forwardRef(
     const {
       Root,
       styles,
-      variant = 'outline',
+      variant = 'outlined',
       hasError: incomingHasError,
       disabled: incomingDisabled,
       onFocus,
@@ -138,8 +138,8 @@ const TextInput = forwardRef(
         type={type}
         disabled={disabled}
         className={classNames({
-          [styles.outline]: variant === 'outline',
-          [styles.outlineHasError]: variant === 'outline' && hasError,
+          [styles.outlined]: variant === 'outlined',
+          [styles.outlinedHasError]: variant === 'outlined' && hasError,
           [styles.filled]: variant === 'filled',
           [styles.filledHasError]: variant === 'filled' && hasError,
         })}
