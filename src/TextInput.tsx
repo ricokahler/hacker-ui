@@ -84,7 +84,6 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
 
 type InputProps = JSX.IntrinsicElements['input'];
 interface Props extends PropsFromStyles<typeof useStyles>, InputProps {
-  focused?: boolean;
   hasError?: boolean;
   disabled?: boolean;
   variant?: 'filled' | 'outline';
@@ -97,7 +96,6 @@ const TextInput = forwardRef(
       Root,
       styles,
       variant = 'outline',
-      focused: _focused,
       hasError: incomingHasError,
       disabled: incomingDisabled,
       onFocus,
@@ -109,9 +107,10 @@ const TextInput = forwardRef(
     const formControlContext = useContext(FormControlContext);
 
     const id = formControlContext?.id;
-    const hasError = incomingHasError ?? formControlContext?.hasError ?? false;
-    const disabledFromFormControl = formControlContext?.disabled ?? false;
-    const disabled = incomingDisabled || disabledFromFormControl;
+    const disabled =
+      Boolean(formControlContext?.disabled) || Boolean(incomingDisabled);
+    const hasError =
+      Boolean(formControlContext?.hasError) || Boolean(incomingHasError);
 
     const handleFocus = (e: React.FocusEvent<any>) => {
       if (onFocus) {

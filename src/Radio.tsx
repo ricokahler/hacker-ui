@@ -27,9 +27,6 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       margin: ${theme.space(0.5)} 0;
       background-color: ${givenSurface};
     `,
-    focused: css`
-      color: ${color.asBackground};
-    `,
     hasError: css`
       color: ${danger.asBackground};
       & .facade {
@@ -130,7 +127,6 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
 
 type InputProps = Omit<JSX.IntrinsicElements['input'], 'size' | 'type'>;
 interface Props extends PropsFromStyles<typeof useStyles>, InputProps {
-  focused?: boolean;
   hasError?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;
   icon?: ReactComponent;
@@ -142,9 +138,8 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     Root,
     styles,
     id: incomingId,
-    focused: incomingFocused,
     hasError: incomingHasError,
-    disabled: _incomingDisabled,
+    disabled: incomingDisabled,
     checked: incomingChecked,
     name: incomingName,
     value,
@@ -160,11 +155,10 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   const radioGroupContext = useContext(RadioGroupContext);
 
   const id = incomingId ?? formControlContext?.id;
-  const focused = incomingFocused ?? formControlContext?.focused ?? false;
-  const hasError = incomingHasError ?? formControlContext?.hasError ?? false;
-  const incomingDisabled = _incomingDisabled ?? false;
-  const disabledFromContext = formControlContext?.disabled ?? false;
-  const disabled = incomingDisabled || disabledFromContext;
+  const hasError =
+    Boolean(formControlContext?.hasError) || Boolean(incomingHasError);
+  const disabled =
+    Boolean(formControlContext?.disabled) || Boolean(incomingDisabled);
 
   const checkedFromContext = radioGroupContext
     ? radioGroupContext.value === value
@@ -204,7 +198,6 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     <Root
       ref={ref}
       className={classNames({
-        [styles.focused]: focused,
         [styles.hasError]: hasError,
       })}
     >
