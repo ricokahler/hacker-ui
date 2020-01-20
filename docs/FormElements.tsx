@@ -9,6 +9,7 @@ import {
   TextArea,
   Checkbox,
   Radio,
+  RadioGroup,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -78,15 +79,17 @@ function FormElements(props: Props) {
         <HelperText>The quick brown fox jumps.</HelperText>
       </FormControl>
 
-      <FormControl hasError={hasError} disabled={disabled}>
-        <Label>Test</Label>
-        <Radio name="blah" value="test" />
-      </FormControl>
+      <RadioGroup>
+        <FormControl hasError={hasError} disabled={disabled}>
+          <Label>Test</Label>
+          <Radio value="test" />
+        </FormControl>
 
-      <FormControl hasError={hasError} disabled={disabled}>
-        <Label>Thing</Label>
-        <Radio name="blah" value="other" />
-      </FormControl>
+        <FormControl hasError={hasError} disabled={disabled}>
+          <Label>Thing</Label>
+          <Radio value="other" />
+        </FormControl>
+      </RadioGroup>
 
       <p className={styles.body1}>Do you agree?</p>
       <FormControl

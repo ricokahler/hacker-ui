@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { transparentize } from 'polished';
 import createDynamicColorPalette from './createDynamicColorPalette';
 import FormControlContext from './FormControlContext';
+import RadioGroupContext from './RadioGroupContext';
 import createStyles from './createStyles';
 import { PropsFromStyles, ReactComponent } from './types';
 import CircleIcon from './CircleIcon';
@@ -143,14 +144,19 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     focused: incomingFocused,
     hasError: incomingHasError,
     disabled: _incomingDisabled,
+    checked: incomingChecked,
+    name: incomingName,
+    value,
     onFocus,
     onBlur,
+    onChange,
     inputRef,
     icon: Icon = CircleIcon,
     size = 'standard',
     ...restOfProps
   } = useStyles(props);
   const formControlContext = useContext(FormControlContext);
+  const radioGroupContext = useContext(RadioGroupContext);
 
   const id = incomingId ?? formControlContext?.id;
   const focused = incomingFocused ?? formControlContext?.focused ?? false;
@@ -158,6 +164,12 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   const incomingDisabled = _incomingDisabled ?? false;
   const disabledFromContext = formControlContext?.disabled ?? false;
   const disabled = incomingDisabled || disabledFromContext;
+
+  const checkedFromContext = radioGroupContext
+    ? radioGroupContext.value === value
+    : undefined;
+  const checked = incomingChecked ?? checkedFromContext;
+  const name = incomingName ?? radioGroupContext?.name;
 
   const handleFocus = (e: React.FocusEvent<any>) => {
     if (onFocus) {
@@ -177,6 +189,15 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
       formControlContext?.setFocused(false);
     }
   };
+  const handleChange = (e: React.ChangeEvent<any>) => {
+    if (onChange) {
+      onChange(e);
+    }
+
+    if (radioGroupContext) {
+      radioGroupContext.handleChange(e);
+    }
+  };
 
   return (
     <Root
@@ -190,6 +211,9 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
         type="radio"
         id={id}
         ref={inputRef}
+        value={value}
+        name={name}
+        checked={checked}
         className={classNames('radio', styles.radio, {
           [styles.radioSmall]: size === 'small',
           [styles.radioStandard]: size === 'standard',
@@ -197,6 +221,7 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
         })}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onChange={handleChange}
         disabled={disabled}
         {...restOfProps}
       />

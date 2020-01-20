@@ -90,3 +90,9 @@ export interface FormControlContext {
   hasError: boolean;
   disabled: boolean;
 }
+
+export interface RadioGroupContext {
+  name: string;
+  value: string | undefined;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}

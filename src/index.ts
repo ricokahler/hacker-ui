@@ -20,4 +20,5 @@ export { default as Checkbox } from './Checkbox';
 export { default as Radio } from './Radio';
 export { default as CheckIcon } from './CheckIcon';
 export { default as CircleIcon } from './CircleIcon';
+export { default as RadioGroup } from './RadioGroup';
 export * from './types';
