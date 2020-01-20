@@ -10,11 +10,15 @@ import {
   Checkbox,
   Radio,
   RadioGroup,
+  Switch,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     padding: ${theme.gap(1)};
+    & > *:not(:last-child) {
+      margin-bottom: ${theme.space(1)};
+    }
   `,
   title: css`
     ${theme.fonts.h3}
@@ -67,6 +71,7 @@ function FormElements(props: Props) {
   return (
     <Root>
       <h1 className={styles.title}>Form elements</h1>
+
       <FormControl hasError={hasError}>
         <Label>Error</Label>
         <Checkbox checked={hasError} onChange={() => setHasError(!hasError)} />
@@ -99,6 +104,11 @@ function FormElements(props: Props) {
       >
         <Checkbox className={styles.checkboxHorizontal} />
         <Label>I Agree</Label>
+      </FormControl>
+
+      <FormControl hasError={hasError} disabled={disabled}>
+        <Label>Switch</Label>
+        <Switch />
       </FormControl>
 
       <section className={styles.section}>
