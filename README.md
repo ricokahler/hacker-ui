@@ -13,7 +13,7 @@ check back soon
 
 ---
 
-This 👇 is what's currently planned. This is mostly a scratch pad of idea and will probably change.
+This 👇 is what's currently planned. This is mostly a scratch pad of ideas and will probably change.
 
 ## Colors
 
@@ -76,6 +76,7 @@ This 👇 is what's currently planned. This is mostly a scratch pad of idea and 
 - forms (maybe with react-select or similar?)
 - layouts (like: https://ant.design/components/layout/)
 - user info (https://ant.design/components/descriptions/)
+- show select with react-select or downshift
 
 ## Other considerations
 
