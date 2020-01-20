@@ -17,7 +17,6 @@ const useStyles = createStyles(({ css }) => ({
 type DivProps = JSX.IntrinsicElements['div'];
 interface Props extends PropsFromStyles<typeof useStyles>, DivProps {
   component?: ReactComponent;
-  focused?: boolean;
   hasError?: boolean;
   disabled?: boolean;
 }
@@ -28,7 +27,6 @@ const FormControl = forwardRef(
       Root,
       styles,
       component,
-      focused: incomingFocused,
       hasError = false,
       disabled = false,
       ...restOfProps
@@ -41,9 +39,7 @@ const FormControl = forwardRef(
     const on = props.on ?? colorContext?.on ?? theme.colors.surface;
 
     const id = useMemo(() => `hui-${shortId()}`, []);
-    const [focusedState, setFocused] = useState(false);
-
-    const focused = incomingFocused ?? focusedState;
+    const [focused, setFocused] = useState(false);
 
     const formControlContextValue = useMemo(
       () => ({
