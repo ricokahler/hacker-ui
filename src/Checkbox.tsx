@@ -47,6 +47,7 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       }
     `,
     checkbox: css`
+      cursor: pointer;
       opacity: 0;
       position: absolute;
       top: 0;
