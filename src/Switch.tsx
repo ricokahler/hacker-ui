@@ -11,7 +11,7 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
   const bland = createDynamicColorPalette(theme.colors.bland, givenSurface);
   const danger = createDynamicColorPalette(theme.colors.danger, givenSurface);
 
-  const width = theme.space(4);
+  const width = theme.space(3.5);
   const height = theme.space(2);
 
   const widthSmall = theme.space(1.5);
@@ -84,7 +84,7 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       }
 
       &:checked ~ .facade .dot {
-        cx: 150;
+        cx: 125;
         fill: ${color.asBackground};
       }
 
@@ -229,12 +229,12 @@ const Checkbox = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
           [styles.facadeLarge]: size === 'large',
         })}
       >
-        <svg className={styles.icon} viewBox="0 0 200 100">
+        <svg className={styles.icon} viewBox="0 0 175 100">
           <circle
             className={classNames('dot', styles.dot)}
             cx="50"
             cy="50"
-            r="40"
+            r="35"
           />
         </svg>
       </div>
