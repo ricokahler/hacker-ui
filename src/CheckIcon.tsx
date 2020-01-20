@@ -1,6 +1,7 @@
-// this is a fontawesome 5 free icon
-// https://fontawesome.com/icons/check?style=solid
-// https://fontawesome.com/license
+/**
+ * this is a fontawesome 5 free icon
+ * @license https://fontawesome.com/license
+ */
 import React, { forwardRef } from 'react';
 
 type SvgProps = JSX.IntrinsicElements['svg'];

@@ -12,6 +12,7 @@ import {
   RadioGroup,
   Switch,
   useTheme,
+  Select,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -75,6 +76,8 @@ function FormElements(props: Props) {
       <h1 className={styles.title}>Form elements</h1>
 
       <FormControl hasError={hasError}>
+        {/* TODO: when error and disabled are checked,
+        the error color remains in the icon */}
         <Label>Error</Label>
         <Checkbox checked={hasError} onChange={() => setHasError(!hasError)} />
         <HelperText>The quick brown fox jumps.</HelperText>
@@ -85,6 +88,19 @@ function FormElements(props: Props) {
         <Checkbox checked={disabled} onChange={() => setDisabled(!disabled)} />
         <HelperText>The quick brown fox jumps.</HelperText>
       </FormControl>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Select</h2>
+        <FormControl disabled={disabled} hasError={hasError}>
+          <Label>Shipping State:</Label>
+          <Select variant="filled">
+            <option value="">Select a state</option>
+            <option value="MI">Michigan</option>
+            <option value="HI">Hawaii</option>
+          </Select>
+          <HelperText>This is a thing.</HelperText>
+        </FormControl>
+      </section>
 
       <RadioGroup>
         <FormControl hasError={hasError} disabled={disabled}>
