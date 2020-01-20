@@ -64,7 +64,7 @@ const RadioGroup = forwardRef(
 
     return (
       <RadioGroupContext.Provider value={contextValue}>
-        <Root role="radiogroup" {...restOfProps} />
+        <Root ref={ref} role="radiogroup" {...restOfProps} />
       </RadioGroupContext.Provider>
     );
   },
