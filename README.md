@@ -47,8 +47,6 @@ This 👇 is what's currently planned. This is mostly a scratch pad of ideas and
 - switch
 - select (maybe just native select?)
 - tag
-- spinner
-- badge
 - tooltip
 - inline code
 - code block

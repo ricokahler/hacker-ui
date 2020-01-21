@@ -91,6 +91,13 @@ const defaultTheme: Theme = {
   gap: n => `${n * 48}px`,
   block: n => `${n * 96}px`,
   golden,
+  zIndex: {
+    appBar: 1100,
+    drawer: 1200,
+    modal: 1300,
+    notification: 1400,
+    tooltip: 1500,
+  },
 };
 
 export default defaultTheme;

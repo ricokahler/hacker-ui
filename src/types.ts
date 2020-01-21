@@ -41,6 +41,15 @@ export interface Theme {
   gap: (n: number) => string;
   block: (n: number) => string;
   golden: (n: number) => string;
+
+  // these were inspired from from material-ui's z-indexes
+  zIndex: {
+    appBar: number;
+    drawer: number;
+    modal: number;
+    notification: number;
+    tooltip: number;
+  };
 }
 
 export interface DynamicColorPalette {
@@ -100,4 +109,10 @@ export interface RadioGroupContext {
 export interface ColorContext {
   color: string;
   on: string;
+}
+
+export interface TooltipProps {
+  ref: React.Ref<any>;
+  onMouseEnter: (e: React.MouseEvent<any>) => void;
+  onMouseLeave: (e: React.MouseEvent<any>) => void;
 }

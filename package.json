@@ -70,5 +70,9 @@
     "polished": "^3.4.2",
     "shortid": "^2.2.15",
     "stylis": "^3.5.4"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }

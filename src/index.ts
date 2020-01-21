@@ -28,4 +28,5 @@ export { default as Select } from './Select';
 export { default as Chip } from './Chip';
 export { default as ChipThumbnail } from './ChipThumbnail';
 export { default as TimesIcon } from './TimesIcon';
+export { default as Tooltip } from './Tooltip';
 export * from './types';
