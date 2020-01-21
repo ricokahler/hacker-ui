@@ -48,8 +48,6 @@ This 👇 is what's currently planned. This is mostly a scratch pad of ideas and
 - select (maybe just native select?)
 - tag
 - tooltip
-- inline code
-- code block
 
 ### complex ones?
 
