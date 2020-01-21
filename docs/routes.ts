@@ -5,6 +5,7 @@ import Buttons from './Buttons';
 import Welcome from './Welcome';
 import Links from './Links';
 import FormElements from './FormElements';
+import Chips from './Chips';
 
 const routes: Array<RouteProps & { title: string }> = [
   { title: 'Welcome', path: '/', exact: true, component: Welcome },
@@ -13,6 +14,7 @@ const routes: Array<RouteProps & { title: string }> = [
   { title: 'Lists ', path: '/list', component: () => null },
   { title: 'Links', path: '/links', component: Links },
   { title: 'Form elements', path: '/form-elements', component: FormElements },
+  { title: 'Chips', path: '/chips', component: Chips },
 ];
 
 export default routes;

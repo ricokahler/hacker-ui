@@ -34,6 +34,10 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   `,
   icon: css`
     border-radius: 99999px;
+    & > svg {
+      width: ${theme.space(1)};
+      height: ${theme.space(1)};
+    }
   `,
   // variants
   outlined: css`
@@ -150,7 +154,7 @@ const Button = forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
   } = useStyles(props, props.component || 'button');
   return (
     <Root
-      className={classNames({
+      className={classNames('hui-button', {
         [styles.icon]: shape === 'icon',
         [styles.standard]: shape === 'standard',
         [styles.outlined]: variant === 'outlined',
