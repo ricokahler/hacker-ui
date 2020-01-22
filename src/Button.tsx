@@ -147,7 +147,7 @@ const Button = forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
     Root,
     styles,
     component,
-    variant = 'filled',
+    variant = 'ghost',
     size = 'standard',
     shape = 'standard',
     ...restOfProps
