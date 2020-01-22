@@ -118,7 +118,7 @@ function Tooltip(props: Props) {
         setWidth(width);
         setHeight(height);
 
-        await delay(250);
+        await delay(100);
       }
     })();
   }, [debouncedMouseOver, rootRef, tooltipContainer]);
@@ -134,6 +134,7 @@ function Tooltip(props: Props) {
 
     return () => {
       document.body.removeChild(tooltipContainer);
+      setTooltipContainer(null);
     };
   }, [debouncedMouseOver, styles]);
 
