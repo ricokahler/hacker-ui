@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouteProps } from 'react-router-dom';
 
 import NoRoute from './NoRoute';
@@ -7,6 +8,8 @@ import Links from './Links';
 import FormElements from './FormElements';
 import Chips from './Chips';
 import Tooltips from './Tooltips';
+import Heyo from './Heyo';
+import withPageWrapper from './withPageWrapper';
 
 const routes: Array<RouteProps & { title: string }> = [
   { title: 'Welcome', path: '/', exact: true, component: Welcome },
@@ -17,6 +20,11 @@ const routes: Array<RouteProps & { title: string }> = [
   { title: 'Form elements', path: '/form-elements', component: FormElements },
   { title: 'Chips', path: '/chips', component: Chips },
   { title: 'Tooltips', path: '/tooltips', component: Tooltips },
+  {
+    title: 'MDX Test',
+    path: '/mdx-test',
+    component: withPageWrapper(Heyo),
+  },
 ];
 
 export default routes;

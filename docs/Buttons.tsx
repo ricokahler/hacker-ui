@@ -3,6 +3,7 @@ import { createStyles, PropsFromStyles, useTheme, Button } from 'hacker-ui';
 import { Link } from 'react-router-dom';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CodeExample from './CodeExample';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -68,6 +69,33 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
 }));
 
+const code = `
+import React from 'react';
+import { createStyles, PropsFromStyles } from 'hacker-ui';
+
+const useStyles = createStyles(({ css }) => ({
+  root: css'',
+  title: css'',
+  description: css'',
+}));
+
+interface Props extends PropsFromStyles<typeof useStyles> {}
+
+function GhostButtons(props: Props) {
+  const { Root, styles } = useStyles(props);
+
+  return (
+    <Root>
+      <h2 className={styles.title}>Ghost Buttons</h2>
+      <p className={styles.description}>Ghost buttons are stuff and things.</p>
+    </Root>
+  );
+}
+
+export const title = 'Ghost Buttons';
+export default GhostButtons;
+`;
+
 interface Props extends PropsFromStyles<typeof useStyles> {}
 
 function Buttons(props: Props) {
@@ -95,6 +123,31 @@ function Buttons(props: Props) {
           </Button>
         </div>
       </div>
+
+      <CodeExample
+        title="Ghost Buttons"
+        javascriptCode={code}
+        typescriptCode={code}
+      >
+        <p className={styles.description}>
+          These don't have as much emphasis on the page but still signal to the
+          user that they're clickable.
+        </p>
+        <div className={styles.buttons}>
+          <Button variant="ghost" color={theme.colors.brand}>
+            Okay
+          </Button>
+          <Button variant="ghost" color={theme.colors.accent}>
+            Done
+          </Button>
+          <Button variant="ghost" color={theme.colors.bland}>
+            Boring
+          </Button>
+          <Button variant="ghost" color={theme.colors.danger}>
+            Delete
+          </Button>
+        </div>
+      </CodeExample>
 
       <section className={styles.section}>
         <h2 className={styles.label}>Outlined Buttons</h2>
@@ -207,7 +260,9 @@ function Buttons(props: Props) {
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.label}>Links and more</h2>
+        <h2 className={styles.label} id="links-and-more">
+          Links and more
+        </h2>
         <p className={styles.description}>
           You can pick any component to be the root component.
         </p>

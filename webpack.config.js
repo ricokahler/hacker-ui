@@ -10,6 +10,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.mdx$/,
+        include: [
+          path.resolve(__dirname, './src'),
+          path.resolve(__dirname, './docs'),
+        ],
+        use: ['babel-loader', '@mdx-js/loader'],
+      },
+      {
         test: /\.(t|j)sx?$/,
         include: [
           path.resolve(__dirname, './src'),
@@ -27,7 +35,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.mdx'],
     alias: {
       'hacker-ui': path.resolve(__dirname, './src/index.ts'),
     },
