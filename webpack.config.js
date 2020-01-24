@@ -3,17 +3,31 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './docs/index.tsx',
+  entry: './website/index.tsx',
   output: {
     filename: 'hacker-ui-docs.js',
+    publicPath: '/',
   },
   module: {
     rules: [
+      {
+        test: /\.doc-folder$/,
+        include: [
+          path.resolve(__dirname, './src'),
+          path.resolve(__dirname, './docs'),
+          path.resolve(__dirname, './website'),
+        ],
+        use: [
+          'babel-loader',
+          { loader: path.resolve(__dirname, './loaders/doc-folder-loader.js') },
+        ],
+      },
       {
         test: /\.mdx$/,
         include: [
           path.resolve(__dirname, './src'),
           path.resolve(__dirname, './docs'),
+          path.resolve(__dirname, './website'),
         ],
         use: ['babel-loader', '@mdx-js/loader'],
       },
@@ -22,6 +36,7 @@ module.exports = {
         include: [
           path.resolve(__dirname, './src'),
           path.resolve(__dirname, './docs'),
+          path.resolve(__dirname, './website'),
         ],
         exclude: [path.resolve(__dirname, './node_modules')],
         loader: 'ts-loader',
@@ -35,13 +50,13 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx', '.mdx'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.mdx', '.doc-folder'],
     alias: {
       'hacker-ui': path.resolve(__dirname, './src/index.ts'),
     },
   },
   devtool: 'source-map',
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin({})],
   devServer: {
     overlay: true,
     historyApiFallback: true,

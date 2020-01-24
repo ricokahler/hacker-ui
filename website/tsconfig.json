@@ -6,5 +6,5 @@
       "hacker-ui": ["../src/index.ts"]
     }
   },
-  "include": ["../docs", "../src"]
+  "include": ["../website", "../docs", "../src"]
 }

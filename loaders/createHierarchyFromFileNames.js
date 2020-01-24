@@ -52,9 +52,9 @@ function createHierarchyFromFileNames(collection) {
       .sort((a, b) => a[0].localeCompare(b[0]))
       .map(([key, value]) => ({
         title: convertToTitle(key),
-        component:
+        value:
           typeof value === 'number'
-            ? collection[value].component
+            ? collection[value].value
             : convertToArray(value),
       }));
   }

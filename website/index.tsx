@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, createTheme } from 'hacker-ui';
-import Docs from './Docs';
+import App from './App';
 
 const theme = createTheme();
 
@@ -18,7 +18,7 @@ document.body.appendChild(container);
 render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
-      <Docs />
+      <App />
     </ThemeProvider>
   </BrowserRouter>,
   container,

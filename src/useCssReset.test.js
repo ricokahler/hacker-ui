@@ -28,6 +28,7 @@ it('adds normalize to the dom', async () => {
     /*# sourceMappingURL=normalize.min.css.map */
     body {font-family: -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Helvetica, Arial, sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\";}
     :root{font-size:16px}
+    * { box-sizing: border-box; }
     "
   `);
 });

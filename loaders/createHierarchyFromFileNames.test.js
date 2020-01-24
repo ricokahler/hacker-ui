@@ -3,13 +3,13 @@ import createHierarchyFromFileNames from './createHierarchyFromFileNames';
 it('creates a hierarchy from a flat file list', () => {
   const hierarchy = createHierarchyFromFileNames(
     [
-      { path: '/prefix/foo.mdx', component: 'foo' },
-      { path: '/prefix/bar.mdx', component: 'bar' },
-      { path: '/prefix/nested/baz.mdx', component: 'baz' },
-      { path: '/prefix/nested/example.thing.mdx', component: 'example thing' },
-      { path: '/prefix/other/test-example.mdx', component: 'test example' },
-      { path: '/prefix/sorted/0-zz.mdx', component: 'zz' },
-      { path: '/prefix/sorted/1-azz.mdx', component: 'azz' },
+      { path: '/prefix/foo.mdx', value: 'foo' },
+      { path: '/prefix/bar.mdx', value: 'bar' },
+      { path: '/prefix/nested/baz.mdx', value: 'baz' },
+      { path: '/prefix/nested/example.thing.mdx', value: 'example thing' },
+      { path: '/prefix/other/test-example.mdx', value: 'test example' },
+      { path: '/prefix/sorted/0-zz.mdx', value: 'zz' },
+      { path: '/prefix/sorted/1-azz.mdx', value: 'azz' },
     ],
     item => item.path,
   );
@@ -17,47 +17,47 @@ it('creates a hierarchy from a flat file list', () => {
   expect(hierarchy).toMatchInlineSnapshot(`
     Array [
       Object {
-        "component": "bar",
         "title": "Bar",
+        "value": "bar",
       },
       Object {
-        "component": "foo",
         "title": "Foo",
+        "value": "foo",
       },
       Object {
-        "component": Array [
-          Object {
-            "component": "baz",
-            "title": "Baz",
-          },
-          Object {
-            "component": "example thing",
-            "title": "Example Thing",
-          },
-        ],
         "title": "Nested",
-      },
-      Object {
-        "component": Array [
+        "value": Array [
           Object {
-            "component": "test example",
-            "title": "Test Example",
+            "title": "Baz",
+            "value": "baz",
+          },
+          Object {
+            "title": "Example Thing",
+            "value": "example thing",
           },
         ],
+      },
+      Object {
         "title": "Other",
-      },
-      Object {
-        "component": Array [
+        "value": Array [
           Object {
-            "component": "zz",
-            "title": "Zz",
-          },
-          Object {
-            "component": "azz",
-            "title": "Azz",
+            "title": "Test Example",
+            "value": "test example",
           },
         ],
+      },
+      Object {
         "title": "Sorted",
+        "value": Array [
+          Object {
+            "title": "Zz",
+            "value": "zz",
+          },
+          Object {
+            "title": "Azz",
+            "value": "azz",
+          },
+        ],
       },
     ]
   `);

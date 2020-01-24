@@ -6,7 +6,7 @@ const createHierarchyFromFileNames = require('./createHierarchyFromFileNames');
 async function docFolderLoader() {
   const callback = this.async();
   try {
-    const files = await glob(`${this.context}/**/*.mdx`);
+    const files = await glob(`${this.context}/**/*.{mdx,tsx,js}`);
 
     for (const file of files) {
       this.addDependency(file);
@@ -15,12 +15,12 @@ async function docFolderLoader() {
     const hierarchy = createHierarchyFromFileNames(
       files.map(file => ({
         path: file,
-        component: `____${file}____`,
+        value: `%%%%${file}%%%%`,
       })),
     );
 
     const result = `export default ${JSON.stringify(hierarchy).replace(
-      /"____(.*)____"/,
+      /"%%%%([^%]*)%%%%"/g,
       "require('$1').default",
     )}`;
 

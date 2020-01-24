@@ -1,11 +1,29 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useCssReset, createStyles, StyleProps } from 'hacker-ui';
+import flattenDocArray from './flattenDocArray';
+import docArray from '../docs';
 
 import Nav from './Nav';
 import AppBar from './AppBar';
+import NoRoute from './NoRoute';
+import PageWrapper from './PageWrapper';
 
-import routes from './routes';
+const routes = flattenDocArray(docArray).map(
+  ({ component, ...restOfProps }) => {
+    const Component = component as React.ComponentType<any>;
+
+    return {
+      component: (props: any) => (
+        <PageWrapper>
+          <Component {...props} />
+        </PageWrapper>
+      ),
+      ...restOfProps,
+    };
+  },
+);
+const firstPath = routes[0].path as string;
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -36,7 +54,7 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 interface Props extends StyleProps<typeof useStyles> {}
 
-function Docs(props: Props) {
+function App(props: Props) {
   useCssReset();
   const { Root, styles } = useStyles(props);
 
@@ -47,9 +65,11 @@ function Docs(props: Props) {
         <AppBar className={styles.appBar} />
         <main className={styles.main}>
           <Switch>
-            {routes.map((route, index) => (
-              <Route key={index} {...route} />
+            <Route path="/" exact render={() => <Redirect to={firstPath} />} />
+            {routes.map(({ title, ...restOfRoute }, index) => (
+              <Route key={index} {...restOfRoute} />
             ))}
+            <Route path="/404" component={NoRoute} />
             <Redirect to="/404" />
           </Switch>
         </main>
@@ -58,4 +78,4 @@ function Docs(props: Props) {
   );
 }
 
-export default Docs;
+export default App;
