@@ -4,12 +4,16 @@
 
 check back soon
 
-## Goals
+## Goals and Philosophies
 
-- Themeable with any colors
-- Easy-to-implement dark mode support
-- Composable, atomic
-- Simple
+- no useless abstractions
+- small API footprint = little learning curve
+- relatively "low-level" to remove restraints
+- composable styles by default, root component overrides
+- components are modular/atomic
+- unbranded but still aesthetically pleasing
+- out-of-the-box dark mode
+- themeable with any colors
 
 ---
 
