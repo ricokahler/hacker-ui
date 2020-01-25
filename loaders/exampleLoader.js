@@ -14,7 +14,7 @@ async function exampleLoader(exampleContent) {
     );
 
     function format(code) {
-      return prettier.format(code, { ...prettierConfig, parser: 'babel' });
+      return prettier.format(code, { ...prettierConfig, parser: 'typescript' });
     }
 
     const typescriptSource = format(exampleContent);

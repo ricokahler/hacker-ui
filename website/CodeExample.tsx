@@ -27,6 +27,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     flex-direction: column;
+    margin-bottom: ${theme.gap(1)};
   `,
   titleRow: css`
     flex: 0 0 auto;
@@ -34,7 +35,12 @@ const useStyles = createStyles(({ css, theme }) => ({
     align-items: center;
   `,
   title: css`
+    margin: 0;
     margin-right: ${theme.space(1)};
+  `,
+  description: css`
+    ${theme.fonts.body1};
+    margin-bottom: ${theme.space(1)};
   `,
   codeButton: css`
     flex: 0 0 auto;
@@ -45,7 +51,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: ${theme.space(1)};
     background-color: ${transparentize(0.8, theme.colors.bland)};
     display: flex;
-    flex-direction: auto;
+    flex-direction: column;
     overflow: auto;
   `,
   modalHeader: css`
@@ -96,7 +102,8 @@ const useStyles = createStyles(({ css, theme }) => ({
 }));
 
 interface Props extends PropsFromStyles<typeof useStyles> {
-  title: React.ReactNode;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
   children: React.ReactNode;
   typescriptCode: string;
   javascriptCode: string;
@@ -107,6 +114,7 @@ function CodeExample(props: Props) {
     Root,
     styles,
     title,
+    description,
     children,
     javascriptCode,
     typescriptCode,
@@ -147,6 +155,7 @@ function CodeExample(props: Props) {
             container.style.right = '0';
             container.style.width = '100vw';
             container.style.height = '100vh';
+            container.style.padding = '16px';
             
             document.body.appendChild(container);
             
@@ -173,7 +182,7 @@ function CodeExample(props: Props) {
               keywords: [],
               main: `src/index.${codeType === 'typescript' ? 'tsx' : 'js'}`,
               dependencies: {
-                'hacker-ui': 'latest',
+                'hacker-ui': '0.0.0-aca68ff7c',
                 react: '16.12.0',
                 'react-dom': '16.12.0',
                 'react-scripts': '3.0.1',
@@ -257,6 +266,7 @@ function CodeExample(props: Props) {
             )}
           </Tooltip>
         </div>
+        <p className={styles.description}>{description}</p>
 
         <div className={styles.content}>{children}</div>
       </Root>
