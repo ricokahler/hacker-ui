@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { transparentize } from 'polished';
 import {
   createStyles,
   PropsFromStyles,
@@ -39,6 +40,10 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   content: css`
     flex: 1 1 auto;
+    padding: ${theme.space(1)};
+    background-color: ${transparentize(0.8, theme.colors.bland)};
+    display: flex;
+    flex-direction: auto;
   `,
   modalHeader: css`
     flex-direction: row;

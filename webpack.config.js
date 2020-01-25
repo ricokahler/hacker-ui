@@ -1,6 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const include = [
+  path.resolve(__dirname, './src'),
+  path.resolve(__dirname, './docs'),
+  path.resolve(__dirname, './website'),
+  path.resolve(__dirname, './examples'),
+];
+
 module.exports = {
   mode: 'development',
   entry: './website/index.tsx',
@@ -12,40 +19,42 @@ module.exports = {
     rules: [
       {
         test: /\.doc-folder$/,
-        include: [
-          path.resolve(__dirname, './src'),
-          path.resolve(__dirname, './docs'),
-          path.resolve(__dirname, './website'),
-        ],
+        include,
         use: [
           'babel-loader',
-          { loader: path.resolve(__dirname, './loaders/doc-folder-loader.js') },
+          { loader: path.resolve(__dirname, './loaders/docFolderLoader.js') },
+        ],
+      },
+      {
+        test: /\.example\.tsx$/,
+        include,
+        use: [
+          // 'babel-loader',
+          { loader: path.resolve(__dirname, './loaders/exampleLoader.js') },
         ],
       },
       {
         test: /\.mdx$/,
-        include: [
-          path.resolve(__dirname, './src'),
-          path.resolve(__dirname, './docs'),
-          path.resolve(__dirname, './website'),
-        ],
+        include,
         use: ['babel-loader', '@mdx-js/loader'],
       },
       {
         test: /\.(t|j)sx?$/,
-        include: [
-          path.resolve(__dirname, './src'),
-          path.resolve(__dirname, './docs'),
-          path.resolve(__dirname, './website'),
+        include,
+        exclude: [
+          path.resolve(__dirname, './node_modules'),
+          path.resolve(__dirname, './examples'),
         ],
-        exclude: [path.resolve(__dirname, './node_modules')],
-        loader: 'ts-loader',
-        options: {
-          compilerOptions: {
-            jsx: 'react',
-            emitDeclarationOnly: false,
-          },
-        },
+        loader: 'babel-loader',
+        // options: {
+        //   compilerOptions: {
+        //     jsx: 'react',
+        //     emitDeclarationOnly: false,
+        //     declaration: false,
+        //     // target: 'ES2015',
+        //     // jsx: 'preserve',
+        //   },
+        // },
       },
     ],
   },
@@ -53,6 +62,8 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.mdx', '.doc-folder'],
     alias: {
       'hacker-ui': path.resolve(__dirname, './src/index.ts'),
+      examples: path.resolve(__dirname, './examples'),
+      website: path.resolve(__dirname, './website'),
     },
   },
   devtool: 'source-map',

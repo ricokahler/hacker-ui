@@ -14,10 +14,6 @@
   },
   "include": ["./src"],
   "exclude": [
-    "./src/**/*.stories.tsx",
-    "./src/**/*.stories.ts",
-    "./src/**/*.stories.js",
-    "./src/**/*.stories.jsx",
     "./src/**/*.test.js",
     "./src/**/*.test.jsx",
     "./src/**/*.test.tsx",

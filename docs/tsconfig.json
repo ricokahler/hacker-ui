@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "hacker-ui": ["../src/index.ts"],
+      "examples/*": ["../src/examples/*"],
       "website/*": ["../src/website/*"]
     }
   },

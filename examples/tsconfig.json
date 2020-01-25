@@ -3,8 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "hacker-ui": ["../src/index.ts"],
-      "website/*": ["../src/website/*"]
+      "hacker-ui": ["../src/index.ts"]
     }
   },
   "include": ["../website", "../docs", "../src", "../examples"]
