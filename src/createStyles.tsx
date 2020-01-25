@@ -169,7 +169,7 @@ function createStyles<Styles extends { [key: string]: string }>(
         );
       }) as React.ComponentType<GetComponentProps<ComponentType>>;
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [incomingClassName, incomingStyleHash, mergedStyles.root]);
+    }, [incomingClassName, incomingStyleHash, mergedStyles.root, Component]);
 
     return {
       Root,
