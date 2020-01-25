@@ -6,9 +6,22 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: ${theme.gap(1)};
     width: 1024px;
     max-width: 100%;
+    margin: 0 auto;
 
     & > h1 {
       ${theme.fonts.h3};
+    }
+
+    & > h2 {
+      ${theme.fonts.h4};
+    }
+
+    & > h3 {
+      ${theme.fonts.h5};
+    }
+
+    & > p {
+      ${theme.fonts.body1};
     }
 
     & > *:not(:last-child) {
