@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "rm -rf node_modules && npm i && node ./scripts/build.js",
-    "start": "NODE_ENV=development npx webpack-dev-server"
+    "start": "NODE_ENV=development npx webpack-dev-server",
+    "docs:build": "npx webpack -p"
   },
   "repository": {
     "type": "git",
