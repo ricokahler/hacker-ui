@@ -30,7 +30,7 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 interface Props extends PropsFromStyles<typeof useStyles> {}
 
-function ButtonLinks(props: Props) {
+function ButtonLinksExample(props: Props) {
   const { Root, styles } = useStyles(props);
   const theme = useTheme();
 
@@ -38,11 +38,7 @@ function ButtonLinks(props: Props) {
     <Root>
       <div className={styles.row}>
         <div className={styles.label}>
-          This button actually an{' '}
-          <code>
-            {'<'}a{'>'}
-          </code>{' '}
-          tag:
+          This button actually an <code>{'<a>'}</code> tag:
         </div>
         <div className={styles.buttonContainer}>
           <Button
@@ -58,11 +54,8 @@ function ButtonLinks(props: Props) {
 
       <div className={styles.row}>
         <div className={styles.label}>
-          This button is a{' '}
-          <code>
-            {'<'}Link{'/>'}
-          </code>{' '}
-          from <code>react-router</code>:
+          This button is a <code>{'<Link/>'}</code> from{' '}
+          <code>react-router</code>:
         </div>
         <div className={styles.buttonContainer}>
           <StaticRouter>
@@ -83,4 +76,4 @@ function ButtonLinks(props: Props) {
   );
 }
 
-export default ButtonLinks;
+export default ButtonLinksExample;
