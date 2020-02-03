@@ -1,6 +1,7 @@
 import ButtonsExample from 'examples/Buttons.example';
 import ActionEmphasisExample from 'examples/ActionEmphasis.example';
 import ButtonLinksExample from 'examples/ButtonLinks.example';
+import LinksExample from 'examples/Links.example';
 
 # Buttons and Links
 
@@ -20,5 +21,15 @@ import ButtonLinksExample from 'examples/ButtonLinks.example';
   title="Button Links"
   description={
     <>Use the button component with a different root component like a link.</>
+  }
+/>
+<LinksExample
+  title="Links"
+  description={
+    <>
+      Hacker UI ships with a simple styled link. It's named{' '}
+      <code>{'<Anchor />'}</code> to avoid naming collisions with{' '}
+      <code>react-router</code>'s <code>{'<Links />'}</code>.
+    </>
   }
 />
