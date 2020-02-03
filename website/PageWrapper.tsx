@@ -7,6 +7,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     width: 1024px;
     max-width: 100%;
     margin: 0 auto;
+    margin-bottom: calc(100vh - ${theme.block(2)});
 
     & > h1 {
       ${theme.fonts.h3};
@@ -22,6 +23,7 @@ const useStyles = createStyles(({ css, theme }) => ({
 
     & > p {
       ${theme.fonts.body1};
+      max-width: ${theme.block(7)};
     }
 
     & > *:not(:last-child) {

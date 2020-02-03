@@ -59,7 +59,7 @@ const defaultTheme: Theme = {
       text-transform: none;
       font-size: 16px;
       margin: 0;
-      line-height: 1.4;
+      line-height: 1.5;
     `,
     body2: css`
       font-weight: 400;
