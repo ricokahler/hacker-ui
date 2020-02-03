@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import createStyles from './createStyles';
 import { ReactComponent, PropsFromStyles } from './types';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css }) => ({
   root: css`
     list-style-type: none;
     padding: 0;
