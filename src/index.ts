@@ -1,5 +1,6 @@
 export { default as Button } from './Button';
 export { default as List } from './List';
+export { default as ListItem } from './ListItem';
 export { default as ThemeContext } from './ThemeContext';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as createDynamicColorPalette } from './createDynamicColorPalette';
