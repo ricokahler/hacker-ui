@@ -65,6 +65,7 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
         background-color ${theme.durations.standard}ms,
         color ${theme.durations.standard}ms;
       border: 2px solid ${bland.asBackground};
+      color: ${readableColor(givenSurface)};
 
       &:focus {
         border: 2px solid ${color.asBackground};
