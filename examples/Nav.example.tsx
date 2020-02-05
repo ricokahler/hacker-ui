@@ -37,6 +37,7 @@ const useStyles = createStyles(({ css, theme }) => {
     `,
     title: css`
       ${theme.fonts.body1};
+      font-weight: bold;
       flex: 0 0 auto;
       height: ${theme.block(0.5)};
       padding: 0 ${theme.space(1)};
