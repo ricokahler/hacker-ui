@@ -293,6 +293,8 @@ function NavExample(props: Props) {
 }
 
 export default () => (
+  // in a real app, you would wrap your whole app in a browser router.
+  // this memory router is just for this example
   <MemoryRouter>
     <NavExample />
   </MemoryRouter>
