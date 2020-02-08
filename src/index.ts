@@ -36,4 +36,5 @@ export { default as ModalContent } from './ModalContent';
 export { default as ModalFooter } from './ModalFooter';
 export { default as ModalActions } from './ModalActions';
 export { default as Emoji } from './Emoji';
+export { default as Menu } from './Menu';
 export * from './types';

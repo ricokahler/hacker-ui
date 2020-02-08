@@ -8,8 +8,7 @@ import delay from './delay';
 import useDebounce from './useDebounce';
 
 const useStyles = createStyles(({ css, theme, givenSurface }) => ({
-  root: css``,
-  tooltip: css`
+  root: css`
     ${theme.fonts.caption};
     position: absolute;
     pointer-events: auto;
@@ -20,16 +19,16 @@ const useStyles = createStyles(({ css, theme, givenSurface }) => ({
     background-color: ${transparentize(0.2, readableColor(givenSurface))};
     z-index: ${theme.zIndex.tooltip};
   `,
-  tooltipTop: css`
+  top: css`
     transform: translate(-50%, -100%);
   `,
-  tooltipLeft: css`
+  left: css`
     transform: translate(-100%, -50%);
   `,
-  tooltipBottom: css`
+  bottom: css`
     transform: translate(-50%, 0);
   `,
-  tooltipRight: css`
+  right: css`
     transform: translate(0, -50%);
   `,
   tooltipContainer: css`
@@ -50,11 +49,12 @@ interface Props extends PropsFromStyles<typeof useStyles> {
 }
 
 function Tooltip(props: Props) {
-  const { styles, title, children, position = 'top' } = useStyles(props);
+  const { Root, styles, title, children, position = 'top' } = useStyles(props);
 
   const rootRef = useRef<HTMLElement>(null);
   const [isMouseOverRoot, setIsMouseOverRoot] = useState(false);
   const [isMouseOverTooltip, setIsMouseOverTooltip] = useState(false);
+  // TODO: this would be better as one object
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
   const [width, setWidth] = useState(0);
@@ -161,12 +161,12 @@ function Tooltip(props: Props) {
 
       {tooltipContainer &&
         createPortal(
-          <div
-            className={classNames(styles.tooltip, {
-              [styles.tooltipTop]: position === 'top',
-              [styles.tooltipBottom]: position === 'bottom',
-              [styles.tooltipLeft]: position === 'left',
-              [styles.tooltipRight]: position === 'right',
+          <Root
+            className={classNames({
+              [styles.top]: position === 'top',
+              [styles.bottom]: position === 'bottom',
+              [styles.left]: position === 'left',
+              [styles.right]: position === 'right',
             })}
             onMouseEnter={handleTooltipEnter}
             onMouseLeave={handleTooltipLeave}
@@ -176,7 +176,7 @@ function Tooltip(props: Props) {
             }}
           >
             {title}
-          </div>,
+          </Root>,
           tooltipContainer,
         )}
     </>
