@@ -77,7 +77,7 @@ const useStyles = createStyles(({ css, theme }) => {
     main: css`
       flex: 1 1 auto;
       display: flex;
-      & > h1 {
+      & > p {
         ${theme.fonts.h2};
         margin: auto;
       }
@@ -111,13 +111,13 @@ const useStyles = createStyles(({ css, theme }) => {
 });
 
 // Mock Pages
-const First = () => <h1>First</h1>;
-const Second = () => <h1>Second</h1>;
-const Third = () => <h1>Third</h1>;
-const Profile = () => <h1>Profile</h1>;
-const Account = () => <h1>Account</h1>;
-const About = () => <h1>About</h1>;
-const VeryNested = () => <h1>Very Nested</h1>;
+const First = () => <p>First</p>;
+const Second = () => <p>Second</p>;
+const Third = () => <p>Third</p>;
+const Profile = () => <p>Profile</p>;
+const Account = () => <p>Account</p>;
+const About = () => <p>About</p>;
+const VeryNested = () => <p>Very Nested</p>;
 
 /**
  * represents recursive data to define a nested list
