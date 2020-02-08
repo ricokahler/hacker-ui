@@ -6,6 +6,7 @@ const useStyles = createStyles(({ css }) => ({
   root: css`
     list-style-type: none;
     padding: 0;
+    margin: 0;
   `,
 }));
 

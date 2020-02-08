@@ -9,9 +9,11 @@ const defaultTheme: Theme = {
       font-size: 0.75rem;
       font-weight: bold;
       text-transform: uppercase;
+      margin: 0;
     `,
     caption: css`
       font-size: 0.75rem;
+      margin: 0;
     `,
     h1: css`
       font-size: ${golden(4)};
