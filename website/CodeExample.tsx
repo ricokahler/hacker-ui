@@ -28,31 +28,17 @@ const useStyles = createStyles(({ css, theme }) => ({
     display: flex;
     flex-direction: column;
     margin-bottom: ${theme.gap(1)};
-  `,
-  titleRow: css`
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-  `,
-  title: css`
-    margin: 0;
-    margin-right: ${theme.space(1)};
-  `,
-  description: css`
-    ${theme.fonts.body1};
-    margin-bottom: ${theme.space(1)};
-  `,
-  codeButton: css`
-    flex: 0 0 auto;
-    margin-left: auto;
-  `,
-  content: css`
-    flex: 1 1 auto;
     padding: ${theme.space(1)};
     background-color: ${transparentize(0.8, theme.colors.bland)};
     display: flex;
     flex-direction: column;
     overflow: auto;
+    position: relative;
+  `,
+  codeButton: css`
+    position: absolute;
+    top: ${theme.space(0.5)};
+    right: ${theme.space(0.5)};
   `,
   modalHeader: css`
     flex-direction: row;
@@ -65,7 +51,6 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   modalButtons: css`
     display: flex;
-    margin-left: auto;
     & > :not(:last-child) {
       margin-right: ${theme.space(1)};
     }
@@ -102,8 +87,6 @@ const useStyles = createStyles(({ css, theme }) => ({
 }));
 
 interface Props extends PropsFromStyles<typeof useStyles> {
-  title?: React.ReactNode;
-  description?: React.ReactNode;
   children: React.ReactNode;
   typescriptCode: string;
   javascriptCode: string;
@@ -113,8 +96,6 @@ function CodeExample(props: Props) {
   const {
     Root,
     styles,
-    title,
-    description,
     children,
     javascriptCode,
     typescriptCode,
@@ -250,30 +231,24 @@ function CodeExample(props: Props) {
   return (
     <>
       <Root>
-        <div className={styles.titleRow}>
-          <h2 className={styles.title}>{title}</h2>
-          <Tooltip title="Show code">
-            {props => (
-              <Button
-                shape="icon"
-                className={styles.codeButton}
-                color={theme.colors.bland}
-                onClick={() => setCodeExampleOpen(true)}
-                {...props}
-              >
-                <FontAwesomeIcon icon={faCode} />
-              </Button>
-            )}
-          </Tooltip>
-        </div>
-        <p className={styles.description}>{description}</p>
-
-        <div className={styles.content}>{children}</div>
+        <Tooltip title="Show code">
+          {props => (
+            <Button
+              shape="icon"
+              className={styles.codeButton}
+              color={theme.colors.bland}
+              onClick={() => setCodeExampleOpen(true)}
+              {...props}
+            >
+              <FontAwesomeIcon icon={faCode} />
+            </Button>
+          )}
+        </Tooltip>
+        {children}
       </Root>
 
       <Modal open={codeExampleOpen} onClose={() => setCodeExampleOpen(false)}>
         <ModalHeader className={styles.modalHeader}>
-          <h3 className={styles.modalTitle}>{title}</h3>
           <RadioGroup
             className={styles.modalButtons}
             value={codeType}
