@@ -67,7 +67,11 @@ module.exports = {
     },
   },
   devtool: 'source-map',
-  plugins: [new HtmlWebpackPlugin({})],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Hacker UI',
+    }),
+  ],
   devServer: {
     overlay: true,
     historyApiFallback: true,
