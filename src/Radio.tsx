@@ -25,7 +25,6 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
     root: css`
       position: relative;
       margin: ${theme.space(0.5)} 0;
-      background-color: ${givenSurface};
     `,
     hasError: css`
       color: ${danger.asBackground};
