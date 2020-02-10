@@ -101,6 +101,12 @@ const defaultTheme: Theme = {
     notification: 1400,
     tooltip: 1500,
   },
+  breakpoints: {
+    mobile: 375,
+    tablet: 768,
+    desktop: 1024,
+    desktopLarge: 1440,
+  },
 };
 
 export default defaultTheme;

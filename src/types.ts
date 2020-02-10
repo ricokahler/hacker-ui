@@ -50,6 +50,13 @@ export interface Theme {
     notification: number;
     tooltip: number;
   };
+
+  breakpoints: {
+    mobile: number;
+    tablet: number;
+    desktop: number;
+    desktopLarge: number;
+  }
 }
 
 export interface DynamicColorPalette {
