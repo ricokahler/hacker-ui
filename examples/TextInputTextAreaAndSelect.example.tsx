@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  useTheme,
   createStyles,
   PropsFromStyles,
   TextInput,
@@ -21,6 +22,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   controls: css`
     margin: ${theme.gap(1)} 0;
+    margin-right: ${theme.space(1)};
     flex: 0 0 auto;
     overflow: hidden;
     width: ${theme.block(2)};
@@ -52,8 +54,11 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: ${theme.space(1)};
     box-shadow: ${theme.shadows.standard};
     & > *:not(:last-child) {
-      margin-bottom: ${theme.gap(1)};
+      margin-bottom: ${theme.space(1)};
     }
+  `,
+  label: css`
+    ${theme.fonts.h5};
   `,
   textArea: css`
     resize: vertical;
@@ -62,12 +67,18 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 interface Props extends PropsFromStyles<typeof useStyles> {}
 
-function TextInputAndTextAreaExample(props: Props) {
+function TextInputTextAreaAndSelectExample(props: Props) {
   const { Root, styles } = useStyles(props);
+  const theme = useTheme();
 
   const [hasError, setHasError] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [variant, setVariant] = useState<'filled' | 'outlined'>('outlined');
+  const [colorKey, setColorKey] = useState<'brand' | 'accent' | 'warning'>(
+    'accent',
+  );
+
+  const color = theme.colors[colorKey];
 
   return (
     <Root>
@@ -83,6 +94,22 @@ function TextInputAndTextAreaExample(props: Props) {
           >
             <option value="outlined">Outlined</option>
             <option value="filled">Filled</option>
+          </Select>
+        </FormControl>
+
+        <FormControl className={styles.formControlVariant}>
+          <Label>Color</Label>
+          <Select
+            value={colorKey}
+            onChange={e =>
+              setColorKey(
+                e.currentTarget.value as 'brand' | 'accent' | 'warning',
+              )
+            }
+          >
+            <option value="brand">Brand</option>
+            <option value="accent">Accent</option>
+            <option value="warning">Warning</option>
           </Select>
         </FormControl>
 
@@ -105,14 +132,14 @@ function TextInputAndTextAreaExample(props: Props) {
       </div>
       <div className={styles.contentContainer}>
         <div className={styles.content}>
-          <FormControl disabled={disabled} hasError={hasError}>
-            <Label>Text Input</Label>
+          <FormControl disabled={disabled} hasError={hasError} color={color}>
+            <Label className={styles.label}>Text Input</Label>
             <TextInput variant={variant} placeholder="Only one line of text" />
             <HelperText>Helper text</HelperText>
           </FormControl>
 
-          <FormControl disabled={disabled} hasError={hasError}>
-            <Label>Text Area</Label>
+          <FormControl disabled={disabled} hasError={hasError} color={color}>
+            <Label className={styles.label}>Text Area</Label>
             <TextArea
               className={styles.textArea}
               variant={variant}
@@ -121,10 +148,20 @@ function TextInputAndTextAreaExample(props: Props) {
             />
             <HelperText>Helper text</HelperText>
           </FormControl>
+
+          <FormControl disabled={disabled} hasError={hasError} color={color}>
+            <Label className={styles.label}>Select</Label>
+            <Select variant={variant}>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </Select>
+            <HelperText>Helper text</HelperText>
+          </FormControl>
         </div>
       </div>
     </Root>
   );
 }
 
-export default TextInputAndTextAreaExample;
+export default TextInputTextAreaAndSelectExample;
