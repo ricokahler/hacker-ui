@@ -2,6 +2,7 @@ import FormControlExample from 'examples/FormControl.example';
 import FormControlPlaygroundExample from 'examples/FormControlPlayground.example';
 import TextInputTextAreaAndSelectExample from 'examples/TextInputTextAreaAndSelect.example';
 import CheckboxExample from 'examples/Checkbox.example';
+import RadioButtonsExample from 'examples/RadioButtons.example';
 
 # Form and Input Elements
 
@@ -32,3 +33,13 @@ Checkboxes can also be controlled with `<FormControls />`s.
 You can arrange the `<Label />` and `<HelperText />` components however your please.
 
 <CheckboxExample />
+
+## Radio Buttons
+
+You radio buttons with `<RadioGroup />`s. A `<RadioGroup />` automatically sets the `name` for each form element.
+
+You may also pass in a `value` and `onChange` handler to the `RadioGroup` instead of to each individual `Radio` button.
+
+
+
+<RadioButtonsExample />
