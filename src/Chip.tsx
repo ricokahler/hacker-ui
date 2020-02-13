@@ -51,8 +51,12 @@ const useStyles = createStyles(({ css, theme, color }) => ({
       border ${theme.durations.standard}ms;
 
     &:disabled {
-      color: ${transparentize(0.4, color.onSurface)};
-      background-color: transparent;
+      &,
+      &:hover,
+      &:focus {
+        color: ${transparentize(0.4, color.onSurface)};
+        background-color: transparent;
+      }
     }
   `,
   outlinedClickable: css`
