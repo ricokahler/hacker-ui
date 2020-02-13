@@ -29,15 +29,22 @@ function ChipsExample(props: Props) {
   const { Root } = useStyles(props);
   const theme = useTheme();
   const [clicked, setClicked] = useState(true);
+  const [deleted, setDeleted] = useState(false);
 
   return (
     <Root>
       <Chip variant="outlined">Outlined</Chip>
+
       <Chip variant="filled">Filled</Chip>
+
       <Chip variant="filled" color={theme.colors.danger}>
         Danger
       </Chip>
-      <Chip clickable>Clickable</Chip>
+
+      <Chip clickable onClick={() => alert('You clicked!')}>
+        Clickable
+      </Chip>
+
       <Chip
         clickable
         onClick={() => setClicked(!clicked)}
@@ -50,13 +57,19 @@ function ChipsExample(props: Props) {
         )}
         <span>Thumbnail</span>
       </Chip>
-      <Chip variant="filled">
-        <span>Inner Button</span>
-        <Button shape="icon" size="small">
-          <TimesIcon />
-        </Button>
+
+      {!deleted && (
+        <Chip variant="filled">
+          <span>Inner Button</span>
+          <Button shape="icon" size="small" onClick={() => setDeleted(true)}>
+            <TimesIcon />
+          </Button>
+        </Chip>
+      )}
+
+      <Chip disabled clickable>
+        Disabled
       </Chip>
-      <Chip disabled clickable>Disabled</Chip>
     </Root>
   );
 }
