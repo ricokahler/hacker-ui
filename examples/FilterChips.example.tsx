@@ -109,10 +109,9 @@ function FilterChipsExample(props: Props) {
           <div className={styles.chips}>
             {amenities.map(({ displayName, value }) => (
               <Chip
+                key={value}
                 clickable
-                onClick={() =>
-                  setSelectOptions(toggle(selectedOptions, value))
-                }
+                onClick={() => setSelectOptions(toggle(selectedOptions, value))}
               >
                 {selectedOptions[value] && (
                   <ChipThumbnail>
