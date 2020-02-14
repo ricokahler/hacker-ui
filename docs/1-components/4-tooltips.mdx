@@ -1,0 +1,18 @@
+import { Anchor } from 'hacker-ui';
+import TooltipExample from 'examples/Tooltip.example';
+
+# Tooltips
+
+## Tooltip Example
+
+Tooltips are relatively simple as of now. They take in three props:
+
+1. a `title`, the content of the tooltip
+1. a `position`
+1. a render prop `children`
+
+<TooltipExample />
+
+Hacker UI's tooltips don't add anything to the DOM until you hover over them. They use <Anchor href="https://reactjs.org/docs/portals.html" target="_blank" rel="noopener noreferrer">React DOM portals</Anchor> internally.
+
+You can add a Tooltip to any element that takes in a `ref` to a DOM element.
