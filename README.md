@@ -1,4 +1,4 @@
-# Hacker UI
+# Hacker UI · [![Netlify Status](https://api.netlify.com/api/v1/badges/d09b66a1-a20c-47c6-8898-9da82093bed9/deploy-status)](https://app.netlify.com/sites/modest-turing-e60c5a/deploys)
 
 > Hacker UI is a **design system** for the **modern developer**.
 
@@ -25,3 +25,5 @@ This system's brand is no brand.
 It's small, easy to learn, and just what you need in order to bring your idea to life <Emoji label="heart">❤️</Emoji>.
 
 Poke around in the examples and try it yourself.
+
+[hacker-ui.com](https://hacker-ui.com/)
