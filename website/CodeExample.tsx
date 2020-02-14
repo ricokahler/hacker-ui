@@ -248,6 +248,7 @@ function CodeExample(props: Props) {
         <Tooltip title="Show code">
           {props => (
             <Button
+              aria-label="Show code"
               shape="icon"
               className={styles.codeButton}
               color={theme.colors.bland}
