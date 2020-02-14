@@ -1,92 +1,27 @@
 # Hacker UI
 
-> A design system for the modern developer.
+> Hacker UI is a **design system** for the **modern developer**.
 
-check back soon
+## Why a design system for developers?
 
-## Goals and Philosophies
+**As developers,** certain ideas transform us into "hackers" who stop at nothing in order to bring their ideas to life.
 
-- no useless abstractions
-- small API footprint = little learning curve
-- relatively "low-level" to remove restraints
-- composable styles by default, root component overrides
-- components are modular/atomic
-- unbranded but still aesthetically pleasing
-- out-of-the-box dark mode
-- themeable with any colors
+In this state, we don't always care about how things look. What we care about the most is finding the right set of tools that allows us to get the job done.
 
----
+This is the main goal of Hacker UI — **to be the hacker's go-to design system**.
 
-This 👇 is what's currently planned. This is mostly a scratch pad of ideas and will probably change.
+## What makes this design system different?
 
-## Colors
+Design systems are typically coupled with a company's branding.
 
-- brand — main brand color
-- accent — branded accent color, primarily used for controls
-- danger — for errors, danger text is fine but use it seldomly
-- warning — for warnings, use this for icon colors but not text
-- info — semantic info color, use this like warning. don't make "info" buttons
-- bland — semantic default color, use this for plain controls and dividers. this is
+So much so that building a product with that system can make it look like your product is the work of that company. This is where Hacker UI is completely different.
 
-- surface (dynamic)
-- contrast (dynamic)
+Instead of trying to be distinct brand, **Hacker UI simply tries to blend in and look good.**
 
-- current (dynamic)
+This system's brand is no brand.
 
-## Components
+## Why should I use this system?
 
-### Elements
+It's small, easy to learn, and just what you need in order to bring your idea to life <Emoji label="heart">❤️</Emoji>.
 
-- button
-  - ghost (default)
-  - filled
-  - outlined
-- link
-- icon button
-- text field
-  - outlined (default)
-  - filled
-- checkbox
-- radio button
-- switch
-- select (maybe just native select?)
-- tag
-- tooltip
-
-### complex ones?
-
-- modal
-- drawer
-- table
-- snack
-- useSnackbar
-- menu
-- menu items
-- bottom-nav?
-- tabs?
-- pagination?
-- accordion?
-
-### recipes/examples
-
-- cards/shadows
-- typography
-- grids
-- app bar?
-- forms (maybe with react-select or similar?)
-- layouts (like: https://ant.design/components/layout/)
-- user info (https://ant.design/components/descriptions/)
-- show select with react-select or downshift
-
-## Other considerations
-
-grid system-esque mechanism
-
-- spacing unit (16px)
-- gap unit (48px)
-- block unit (96px)
-
-misc:
-
-- icons?
-- useMediaQuery
+Poke around in the examples and try it yourself.
