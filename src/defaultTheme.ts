@@ -10,7 +10,7 @@ const defaultTheme: Theme = {
       margin: 0;
     `,
     caption: css`
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       margin: 0;
     `,
     h1: css`
