@@ -114,6 +114,7 @@ const Select = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   const formControlContext = useContext(FormControlContext);
   const {
     Root,
+    id: incomingId,
     styles,
     component,
     selectRef,
@@ -129,6 +130,8 @@ const Select = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     Boolean(formControlContext?.disabled) || Boolean(incomingDisabled);
   const hasError =
     Boolean(formControlContext?.hasError) || Boolean(incomingHasError);
+
+  const id = incomingId ?? formControlContext?.id;
 
   const handleFocus = (e: React.FocusEvent<any>) => {
     if (onFocus) {
@@ -152,6 +155,7 @@ const Select = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   return (
     <Root ref={ref}>
       <select
+        id={id}
         ref={selectRef}
         className={classNames(styles.select, {
           [styles.selectFilled]: variant === 'filled',
