@@ -1,8 +1,6 @@
 import { Theme } from './types';
 import css from './css';
 
-const golden = (n: number) => `${n ** 1.618 * 16 + 8}px`;
-
 const defaultTheme: Theme = {
   fonts: {
     button: css`
@@ -12,46 +10,44 @@ const defaultTheme: Theme = {
       margin: 0;
     `,
     caption: css`
-      font-size: 0.75rem;
+      font-size: 0.9rem;
       margin: 0;
     `,
     h1: css`
-      font-size: ${golden(4)};
+      font-size: 160px;
       font-weight: bold;
       margin: 0;
     `,
     h2: css`
-      font-size: ${golden(3)};
+      font-size: 100px;
       font-weight: bold;
       margin: 0;
     `,
     h3: css`
-      font-size: ${golden(2)};
+      font-size: 60px;
       font-weight: bold;
       margin: 0;
     `,
     h4: css`
-      font-size: ${golden(1)};
+      font-size: 24px;
       font-weight: bold;
       line-height: 1.5;
       margin: 0;
     `,
     h5: css`
-      font-size: 1rem;
+      font-size: 16px;
       font-weight: bold;
       line-height: 1.5;
       margin: 0;
     `,
-    // TODO
-    overline: css``,
     subtitle1: css`
-      font-size: ${golden(2)};
+      font-size: 60px;
       font-weight: bold;
       color: #444;
       margin: 0;
     `,
     subtitle2: css`
-      font-size: ${golden(1)};
+      font-size: 24px;
       font-weight: bold;
       color: #444;
       margin: 0;
@@ -93,7 +89,6 @@ const defaultTheme: Theme = {
   space: n => `${n * 16}px`,
   gap: n => `${n * 48}px`,
   block: n => `${n * 96}px`,
-  golden,
   zIndex: {
     appBar: 1100,
     drawer: 1200,

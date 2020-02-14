@@ -7,7 +7,6 @@ export interface Theme {
     h5: string;
     button: string;
     caption: string;
-    overline: string;
     subtitle1: string;
     subtitle2: string;
     body1: string;
@@ -40,7 +39,6 @@ export interface Theme {
   space: (n: number) => string;
   gap: (n: number) => string;
   block: (n: number) => string;
-  golden: (n: number) => string;
 
   // these were inspired from from material-ui's z-indexes
   zIndex: {
