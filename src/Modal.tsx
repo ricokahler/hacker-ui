@@ -7,8 +7,7 @@ import { PropsFromStyles, ReactComponent } from './types';
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     max-height: 90vh;
-    padding: ${theme.space(1)};
-    width: ${theme.block(7)};
+    width: ${theme.block(8)};
     max-width: 100%;
     background-color: ${theme.colors.surface};
     color: ${readableColor(theme.colors.surface)};

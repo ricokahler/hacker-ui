@@ -6,6 +6,8 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     justify-content: flex-end;
+    padding: 0 ${theme.space(1)};
+    margin-top: ${theme.space(1)};
     & > *:not(:first-child) {
       margin-left: ${theme.space(1)};
     }

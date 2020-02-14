@@ -7,9 +7,9 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex: 1 1 auto;
     position: relative;
     min-height: 50vh;
-    margin-bottom: ${theme.space(0.5)};
     overflow: hidden;
     display: flex;
+    flex-direction: column;
   `,
 }));
 

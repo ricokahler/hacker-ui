@@ -8,7 +8,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
     overflow: hidden;
     flex: 0 0 auto;
-    margin-bottom: ${theme.space(0.5)};
+    padding: ${theme.space(1)} 0;
   `,
 }));
 
