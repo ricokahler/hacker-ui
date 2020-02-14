@@ -43,6 +43,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   modalHeader: css`
     flex-direction: row;
     align-items: center;
+    padding: 0 ${theme.space(1)};
   `,
   modalTitle: css`
     ${theme.fonts.h4};
