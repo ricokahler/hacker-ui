@@ -162,10 +162,14 @@ function CodeExample(props: Props) {
               keywords: [],
               main: `src/index.${codeType === 'typescript' ? 'tsx' : 'js'}`,
               dependencies: {
-                'hacker-ui': '0.0.0-b4ef782e1',
+                'hacker-ui': '0.1.0-alpha.1',
                 react: '16.12.0',
                 'react-dom': '16.12.0',
                 'react-scripts': '3.0.1',
+                '@fortawesome/fontawesome-svg-core': '^1.2.26',
+                '@fortawesome/free-brands-svg-icons': '^5.12.1',
+                '@fortawesome/free-solid-svg-icons': '^5.12.0',
+                '@fortawesome/react-fontawesome': '^0.1.8',
               },
               devDependencies: {
                 '@types/react': '16.9.19',
