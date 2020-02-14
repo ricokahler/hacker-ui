@@ -13,6 +13,8 @@ import docArray, { DocArray } from '../docs';
 import { toggle } from './setOperations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+// @ts-ignore
+import { version } from '../package.json';
 
 const useStyles = createStyles(({ css, theme }) => {
   const backgroundColor =
@@ -155,7 +157,7 @@ function Nav(props: Props) {
     <Root>
       <div className={styles.header}>
         <h1 className={styles.title}>Hacker UI</h1>
-        <span className={styles.version}>v0.0.0</span>
+        <span className={styles.version}>{version}</span>
       </div>
       <nav className={styles.body}>
         <List>{makeList(docArray)}</List>
