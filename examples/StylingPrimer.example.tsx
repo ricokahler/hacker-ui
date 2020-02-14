@@ -1,27 +1,3 @@
-import { Anchor } from 'hacker-ui';
-import StylingPrimerExample from 'examples/StylingPrimer.example';
-
-# Getting Started
-
-## Installation
-
-```
-npm install hacker-ui
-```
-
-or
-
-```
-yarn add hacker-ui
-```
-
-## Styling Primer
-
-Hacker UI ships with its own CSS-in-JS solution based on <Anchor href="https://github.com/thysultan/stylis.js" target="_blank" rel="noopener noreferrer">stylis</Anchor> which powers `styled-components` and `emotion`.
-
-First, import `createStyles` (and `PropsFromStyles` if you're using TypeScript) then create `useStyles` from `createStyles`.
-
-```tsx
 import React from 'react';
 import { createStyles, PropsFromStyles } from 'hacker-ui';
 
@@ -29,7 +5,7 @@ import { createStyles, PropsFromStyles } from 'hacker-ui';
 const useStyles = createStyles(({ css, theme }) => ({
   // define your classes here
   root: css`
-    background-color: aquamarine;
+    background-color: midnightblue;
     color: red;
   `,
   title: css`
@@ -60,31 +36,24 @@ function MyComponent(props: Props) {
   );
 }
 
-export default MyComponent;
-```
+// ============================================================
+// Normally, you would have 👆 these 👇 in two different files.
+// ============================================================
 
-The `<Root />` component automatically drills down the `className` and `style` props.
-
-```tsx
-import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
-
-import MyComponent from './MyComponent';
-
-const useStyles = createStyles(({ css }) => ({
+const useParentStyles = createStyles(({ css }) => ({
   root: css``,
   myComponent: css`
     border: 1px solid blue;
   `,
   changedTitle: css`
-    color: midnightblue;
+    color: aquamarine;
   `,
 }));
 
-interface Props extends PropsFromStyles<typeof useStyles> {}
+interface ParentProps extends PropsFromStyles<typeof useStyles> {}
 
-function ParentComponent(props: Props) {
-  const { Root, styles } = useStyles(props, 'section');
+function ParentComponent(props: ParentProps) {
+  const { Root, styles } = useParentStyles(props, 'section');
 
   return (
     <Root>
@@ -107,10 +76,5 @@ function ParentComponent(props: Props) {
     </Root>
   );
 }
-```
 
-## Styling Primer Example
-
-See the code in action. Try it out in codesandbox.
-
-<StylingPrimerExample />
+export default ParentComponent;
