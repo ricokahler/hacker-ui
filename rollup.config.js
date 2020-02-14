@@ -18,7 +18,7 @@ module.exports = [
     output: {
       file: './build/bundle.umd.js',
       format: 'umd',
-      name: 'HackerUi',
+      name: 'HackerUI',
       sourcemap: true,
     },
     plugins,
