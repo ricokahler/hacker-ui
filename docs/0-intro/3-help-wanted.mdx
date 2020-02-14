@@ -1,3 +1,27 @@
-# Hacker UI needs you
+import { Emoji, Button } from 'hacker-ui';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-(stub page) Hacker UI is in an early state. Feel free to head over to the GitHub to see how you can contribue.
+# Hacker UI Needs You
+
+Hacker UI is in an early alpha state. There's still a lot to do, optimize, and think about!
+
+In the next few days, I'll put up a list of issued marked `help wanted` in the repo, but for now would you mind showing your support via a star on GitHub?
+
+It may sound cliche, but stars help determine demand and traction. In open source, traction attracts talent and brings us together <Emoji>❤️</Emoji>.
+
+<Button
+  variant="filled"
+  color="black"
+  component={props => (
+    <a {...props} href="https://github.com/ricokahler/hacker-ui/" />
+  )}
+  style={{ margin: '0 auto' }}
+>
+  <FontAwesomeIcon icon={faGithub} size="lg" /> <span>GitHub</span>
+</Button>
+
+<br />
+<br />
+
+Feel free to [open any issue](https://github.com/ricokahler/hacker-ui/issues).
