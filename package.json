@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "rm -rf node_modules && npm i && node ./scripts/build.js",
+    "build": "rm -rf node_modules && npm i && node ./scripts/build.js && cp README.md ./build/README.md",
     "start": "NODE_ENV=development npx webpack-dev-server",
     "docs:build": "NODE_ENV=production npx webpack -p && echo \"/* /index.html 200\" >> ./dist/_redirects && cp index.html ./dist/index.html"
   },
