@@ -1,5 +1,5 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
 import { useCssReset, createStyles, StyleProps } from 'hacker-ui';
 import flattenDocArray from './flattenDocArray';
 import docArray from '../docs';
@@ -57,6 +57,20 @@ interface Props extends StyleProps<typeof useStyles> {}
 function App(props: Props) {
   useCssReset();
   const { Root, styles } = useStyles(props);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const unsubscribe = history.listen(() => {
+      setTimeout(() => {
+        const { Prism } = window as any;
+        if (!Prism) return;
+        Prism.highlightAll();
+      }, 0);
+    });
+
+    return unsubscribe;
+  }, [history]);
 
   return (
     <Root>

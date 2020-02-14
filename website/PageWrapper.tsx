@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStyles, PropsFromStyles } from 'hacker-ui';
+import { transparentize } from 'polished';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -24,6 +25,22 @@ const useStyles = createStyles(({ css, theme }) => ({
     & > p {
       ${theme.fonts.body1};
       max-width: ${theme.block(7)};
+    }
+
+    & > pre {
+      background-color: #2d2d2d;
+      padding: ${theme.space(1)};
+      color: white;
+
+      & code {
+        background-color: transparent;
+        padding: 0;
+      }
+    }
+
+    & code {
+      background-color: ${transparentize(0.7, theme.colors.bland)};
+      padding: 0 ${theme.space(0.25)};
     }
 
     & > *:not(:last-child) {

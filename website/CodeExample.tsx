@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import classNames from 'classnames';
 import { stripIndent } from 'common-tags';
 import { transparentize } from 'polished';
 import { getParameters } from 'codesandbox/lib/api/define';
@@ -94,13 +95,10 @@ interface Props extends PropsFromStyles<typeof useStyles> {
 }
 
 function CodeExample(props: Props) {
-  const {
-    Root,
-    styles,
-    children,
-    javascriptCode,
-    typescriptCode,
-  } = useStyles(props, 'section');
+  const { Root, styles, children, javascriptCode, typescriptCode } = useStyles(
+    props,
+    'section',
+  );
   const theme = useTheme();
   const [codeExampleOpen, setCodeExampleOpen] = useState(false);
   const [codeType, setCodeType] = useState<'typescript' | 'javascript'>(
@@ -229,6 +227,17 @@ function CodeExample(props: Props) {
     return `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}`;
   }, [code, codeType]);
 
+  useEffect(() => {
+    if (!codeExampleOpen) return;
+
+    setTimeout(() => {
+      const { Prism } = window as any;
+      if (!Prism) return;
+      Prism.highlightAll();
+      console.log('called highligh all');
+    }, 100);
+  }, [codeExampleOpen, codeType]);
+
   return (
     <>
       <Root>
@@ -312,7 +321,14 @@ function CodeExample(props: Props) {
           </div>
 
           <div className={styles.codeContainer}>
-            <pre className={styles.code}>{code}</pre>
+            <pre
+              className={classNames(styles.code, {
+                'language-tsx': codeType === 'typescript',
+                'language-jsx': codeType === 'javascript',
+              })}
+            >
+              <code>{code}</code>
+            </pre>
           </div>
         </ModalContent>
 
