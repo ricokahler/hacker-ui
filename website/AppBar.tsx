@@ -24,6 +24,7 @@ function AppBar(props: Props) {
       <Tooltip title="Contribute on GitHub" position="left">
         {tooltipProps => (
           <Button
+            aria-label="Contribute on GitHub"
             shape="icon"
             color="black"
             component={props => (
