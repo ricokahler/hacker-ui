@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const include = [
   path.resolve(__dirname, './src'),
@@ -29,7 +28,6 @@ module.exports = {
         test: /\.example\.tsx$/,
         include,
         use: [
-          // 'babel-loader',
           { loader: path.resolve(__dirname, './loaders/exampleLoader.js') },
         ],
       },
@@ -46,15 +44,6 @@ module.exports = {
           path.resolve(__dirname, './examples'),
         ],
         loader: 'babel-loader',
-        // options: {
-        //   compilerOptions: {
-        //     jsx: 'react',
-        //     emitDeclarationOnly: false,
-        //     declaration: false,
-        //     // target: 'ES2015',
-        //     // jsx: 'preserve',
-        //   },
-        // },
       },
     ],
   },
@@ -67,11 +56,6 @@ module.exports = {
     },
   },
   devtool: 'source-map',
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Hacker UI',
-    }),
-  ],
   devServer: {
     overlay: true,
     historyApiFallback: true,

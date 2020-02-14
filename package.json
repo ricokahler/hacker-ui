@@ -7,7 +7,7 @@
     "test": "jest",
     "build": "rm -rf node_modules && npm i && node ./scripts/build.js",
     "start": "NODE_ENV=development npx webpack-dev-server",
-    "docs:build": "NODE_ENV=production npx webpack -p && echo \"/* /index.html 200\" >> ./dist/_redirects"
+    "docs:build": "NODE_ENV=production npx webpack -p && echo \"/* /index.html 200\" >> ./dist/_redirects && cp index.html ./dist/index.html"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,6 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "glob": "^7.1.6",
-    "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
     "lodash": "^4.17.15",
     "md5": "^2.2.1",
@@ -57,6 +56,7 @@
     "react-copy-to-clipboard": "^5.0.2",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-dom": "^16.12.0",
+    "react-inspector": "^4.0.0",
     "react-router-dom": "^5.1.2",
     "react-test-renderer": "^16.12.0",
     "rollup": "^1.29.0",
