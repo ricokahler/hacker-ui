@@ -6,6 +6,7 @@ import {
   Label,
   HelperText,
   Checkbox,
+  Switch,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -37,7 +38,7 @@ function CheckboxExample(props: Props) {
     <Root>
       <FormControl>
         <div className={styles.row}>
-          <Checkbox />
+          <Switch size="small" />
           <Label>Enable</Label>
         </div>
         <HelperText>Checkbox then label</HelperText>
