@@ -74,7 +74,7 @@
     "@types/shortid": "0.0.29",
     "classnames": "^2.2.6",
     "invariant": "^2.2.4",
-    "polished": "^3.4.2",
+    "polished": "^3.4.4",
     "shortid": "^2.2.15",
     "stylis": "^3.5.4"
   },
