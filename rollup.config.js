@@ -7,7 +7,7 @@ module.exports = [
   {
     input,
     output: {
-      file: './build/bundle.esm.js',
+      file: './dist/bundle.esm.js',
       format: 'esm',
       sourcemap: true,
     },
@@ -16,7 +16,7 @@ module.exports = [
   {
     input,
     output: {
-      file: './build/bundle.umd.js',
+      file: './dist/bundle.umd.js',
       format: 'umd',
       name: 'HackerUI',
       sourcemap: true,

@@ -13,6 +13,7 @@ module.exports = {
   output: {
     filename: 'hacker-ui-docs.js',
     publicPath: '/',
+    path: path.resolve(__dirname, './public'),
   },
   module: {
     rules: [
