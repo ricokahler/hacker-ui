@@ -97,7 +97,7 @@ function FilterChipsExample(props: Props) {
           <Button
             className={styles.closeButton}
             shape="icon"
-            on={theme.colors.brand}
+            surface={theme.colors.brand}
             color={readableColor(theme.colors.brand)}
           >
             <TimesIcon />

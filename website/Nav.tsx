@@ -9,12 +9,12 @@ import {
   useTheme,
 } from 'hacker-ui';
 import { Link, useLocation } from 'react-router-dom';
-import docArray, { DocArray } from '../docs';
-import { toggle } from './setOperations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import docArray, { DocArray } from '../docs';
 // @ts-ignore
 import { version } from '../package.json';
+import { toggle } from './setOperations';
 
 const useStyles = createStyles(({ css, theme }) => {
   const backgroundColor =

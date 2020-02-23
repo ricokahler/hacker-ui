@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
 import { useCssReset, createStyles, StyleProps } from 'hacker-ui';
-import flattenDocArray from './flattenDocArray';
 import docArray from '../docs';
+import flattenDocArray from './flattenDocArray';
 
 import Nav from './Nav';
 import AppBar from './AppBar';

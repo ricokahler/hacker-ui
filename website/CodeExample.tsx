@@ -297,7 +297,7 @@ function CodeExample(props: Props) {
                   )}
                   shape="icon"
                   color="white"
-                  on="black"
+                  surface="black"
                   size="large"
                   variant="filled"
                   {...props}
@@ -313,7 +313,7 @@ function CodeExample(props: Props) {
                   <Button
                     shape="icon"
                     color="white"
-                    on="black"
+                    surface="black"
                     size="large"
                     variant="filled"
                     {...props}
