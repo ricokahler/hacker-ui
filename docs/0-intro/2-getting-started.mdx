@@ -15,6 +15,59 @@ or
 yarn add hacker-ui
 ```
 
+## Adding the theme and the ThemeProvider
+
+First create your theme using the `createTheme` function:
+
+`/src/theme.ts`
+
+```ts
+import { createTheme } from 'hacker-ui';
+
+export default createTheme({
+  // you can customize the there here.
+  // your customizations will be merged with default theme
+});
+```
+
+Then wrap your app in a `<ThemeProvider>`. Here we'll do it from the index file.
+
+`/src/index.ts`
+
+```tsx
+import React from 'react';
+import { render } from 'react-dom';
+import { ThemeProvider } from 'hacker-ui';
+import theme from './theme';
+import App from './App';
+
+const container = document.querySelector('#root');
+if (!container) {
+  throw new Error('Could not find root element');
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>,
+  container,
+);
+```
+
+Lastly, add an type augmentation to allow for better auto-correct/intellisense in editors. We recommend doing this even if you're not using TypeScript.
+
+`/augments.d.ts`
+
+```ts
+import 'hacker-ui';
+import theme from './theme';
+
+declare module 'hacker-ui' {
+  export type Theme = typeof theme;
+  export function useTheme(): Theme;
+}
+```
+
 ## Styling Primer
 
 Hacker UI ships with its own CSS-in-JS solution based on <Anchor href="https://github.com/thysultan/stylis.js" target="_blank" rel="noopener noreferrer">stylis</Anchor> which powers `styled-components` and `emotion`.
