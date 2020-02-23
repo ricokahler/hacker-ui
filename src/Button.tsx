@@ -41,9 +41,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   `,
   // variants
   outlined: css`
-    border-width: 1px;
-    border-style: solid;
-    border-color: ${color.readable};
+    border: 1px solid ${color.readable};
     color: ${color.readable};
 
     transition: background-color ${theme.durations.standard}ms,

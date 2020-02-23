@@ -1,5 +1,4 @@
 const path = require('path');
-require('@babel/register');
 
 const include = [
   path.resolve(__dirname, './src'),
