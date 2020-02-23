@@ -1,7 +1,6 @@
-import { css } from 'react-style-system';
-import { Theme } from './types';
+const { css } = require('react-style-system');
 
-const defaultTheme: Theme = {
+module.exports = {
   fonts: {
     button: css`
       font-size: 0.75rem;
@@ -103,5 +102,3 @@ const defaultTheme: Theme = {
     desktopLarge: 1440,
   },
 };
-
-export default defaultTheme;

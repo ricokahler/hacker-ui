@@ -1,15 +1,25 @@
 import React from 'react';
+import {
+  ThemeProvider as RssThemeProvider,
+  ColorContextProvider,
+} from 'react-style-system';
 import { Theme } from './types';
-import ThemeContext from './ThemeContext';
 
 interface Props {
   theme: Theme;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 function ThemeProvider({ theme, children }: Props) {
   return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    <RssThemeProvider theme={theme}>
+      <ColorContextProvider
+        color={theme.colors.accent}
+        surface={theme.colors.surface}
+      >
+        {children}
+      </ColorContextProvider>
+    </RssThemeProvider>
   );
 }
 

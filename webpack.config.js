@@ -1,4 +1,5 @@
 const path = require('path');
+require('@babel/register');
 
 const include = [
   path.resolve(__dirname, './src'),
@@ -44,6 +45,10 @@ module.exports = {
           path.resolve(__dirname, './examples'),
         ],
         loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },

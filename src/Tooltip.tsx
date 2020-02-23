@@ -2,12 +2,12 @@ import React, { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
 import { transparentize, readableColor } from 'polished';
-import createStyles from './createStyles';
-import { PropsFromStyles, TooltipProps } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { TooltipProps } from './types';
 import delay from './delay';
-import useDebounce from './useDebounce';
+// import useDebounce from './useDebounce';
 
-const useStyles = createStyles(({ css, theme, givenSurface }) => ({
+const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
     ${theme.fonts.caption};
     position: absolute;
@@ -15,8 +15,8 @@ const useStyles = createStyles(({ css, theme, givenSurface }) => ({
     padding: ${theme.space(0.5)} ${theme.space(1)};
     min-width: ${theme.block(1)};
     text-align: center;
-    color: ${readableColor(readableColor(givenSurface))};
-    background-color: ${transparentize(0.2, readableColor(givenSurface))};
+    color: ${readableColor(readableColor(surface))};
+    background-color: ${transparentize(0.2, readableColor(surface))};
     z-index: ${theme.zIndex.tooltip};
   `,
   top: css`
@@ -88,7 +88,7 @@ function Tooltip(props: Props) {
   ] = useState<HTMLDivElement | null>(null);
 
   const isMouseOver = isMouseOverRoot || isMouseOverTooltip;
-  const debouncedMouseOver = useDebounce(isMouseOver, 500);
+  const debouncedMouseOver = isMouseOver;
 
   // remove the tooltip container on scroll
   useEffect(() => {

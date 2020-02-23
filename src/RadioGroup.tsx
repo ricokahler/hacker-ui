@@ -6,9 +6,8 @@ import React, {
   useRef,
 } from 'react';
 import shortId from 'shortid';
-import createStyles from './createStyles';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 import RadioGroupContext from './RadioGroupContext';
-import { PropsFromStyles } from './types';
 
 const useStyles = createStyles(({ css }) => ({
   root: css``,

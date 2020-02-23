@@ -1,13 +1,13 @@
 import React, { useContext, forwardRef } from 'react';
 import classNames from 'classnames';
 import { readableColor, transparentize } from 'polished';
-import createStyles from './createStyles';
-import createDynamicColorPalette from './createDynamicColorPalette';
+import { createStyles } from 'react-style-system';
+import { createReadablePalette, PropsFromStyles } from 'react-style-system';
 import FormControlContext from './FormControlContext';
-import { PropsFromStyles, ReactComponent } from './types';
+import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
-  const bland = createDynamicColorPalette(theme.colors.bland, givenSurface);
+const useStyles = createStyles(({ css, theme, color, surface }) => {
+  const bland = createReadablePalette(theme.colors.bland, surface);
 
   return {
     root: css`
@@ -17,13 +17,13 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       cursor: pointer;
     `,
     focused: css`
-      color: ${color.onSurface};
+      color: ${color.readable};
     `,
     hasError: css`
       color: ${theme.colors.danger};
     `,
     disabled: css`
-      color: ${transparentize(0.3, bland.onSurface)};
+      color: ${transparentize(0.3, bland.readable)};
       cursor: not-allowed;
     `,
   };
