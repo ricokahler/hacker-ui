@@ -162,7 +162,7 @@ function CodeExample(props: Props) {
               keywords: [],
               main: `src/index.${codeType === 'typescript' ? 'tsx' : 'js'}`,
               dependencies: {
-                'hacker-ui': '0.1.0-alpha.1',
+                'hacker-ui': '0.0.0-e9670ffcb',
                 react: '16.12.0',
                 'react-dom': '16.12.0',
                 'react-scripts': '3.0.1',

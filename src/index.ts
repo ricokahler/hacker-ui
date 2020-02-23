@@ -1,6 +1,3 @@
-export { default as Button } from './Button';
-export { default as List } from './List';
-export { default as ListItem } from './ListItem';
 export {
   ThemeContext,
   createStyles,
@@ -8,7 +5,29 @@ export {
   useTheme,
   ColorContextProvider,
   useColorContext,
+  createReadablePalette,
+  ColorContext,
+  // TODO: remove these for type only imports.
+  // this will remove warnings
+  ReadableColorPalette,
+  OmitStyleProps,
+  ColorContextValue,
+  StyleProps,
+  PropsFromComponent,
+  PropsFromStyles,
 } from 'react-style-system';
+// TODO: when babel supports typescript 3.8
+// export type {
+// ReadableColorPalette,
+// OmitStyleProps,
+// ColorContextValue,
+// StyleProps,
+// PropsFromComponent,
+// PropsFromStyles,
+// } from 'react-style-system';
+export { default as Button } from './Button';
+export { default as List } from './List';
+export { default as ListItem } from './ListItem';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as defaultTheme } from './defaultTheme';
 export { default as useCssReset } from './useCssReset';
