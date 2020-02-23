@@ -4,9 +4,9 @@
  */
 import React, { forwardRef } from 'react';
 
-type SvgProps = JSX.IntrinsicElements['svg'];
+// TODO: add types
 const AngleDownIcon = forwardRef(
-  (props: SvgProps, ref: React.Ref<SVGSVGElement>) => {
+  (props: any, ref: React.Ref<SVGSVGElement>) => {
     return (
       <svg ref={ref} aria-hidden="true" viewBox="0 0 320 512" {...props}>
         <path

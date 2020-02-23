@@ -1,5 +1,5 @@
-import DeferredPromise from './DeferredPromise';
 import delay from 'delay';
+import DeferredPromise from './DeferredPromise';
 
 test('it allows resolve to be called outside of the scope of itself', async () => {
   const deferredPromise = new DeferredPromise();

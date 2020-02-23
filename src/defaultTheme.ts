@@ -1,5 +1,5 @@
+import { css } from 'react-style-system';
 import { Theme } from './types';
-import css from './css';
 
 const defaultTheme: Theme = {
   fonts: {

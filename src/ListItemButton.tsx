@@ -1,7 +1,11 @@
 import React, { forwardRef } from 'react';
-import useTheme from './useTheme';
-import createStyles from './createStyles';
-import { PropsFromStyles, PropsFromComponent } from './types';
+import {
+  createStyles,
+  PropsFromStyles,
+  useTheme,
+  PropsFromComponent,
+} from 'react-style-system';
+import { Theme } from './types';
 import Button from './Button';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -20,7 +24,7 @@ interface Props
 
 const ListItemButton = forwardRef(
   (props: Props, ref: React.Ref<HTMLButtonElement>) => {
-    const theme = useTheme();
+    const theme = useTheme<Theme>();
     const { Root, styles, ...restOfProps } = useStyles(props, Button);
 
     return (

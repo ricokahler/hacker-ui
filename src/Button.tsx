@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import { transparentize } from 'polished';
-import createStyles from './createStyles';
-import { ReactComponent, PropsFromStyles } from './types';
+import { transparentize, readableColor } from 'polished';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
   // button base styles
@@ -41,68 +41,68 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   `,
   // variants
   outlined: css`
-    border: 1px solid ${color.onSurface};
-    color: ${color.onSurface};
+    border: 1px solid ${color.readable};
+    color: ${color.readable};
 
     transition: background-color ${theme.durations.standard}ms,
       border ${theme.durations.standard}ms;
 
     &:focus {
-      background-color: ${transparentize(0.92, color.asBackground)};
+      background-color: ${transparentize(0.92, color.decorative)};
     }
     &:hover {
-      background-color: ${transparentize(0.9, color.asBackground)};
+      background-color: ${transparentize(0.9, color.decorative)};
     }
     &:active {
-      background-color: ${transparentize(0.8, color.asBackground)};
+      background-color: ${transparentize(0.8, color.decorative)};
     }
     &:disabled {
-      color: ${transparentize(0.4, color.onSurface)};
+      color: ${transparentize(0.4, color.readable)};
       background-color: transparent;
     }
   `,
   filled: css`
-    background-color: ${color.asBackground};
-    color: ${color.bgContrast};
+    background-color: ${color.decorative};
+    color: ${readableColor(color.decorative)};
     border: 2px solid transparent;
     transition: background-color ${theme.durations.standard}ms,
       border ${theme.durations.standard}ms;
 
     &:focus {
-      background-color: ${transparentize(0.18, color.asBackground)};
+      background-color: ${transparentize(0.18, color.decorative)};
       border: 2px solid ${transparentize(0.7, '#fff')};
     }
     &:hover {
-      background-color: ${transparentize(0.23, color.asBackground)};
+      background-color: ${transparentize(0.23, color.decorative)};
     }
     &:active {
-      background-color: ${transparentize(0.3, color.asBackground)};
+      background-color: ${transparentize(0.3, color.decorative)};
       border: 2px solid ${transparentize(0.5, '#fff')};
     }
     &:disabled {
-      background-color: ${transparentize(0.5, color.asBackground)};
+      background-color: ${transparentize(0.5, color.decorative)};
       border: 2px solid transparent;
-      color: ${transparentize(0.2, color.bgContrast)};
+      color: ${transparentize(0.2, readableColor(color.decorative))};
     }
   `,
   ghost: css`
-    color: ${color.onSurface};
+    color: ${color.readable};
     border: 2px solid transparent;
     transition: background-color ${theme.durations.standard}ms,
       border ${theme.durations.standard}ms;
 
     &:focus {
-      background-color: ${transparentize(0.92, color.asBackground)};
-      border: 2px solid ${transparentize(0.8, color.bgContrast)};
+      background-color: ${transparentize(0.92, color.decorative)};
+      border: 2px solid ${transparentize(0.8, readableColor(color.decorative))};
     }
     &:hover {
-      background-color: ${transparentize(0.9, color.asBackground)};
+      background-color: ${transparentize(0.9, color.decorative)};
     }
     &:active {
-      background-color: ${transparentize(0.8, color.asBackground)};
+      background-color: ${transparentize(0.8, color.decorative)};
     }
     &:disabled {
-      color: ${transparentize(0.4, color.onSurface)};
+      color: ${transparentize(0.4, color.readable)};
       background-color: transparent;
     }
   `,
