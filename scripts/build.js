@@ -23,7 +23,7 @@ function execute(command) {
 
 async function main() {
   console.log('cleaning…');
-  const rmRfResult = await execute('rm -rf build');
+  const rmRfResult = await execute('rm -rf dist');
   rmRfResult && console.log(rmRfResult);
 
   console.log('linting…');
@@ -39,7 +39,7 @@ async function main() {
   rollupResult && console.log(rollupResult);
 
   const bundleContent = await readFile(
-    path.join(__dirname, '../build/bundle.esm.js'),
+    path.join(__dirname, '../dist/bundle.esm.js'),
   );
   const buildHash = md5(bundleContent.toString()).substring(0, 9);
 
@@ -66,7 +66,7 @@ async function main() {
   };
 
   await writeFile(
-    path.join(__dirname, '../build/package.json'),
+    path.join(__dirname, '../dist/package.json'),
     JSON.stringify(updatedPackageJson, null, 2),
   );
 
