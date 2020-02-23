@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 
-type SvgProps = JSX.IntrinsicElements['svg'];
+// TODO: add types
 const CodeSandboxIcon = forwardRef(
-  (props: SvgProps, ref: React.Ref<SVGSVGElement>) => {
+  (props: any, ref: React.Ref<SVGSVGElement>) => {
     return (
       <svg
         viewBox="0 0 256 296"
