@@ -121,7 +121,7 @@ function Nav(props: Props) {
     <Root>
       <div className={styles.header}>
         {isMobile && (
-          <Tooltip title="Close Nav">
+          <Tooltip title="Close Nav" position="right">
             {tooltipProps => (
               <Button
                 {...tooltipProps}
