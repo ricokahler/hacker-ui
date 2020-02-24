@@ -7,7 +7,7 @@ import {
   useColorContext,
   useTheme,
 } from 'react-style-system';
-import { ReactComponent, Theme } from './types';
+import { ReactComponent } from './types';
 import FormControlContext from './FormControlContext';
 
 const useStyles = createStyles(({ css }) => ({
@@ -36,7 +36,7 @@ const FormControl = forwardRef(
     } = useStyles(props, props.component || 'div');
 
     const colorContext = useColorContext();
-    const theme = useTheme<Theme>();
+    const theme = useTheme();
 
     const color = props.color ?? colorContext?.color ?? theme.colors.accent;
     const surface =

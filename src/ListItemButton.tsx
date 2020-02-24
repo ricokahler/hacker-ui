@@ -5,7 +5,6 @@ import {
   useTheme,
   PropsFromComponent,
 } from 'react-style-system';
-import { Theme } from './types';
 import Button from './Button';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -24,7 +23,7 @@ interface Props
 
 const ListItemButton = forwardRef(
   (props: Props, ref: React.Ref<HTMLButtonElement>) => {
-    const theme = useTheme<Theme>();
+    const theme = useTheme();
     const { Root, styles, ...restOfProps } = useStyles(props, Button);
 
     return (
