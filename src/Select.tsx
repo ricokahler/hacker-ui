@@ -176,4 +176,6 @@ const Select = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   );
 });
 
+Select.displayName = 'Select';
+
 export default Select;

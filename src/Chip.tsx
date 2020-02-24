@@ -151,4 +151,6 @@ const Chip = forwardRef((props: Props, ref: React.Ref<any>) => {
   );
 });
 
+Chip.displayName = 'Chip';
+
 export default Chip;

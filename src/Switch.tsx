@@ -248,4 +248,6 @@ const Switch = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   );
 });
 
+Switch.displayName = 'Switch';
+
 export default Switch;

@@ -16,4 +16,6 @@ const TimesIcon = forwardRef((props: any, ref: React.Ref<SVGSVGElement>) => {
   );
 });
 
+TimesIcon.displayName = 'TimesIcon';
+
 export default TimesIcon;

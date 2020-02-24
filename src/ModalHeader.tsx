@@ -25,4 +25,6 @@ const ModalHeader = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
   return <Root ref={ref} {...restOfProps} />;
 });
 
+ModalHeader.displayName = 'ModalHeader';
+
 export default ModalHeader;

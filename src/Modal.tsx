@@ -16,6 +16,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    z-index: ${theme.zIndex.modal};
   `,
   container: css`
     position: fixed;
@@ -49,6 +50,7 @@ const Modal = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
     Root,
     styles,
     open,
+    component: _component,
     // TODO: in the future, we should bind to the escape button for closing
     onClose,
     ...restOfProps
@@ -83,5 +85,7 @@ const Modal = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
     )
   );
 });
+
+Modal.displayName = 'Modal';
 
 export default Modal;

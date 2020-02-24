@@ -16,4 +16,6 @@ const ListItem = forwardRef((props: Props, ref: React.Ref<HTMLLIElement>) => {
   return <Root ref={ref} {...restOfProps} />;
 });
 
+ListItem.displayName = 'ListItem';
+
 export default ListItem;

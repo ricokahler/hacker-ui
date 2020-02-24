@@ -38,4 +38,6 @@ const ListItemButton = forwardRef(
   },
 );
 
+ListItemButton.displayName = 'ListItemButton';
+
 export default ListItemButton;

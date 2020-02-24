@@ -19,4 +19,6 @@ const CodeSandboxIcon = forwardRef(
   },
 );
 
+CodeSandboxIcon.displayName = 'CodeSandboxIcon';
+
 export default CodeSandboxIcon;

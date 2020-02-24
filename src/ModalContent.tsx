@@ -27,4 +27,6 @@ const ModalContent = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
   return <Root ref={ref} {...restOfProps} />;
 });
 
+ModalContent.displayName = 'ModalContent';
+
 export default ModalContent;

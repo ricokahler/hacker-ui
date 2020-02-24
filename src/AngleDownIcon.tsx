@@ -18,4 +18,6 @@ const AngleDownIcon = forwardRef(
   },
 );
 
+AngleDownIcon.displayName = 'AngleDownIcon';
+
 export default AngleDownIcon;

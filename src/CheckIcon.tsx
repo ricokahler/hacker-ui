@@ -16,4 +16,6 @@ const CheckIcon = forwardRef((props: any, ref: React.Ref<SVGSVGElement>) => {
   );
 });
 
+CheckIcon.displayName = 'CheckIcon';
+
 export default CheckIcon;
