@@ -45,4 +45,6 @@ const ChipThumbnail = forwardRef(
   },
 );
 
+ChipThumbnail.displayName = 'ChipThumbnail';
+
 export default ChipThumbnail;

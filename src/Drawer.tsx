@@ -1,22 +1,17 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import { transparentize, readableColor } from 'polished';
+import { transparentize } from 'polished';
 import { createPortal } from 'react-dom';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    max-height: 90vh;
-    width: ${theme.block(8)};
-    max-width: 100%;
     background-color: ${theme.colors.surface};
-    color: ${readableColor(theme.colors.surface)};
-    z-index: ${theme.zIndex.modal};
-    margin: auto;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    z-index: ${theme.zIndex.modal};
+    box-shadow: ${theme.shadows.standard};
+    width: ${theme.block(3)};
+    max-width: 100%;
+    height: 100%;
+    z-index: ${theme.zIndex.drawer};
   `,
   container: css`
     position: fixed;
@@ -33,28 +28,26 @@ const useStyles = createStyles(({ css, theme }) => ({
     bottom: 0;
     right: 0;
     background-color: ${transparentize(0.5, 'black')};
-    z-index: ${theme.zIndex.modal};
+    z-index: ${theme.zIndex.drawer};
   `,
 }));
 
-type SectionProps = JSX.IntrinsicElements['section'];
-interface Props extends PropsFromStyles<typeof useStyles>, SectionProps {
+type DivProps = JSX.IntrinsicElements['div'];
+interface Props extends PropsFromStyles<typeof useStyles>, DivProps {
   open: boolean;
   onClose: () => void;
   component?: ReactComponent;
-  // TODO: add sizes and responsive modals
 }
 
-const Modal = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
+const Drawer = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
   const {
     Root,
     styles,
-    open,
     component: _component,
-    // TODO: in the future, we should bind to the escape button for closing
+    open,
     onClose,
     ...restOfProps
-  } = useStyles(props, props.component ?? 'section');
+  } = useStyles(props, props.component ?? 'div');
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
 
   // TODO: animations would be a nice-to-have
@@ -73,7 +66,7 @@ const Modal = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
     };
   }, [open, styles.container]);
 
-  // TODO: throw something in the DOM later for SSR SEO
+  // TODO: SSR/SEO audit
   return (
     container &&
     createPortal(
@@ -86,6 +79,6 @@ const Modal = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
   );
 });
 
-Modal.displayName = 'Modal';
+Drawer.displayName = 'Drawer';
 
-export default Modal;
+export default Drawer;

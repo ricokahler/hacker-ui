@@ -125,7 +125,7 @@ const Chip = forwardRef((props: Props, ref: React.Ref<any>) => {
     ...restOfProps
   } = useStyles(props, component);
 
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const colorContext = useColorContext();
 
   let color = props.color ?? colorContext?.surface ?? theme.colors.accent;
@@ -150,5 +150,7 @@ const Chip = forwardRef((props: Props, ref: React.Ref<any>) => {
     </ColorContextProvider>
   );
 });
+
+Chip.displayName = 'Chip';
 
 export default Chip;

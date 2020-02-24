@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, memo, useCallback } from 'react';
 import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
 import { useCssReset, createStyles, StyleProps } from 'hacker-ui';
-import flattenDocArray from './flattenDocArray';
 import docArray from '../docs';
+import flattenDocArray from './flattenDocArray';
 
 import Nav from './Nav';
 import AppBar from './AppBar';
@@ -57,6 +57,7 @@ interface Props extends StyleProps<typeof useStyles> {}
 function App(props: Props) {
   useCssReset();
   const { Root, styles } = useStyles(props);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const history = useHistory();
 
@@ -74,9 +75,16 @@ function App(props: Props) {
 
   return (
     <Root>
-      <Nav className={styles.nav} />
+      <Nav
+        className={styles.nav}
+        open={mobileNavOpen}
+        onClose={() => setMobileNavOpen(false)}
+      />
       <div className={styles.content}>
-        <AppBar className={styles.appBar} />
+        <AppBar
+          className={styles.appBar}
+          onOpenMobileNav={() => setMobileNavOpen(true)}
+        />
         <main className={styles.main}>
           <Switch>
             <Route path="/" exact render={() => <Redirect to={firstPath} />} />
@@ -92,4 +100,4 @@ function App(props: Props) {
   );
 }
 
-export default App;
+export default memo(App);

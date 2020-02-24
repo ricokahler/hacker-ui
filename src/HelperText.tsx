@@ -69,4 +69,6 @@ const HelperText = forwardRef(
   },
 );
 
+HelperText.displayName = 'HelperText';
+
 export default HelperText;

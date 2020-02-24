@@ -1,4 +1,5 @@
 import { css } from 'react-style-system';
+import { math } from 'polished';
 import { Theme } from './types';
 
 const defaultTheme: Theme = {
@@ -97,10 +98,15 @@ const defaultTheme: Theme = {
     tooltip: 1500,
   },
   breakpoints: {
-    mobile: 375,
-    tablet: 768,
-    desktop: 1024,
-    desktopLarge: 1440,
+    mobile: '375px',
+    tablet: '768px',
+    desktop: '1024px',
+    desktopLarge: '1440p',
+
+    up: (value: string) => `@media (min-width: ${math(`${value} + 1px`)})`,
+    down: (value: string) => `@media (max-width: ${value})`,
+    between: (min: string, max: string) =>
+      `@media (max-width: ${min}) and (min-width: ${math(`${max} - 1px`)})`,
   },
 };
 

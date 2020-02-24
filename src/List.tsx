@@ -26,4 +26,6 @@ const List = forwardRef((props: Props, ref: React.Ref<HTMLUListElement>) => {
   return <Root ref={ref} {...restOfProps} />;
 });
 
+List.displayName = 'List';
+
 export default List;

@@ -27,4 +27,6 @@ const ModalActions = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
   return <Root ref={ref} {...restOfProps} />;
 });
 
+ModalActions.displayName = 'ModalActions';
+
 export default ModalActions;

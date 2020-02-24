@@ -17,7 +17,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   card: css`
     margin: ${theme.gap(1)} auto;
-    width: ${theme.breakpoints.mobile}px;
+    width: ${theme.breakpoints.mobile};
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -97,7 +97,7 @@ function FilterChipsExample(props: Props) {
           <Button
             className={styles.closeButton}
             shape="icon"
-            on={theme.colors.brand}
+            surface={theme.colors.brand}
             color={readableColor(theme.colors.brand)}
           >
             <TimesIcon />

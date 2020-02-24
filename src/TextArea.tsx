@@ -153,4 +153,6 @@ const TextArea = forwardRef(
   },
 );
 
+TextArea.displayName = 'TextArea';
+
 export default TextArea;

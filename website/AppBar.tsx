@@ -1,42 +1,76 @@
 import React from 'react';
-import { createStyles, StyleProps, Tooltip, Button } from 'hacker-ui';
+import {
+  createStyles,
+  StyleProps,
+  Tooltip,
+  Button,
+  useMediaQuery,
+  useTheme,
+} from 'hacker-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     height: ${theme.block(0.75)};
     border-bottom: 1px solid ${theme.colors.bland};
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     padding: ${theme.space(1)};
   `,
+  navButton: css`
+    margin-right: ${theme.space(1)};
+  `,
+  githubButton: css`
+    margin-left: auto;
+  `,
 }));
 
-interface Props extends StyleProps<typeof useStyles> {}
+interface Props extends StyleProps<typeof useStyles> {
+  onOpenMobileNav: () => void;
+}
 
 function AppBar(props: Props) {
-  const { Root } = useStyles(props);
+  const { Root, styles, onOpenMobileNav } = useStyles(props);
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(
+    theme.breakpoints.down(theme.breakpoints.tablet),
+  );
 
   return (
     <Root>
+      {isMobile && (
+        <Tooltip title="Open nav" position="right">
+          {tooltipProps => (
+            <Button
+              {...tooltipProps}
+              onClick={onOpenMobileNav}
+              className={styles.navButton}
+              aria-label="Open nav"
+              shape="icon"
+              color="black"
+            >
+              <FontAwesomeIcon icon={faBars} size="lg" />
+            </Button>
+          )}
+        </Tooltip>
+      )}
+
       <Tooltip title="Contribute on GitHub" position="left">
         {tooltipProps => (
           <Button
+            className={styles.githubButton}
             aria-label="Contribute on GitHub"
             shape="icon"
             color="black"
-            component={props => (
-              // eslint-disable-next-line jsx-a11y/anchor-has-content
-              <a
-                href="https://github.com/ricokahler/hacker-ui"
-                target="_blank"
-                rel="noopener noreferrer"
-                {...props}
-                {...tooltipProps}
-              />
-            )}
+            component="a"
+            // @ts-ignore
+            href="https://github.com/ricokahler/hacker-ui"
+            target="_blank"
+            rel="noopener noreferrer"
+            {...tooltipProps}
           >
             {/*
             // @ts-ignore */}

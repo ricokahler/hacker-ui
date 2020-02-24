@@ -235,4 +235,6 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   );
 });
 
+Radio.displayName = 'Radio';
+
 export default Radio;

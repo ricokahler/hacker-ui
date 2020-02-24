@@ -19,6 +19,10 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     min-height: ${theme.block(3)};
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   controls: css`
     flex: 0 0 auto;

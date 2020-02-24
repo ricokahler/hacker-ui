@@ -6,6 +6,9 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     background-color: ${theme.colors.surface};
     margin: ${theme.gap(1)};
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      margin: ${theme.gap(1)} 0;
+    }
     box-shadow: ${theme.shadows.standard};
     padding: ${theme.space(1)};
   `,

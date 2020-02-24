@@ -15,6 +15,8 @@ export {
   StyleProps,
   PropsFromComponent,
   PropsFromStyles,
+  CreateStyles,
+  StyleFnArgs,
 } from 'react-style-system';
 // TODO: when babel supports typescript 3.8
 // export type {
@@ -57,4 +59,6 @@ export { default as ModalFooter } from './ModalFooter';
 export { default as ModalActions } from './ModalActions';
 export { default as Emoji } from './Emoji';
 export { default as Menu } from './Menu';
+export { default as useMediaQuery } from './useMediaQuery';
+export { default as Drawer } from './Drawer';
 export * from './types';

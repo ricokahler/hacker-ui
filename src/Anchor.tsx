@@ -29,4 +29,6 @@ const Anchor = forwardRef((props: Props, ref: React.Ref<HTMLAnchorElement>) => {
   return <Root ref={ref} {...restOfProps} />;
 });
 
+Anchor.displayName = 'Anchor';
+
 export default Anchor;

@@ -25,4 +25,6 @@ const ModalFooter = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
   return <Root ref={ref} {...restOfProps} />;
 });
 
+ModalFooter.displayName = 'ModalFooter';
+
 export default ModalFooter;

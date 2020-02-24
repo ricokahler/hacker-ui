@@ -9,4 +9,6 @@ const CircleIcon = forwardRef((props: any, ref: React.Ref<SVGSVGElement>) => {
   );
 });
 
+CircleIcon.displayName = 'CircleIcon';
+
 export default CircleIcon;

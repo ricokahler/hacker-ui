@@ -136,4 +136,6 @@ const Menu = forwardRef((props: Props, ref: React.Ref<any>) => {
   );
 });
 
+Menu.displayName = 'Menu';
+
 export default Menu;

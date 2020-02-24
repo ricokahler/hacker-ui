@@ -210,4 +210,6 @@ const Checkbox = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
   );
 });
 
+Checkbox.displayName = 'Checkbox';
+
 export default Checkbox;
