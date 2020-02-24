@@ -73,6 +73,11 @@ const useStyles = createStyles(({ css, theme }) => ({
     color: white;
     padding: ${theme.space(1)};
     margin: 0;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      /* TODO: try to remove this important */
+      font-size: 0.8rem !important;
+    }
   `,
   floatingButtons: css`
     position: absolute;
@@ -238,8 +243,7 @@ function CodeExample(props: Props) {
       const { Prism } = window as any;
       if (!Prism) return;
       Prism.highlightAll();
-      console.log('called highligh all');
-    }, 100);
+    }, 250);
   }, [codeExampleOpen, codeType]);
 
   return (
@@ -286,15 +290,13 @@ function CodeExample(props: Props) {
             <Tooltip title="Open in CodeSandbox">
               {props => (
                 <Button
-                  component={props => (
-                    // eslint-disable-next-line jsx-a11y/anchor-has-content
-                    <a
-                      href={codeSandboxUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      {...props}
-                    />
-                  )}
+                  component="a"
+                  // the props API for `Button` and `a` don't match so we
+                  // use `@ts-ignore` to get around it for this issue
+                  // @ts-ignore
+                  href={codeSandboxUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   shape="icon"
                   color="white"
                   surface="black"

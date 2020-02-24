@@ -12,6 +12,10 @@ import {
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   controls: css`
     flex: 0 0 auto;

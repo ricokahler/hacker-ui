@@ -14,7 +14,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   card: css`
     margin: ${theme.gap(1)} auto;
-    width: ${theme.breakpoints.mobile}px;
+    width: ${theme.breakpoints.mobile};
     max-width: 100%;
     background-color: ${theme.colors.surface};
     box-shadow: ${theme.shadows.standard};

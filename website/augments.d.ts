@@ -1,7 +1,8 @@
-import 'hacker-ui';
-import theme from './theme';
+import { Theme } from 'hacker-ui';
+// import { CreateStyles } from 'react-style-system';
 
 declare module 'hacker-ui' {
-  export type Theme = typeof theme;
+  // TODO:
+  // export const createStyles: CreateStyles<Theme>;
   export function useTheme(): Theme;
 }

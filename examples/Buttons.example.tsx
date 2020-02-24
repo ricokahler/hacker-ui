@@ -13,16 +13,35 @@ import {
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   controls: css`
     flex: 0 0 auto;
     width: ${theme.block(2)};
     overflow: hidden;
     margin-right: ${theme.gap(1)};
+    display: flex;
+    flex-direction: column;
 
     & > *:not(:last-child) {
       margin-bottom: ${theme.space(0.5)};
+
+      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+        margin-right: ${theme.space(0.5)};
+      }
     }
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  `,
+  formControl: css`
+    min-width: ${theme.block(1.5)};
   `,
   buttons: css`
     display: flex;
@@ -58,7 +77,7 @@ function ButtonsExample(props: Props) {
   return (
     <Root>
       <div className={styles.controls}>
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Variant</Label>
           <Select
             value={variant}
@@ -74,7 +93,7 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Size</Label>
           <Select
             value={size}
@@ -88,7 +107,7 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Shape</Label>
           <Select
             value={shape}
@@ -101,7 +120,7 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Disabled</Label>
           <Select
             value={disabled ? 'yes' : 'no'}

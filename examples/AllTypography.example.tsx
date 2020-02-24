@@ -1,5 +1,10 @@
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
+import {
+  createStyles,
+  PropsFromStyles,
+  useMediaQuery,
+  useTheme,
+} from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -48,11 +53,15 @@ interface Props extends PropsFromStyles<typeof useStyles> {}
 
 function AllTypographyExample(props: Props) {
   const { Root, styles } = useStyles(props);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(
+    theme.breakpoints.down(theme.breakpoints.tablet),
+  );
 
   return (
     <Root>
-      <div className={styles.heading1}>Heading 1</div>
-      <div className={styles.heading2}>Heading 2</div>
+      <div className={styles.heading1}>{isMobile ? 'H1' : 'Heading 1'}</div>
+      <div className={styles.heading2}>{isMobile ? 'H2' : 'Heading 2'}</div>
       <div className={styles.heading3}>Heading 3</div>
       <div className={styles.heading4}>Heading 4</div>
       <div className={styles.heading5}>Heading 5</div>

@@ -16,9 +16,12 @@ import {
   List,
   ListItem,
   ListItemButton,
+  useMediaQuery,
+  Drawer,
+  Button,
 } from 'hacker-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
 const useStyles = createStyles(({ css, theme }) => {
@@ -34,6 +37,10 @@ const useStyles = createStyles(({ css, theme }) => {
       box-shadow: ${theme.shadows.standard};
       margin: ${theme.gap(1)};
       height: 500px;
+
+      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+        margin: ${theme.space(1)};
+      }
     `,
     title: css`
       ${theme.fonts.body1};
@@ -74,12 +81,20 @@ const useStyles = createStyles(({ css, theme }) => {
       display: flex;
       align-items: center;
     `,
+    openNavButton: css`
+      margin-right: ${theme.space(0.5)};
+    `,
     main: css`
       flex: 1 1 auto;
       display: flex;
       & > p {
         ${theme.fonts.h2};
         margin: auto;
+
+        ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+          ${theme.fonts.h3};
+          margin: auto;
+        }
       }
     `,
     listItemButton: css`
@@ -219,7 +234,11 @@ function NavExample(props: Props) {
   const { Root, styles } = useStyles(props);
   const theme = useTheme();
   const [collapsed, setCollapsed] = useState({} as { [key: string]: boolean });
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
+  const isMobile = useMediaQuery(
+    theme.breakpoints.down(theme.breakpoints.tablet),
+  );
 
   /**
    * recursively creates
@@ -249,9 +268,8 @@ function NavExample(props: Props) {
                 })}
                 style={{ paddingLeft: theme.space(depth + 1) }}
                 onClick={handleClick}
-                component={
-                  isFolder ? 'button' : props => <Link to={path} {...props} />
-                }
+                component={isFolder ? 'button' : Link}
+                {...(isFolder ? undefined : { to: path })}
               >
                 <span className={styles.listItemText}>{title}</span>{' '}
                 {isFolder && (
@@ -272,24 +290,52 @@ function NavExample(props: Props) {
     </List>
   );
 
+  const navContent = (
+    <>
+      <div className={styles.title}>Nav Example</div>
+      {makeList(links)}
+    </>
+  );
+
   return (
-    <Root>
-      <nav className={styles.nav}>
-        <div className={styles.title}>Nav Example</div>
-        {makeList(links)}
-      </nav>
-      <div className={styles.content}>
-        <header className={styles.header}>{location.pathname}</header>
-        <main className={styles.main}>
-          <Switch>
-            {pages.map(({ path, component }) => (
-              <Route path={path} exact component={component} />
-            ))}
-            <Redirect to={firstPage.path} />
-          </Switch>
-        </main>
-      </div>
-    </Root>
+    <>
+      <Root>
+        {!isMobile && <nav className={styles.nav}>{navContent}</nav>}
+        <div className={styles.content}>
+          <header className={styles.header}>
+            {isMobile && (
+              <Button
+                className={styles.openNavButton}
+                shape="icon"
+                aria-label="Open Nav"
+                onClick={() => setDrawerOpen(true)}
+              >
+                <FontAwesomeIcon icon={faBars} size="lg" />
+              </Button>
+            )}
+            {location.pathname}
+          </header>
+          <main className={styles.main}>
+            <Switch>
+              {pages.map(({ path, component }) => (
+                <Route path={path} exact component={component} />
+              ))}
+              <Redirect to={firstPage.path} />
+            </Switch>
+          </main>
+        </div>
+      </Root>
+
+      {isMobile && (
+        <Drawer
+          className={styles.nav}
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+        >
+          {navContent}
+        </Drawer>
+      )}
+    </>
   );
 }
 

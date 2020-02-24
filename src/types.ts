@@ -50,10 +50,13 @@ export interface Theme {
   };
 
   breakpoints: {
-    mobile: number;
-    tablet: number;
-    desktop: number;
-    desktopLarge: number;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+    desktopLarge: string;
+    up: (value: string) => string;
+    down: (value: string) => string;
+    between: (min: string, max: string) => string;
   };
 }
 

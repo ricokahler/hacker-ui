@@ -75,7 +75,7 @@
     "invariant": "^2.2.4",
     "nanoid": "^2.1.11",
     "polished": "^3.4.4",
-    "react-style-system": "0.0.0-777b2b366",
+    "react-style-system": "0.0.0-a3de355d0",
     "stylis": "^3.5.4"
   },
   "peerDependencies": {

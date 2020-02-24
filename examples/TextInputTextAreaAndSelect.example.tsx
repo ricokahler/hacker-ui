@@ -15,6 +15,10 @@ import {
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   title: css`
     ${theme.fonts.h5};
@@ -22,6 +26,9 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   controls: css`
     margin: ${theme.gap(1)} 0;
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      margin: ${theme.space(1)} 0;
+    }
     margin-right: ${theme.space(1)};
     flex: 0 0 auto;
     overflow: hidden;

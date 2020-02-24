@@ -21,10 +21,18 @@ const useStyles = createStyles(({ css, theme }) => ({
   title: css`
     ${theme.fonts.h2};
     line-height: 1;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      ${theme.fonts.h3};
+    }
   `,
   subtitle: css`
     ${theme.fonts.subtitle1};
     line-height: 1;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      ${theme.fonts.subtitle2};
+    }
   `,
   card: css`
     width: ${theme.block(5)};
