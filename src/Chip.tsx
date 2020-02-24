@@ -8,7 +8,7 @@ import {
   useTheme,
   PropsFromStyles,
 } from 'react-style-system';
-import { ReactComponent, Theme } from './types';
+import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
   // button base styles
