@@ -24,7 +24,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@mdx-js/loader": "^1.5.5",
     "@rollup/plugin-alias": "^3.0.1",
-    "@rollup/plugin-typescript": "^2.1.0",
+    "@rollup/plugin-typescript": "^3.0.0",
     "@types/common-tags": "^1.8.0",
     "@types/jest": "^25.1.2",
     "@types/lodash": "^4.14.149",
