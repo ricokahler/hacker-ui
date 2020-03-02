@@ -85,8 +85,4 @@ module.exports = {
     overlay: true,
     historyApiFallback: true,
   },
-  optimization: {
-    // usedExports: true,
-    // sideEffects: true,
-  },
 };
