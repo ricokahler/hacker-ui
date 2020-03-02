@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
   Button,
   Modal,
   ModalHeader,
@@ -10,6 +7,7 @@ import {
   ModalFooter,
   ModalActions,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`

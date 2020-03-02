@@ -4,11 +4,8 @@ import { stripIndent } from 'common-tags';
 import { transparentize } from 'polished';
 import { getParameters } from 'codesandbox/lib/api/define';
 import {
-  createStyles,
-  PropsFromStyles,
   Button,
   Tooltip,
-  useTheme,
   Modal,
   ModalHeader,
   ModalContent,
@@ -19,6 +16,7 @@ import {
   RadioGroup,
   Label,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faCopy } from '@fortawesome/free-solid-svg-icons';
 import CopyToClipBoard from 'react-copy-to-clipboard';

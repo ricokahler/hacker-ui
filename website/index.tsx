@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, createTheme } from 'hacker-ui';
 import App from './App';
+import '@babel/polyfill';
 
 const theme = createTheme();
 

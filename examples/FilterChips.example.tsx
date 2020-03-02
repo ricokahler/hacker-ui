@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  Button,
-  TimesIcon,
-  useTheme,
-  Chip,
-  ChipThumbnail,
-  CheckIcon,
-} from 'hacker-ui';
+import { Button, TimesIcon, Chip, ChipThumbnail, CheckIcon } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { readableColor } from 'polished';
 
 const useStyles = createStyles(({ css, theme }) => ({

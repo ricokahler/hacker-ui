@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
   TextInput,
   TextArea,
   FormControl,
@@ -11,6 +8,7 @@ import {
   Select,
   HelperText,
 } from 'hacker-ui';
+import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`

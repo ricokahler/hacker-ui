@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  createStyles,
-  StyleProps,
-  Tooltip,
-  Button,
-  useMediaQuery,
-  useTheme,
-} from 'hacker-ui';
+import { Tooltip, Button, useMediaQuery } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -27,7 +21,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
 }));
 
-interface Props extends StyleProps<typeof useStyles> {
+interface Props extends PropsFromStyles<typeof useStyles> {
   onOpenMobileNav: () => void;
 }
 

@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-
-import {
-  createStyles,
-  PropsFromStyles,
-  Chip,
-  Button,
-  useTheme,
-} from 'hacker-ui';
+import { Chip, Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`

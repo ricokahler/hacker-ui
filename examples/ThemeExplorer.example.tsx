@@ -1,6 +1,6 @@
 import React from 'react';
 import { ObjectInspector } from 'react-inspector';
-import { useTheme, createStyles, PropsFromStyles } from 'hacker-ui';
+import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`

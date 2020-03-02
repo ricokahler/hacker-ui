@@ -2,11 +2,8 @@ import React, { useState, Fragment } from 'react';
 import classNames from 'classnames';
 import { darken, lighten, readableColor } from 'polished';
 import {
-  createStyles,
-  StyleProps,
   List,
   ListItemButton,
-  useTheme,
   useMediaQuery,
   Drawer,
   Button,
@@ -14,6 +11,7 @@ import {
   ListItem,
   Tooltip,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -101,7 +99,7 @@ const useStyles = createStyles(({ css, theme }) => {
   };
 });
 
-interface Props extends StyleProps<typeof useStyles> {
+interface Props extends PropsFromStyles<typeof useStyles> {
   open: boolean;
   onClose: () => void;
 }

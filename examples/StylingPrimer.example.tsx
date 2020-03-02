@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 // useStyles is a custom hook
 const useStyles = createStyles(({ css, theme }) => ({

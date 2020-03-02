@@ -1,5 +1,6 @@
 import React from 'react';
-import { createStyles, PropsFromStyles, Chip, useTheme } from 'hacker-ui';
+import { Chip } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css``,

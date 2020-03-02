@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, createStyles, PropsFromStyles, useTheme } from 'hacker-ui';
+import { Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { Link, StaticRouter } from 'react-router-dom';
 
 const useStyles = createStyles(({ css, theme }) => ({

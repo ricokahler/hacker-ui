@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 import { transparentize } from 'polished';
 
 const useStyles = createStyles(({ css, theme }) => ({

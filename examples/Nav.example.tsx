@@ -10,9 +10,6 @@ import {
   useLocation,
 } from 'react-router-dom';
 import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
   List,
   ListItem,
   ListItemButton,
@@ -20,6 +17,7 @@ import {
   Drawer,
   Button,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 

@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  useMediaQuery,
-  useTheme,
-} from 'hacker-ui';
+import { useMediaQuery } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`

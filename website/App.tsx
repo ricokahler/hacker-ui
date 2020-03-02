@@ -1,6 +1,7 @@
-import React, { useEffect, useState, memo, useCallback } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
-import { useCssReset, createStyles, StyleProps } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { useCssReset } from 'hacker-ui';
 import docArray from '../docs';
 import flattenDocArray from './flattenDocArray';
 
@@ -52,7 +53,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
 }));
 
-interface Props extends StyleProps<typeof useStyles> {}
+interface Props extends PropsFromStyles<typeof useStyles> {}
 
 function App(props: Props) {
   useCssReset();

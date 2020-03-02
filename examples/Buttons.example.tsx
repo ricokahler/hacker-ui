@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  useTheme,
-  PropsFromStyles,
-  Select,
-  FormControl,
-  Label,
-  Button,
-  CheckIcon,
-} from 'hacker-ui';
+import { Select, FormControl, Label, Button, CheckIcon } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`

@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  FormControl,
-  Label,
-  TextInput,
-  HelperText,
-} from 'hacker-ui';
+import { FormControl, Label, TextInput, HelperText } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css``,
