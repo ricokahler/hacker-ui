@@ -57,7 +57,7 @@
     "react": "^16.12.0",
     "react-copy-to-clipboard": "^5.0.2",
     "react-docgen-typescript-loader": "^3.6.0",
-    "react-dom": "^16.12.0",
+    "react-dom": "^16.13.0",
     "react-inspector": "^4.0.0",
     "react-router-dom": "^5.1.2",
     "react-test-renderer": "^16.12.0",
