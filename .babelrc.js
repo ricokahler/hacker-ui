@@ -24,7 +24,7 @@ module.exports = {
           root: [__dirname],
           alias: {
             'hacker-ui': './noop.js',
-            '/Users/ricokahler/workspace/hacker-ui/docs': './array.js',
+            [path.resolve(__dirname, './docs')]: './array.js',
           },
         },
       },
