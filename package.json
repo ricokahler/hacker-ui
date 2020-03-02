@@ -60,7 +60,7 @@
     "react-dom": "^16.13.0",
     "react-inspector": "^4.0.0",
     "react-router-dom": "^5.1.2",
-    "react-test-renderer": "^16.12.0",
+    "react-test-renderer": "^16.13.0",
     "rollup": "^1.32.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5",
