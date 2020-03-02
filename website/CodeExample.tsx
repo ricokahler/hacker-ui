@@ -93,22 +93,36 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 interface Props extends PropsFromStyles<typeof useStyles> {
   children: React.ReactNode;
-  typescriptCode: string;
-  javascriptCode: string;
+  typescriptCodePromise: Promise<any>;
+  javascriptCodePromise: Promise<any>;
 }
 
 function CodeExample(props: Props) {
-  const { Root, styles, children, javascriptCode, typescriptCode } = useStyles(
-    props,
-    'section',
-  );
+  const {
+    Root,
+    styles,
+    children,
+    javascriptCodePromise,
+    typescriptCodePromise,
+  } = useStyles(props, 'section');
   const theme = useTheme();
   const [codeExampleOpen, setCodeExampleOpen] = useState(false);
   const [codeType, setCodeType] = useState<'typescript' | 'javascript'>(
     'typescript',
   );
 
+  const [typescriptCode, setTypescriptCode] = useState('Loading…');
+  const [javascriptCode, setJavascriptCode] = useState('Loading…');
+
   const code = codeType === 'typescript' ? typescriptCode : javascriptCode;
+
+  useEffect(() => {
+    javascriptCodePromise.then((mod: any) => setJavascriptCode(mod.default));
+  }, [javascriptCodePromise]);
+
+  useEffect(() => {
+    typescriptCodePromise.then((mod: any) => setTypescriptCode(mod.default));
+  }, [typescriptCodePromise]);
 
   const handleCopy = () => {
     alert('Code copied to clipboard!');

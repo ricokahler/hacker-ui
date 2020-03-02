@@ -1,7 +1,7 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo, Suspense } from 'react';
 import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
 import { createStyles, PropsFromStyles } from 'react-style-system';
-import { useCssReset } from 'hacker-ui';
+// import { useCssReset } from 'hacker-ui';
 import docArray from '../docs';
 import flattenDocArray from './flattenDocArray';
 
@@ -56,7 +56,7 @@ const useStyles = createStyles(({ css, theme }) => ({
 interface Props extends PropsFromStyles<typeof useStyles> {}
 
 function App(props: Props) {
-  useCssReset();
+  // useCssReset();
   const { Root, styles } = useStyles(props);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
@@ -87,14 +87,20 @@ function App(props: Props) {
           onOpenMobileNav={() => setMobileNavOpen(true)}
         />
         <main className={styles.main}>
-          <Switch>
-            <Route path="/" exact render={() => <Redirect to={firstPath} />} />
-            {routes.map(({ title, ...restOfRoute }, index) => (
-              <Route key={index} {...restOfRoute} />
-            ))}
-            <Route path="/404" component={NoRoute} />
-            <Redirect to="/404" />
-          </Switch>
+          <Suspense fallback="Loading…">
+            <Switch>
+              <Route
+                path="/"
+                exact
+                render={() => <Redirect to={firstPath} />}
+              />
+              {routes.map(({ title, ...restOfRoute }, index) => (
+                <Route key={index} {...restOfRoute} />
+              ))}
+              <Route path="/404" component={NoRoute} />
+              <Redirect to="/404" />
+            </Switch>
+          </Suspense>
         </main>
       </div>
     </Root>
