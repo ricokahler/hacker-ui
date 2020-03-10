@@ -78,9 +78,9 @@ const defaultTheme: Theme = {
     surface: '#fff',
   },
   durations: {
-    short: 100,
-    standard: 250,
-    long: 500,
+    short: '100ms',
+    standard: '250ms',
+    long: '500ms',
   },
   shadows: {
     subtle: '0 0 10px 0 rgba(0,0,0,0.10)',

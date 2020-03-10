@@ -44,8 +44,8 @@ const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
     border: 1px solid ${color.readable};
     color: ${color.readable};
 
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:focus {
       background-color: ${transparentize(0.92, color.decorative)};
@@ -65,8 +65,8 @@ const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
     background-color: ${color.decorative};
     color: ${readableColor(color.decorative)};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:focus {
       background-color: ${transparentize(0.18, color.decorative)};
@@ -88,8 +88,8 @@ const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
   ghost: css`
     color: ${color.readable};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:focus {
       background-color: ${transparentize(0.92, color.decorative)};

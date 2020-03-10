@@ -13,7 +13,7 @@ const useStyles = createStyles(({ css, theme, color, surface, staticVar }) => {
     root: css`
       ${staticVar(theme.fonts.body1)};
       color: ${readableColor(theme.colors.surface)};
-      transition: color ${theme.durations.standard}ms;
+      transition: color ${theme.durations.standard};
       cursor: pointer;
     `,
     focused: css`

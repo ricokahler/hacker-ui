@@ -38,7 +38,7 @@ const useStyles = createStyles(({ css, theme, color, surface, staticVar }) => {
     selectFilled: css`
       background-color: ${transparentize(0.8, bland.decorative)};
       color: ${readableColor(surface)};
-      transition: background-color ${theme.durations.standard}ms;
+      transition: background-color ${theme.durations.standard};
 
       &:focus {
         background-color: ${transparentize(0.92, color.decorative)};
@@ -64,9 +64,9 @@ const useStyles = createStyles(({ css, theme, color, surface, staticVar }) => {
     `,
     selectOutlined: css`
       background-color: ${surface};
-      transition: border ${theme.durations.standard}ms,
-        background-color ${theme.durations.standard}ms,
-        color ${theme.durations.standard}ms;
+      transition: border ${theme.durations.standard},
+        background-color ${theme.durations.standard},
+        color ${theme.durations.standard};
       border: 2px solid ${bland.decorative};
       color: ${readableColor(surface)};
 

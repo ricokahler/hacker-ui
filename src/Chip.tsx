@@ -50,8 +50,8 @@ const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
     border: 1px solid ${color.readable};
     color: ${color.readable};
 
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:disabled {
       &,
@@ -78,8 +78,8 @@ const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
     background-color: ${color.decorative};
     color: ${readableColor(color.decorative)};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:disabled {
       background-color: ${transparentize(0.5, color.decorative)};

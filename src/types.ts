@@ -25,9 +25,9 @@ export interface Theme {
     surface: string;
   };
   durations: {
-    short: number;
-    standard: number;
-    long: number;
+    short: string;
+    standard: string;
+    long: string;
   };
   shadows: {
     subtle: string;

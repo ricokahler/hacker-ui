@@ -15,7 +15,7 @@ const useStyles = createStyles(({ css, color, theme, surface, staticVar }) => {
   return {
     root: css`
       ${staticVar(theme.fonts.caption)};
-      transition: color ${theme.durations.standard}ms;
+      transition: color ${theme.durations.standard};
     `,
     focused: css`
       color: ${color.readable};
