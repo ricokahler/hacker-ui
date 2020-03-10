@@ -7,9 +7,9 @@ import {
 } from 'react-style-system';
 import Button from './Button';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
-    ${theme.fonts.body1}
+    ${staticVar(theme.fonts.body1)}
     align-items: flex-start;
     width: 100%;
     display: flex;

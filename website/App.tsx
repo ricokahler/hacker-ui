@@ -1,7 +1,6 @@
 import React, { useEffect, useState, memo, Suspense } from 'react';
 import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
 import { createStyles, PropsFromStyles } from 'react-style-system';
-// import { useCssReset } from 'hacker-ui';
 import docArray from '../docs';
 import flattenDocArray from './flattenDocArray';
 
@@ -56,7 +55,6 @@ const useStyles = createStyles(({ css, theme }) => ({
 interface Props extends PropsFromStyles<typeof useStyles> {}
 
 function App(props: Props) {
-  // useCssReset();
   const { Root, styles } = useStyles(props);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
@@ -87,7 +85,7 @@ function App(props: Props) {
           onOpenMobileNav={() => setMobileNavOpen(true)}
         />
         <main className={styles.main}>
-          <Suspense fallback="Loading…">
+          <Suspense fallback={null}>
             <Switch>
               <Route
                 path="/"

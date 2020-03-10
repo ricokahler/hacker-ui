@@ -9,7 +9,7 @@ import {
 } from 'hacker-ui';
 import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
   `,
@@ -17,11 +17,11 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin: ${theme.gap(1)} auto;
   `,
   title: css`
-    ${theme.fonts.h4};
+    ${staticVar(theme.fonts.h4)};
     padding: 0 ${theme.space(1)};
   `,
   paragraph: css`
-    ${theme.fonts.body1};
+    ${staticVar(theme.fonts.body1)};
     margin: ${theme.space(1)} 0;
   `,
   modalScroll: css`

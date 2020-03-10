@@ -4,10 +4,10 @@ import { transparentize, readableColor } from 'polished';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
   // button base styles
   root: css`
-    ${theme.fonts.button}
+    ${staticVar(theme.fonts.button)}
 
     display: inline-flex;
     justify-content: center;
@@ -134,7 +134,6 @@ const useStyles = createStyles(({ css, theme, color }) => ({
 }));
 
 type ButtonProps = JSX.IntrinsicElements['button'];
-
 interface Props extends PropsFromStyles<typeof useStyles>, ButtonProps {
   size?: 'small' | 'standard' | 'large';
   shape?: 'standard' | 'icon';

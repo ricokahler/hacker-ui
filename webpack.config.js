@@ -27,7 +27,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
         include: [
           path.resolve(__dirname, './.cache'),
           path.resolve(__dirname, './website'),

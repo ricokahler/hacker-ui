@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
-    ${theme.fonts.body1};
+    ${staticVar(theme.fonts.body1)};
     display: flex;
   `,
 }));

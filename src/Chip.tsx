@@ -10,10 +10,10 @@ import {
 } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
   // button base styles
   root: css`
-    ${theme.fonts.caption}
+    ${staticVar(theme.fonts.caption)}
     font-weight: bold;
 
     display: inline-flex;

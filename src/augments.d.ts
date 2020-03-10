@@ -1,7 +1,6 @@
-import { CreateStyles } from 'react-style-system';
 import { Theme } from './types';
 
 declare module 'react-style-system' {
-  export const createStyles: CreateStyles<Theme>;
+  export const createStyles: (styleFn: (t: any) => any) => any;
   export function useTheme(): Theme;
 }

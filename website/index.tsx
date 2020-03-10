@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, createTheme } from 'hacker-ui';
 import App from './App';
 import '@babel/polyfill';
+import './index.css';
 
 const theme = createTheme();
 

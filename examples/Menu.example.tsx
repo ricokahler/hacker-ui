@@ -13,12 +13,12 @@ import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
     min-height: ${theme.block(3)};
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
       flex-direction: column;
     }
   `,
