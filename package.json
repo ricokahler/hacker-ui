@@ -69,7 +69,7 @@
     "webpack-dev-server": "3.10.3"
   },
   "dependencies": {
-    "@types/classnames": "2.2.9",
+    "@types/classnames": "2.2.10",
     "@types/invariant": "2.2.31",
     "@types/shortid": "0.0.29",
     "classnames": "2.2.6",
