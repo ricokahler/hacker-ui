@@ -53,7 +53,6 @@ module.exports = {
               cacheDir: path.resolve(__dirname, './.cache'),
             },
           },
-          'babel-loader',
         ],
         // TODO: sideEffects: true needs to be audited
         sideEffects: true,
