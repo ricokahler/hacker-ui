@@ -68,6 +68,8 @@ function App(props: Props) {
         const { Prism } = window as any;
         if (!Prism) return;
         Prism.highlightAll();
+
+        window.scrollTo(0, 0);
       }, 500);
 
     const unsubscribe = history.listen(handler);
