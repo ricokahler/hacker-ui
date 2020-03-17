@@ -8,6 +8,7 @@ import Nav from './Nav';
 import AppBar from './AppBar';
 import NoRoute from './NoRoute';
 import PageWrapper from './PageWrapper';
+import LoadingView from './LoadingView';
 
 const routes = flattenDocArray(docArray).map(
   ({ component, ...restOfProps }) => {
@@ -61,13 +62,16 @@ function App(props: Props) {
   const history = useHistory();
 
   useEffect(() => {
-    const unsubscribe = history.listen(() => {
+    const handler = () =>
+      // TODO: this timeout is not reliable
       setTimeout(() => {
         const { Prism } = window as any;
         if (!Prism) return;
         Prism.highlightAll();
-      }, 0);
-    });
+      }, 500);
+
+    const unsubscribe = history.listen(handler);
+    handler();
 
     return unsubscribe;
   }, [history]);
@@ -85,7 +89,7 @@ function App(props: Props) {
           onOpenMobileNav={() => setMobileNavOpen(true)}
         />
         <main className={styles.main}>
-          <Suspense fallback={null}>
+          <Suspense fallback={<LoadingView />}>
             <Switch>
               <Route
                 path="/"
