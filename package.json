@@ -81,13 +81,9 @@
     "@types/classnames": "^2.2.9",
     "@types/invariant": "^2.2.31",
     "classnames": "^2.2.6",
-    "invariant": "^2.2.4",
     "nanoid": "^2.1.11",
-    "pirates": "^4.0.1",
     "polished": "^3.4.4",
-    "react-style-system": "0.0.0-0844f6041",
-    "require-from-string": "^2.0.2",
-    "stylis": "^3.5.4"
+    "react-style-system": "0.0.0-0844f6041"
   },
   "peerDependencies": {
     "react": "^16.8.0",
