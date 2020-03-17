@@ -6,7 +6,7 @@ import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
-    max-height: 90vh;
+    max-height: 90%;
     width: ${theme.block(8)};
     max-width: 100%;
     background-color: ${theme.colors.surface};
@@ -20,10 +20,10 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
   `,
   container: css`
     position: fixed;
-    width: 100vw;
-    height: 100vh;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     display: flex;
   `,
   backdrop: css`
