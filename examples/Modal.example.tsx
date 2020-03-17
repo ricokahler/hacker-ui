@@ -56,13 +56,17 @@ function ModalExample(props: Props) {
         </Button>
       </Root>
 
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal
+        style={styles.cssVariableObject}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
         <ModalHeader className={styles.modalHeader}>
           <h3 className={styles.title}>Modal Header</h3>
         </ModalHeader>
         <ModalContent>
           <div className={styles.modalScroll}>
-            {Array.from(Array(10)).map(i => (
+            {Array.from(Array(10)).map((_, i) => (
               <p key={i} className={styles.paragraph}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

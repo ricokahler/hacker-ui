@@ -1,7 +1,11 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { transparentize, readableColor } from 'polished';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  useColorContext,
+} from 'react-style-system';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
@@ -151,6 +155,7 @@ const Button = forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
     shape = 'standard',
     ...restOfProps
   } = useStyles(props, props.component || 'button');
+
   return (
     <Root
       className={classNames('hui-button', {

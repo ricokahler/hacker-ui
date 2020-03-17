@@ -55,6 +55,8 @@ module.exports = {
           },
           'babel-loader',
         ],
+        // TODO: sideEffects: true needs to be audited
+        sideEffects: true,
       },
       {
         test: /\.mdx$/,
@@ -69,6 +71,8 @@ module.exports = {
           path.resolve(__dirname, './examples'),
         ],
         loader: 'babel-loader',
+        // TODO: sideEffects: true needs to be audited
+        sideEffects: true,
       },
     ],
   },

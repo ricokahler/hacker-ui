@@ -42,6 +42,7 @@ function DrawerExample(props: Props) {
 
       <Drawer
         className={styles.drawer}
+        style={styles.cssVariableObject}
         open={open}
         onClose={() => setOpen(false)}
       >

@@ -65,7 +65,7 @@
     "react-copy-to-clipboard": "^5.0.2",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-dom": "^16.12.0",
-    "react-inspector": "^4.0.0",
+    "react-inspector": "^5.0.1",
     "react-router-dom": "^5.1.2",
     "react-test-renderer": "^16.12.0",
     "rollup": "^1.29.0",
@@ -85,7 +85,7 @@
     "nanoid": "^2.1.11",
     "pirates": "^4.0.1",
     "polished": "^3.4.4",
-    "react-style-system": "0.0.0-a79390c66",
+    "react-style-system": "0.0.0-0844f6041",
     "require-from-string": "^2.0.2",
     "stylis": "^3.5.4"
   },

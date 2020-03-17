@@ -5,7 +5,6 @@ import {
   createStyles,
   ColorContextProvider,
   useColorContext,
-  useTheme,
   PropsFromStyles,
 } from 'react-style-system';
 import { ReactComponent } from './types';
@@ -39,10 +38,10 @@ const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
     }
 
     & > .hui-button {
-      margin-top: -${theme.space(0.5)};
-      margin-bottom: -${theme.space(0.5)};
-      margin-right: -${theme.space(0.75)};
-      margin-left: -${theme.space(0.25)};
+      margin-top: ${`-${theme.space(0.5)}`};
+      margin-bottom: ${`-${theme.space(0.5)}`};
+      margin-right: ${`-${theme.space(0.75)}`};
+      margin-left: ${`-${theme.space(0.25)}`};
     }
   `,
   // variants
@@ -125,14 +124,14 @@ const Chip = forwardRef((props: Props, ref: React.Ref<any>) => {
     ...restOfProps
   } = useStyles(props, component);
 
-  const theme = useTheme();
   const colorContext = useColorContext();
 
-  let color = props.color ?? colorContext?.surface ?? theme.colors.accent;
-  let surface = props.surface ?? colorContext?.surface ?? theme.colors.surface;
+  let color = props.color ?? colorContext?.color;
+  let surface = props.surface ?? colorContext?.surface;
 
   if (variant === 'filled') {
     surface = color;
+    color = readableColor(surface);
   }
 
   return (

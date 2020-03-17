@@ -326,6 +326,7 @@ function NavExample(props: Props) {
 
       {isMobile && (
         <Drawer
+          style={styles.cssVariableObject}
           className={styles.nav}
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}

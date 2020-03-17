@@ -6,9 +6,9 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     width: ${theme.space(1.5)};
     height: ${theme.space(1.5)};
-    margin-top: -${theme.space(0.5)};
-    margin-bottom: -${theme.space(0.5)};
-    margin-left: -${theme.space(0.5)};
+    margin-top: ${`-${theme.space(0.5)}`};
+    margin-bottom: ${`-${theme.space(0.5)}`};
+    margin-left: ${`-${theme.space(0.5)}`};
     border-radius: 99999px;
     overflow: hidden;
 

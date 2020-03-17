@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     max-height: 90vh;
     width: ${theme.block(8)};
@@ -32,7 +32,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: ${transparentize(0.5, 'black')};
+    background-color: ${staticVar(transparentize(0.5, 'black'))};
     z-index: ${theme.zIndex.modal};
   `,
 }));

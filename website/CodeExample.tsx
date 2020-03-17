@@ -278,7 +278,11 @@ function CodeExample(props: Props) {
         {children}
       </Root>
 
-      <Modal open={codeExampleOpen} onClose={() => setCodeExampleOpen(false)}>
+      <Modal
+        style={styles.cssVariableObject}
+        open={codeExampleOpen}
+        onClose={() => setCodeExampleOpen(false)}
+      >
         <ModalHeader className={styles.modalHeader}>
           <RadioGroup
             className={styles.modalButtons}
