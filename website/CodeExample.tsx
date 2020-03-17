@@ -139,8 +139,9 @@ function CodeExample(props: Props) {
           content: stripIndent`
             import React from 'react';
             import { render } from 'react-dom';
-            import { ThemeProvider, createTheme, useCssReset } from 'hacker-ui';
+            import { ThemeProvider, createTheme } from 'hacker-ui';
             import Example from './Example';
+            import './index.css';
             
             const theme = createTheme();
             
@@ -157,8 +158,6 @@ function CodeExample(props: Props) {
             document.body.appendChild(container);
             
             function App() {
-              useCssReset();
-            
               return (
                 <ThemeProvider theme={theme}>
                   <Example />
@@ -179,7 +178,7 @@ function CodeExample(props: Props) {
               keywords: [],
               main: `src/index.${codeType === 'typescript' ? 'tsx' : 'js'}`,
               dependencies: {
-                'hacker-ui': '0.0.0-e9670ffcb',
+                'hacker-ui': '0.0.0-88cd8a409',
                 react: '16.12.0',
                 'react-dom': '16.12.0',
                 'react-scripts': '3.0.1',
@@ -187,6 +186,7 @@ function CodeExample(props: Props) {
                 '@fortawesome/free-brands-svg-icons': '^5.12.1',
                 '@fortawesome/free-solid-svg-icons': '^5.12.0',
                 '@fortawesome/react-fontawesome': '^0.1.8',
+                'normalize.css': '^8.0.1',
               },
               devDependencies: {
                 '@types/react': '16.9.19',
@@ -221,6 +221,24 @@ function CodeExample(props: Props) {
             null,
             2,
           ),
+          isBinary: false,
+        },
+        'index.css': {
+          content: stripIndent`
+            @import '~normalize.css';
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+                Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            }
+            
+            :root {
+              font-size: 16px;
+            }
+            
+            * {
+              box-sizing: border-box;
+            }
+          `,
           isBinary: false,
         },
         ...(codeType === 'typescript'
