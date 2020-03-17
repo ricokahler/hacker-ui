@@ -3,7 +3,6 @@ export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as defaultTheme } from './defaultTheme';
-export { default as useCssReset } from './useCssReset';
 export { default as createTheme } from './createTheme';
 export { default as ListItemButton } from './ListItemButton';
 export { default as Anchor } from './Anchor';
