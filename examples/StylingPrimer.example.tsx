@@ -36,45 +36,6 @@ function MyComponent(props: Props) {
   );
 }
 
-// ============================================================
-// Normally, you would have 👆 these 👇 in two different files.
-// ============================================================
+const Parent = () => <MyComponent title="Example Title" />;
 
-const useParentStyles = createStyles(({ css }) => ({
-  root: css``,
-  myComponent: css`
-    border: 1px solid blue;
-  `,
-  changedTitle: css`
-    color: aquamarine;
-  `,
-}));
-
-interface ParentProps extends PropsFromStyles<typeof useStyles> {}
-
-function ParentComponent(props: ParentProps) {
-  const { Root, styles } = useParentStyles(props, 'section');
-
-  return (
-    <Root>
-      <MyComponent
-        title="Example"
-        //
-        // Hacker UI propagates the `className` to the root component
-        //
-        className={styles.myComponent}
-        //
-        // And also the `style` to the root component
-        //
-        style={{ margin: 50 }}
-        //
-        // And you can override individual className of the component with
-        // the `styles` prop
-        //
-        styles={{ title: styles.changedTitle }}
-      />
-    </Root>
-  );
-}
-
-export default ParentComponent;
+export default Parent;
