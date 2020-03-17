@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
-  FormControl,
-  Label,
-  HelperText,
-  Select,
-  Button,
-} from 'hacker-ui';
+import { FormControl, Label, HelperText, Select, Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
     flex-direction: column;
@@ -19,12 +11,20 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: ${theme.gap(1)};
   `,
   title: css`
-    ${theme.fonts.h2};
+    ${staticVar(theme.fonts.h2)};
     line-height: 1;
+
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      ${staticVar(theme.fonts.h3)};
+    }
   `,
   subtitle: css`
-    ${theme.fonts.subtitle1};
+    ${staticVar(theme.fonts.subtitle1)};
     line-height: 1;
+
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      ${staticVar(theme.fonts.subtitle2)};
+    }
   `,
   card: css`
     width: ${theme.block(5)};
@@ -38,17 +38,17 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
   `,
   cardTitle: css`
-    ${theme.fonts.h4};
+    ${staticVar(theme.fonts.h4)};
   `,
   cardDescription: css`
-    ${theme.fonts.body1};
+    ${staticVar(theme.fonts.body1)};
     margin-bottom: ${theme.space(1)};
   `,
   label: css`
     font-weight: bold;
   `,
   subtext: css`
-    ${theme.fonts.body2};
+    ${staticVar(theme.fonts.body2)};
     margin-bottom: ${theme.space(1)};
   `,
   formControl: css`

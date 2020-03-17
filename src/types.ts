@@ -25,9 +25,9 @@ export interface Theme {
     surface: string;
   };
   durations: {
-    short: number;
-    standard: number;
-    long: number;
+    short: string;
+    standard: string;
+    long: string;
   };
   shadows: {
     subtle: string;
@@ -50,17 +50,14 @@ export interface Theme {
   };
 
   breakpoints: {
-    mobile: number;
-    tablet: number;
-    desktop: number;
-    desktopLarge: number;
-  }
-}
-
-export interface DynamicColorPalette {
-  asBackground: string;
-  onSurface: string;
-  bgContrast: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+    desktopLarge: string;
+    up: (value: string) => string;
+    down: (value: string) => string;
+    between: (min: string, max: string) => string;
+  };
 }
 
 export type PropsOf<T> = T extends React.ComponentType<infer U> ? U : never;
@@ -69,33 +66,6 @@ export type ReactComponent =
   | React.ComponentType<any>
   | keyof JSX.IntrinsicElements
   | string;
-
-type GetStyleObj<UseStylesFn> = UseStylesFn extends (props: {
-  styles: Partial<infer U>;
-}) => any
-  ? U
-  : never;
-
-export interface PropsFromStyles<UseStylesFn> {
-  on?: string;
-  color?: string;
-  style?: React.CSSProperties;
-  styles?: Partial<GetStyleObj<UseStylesFn>>;
-  className?: string;
-}
-
-export interface StyleProps<StylesObj> {
-  on?: string;
-  color?: string;
-  style?: React.CSSProperties;
-  styles?: Partial<StylesObj>;
-  className?: string;
-}
-
-export type OmitStyleProps<T> = Omit<T, keyof StyleProps<any>>;
-export type PropsFromComponent<
-  T extends React.ComponentType<any>
-> = OmitStyleProps<PropsOf<T>>;
 
 export interface FormControlContext {
   id: string;

@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
+import { Chip, Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-import {
-  createStyles,
-  PropsFromStyles,
-  Chip,
-  Button,
-  useTheme,
-} from 'hacker-ui';
-
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
   `,
   card: css`
     margin: ${theme.gap(1)} auto;
-    width: ${theme.breakpoints.mobile}px;
+    width: ${theme.breakpoints.mobile};
     max-width: 100%;
     background-color: ${theme.colors.surface};
     box-shadow: ${theme.shadows.standard};
@@ -23,14 +17,14 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
   `,
   title: css`
-    ${theme.fonts.h4};
+    ${staticVar(theme.fonts.h4)};
   `,
   description: css`
-    ${theme.fonts.body1};
+    ${staticVar(theme.fonts.body1)};
     margin-bottom: ${theme.space(1)};
   `,
   label: css`
-    ${theme.fonts.caption};
+    ${staticVar(theme.fonts.caption)};
     margin-bottom: ${theme.space(0.5)};
   `,
   hr: css`

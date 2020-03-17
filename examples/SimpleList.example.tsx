@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  List,
-  ListItem,
-  ListItemButton,
-} from 'hacker-ui';
+import { List, ListItem, ListItemButton } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`

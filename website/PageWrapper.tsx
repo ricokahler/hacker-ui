@@ -1,29 +1,46 @@
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 import { transparentize } from 'polished';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     padding: ${theme.gap(1)};
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      padding: ${theme.space(1)};
+    }
+
     width: 1024px;
     max-width: 100%;
     margin: 0 auto;
     margin-bottom: calc(50vh - ${theme.block(2)});
 
     & > h1 {
-      ${theme.fonts.h3};
+      ${staticVar(theme.fonts.h3)};
+
+      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+        ${staticVar(theme.fonts.h4)};
+      }
     }
 
     & > h2 {
-      ${theme.fonts.h4};
+      ${staticVar(theme.fonts.h4)};
+
+      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+        ${staticVar(theme.fonts.h5)};
+      }
     }
 
     & > h3 {
-      ${theme.fonts.h5};
+      ${staticVar(theme.fonts.h5)};
+
+      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+        ${staticVar(theme.fonts.body1)};
+        font-weight: 500;
+      }
     }
 
     & > p {
-      ${theme.fonts.body1};
+      ${staticVar(theme.fonts.body1)};
       max-width: ${theme.block(7)};
     }
 
@@ -31,6 +48,7 @@ const useStyles = createStyles(({ css, theme }) => ({
       background-color: #2d2d2d;
       padding: ${theme.space(1)};
       color: white;
+      font-size: 0.8rem;
 
       & code {
         background-color: transparent;

@@ -1,5 +1,6 @@
 import React from 'react';
-import { createStyles, PropsFromStyles, Button, useTheme } from 'hacker-ui';
+import { Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`

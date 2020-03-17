@@ -4,11 +4,8 @@ import { stripIndent } from 'common-tags';
 import { transparentize } from 'polished';
 import { getParameters } from 'codesandbox/lib/api/define';
 import {
-  createStyles,
-  PropsFromStyles,
   Button,
   Tooltip,
-  useTheme,
   Modal,
   ModalHeader,
   ModalContent,
@@ -19,12 +16,13 @@ import {
   RadioGroup,
   Label,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faCopy } from '@fortawesome/free-solid-svg-icons';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 import CodeSandboxIcon from './CodeSandboxIcon';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
     flex-direction: column;
@@ -47,7 +45,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: 0 ${theme.space(1)};
   `,
   modalTitle: css`
-    ${theme.fonts.h4};
+    ${staticVar(theme.fonts.h4)};
     margin-right: ${theme.space(1)};
     flex: 0 0 auto;
   `,
@@ -73,6 +71,11 @@ const useStyles = createStyles(({ css, theme }) => ({
     color: white;
     padding: ${theme.space(1)};
     margin: 0;
+
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      /* TODO: try to remove this important */
+      font-size: 0.8rem !important;
+    }
   `,
   floatingButtons: css`
     position: absolute;
@@ -90,22 +93,36 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 interface Props extends PropsFromStyles<typeof useStyles> {
   children: React.ReactNode;
-  typescriptCode: string;
-  javascriptCode: string;
+  typescriptCodePromise: Promise<any>;
+  javascriptCodePromise: Promise<any>;
 }
 
 function CodeExample(props: Props) {
-  const { Root, styles, children, javascriptCode, typescriptCode } = useStyles(
-    props,
-    'section',
-  );
+  const {
+    Root,
+    styles,
+    children,
+    javascriptCodePromise,
+    typescriptCodePromise,
+  } = useStyles(props, 'section');
   const theme = useTheme();
   const [codeExampleOpen, setCodeExampleOpen] = useState(false);
   const [codeType, setCodeType] = useState<'typescript' | 'javascript'>(
     'typescript',
   );
 
+  const [typescriptCode, setTypescriptCode] = useState('Loading…');
+  const [javascriptCode, setJavascriptCode] = useState('Loading…');
+
   const code = codeType === 'typescript' ? typescriptCode : javascriptCode;
+
+  useEffect(() => {
+    javascriptCodePromise.then((mod: any) => setJavascriptCode(mod.default));
+  }, [javascriptCodePromise]);
+
+  useEffect(() => {
+    typescriptCodePromise.then((mod: any) => setTypescriptCode(mod.default));
+  }, [typescriptCodePromise]);
 
   const handleCopy = () => {
     alert('Code copied to clipboard!');
@@ -122,8 +139,9 @@ function CodeExample(props: Props) {
           content: stripIndent`
             import React from 'react';
             import { render } from 'react-dom';
-            import { ThemeProvider, createTheme, useCssReset } from 'hacker-ui';
+            import { ThemeProvider, createTheme } from 'hacker-ui';
             import Example from './Example';
+            import './index.css';
             
             const theme = createTheme();
             
@@ -140,8 +158,6 @@ function CodeExample(props: Props) {
             document.body.appendChild(container);
             
             function App() {
-              useCssReset();
-            
               return (
                 <ThemeProvider theme={theme}>
                   <Example />
@@ -162,7 +178,7 @@ function CodeExample(props: Props) {
               keywords: [],
               main: `src/index.${codeType === 'typescript' ? 'tsx' : 'js'}`,
               dependencies: {
-                'hacker-ui': '0.1.0-alpha.1',
+                'hacker-ui': '0.0.0-88cd8a409',
                 react: '16.12.0',
                 'react-dom': '16.12.0',
                 'react-scripts': '3.0.1',
@@ -170,6 +186,7 @@ function CodeExample(props: Props) {
                 '@fortawesome/free-brands-svg-icons': '^5.12.1',
                 '@fortawesome/free-solid-svg-icons': '^5.12.0',
                 '@fortawesome/react-fontawesome': '^0.1.8',
+                'normalize.css': '^8.0.1',
               },
               devDependencies: {
                 '@types/react': '16.9.19',
@@ -206,6 +223,24 @@ function CodeExample(props: Props) {
           ),
           isBinary: false,
         },
+        'index.css': {
+          content: stripIndent`
+            @import '~normalize.css';
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+                Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            }
+            
+            :root {
+              font-size: 16px;
+            }
+            
+            * {
+              box-sizing: border-box;
+            }
+          `,
+          isBinary: false,
+        },
         ...(codeType === 'typescript'
           ? {
               'tsconfig.json': {
@@ -238,8 +273,7 @@ function CodeExample(props: Props) {
       const { Prism } = window as any;
       if (!Prism) return;
       Prism.highlightAll();
-      console.log('called highligh all');
-    }, 100);
+    }, 250);
   }, [codeExampleOpen, codeType]);
 
   return (
@@ -262,7 +296,11 @@ function CodeExample(props: Props) {
         {children}
       </Root>
 
-      <Modal open={codeExampleOpen} onClose={() => setCodeExampleOpen(false)}>
+      <Modal
+        style={styles.cssVariableObject}
+        open={codeExampleOpen}
+        onClose={() => setCodeExampleOpen(false)}
+      >
         <ModalHeader className={styles.modalHeader}>
           <RadioGroup
             className={styles.modalButtons}
@@ -286,18 +324,16 @@ function CodeExample(props: Props) {
             <Tooltip title="Open in CodeSandbox">
               {props => (
                 <Button
-                  component={props => (
-                    // eslint-disable-next-line jsx-a11y/anchor-has-content
-                    <a
-                      href={codeSandboxUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      {...props}
-                    />
-                  )}
+                  component="a"
+                  // the props API for `Button` and `a` don't match so we
+                  // use `@ts-ignore` to get around it for this issue
+                  // @ts-ignore
+                  href={codeSandboxUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   shape="icon"
                   color="white"
-                  on="black"
+                  surface="black"
                   size="large"
                   variant="filled"
                   {...props}
@@ -313,7 +349,7 @@ function CodeExample(props: Props) {
                   <Button
                     shape="icon"
                     color="white"
-                    on="black"
+                    surface="black"
                     size="large"
                     variant="filled"
                     {...props}

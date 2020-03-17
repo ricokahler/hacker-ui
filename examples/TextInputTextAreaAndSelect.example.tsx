@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
   TextInput,
   TextArea,
   FormControl,
@@ -11,17 +8,25 @@ import {
   Select,
   HelperText,
 } from 'hacker-ui';
+import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
+
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      flex-direction: column;
+    }
   `,
   title: css`
-    ${theme.fonts.h5};
+    ${staticVar(theme.fonts.h5)};
     margin-bottom: ${theme.space(1)};
   `,
   controls: css`
     margin: ${theme.gap(1)} 0;
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      margin: ${theme.space(1)} 0;
+    }
     margin-right: ${theme.space(1)};
     flex: 0 0 auto;
     overflow: hidden;
@@ -58,7 +63,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
   `,
   label: css`
-    ${theme.fonts.h5};
+    ${staticVar(theme.fonts.h5)};
   `,
   textArea: css`
     resize: vertical;

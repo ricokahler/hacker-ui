@@ -1,11 +1,14 @@
 import React, { forwardRef, useState, useMemo } from 'react';
-import shortId from 'shortid';
-import createStyles from './createStyles';
-import { PropsFromStyles, ReactComponent } from './types';
+import nanoId from 'nanoid';
+import {
+  createStyles,
+  PropsFromStyles,
+  ColorContextProvider,
+  useColorContext,
+  useTheme,
+} from 'react-style-system';
+import { ReactComponent } from './types';
 import FormControlContext from './FormControlContext';
-import ColorProvider from './ColorProvider';
-import useColorContext from './useColorContext';
-import useTheme from './useTheme';
 
 const useStyles = createStyles(({ css }) => ({
   root: css`
@@ -35,10 +38,11 @@ const FormControl = forwardRef(
     const colorContext = useColorContext();
     const theme = useTheme();
 
-    const color = props.color ?? colorContext?.on ?? theme.colors.accent;
-    const on = props.on ?? colorContext?.on ?? theme.colors.surface;
+    const color = props.color ?? colorContext?.color ?? theme.colors.accent;
+    const surface =
+      props.surface ?? colorContext?.surface ?? theme.colors.surface;
 
-    const id = useMemo(() => `hui-${shortId()}`, []);
+    const id = useMemo(() => `hui-${nanoId()}`, []);
     const [focused, setFocused] = useState(false);
 
     const formControlContextValue = useMemo(
@@ -53,13 +57,15 @@ const FormControl = forwardRef(
     );
 
     return (
-      <ColorProvider color={color} on={on}>
+      <ColorContextProvider color={color} surface={surface}>
         <FormControlContext.Provider value={formControlContextValue}>
           <Root ref={ref} {...restOfProps} />
         </FormControlContext.Provider>
-      </ColorProvider>
+      </ColorContextProvider>
     );
   },
 );
+
+FormControl.displayName = 'FormControl';
 
 export default FormControl;

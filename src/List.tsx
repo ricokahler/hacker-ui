@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import createStyles from './createStyles';
-import { ReactComponent, PropsFromStyles } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css }) => ({
   root: css`
@@ -25,5 +25,7 @@ const List = forwardRef((props: Props, ref: React.Ref<HTMLUListElement>) => {
 
   return <Root ref={ref} {...restOfProps} />;
 });
+
+List.displayName = 'List';
 
 export default List;

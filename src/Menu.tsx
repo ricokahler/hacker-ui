@@ -1,8 +1,8 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
-import createStyles from './createStyles';
-import { PropsFromStyles, ReactComponent } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -135,5 +135,7 @@ const Menu = forwardRef((props: Props, ref: React.Ref<any>) => {
     )
   );
 });
+
+Menu.displayName = 'Menu';
 
 export default Menu;

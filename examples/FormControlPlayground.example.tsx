@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  FormControl,
-  Label,
-  Checkbox,
-  TextArea,
-  HelperText,
-} from 'hacker-ui';
+import { FormControl, Label, Checkbox, TextArea, HelperText } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
+
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      flex-direction: column;
+    }
   `,
   controls: css`
     flex: 0 0 auto;
@@ -22,7 +19,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     justify-content: center;
   `,
   title: css`
-    ${theme.fonts.h5};
+    ${staticVar(theme.fonts.h5)};
   `,
   content: css`
     flex: 1 1 auto;

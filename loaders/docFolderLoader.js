@@ -18,9 +18,9 @@ async function docFolderLoader() {
       })),
     );
 
-    const result = `export default ${JSON.stringify(hierarchy).replace(
+    const result = `import React from 'react';\nexport default ${JSON.stringify(hierarchy).replace(
       /"%%%%([^%]*)%%%%"/g,
-      "require('$1').default",
+      "React.lazy(() => import('$1'))",
     )}`;
 
     callback(null, result);

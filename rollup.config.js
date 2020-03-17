@@ -12,6 +12,14 @@ module.exports = [
       sourcemap: true,
     },
     plugins,
+    external: [
+      'react',
+      'classnames',
+      'polished',
+      'nanoid',
+      'react-dom',
+      'react-style-system',
+    ],
   },
   {
     input,
@@ -20,7 +28,23 @@ module.exports = [
       format: 'umd',
       name: 'HackerUI',
       sourcemap: true,
+      globals: {
+        react: 'React',
+        classnames: 'classNames',
+        polished: 'polished',
+        'react-style-system': 'reactStyleSystem',
+        nanoid: 'nanoId',
+        'react-dom': 'ReactDOM',
+      },
     },
     plugins,
+    external: [
+      'react',
+      'classnames',
+      'polished',
+      'nanoid',
+      'react-dom',
+      'react-style-system',
+    ],
   },
 ];

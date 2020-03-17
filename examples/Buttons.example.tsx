@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  useTheme,
-  PropsFromStyles,
-  Select,
-  FormControl,
-  Label,
-  Button,
-  CheckIcon,
-} from 'hacker-ui';
+import { Select, FormControl, Label, Button, CheckIcon } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
+
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      flex-direction: column;
+    }
   `,
   controls: css`
     flex: 0 0 auto;
     width: ${theme.block(2)};
     overflow: hidden;
     margin-right: ${theme.gap(1)};
+    display: flex;
+    flex-direction: column;
 
     & > *:not(:last-child) {
       margin-bottom: ${theme.space(0.5)};
+
+      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+        margin-right: ${theme.space(0.5)};
+      }
     }
+
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  `,
+  formControl: css`
+    min-width: ${theme.block(1.5)};
   `,
   buttons: css`
     display: flex;
@@ -58,7 +69,7 @@ function ButtonsExample(props: Props) {
   return (
     <Root>
       <div className={styles.controls}>
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Variant</Label>
           <Select
             value={variant}
@@ -74,7 +85,7 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Size</Label>
           <Select
             value={size}
@@ -88,7 +99,7 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Shape</Label>
           <Select
             value={shape}
@@ -101,7 +112,7 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Disabled</Label>
           <Select
             value={disabled ? 'yes' : 'no'}

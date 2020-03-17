@@ -6,13 +6,98 @@ import StylingPrimerExample from 'examples/StylingPrimer.example';
 ## Installation
 
 ```
-npm install hacker-ui
+npm install hacker-ui@next
 ```
 
 or
 
 ```
-yarn add hacker-ui
+yarn add hacker-ui@next
+```
+
+## Adding the theme and the ThemeProvider
+
+First create your theme using the `createTheme` function:
+
+`/src/theme.ts`
+
+```ts
+import { createTheme } from 'hacker-ui';
+
+const theme = createTheme({
+  // you can customize the there here.
+  // your customizations will be merged with default theme
+});
+
+// export the theme's type so it's available to you later
+export type Theme = typeof theme;
+
+export default theme;
+```
+
+Then wrap your app in a `<ThemeProvider>` and a `<ColorProvider />` from `react-style-system`. Here we'll do it from the index file.
+
+`/src/index.tsx`
+
+```tsx
+import React from 'react';
+import { render } from 'react-dom';
+import { ThemeProvider, ColorContextProvider } from 'react-style-system';
+import theme from './theme';
+import App from './App';
+
+const container = document.querySelector('#root');
+if (!container) {
+  throw new Error('Could not find root element');
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <ColorContextProvider
+      // If you don't specify a color for your component, it'll default to the
+      // this color. The accent color is recommended
+      color={theme.accent}
+      // If don't specify a surface color, it'll default to the surface color
+      // provided. A surface color of black would work well for dark modes
+      surface="#fff"
+    >
+      <App />
+    </ColorContextProvider>
+  </ThemeProvider>,
+  container,
+);
+```
+
+Lastly, add an type augmentation to allow for better auto-correct/intellisense in editors. We recommend doing this even if you're not using TypeScript.
+
+`/augments.d.ts`
+
+```ts
+import {
+  StyleFnArgs,
+  ReactComponent,
+  StyleProps,
+  GetComponentProps,
+} from 'react-style-system';
+import { Theme } from './types';
+
+declare module 'react-style-system' {
+  // provides an override type that includes the type for your theme
+  export function useTheme(): Theme;
+
+  // provides an override type that includes the type for your theme
+  export function createStyles<Styles, ComponentType extends ReactComponent>(
+    stylesFn: (args: StyleFnArgs) => Styles,
+  ): <Props extends StyleProps<Styles>>(
+    props: Props,
+    component?: ComponentType,
+  ) => {
+    Root: React.ComponentType<GetComponentProps<ComponentType>>;
+    styles: { [P in keyof Styles]: string } & {
+      cssVariableObject: { [key: string]: string };
+    };
+  } & Omit<Props, keyof StyleProps<any>>;
+}
 ```
 
 ## Styling Primer
@@ -31,6 +116,8 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     background-color: aquamarine;
     color: red;
+    /* add some variables from your theme */
+    border: 1px solid ${theme.colors.accent};
   `,
   title: css`
     font-size: 24px;

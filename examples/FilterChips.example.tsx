@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  Button,
-  TimesIcon,
-  useTheme,
-  Chip,
-  ChipThumbnail,
-  CheckIcon,
-} from 'hacker-ui';
+import { Button, TimesIcon, Chip, ChipThumbnail, CheckIcon } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { readableColor } from 'polished';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
   `,
   card: css`
     margin: ${theme.gap(1)} auto;
-    width: ${theme.breakpoints.mobile}px;
+    width: ${theme.breakpoints.mobile};
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -35,10 +27,10 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-right: ${theme.space(1)};
   `,
   title: css`
-    ${theme.fonts.h5};
+    ${staticVar(theme.fonts.h5)};
   `,
   label: css`
-    ${theme.fonts.caption};
+    ${staticVar(theme.fonts.caption)};
     margin-bottom: ${theme.space(0.5)};
   `,
   content: css`
@@ -97,7 +89,7 @@ function FilterChipsExample(props: Props) {
           <Button
             className={styles.closeButton}
             shape="icon"
-            on={theme.colors.brand}
+            surface={theme.colors.brand}
             color={readableColor(theme.colors.brand)}
           >
             <TimesIcon />

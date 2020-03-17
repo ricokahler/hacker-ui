@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
   Button,
   Modal,
   ModalHeader,
@@ -10,8 +7,9 @@ import {
   ModalFooter,
   ModalActions,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
   `,
@@ -19,11 +17,11 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin: ${theme.gap(1)} auto;
   `,
   title: css`
-    ${theme.fonts.h4};
+    ${staticVar(theme.fonts.h4)};
     padding: 0 ${theme.space(1)};
   `,
   paragraph: css`
-    ${theme.fonts.body1};
+    ${staticVar(theme.fonts.body1)};
     margin: ${theme.space(1)} 0;
   `,
   modalScroll: css`
@@ -58,13 +56,17 @@ function ModalExample(props: Props) {
         </Button>
       </Root>
 
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal
+        style={styles.cssVariableObject}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
         <ModalHeader className={styles.modalHeader}>
           <h3 className={styles.title}>Modal Header</h3>
         </ModalHeader>
         <ModalContent>
           <div className={styles.modalScroll}>
-            {Array.from(Array(10)).map(i => (
+            {Array.from(Array(10)).map((_, i) => (
               <p key={i} className={styles.paragraph}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

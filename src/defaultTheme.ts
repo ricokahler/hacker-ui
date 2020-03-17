@@ -1,5 +1,6 @@
+import { css } from 'react-style-system';
+import { math } from 'polished';
 import { Theme } from './types';
-import css from './css';
 
 const defaultTheme: Theme = {
   fonts: {
@@ -77,9 +78,9 @@ const defaultTheme: Theme = {
     surface: '#fff',
   },
   durations: {
-    short: 100,
-    standard: 250,
-    long: 500,
+    short: '100ms',
+    standard: '250ms',
+    long: '500ms',
   },
   shadows: {
     subtle: '0 0 10px 0 rgba(0,0,0,0.10)',
@@ -97,10 +98,15 @@ const defaultTheme: Theme = {
     tooltip: 1500,
   },
   breakpoints: {
-    mobile: 375,
-    tablet: 768,
-    desktop: 1024,
-    desktopLarge: 1440,
+    mobile: '375px',
+    tablet: '768px',
+    desktop: '1024px',
+    desktopLarge: '1440p',
+
+    up: (value: string) => `@media (min-width: ${math(`${value} + 1px`)})`,
+    down: (value: string) => `@media (max-width: ${value})`,
+    between: (min: string, max: string) =>
+      `@media (max-width: ${min}) and (min-width: ${math(`${max} - 1px`)})`,
   },
 };
 
