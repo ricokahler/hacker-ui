@@ -1,12 +1,12 @@
 import React from 'react';
 import { ObjectInspector } from 'react-inspector';
-import { useTheme, createStyles, PropsFromStyles } from 'hacker-ui';
+import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     background-color: ${theme.colors.surface};
     margin: ${theme.gap(1)};
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
       margin: ${theme.gap(1)} 0;
     }
     box-shadow: ${theme.shadows.standard};

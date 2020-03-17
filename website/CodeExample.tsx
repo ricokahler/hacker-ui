@@ -4,11 +4,8 @@ import { stripIndent } from 'common-tags';
 import { transparentize } from 'polished';
 import { getParameters } from 'codesandbox/lib/api/define';
 import {
-  createStyles,
-  PropsFromStyles,
   Button,
   Tooltip,
-  useTheme,
   Modal,
   ModalHeader,
   ModalContent,
@@ -19,12 +16,13 @@ import {
   RadioGroup,
   Label,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faCopy } from '@fortawesome/free-solid-svg-icons';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 import CodeSandboxIcon from './CodeSandboxIcon';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
     flex-direction: column;
@@ -47,7 +45,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: 0 ${theme.space(1)};
   `,
   modalTitle: css`
-    ${theme.fonts.h4};
+    ${staticVar(theme.fonts.h4)};
     margin-right: ${theme.space(1)};
     flex: 0 0 auto;
   `,
@@ -74,7 +72,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: ${theme.space(1)};
     margin: 0;
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
       /* TODO: try to remove this important */
       font-size: 0.8rem !important;
     }
@@ -95,22 +93,36 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 interface Props extends PropsFromStyles<typeof useStyles> {
   children: React.ReactNode;
-  typescriptCode: string;
-  javascriptCode: string;
+  typescriptCodePromise: Promise<any>;
+  javascriptCodePromise: Promise<any>;
 }
 
 function CodeExample(props: Props) {
-  const { Root, styles, children, javascriptCode, typescriptCode } = useStyles(
-    props,
-    'section',
-  );
+  const {
+    Root,
+    styles,
+    children,
+    javascriptCodePromise,
+    typescriptCodePromise,
+  } = useStyles(props, 'section');
   const theme = useTheme();
   const [codeExampleOpen, setCodeExampleOpen] = useState(false);
   const [codeType, setCodeType] = useState<'typescript' | 'javascript'>(
     'typescript',
   );
 
+  const [typescriptCode, setTypescriptCode] = useState('Loading…');
+  const [javascriptCode, setJavascriptCode] = useState('Loading…');
+
   const code = codeType === 'typescript' ? typescriptCode : javascriptCode;
+
+  useEffect(() => {
+    javascriptCodePromise.then((mod: any) => setJavascriptCode(mod.default));
+  }, [javascriptCodePromise]);
+
+  useEffect(() => {
+    typescriptCodePromise.then((mod: any) => setTypescriptCode(mod.default));
+  }, [typescriptCodePromise]);
 
   const handleCopy = () => {
     alert('Code copied to clipboard!');
@@ -266,7 +278,11 @@ function CodeExample(props: Props) {
         {children}
       </Root>
 
-      <Modal open={codeExampleOpen} onClose={() => setCodeExampleOpen(false)}>
+      <Modal
+        style={styles.cssVariableObject}
+        open={codeExampleOpen}
+        onClose={() => setCodeExampleOpen(false)}
+      >
         <ModalHeader className={styles.modalHeader}>
           <RadioGroup
             className={styles.modalButtons}

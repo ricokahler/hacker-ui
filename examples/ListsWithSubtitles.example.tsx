@@ -1,15 +1,10 @@
 import React from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  List,
-  ListItem,
-  ListItemButton,
-} from 'hacker-ui';
+import { List, ListItem, ListItemButton } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css``,
   list: css`
     width: ${theme.block(3)};
@@ -28,10 +23,10 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex: 1 1 auto;
   `,
   title: css`
-    ${theme.fonts.h5}
+    ${staticVar(theme.fonts.h5)}
   `,
   subtitle: css`
-    ${theme.fonts.caption}
+    ${staticVar(theme.fonts.caption)}
   `,
   icon: css`
     flex: 0 0 auto;

@@ -10,9 +10,6 @@ import {
   useLocation,
 } from 'react-router-dom';
 import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
   List,
   ListItem,
   ListItemButton,
@@ -20,11 +17,12 @@ import {
   Drawer,
   Button,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
-const useStyles = createStyles(({ css, theme }) => {
+const useStyles = createStyles(({ css, theme, staticVar }) => {
   const navBackgroundColor =
     readableColor(theme.colors.surface) === '#000'
       ? darken(0.03, theme.colors.surface)
@@ -38,12 +36,12 @@ const useStyles = createStyles(({ css, theme }) => {
       margin: ${theme.gap(1)};
       height: 500px;
 
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
         margin: ${theme.space(1)};
       }
     `,
     title: css`
-      ${theme.fonts.body1};
+      ${staticVar(theme.fonts.body1)};
       font-weight: bold;
       flex: 0 0 auto;
       height: ${theme.block(0.5)};
@@ -72,7 +70,7 @@ const useStyles = createStyles(({ css, theme }) => {
       flex-direction: column;
     `,
     header: css`
-      ${theme.fonts.body1};
+      ${staticVar(theme.fonts.body1)};
       font-family: monospace;
       flex: 0 0 auto;
       height: ${theme.block(0.5)};
@@ -88,11 +86,11 @@ const useStyles = createStyles(({ css, theme }) => {
       flex: 1 1 auto;
       display: flex;
       & > p {
-        ${theme.fonts.h2};
+        ${staticVar(theme.fonts.h2)};
         margin: auto;
 
-        ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-          ${theme.fonts.h3};
+        ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+          ${staticVar(theme.fonts.h3)};
           margin: auto;
         }
       }
@@ -328,6 +326,7 @@ function NavExample(props: Props) {
 
       {isMobile && (
         <Drawer
+          style={styles.cssVariableObject}
           className={styles.nav}
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}

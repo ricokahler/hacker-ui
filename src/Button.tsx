@@ -4,10 +4,10 @@ import { transparentize, readableColor } from 'polished';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
   // button base styles
   root: css`
-    ${theme.fonts.button}
+    ${staticVar(theme.fonts.button)}
 
     display: inline-flex;
     justify-content: center;
@@ -44,8 +44,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     border: 1px solid ${color.readable};
     color: ${color.readable};
 
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:focus {
       background-color: ${transparentize(0.92, color.decorative)};
@@ -65,8 +65,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     background-color: ${color.decorative};
     color: ${readableColor(color.decorative)};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:focus {
       background-color: ${transparentize(0.18, color.decorative)};
@@ -88,8 +88,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   ghost: css`
     color: ${color.readable};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:focus {
       background-color: ${transparentize(0.92, color.decorative)};
@@ -134,7 +134,6 @@ const useStyles = createStyles(({ css, theme, color }) => ({
 }));
 
 type ButtonProps = JSX.IntrinsicElements['button'];
-
 interface Props extends PropsFromStyles<typeof useStyles>, ButtonProps {
   size?: 'small' | 'standard' | 'large';
   shape?: 'standard' | 'icon';
@@ -152,6 +151,7 @@ const Button = forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
     shape = 'standard',
     ...restOfProps
   } = useStyles(props, props.component || 'button');
+
   return (
     <Root
       className={classNames('hui-button', {

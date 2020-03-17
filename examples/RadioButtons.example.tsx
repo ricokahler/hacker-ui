@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  RadioGroup,
-  FormControl,
-  Label,
-  Radio,
-  HelperText,
-} from 'hacker-ui';
+import { RadioGroup, FormControl, Label, Radio, HelperText } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
     align-items: center;
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
       flex-direction: column;
     }
   `,
@@ -30,13 +23,13 @@ const useStyles = createStyles(({ css, theme }) => ({
     overflow: hidden;
     width: ${theme.block(2)};
     margin: ${theme.gap(1)} 0;
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
       margin: ${theme.space(1)} 0;
     }
     margin-right: ${theme.space(1)};
   `,
   pickOne: css`
-    ${theme.fonts.caption};
+    ${staticVar(theme.fonts.caption)};
   `,
   content: css`
     flex: 1 1 auto;
@@ -47,16 +40,16 @@ const useStyles = createStyles(({ css, theme }) => ({
     display: flex;
     flex-direction: column;
     margin: ${theme.gap(1)} auto;
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
       margin: ${theme.space(1)} auto;
     }
     text-align: center;
   `,
   youSelected: css`
-    ${theme.fonts.body1};
+    ${staticVar(theme.fonts.body1)};
   `,
   option: css`
-    ${theme.fonts.h3};
+    ${staticVar(theme.fonts.h3)};
     text-transform: capitalize;
   `,
 }));

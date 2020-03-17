@@ -5,15 +5,14 @@ import {
   createStyles,
   ColorContextProvider,
   useColorContext,
-  useTheme,
   PropsFromStyles,
 } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
   // button base styles
   root: css`
-    ${theme.fonts.caption}
+    ${staticVar(theme.fonts.caption)}
     font-weight: bold;
 
     display: inline-flex;
@@ -39,10 +38,10 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     }
 
     & > .hui-button {
-      margin-top: -${theme.space(0.5)};
-      margin-bottom: -${theme.space(0.5)};
-      margin-right: -${theme.space(0.75)};
-      margin-left: -${theme.space(0.25)};
+      margin-top: ${`-${theme.space(0.5)}`};
+      margin-bottom: ${`-${theme.space(0.5)}`};
+      margin-right: ${`-${theme.space(0.75)}`};
+      margin-left: ${`-${theme.space(0.25)}`};
     }
   `,
   // variants
@@ -50,8 +49,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     border: 1px solid ${color.readable};
     color: ${color.readable};
 
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:disabled {
       &,
@@ -78,8 +77,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     background-color: ${color.decorative};
     color: ${readableColor(color.decorative)};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard}ms,
-      border ${theme.durations.standard}ms;
+    transition: background-color ${theme.durations.standard},
+      border ${theme.durations.standard};
 
     &:disabled {
       background-color: ${transparentize(0.5, color.decorative)};
@@ -125,14 +124,14 @@ const Chip = forwardRef((props: Props, ref: React.Ref<any>) => {
     ...restOfProps
   } = useStyles(props, component);
 
-  const theme = useTheme();
   const colorContext = useColorContext();
 
-  let color = props.color ?? colorContext?.surface ?? theme.colors.accent;
-  let surface = props.surface ?? colorContext?.surface ?? theme.colors.surface;
+  let color = props.color ?? colorContext?.color;
+  let surface = props.surface ?? colorContext?.surface;
 
   if (variant === 'filled') {
     surface = color;
+    color = readableColor(surface);
   }
 
   return (

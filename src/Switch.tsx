@@ -117,8 +117,8 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       align-items: center;
       flex: 0 0 auto;
       background-color: white;
-      transition: border ${theme.durations.standard}ms,
-        background-color ${theme.durations.standard}ms;
+      transition: border ${theme.durations.standard},
+        background-color ${theme.durations.standard};
       border: 2px solid ${bland.decorative};
       background-color: ${surface};
     `,
@@ -141,8 +141,8 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       pointer-events: none;
     `,
     dot: css`
-      transition: cx ${theme.durations.standard}ms,
-        fill ${theme.durations.standard}ms;
+      transition: cx ${theme.durations.standard},
+        fill ${theme.durations.standard};
     `,
     dotSmall: css`
       r: 30;

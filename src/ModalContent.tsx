@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css }) => ({
   root: css`
     flex: 1 1 auto;
     position: relative;

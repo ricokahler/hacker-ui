@@ -1,7 +1,8 @@
 import React from 'react';
-import { createStyles, PropsFromStyles, Chip, useTheme } from 'hacker-ui';
+import { Chip } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css``,
   card: css`
     width: ${theme.breakpoints.tablet};
@@ -9,7 +10,7 @@ const useStyles = createStyles(({ css, theme }) => ({
 
     margin: ${theme.gap(1)} auto;
     padding: ${theme.gap(1)};
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
       padding: ${theme.space(1)};
     }
 
@@ -19,13 +20,13 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
   `,
   title: css`
-    ${theme.fonts.h3};
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-      ${theme.fonts.h4};
+    ${staticVar(theme.fonts.h3)};
+    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      ${staticVar(theme.fonts.h4)};
     }
   `,
   subtitle: css`
-    ${theme.fonts.body1};
+    ${staticVar(theme.fonts.body1)};
     margin-bottom: ${theme.space(1)};
   `,
   tags: css`
@@ -39,7 +40,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
   `,
   body: css`
-    ${theme.fonts.body1};
+    ${staticVar(theme.fonts.body1)};
   `,
 }));
 

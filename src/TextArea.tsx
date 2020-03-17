@@ -9,13 +9,13 @@ import {
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color, surface }) => {
+const useStyles = createStyles(({ css, theme, color, surface, staticVar }) => {
   const bland = createReadablePalette(theme.colors.bland, surface);
   const danger = createReadablePalette(theme.colors.danger, surface);
 
   return {
     root: css`
-      ${theme.fonts.body1};
+      ${staticVar(theme.fonts.body1)};
       padding: ${theme.space(0.75)} ${theme.space(0.5)};
       border: none;
       outline: none;
@@ -30,7 +30,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
     filled: css`
       background-color: ${transparentize(0.8, bland.decorative)};
       color: ${readableColor(surface)};
-      transition: background-color ${theme.durations.standard}ms;
+      transition: background-color ${theme.durations.standard};
 
       &:focus {
         background-color: ${transparentize(0.92, color.decorative)};
@@ -56,8 +56,8 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
     `,
     outlined: css`
       background-color: ${surface};
-      transition: border ${theme.durations.standard}ms,
-        background-color ${theme.durations.standard}ms;
+      transition: border ${theme.durations.standard},
+        background-color ${theme.durations.standard};
       border: 2px solid ${bland.decorative};
 
       &:focus {

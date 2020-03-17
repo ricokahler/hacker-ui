@@ -9,13 +9,13 @@ import {
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, color, theme, surface }) => {
+const useStyles = createStyles(({ css, color, theme, surface, staticVar }) => {
   const bland = createReadablePalette(theme.colors.bland, surface);
 
   return {
     root: css`
-      ${theme.fonts.caption};
-      transition: color ${theme.durations.standard}ms;
+      ${staticVar(theme.fonts.caption)};
+      transition: color ${theme.durations.standard};
     `,
     focused: css`
       color: ${color.readable};

@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  Button,
-  TimesIcon,
-  useTheme,
-  Chip,
-  ChipThumbnail,
-  CheckIcon,
-} from 'hacker-ui';
+import { Button, TimesIcon, Chip, ChipThumbnail, CheckIcon } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { readableColor } from 'polished';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     display: flex;
   `,
@@ -35,10 +27,10 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-right: ${theme.space(1)};
   `,
   title: css`
-    ${theme.fonts.h5};
+    ${staticVar(theme.fonts.h5)};
   `,
   label: css`
-    ${theme.fonts.caption};
+    ${staticVar(theme.fonts.caption)};
     margin-bottom: ${theme.space(0.5)};
   `,
   content: css`

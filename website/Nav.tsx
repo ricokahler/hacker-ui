@@ -2,11 +2,8 @@ import React, { useState, Fragment } from 'react';
 import classNames from 'classnames';
 import { darken, lighten, readableColor } from 'polished';
 import {
-  createStyles,
-  StyleProps,
   List,
   ListItemButton,
-  useTheme,
   useMediaQuery,
   Drawer,
   Button,
@@ -14,6 +11,7 @@ import {
   ListItem,
   Tooltip,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -39,7 +37,7 @@ const flattenedDocArray = docArray.map(i =>
     : i,
 ) as DocArray;
 
-const useStyles = createStyles(({ css, theme }) => {
+const useStyles = createStyles(({ css, theme, staticVar }) => {
   const backgroundColor =
     readableColor(theme.colors.surface) === '#000'
       ? darken(0.03, theme.colors.surface)
@@ -71,10 +69,10 @@ const useStyles = createStyles(({ css, theme }) => {
       justify-content: center;
     `,
     title: css`
-      ${theme.fonts.h5};
+      ${staticVar(theme.fonts.h5)};
     `,
     version: css`
-      ${theme.fonts.caption};
+      ${staticVar(theme.fonts.caption)};
     `,
     body: css`
       flex: 1 1 auto;
@@ -89,19 +87,19 @@ const useStyles = createStyles(({ css, theme }) => {
       margin-left: auto;
     `,
     itemTitle: css`
-      ${theme.fonts.body1};
+      ${staticVar(theme.fonts.body1)};
       margin-right: ${theme.space(1)};
     `,
     itemTitleBold: css`
       font-weight: bold;
     `,
     routeBody: css`
-      ${theme.fonts.caption};
+      ${staticVar(theme.fonts.caption)};
     `,
   };
 });
 
-interface Props extends StyleProps<typeof useStyles> {
+interface Props extends PropsFromStyles<typeof useStyles> {
   open: boolean;
   onClose: () => void;
 }

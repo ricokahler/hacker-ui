@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, staticVar }) => ({
   root: css`
     background-color: ${theme.colors.surface};
     box-shadow: ${theme.shadows.standard};
@@ -15,10 +15,10 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   container: css`
     position: fixed;
-    width: 100vw;
-    height: 100vh;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     display: flex;
   `,
   backdrop: css`
@@ -27,7 +27,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: ${transparentize(0.5, 'black')};
+    background-color: ${staticVar(transparentize(0.5, 'black'))};
     z-index: ${theme.zIndex.drawer};
   `,
 }));
