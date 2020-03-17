@@ -1,11 +1,7 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { transparentize, readableColor } from 'polished';
-import {
-  createStyles,
-  PropsFromStyles,
-  useColorContext,
-} from 'react-style-system';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
