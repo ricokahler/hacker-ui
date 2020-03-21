@@ -40,6 +40,9 @@ export interface Theme {
   gap: (n: number) => string;
   block: (n: number) => string;
 
+  // border radius
+  borderRadius: string;
+
   // these were inspired from from material-ui's z-indexes
   zIndex: {
     appBar: number;
@@ -54,7 +57,7 @@ export interface Theme {
     tablet: number;
     desktop: number;
     desktopLarge: number;
-  }
+  };
 }
 
 export interface DynamicColorPalette {

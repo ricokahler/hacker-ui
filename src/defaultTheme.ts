@@ -89,6 +89,7 @@ const defaultTheme: Theme = {
   space: n => `${n * 16}px`,
   gap: n => `${n * 48}px`,
   block: n => `${n * 96}px`,
+  borderRadius: '0.1rem',
   zIndex: {
     appBar: 1100,
     drawer: 1200,
