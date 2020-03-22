@@ -6,13 +6,13 @@ import StylingPrimerExample from 'examples/StylingPrimer.example';
 ## Installation
 
 ```
-npm install hacker-ui@next
+npm install hacker-ui@next react-style-system
 ```
 
 or
 
 ```
-yarn add hacker-ui@next
+yarn add hacker-ui@next react-style-system
 ```
 
 ## Adding the theme and the ThemeProvider
@@ -35,14 +35,14 @@ export type Theme = typeof theme;
 export default theme;
 ```
 
-Then wrap your app in a `<ThemeProvider>` and a `<ColorProvider />` from `react-style-system`. Here we'll do it from the index file.
+Then wrap your app in a `<ThemeProvider>` from `hacker-ui`. Here we'll do it from the index file.
 
 `/src/index.tsx`
 
 ```tsx
 import React from 'react';
 import { render } from 'react-dom';
-import { ThemeProvider, ColorContextProvider } from 'react-style-system';
+import { ThemeProvider } from 'hacker-ui';
 import theme from './theme';
 import App from './App';
 
@@ -53,16 +53,7 @@ if (!container) {
 
 render(
   <ThemeProvider theme={theme}>
-    <ColorContextProvider
-      // If you don't specify a color for your component, it'll default to the
-      // this color. The accent color is recommended
-      color={theme.accent}
-      // If don't specify a surface color, it'll default to the surface color
-      // provided. A surface color of black would work well for dark modes
-      surface="#fff"
-    >
-      <App />
-    </ColorContextProvider>
+    <App />
   </ThemeProvider>,
   container,
 );
@@ -70,7 +61,7 @@ render(
 
 Lastly, add an type augmentation to allow for better auto-correct/intellisense in editors. We recommend doing this even if you're not using TypeScript.
 
-`/augments.d.ts`
+`/src/augments.d.ts`
 
 ```ts
 import {
@@ -79,7 +70,7 @@ import {
   StyleProps,
   GetComponentProps,
 } from 'react-style-system';
-import { Theme } from './types';
+import { Theme } from './theme';
 
 declare module 'react-style-system' {
   // provides an override type that includes the type for your theme
@@ -108,7 +99,7 @@ First, import `createStyles` (and `PropsFromStyles` if you're using TypeScript) 
 
 ```tsx
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 // useStyles is a custom hook
 const useStyles = createStyles(({ css, theme }) => ({
@@ -154,7 +145,7 @@ The `<Root />` component automatically drills down the `className` and `style` p
 
 ```tsx
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 import MyComponent from './MyComponent';
 
