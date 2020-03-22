@@ -4,7 +4,7 @@ import { createStyles, PropsFromStyles } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css``,
   list: css`
     background-color: ${theme.colors.surface};
@@ -32,10 +32,10 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     flex-direction: column;
   `,
   title: css`
-    ${staticVar(theme.fonts.h5)};
+    ${theme.fonts.h5};
   `,
   subtitle: css`
-    ${staticVar(theme.fonts.caption)};
+    ${theme.fonts.caption};
   `,
   buttonSection: css`
     min-width: ${theme.block(1)};
@@ -54,7 +54,7 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     }
   `,
   quantityCount: css`
-    ${staticVar(theme.fonts.body1)};
+    ${theme.fonts.body1};
     flex: 1 1 auto;
     text-align: center;
   `,
@@ -68,13 +68,13 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     justify-content: center;
   `,
   subtotal: css`
-    ${staticVar(theme.fonts.body1)};
+    ${theme.fonts.body1};
     font-weight: bold;
     color: #444;
     margin-bottom: ${theme.space(0.5)};
   `,
   subLabel: css`
-    ${staticVar(theme.fonts.caption)};
+    ${theme.fonts.caption};
     color: #444;
     text-align: center;
   `,

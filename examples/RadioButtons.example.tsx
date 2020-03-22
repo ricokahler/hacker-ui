@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { RadioGroup, FormControl, Label, Radio, HelperText } from 'hacker-ui';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     align-items: center;
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       flex-direction: column;
     }
   `,
@@ -23,13 +23,13 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     overflow: hidden;
     width: ${theme.block(2)};
     margin: ${theme.gap(1)} 0;
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       margin: ${theme.space(1)} 0;
     }
     margin-right: ${theme.space(1)};
   `,
   pickOne: css`
-    ${staticVar(theme.fonts.caption)};
+    ${theme.fonts.caption};
   `,
   content: css`
     flex: 1 1 auto;
@@ -40,16 +40,16 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     display: flex;
     flex-direction: column;
     margin: ${theme.gap(1)} auto;
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       margin: ${theme.space(1)} auto;
     }
     text-align: center;
   `,
   youSelected: css`
-    ${staticVar(theme.fonts.body1)};
+    ${theme.fonts.body1};
   `,
   option: css`
-    ${staticVar(theme.fonts.h3)};
+    ${theme.fonts.h3};
     text-transform: capitalize;
   `,
 }));

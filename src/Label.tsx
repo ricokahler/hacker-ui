@@ -6,12 +6,12 @@ import { createReadablePalette, PropsFromStyles } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color, surface, staticVar }) => {
+const useStyles = createStyles(({ css, theme, color, surface }) => {
   const bland = createReadablePalette(theme.colors.bland, surface);
 
   return {
     root: css`
-      ${staticVar(theme.fonts.body1)};
+      ${theme.fonts.body1};
       color: ${readableColor(theme.colors.surface)};
       transition: color ${theme.durations.standard};
       cursor: pointer;

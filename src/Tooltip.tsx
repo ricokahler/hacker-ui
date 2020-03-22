@@ -7,9 +7,9 @@ import { TooltipProps } from './types';
 import delay from './delay';
 import useDebounce from './useDebounce';
 
-const useStyles = createStyles(({ css, theme, surface, staticVar }) => ({
+const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
-    ${staticVar(theme.fonts.caption)};
+    ${theme.fonts.caption};
     position: absolute;
     pointer-events: auto;
     padding: ${theme.space(0.5)} ${theme.space(1)};

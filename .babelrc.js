@@ -2,15 +2,7 @@ const path = require('path');
 
 module.exports = {
   presets: [
-    [
-      '@babel/preset-env',
-      // {
-      //   modules: false,
-      //   targets: {
-      //     esmodules: true,
-      //   },
-      // },
-    ],
+    '@babel/preset-env',
     '@babel/preset-react',
     '@babel/preset-typescript',
   ],
@@ -23,8 +15,8 @@ module.exports = {
         moduleResolver: {
           root: [__dirname],
           alias: {
-            'hacker-ui': './noop.js',
-            [path.resolve(__dirname, './docs')]: './array.js',
+            'hacker-ui': require.resolve('./noop.js'),
+            [path.resolve(__dirname, './docs')]: require.resolve('./array.js'),
           },
         },
       },

@@ -10,7 +10,7 @@ import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 import AngleDownIcon from './AngleDownIcon';
 
-const useStyles = createStyles(({ css, theme, color, surface, staticVar }) => {
+const useStyles = createStyles(({ css, theme, color, surface }) => {
   const bland = createReadablePalette(theme.colors.bland, surface);
   const danger = createReadablePalette(theme.colors.danger, surface);
 
@@ -20,7 +20,7 @@ const useStyles = createStyles(({ css, theme, color, surface, staticVar }) => {
       margin: ${theme.space(0.5)} 0;
     `,
     select: css`
-      ${staticVar(theme.fonts.body1)};
+      ${theme.fonts.body1};
       width: 100%;
       height: 100%;
       appearance: none;

@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     background-color: ${theme.colors.surface};
     box-shadow: ${theme.shadows.standard};
@@ -27,7 +27,7 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: ${staticVar(transparentize(0.5, 'black'))};
+    background-color: ${transparentize(0.5, 'black')};
     z-index: ${theme.zIndex.drawer};
   `,
 }));
@@ -65,6 +65,13 @@ const Drawer = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
       setContainer(null);
     };
   }, [open, styles.container]);
+
+  useEffect(() => {
+    if (!container) return;
+    for (const [k, v] of Object.entries(styles.cssVariableObject)) {
+      container.style.setProperty(k, v);
+    }
+  }, [container, styles.cssVariableObject]);
 
   // TODO: SSR/SEO audit
   return (
