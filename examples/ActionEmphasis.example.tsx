@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'hacker-ui';
 import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     padding: ${theme.gap(1)} 0;
@@ -18,10 +18,10 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
   `,
   title: css`
     flex: 0 0 auto;
-    ${staticVar(theme.fonts.h4)};
+    ${theme.fonts.h4};
   `,
   description: css`
-    ${staticVar(theme.fonts.body1)};
+    ${theme.fonts.body1};
     margin-bottom: ${theme.space(1)};
   `,
   actions: css`

@@ -9,13 +9,13 @@ import {
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color, surface, staticVar }) => {
+const useStyles = createStyles(({ css, theme, color, surface }) => {
   const bland = createReadablePalette(theme.colors.bland, surface);
   const danger = createReadablePalette(theme.colors.danger, surface);
 
   return {
     root: css`
-      ${staticVar(theme.fonts.body1)};
+      ${theme.fonts.body1};
       padding: ${theme.space(0.75)} ${theme.space(0.5)};
       border: none;
       outline: none;

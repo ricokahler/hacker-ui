@@ -67,6 +67,7 @@
     "react-dom": "16.13.1",
     "react-inspector": "5.0.1",
     "react-router-dom": "5.1.2",
+    "react-style-system": "0.0.0-0bc31a47c",
     "react-test-renderer": "16.13.1",
     "rollup": "1.32.1",
     "style-loader": "1.1.3",
@@ -82,12 +83,13 @@
     "@types/invariant": "2.2.31",
     "classnames": "2.2.6",
     "nanoid": "2.1.11",
-    "polished": "3.4.4",
-    "react-style-system": "0.0.0-0844f6041"
+    "polished": "3.4.4"
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "react-style-system": "0.0.0-0bc31a47c"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "browserslist": "> 5%"
 }

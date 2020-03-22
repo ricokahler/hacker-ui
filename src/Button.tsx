@@ -4,10 +4,10 @@ import { transparentize, readableColor } from 'polished';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color, staticVar }) => ({
+const useStyles = createStyles(({ css, theme, color }) => ({
   // button base styles
   root: css`
-    ${staticVar(theme.fonts.button)}
+    ${theme.fonts.button}
 
     display: inline-flex;
     justify-content: center;

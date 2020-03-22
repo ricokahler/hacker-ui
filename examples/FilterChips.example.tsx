@@ -3,7 +3,7 @@ import { Button, TimesIcon, Chip, ChipThumbnail, CheckIcon } from 'hacker-ui';
 import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { readableColor } from 'polished';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
   `,
@@ -27,10 +27,10 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     margin-right: ${theme.space(1)};
   `,
   title: css`
-    ${staticVar(theme.fonts.h5)};
+    ${theme.fonts.h5};
   `,
   label: css`
-    ${staticVar(theme.fonts.caption)};
+    ${theme.fonts.caption};
     margin-bottom: ${theme.space(0.5)};
   `,
   content: css`

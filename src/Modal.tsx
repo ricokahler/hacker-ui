@@ -71,7 +71,14 @@ const Modal = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
       document.body.removeChild(container);
       setContainer(null);
     };
-  }, [open, styles.container]);
+  }, [open, props.style, styles.container]);
+
+  useEffect(() => {
+    if (!container) return;
+    for (const [k, v] of Object.entries(styles.cssVariableObject)) {
+      container.style.setProperty(k, v);
+    }
+  }, [container, styles.cssVariableObject]);
 
   // TODO: throw something in the DOM later for SSR SEO
   return (

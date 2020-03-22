@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Select, FormControl, Label, Button, CheckIcon } from 'hacker-ui';
 import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
 
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       flex-direction: column;
     }
   `,
@@ -21,12 +21,12 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     & > *:not(:last-child) {
       margin-bottom: ${theme.space(0.5)};
 
-      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
         margin-right: ${theme.space(0.5)};
       }
     }
 
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       flex-direction: row;
       flex-wrap: wrap;
       width: 100%;

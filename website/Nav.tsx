@@ -37,7 +37,7 @@ const flattenedDocArray = docArray.map(i =>
     : i,
 ) as DocArray;
 
-const useStyles = createStyles(({ css, theme, staticVar }) => {
+const useStyles = createStyles(({ css, theme }) => {
   const backgroundColor =
     readableColor(theme.colors.surface) === '#000'
       ? darken(0.03, theme.colors.surface)
@@ -69,10 +69,10 @@ const useStyles = createStyles(({ css, theme, staticVar }) => {
       justify-content: center;
     `,
     title: css`
-      ${staticVar(theme.fonts.h5)};
+      ${theme.fonts.h5};
     `,
     version: css`
-      ${staticVar(theme.fonts.caption)};
+      ${theme.fonts.caption};
     `,
     body: css`
       flex: 1 1 auto;
@@ -87,14 +87,14 @@ const useStyles = createStyles(({ css, theme, staticVar }) => {
       margin-left: auto;
     `,
     itemTitle: css`
-      ${staticVar(theme.fonts.body1)};
+      ${theme.fonts.body1};
       margin-right: ${theme.space(1)};
     `,
     itemTitleBold: css`
       font-weight: bold;
     `,
     routeBody: css`
-      ${staticVar(theme.fonts.caption)};
+      ${theme.fonts.caption};
     `,
   };
 });

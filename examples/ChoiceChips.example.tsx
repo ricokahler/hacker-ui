@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Chip, Button } from 'hacker-ui';
 import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
   `,
@@ -17,14 +17,14 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     flex-direction: column;
   `,
   title: css`
-    ${staticVar(theme.fonts.h4)};
+    ${theme.fonts.h4};
   `,
   description: css`
-    ${staticVar(theme.fonts.body1)};
+    ${theme.fonts.body1};
     margin-bottom: ${theme.space(1)};
   `,
   label: css`
-    ${staticVar(theme.fonts.caption)};
+    ${theme.fonts.caption};
     margin-bottom: ${theme.space(0.5)};
   `,
   hr: css`

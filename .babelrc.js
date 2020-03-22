@@ -2,15 +2,7 @@ const path = require('path');
 
 module.exports = {
   presets: [
-    [
-      '@babel/preset-env',
-      // {
-      //   modules: false,
-      //   targets: {
-      //     esmodules: true,
-      //   },
-      // },
-    ],
+    '@babel/preset-env',
     '@babel/preset-react',
     '@babel/preset-typescript',
   ],

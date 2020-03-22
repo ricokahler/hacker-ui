@@ -10,21 +10,21 @@ import {
 } from 'hacker-ui';
 import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
 
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       flex-direction: column;
     }
   `,
   title: css`
-    ${staticVar(theme.fonts.h5)};
+    ${theme.fonts.h5};
     margin-bottom: ${theme.space(1)};
   `,
   controls: css`
     margin: ${theme.gap(1)} 0;
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       margin: ${theme.space(1)} 0;
     }
     margin-right: ${theme.space(1)};
@@ -63,7 +63,7 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     }
   `,
   label: css`
-    ${staticVar(theme.fonts.h5)};
+    ${theme.fonts.h5};
   `,
   textArea: css`
     resize: vertical;

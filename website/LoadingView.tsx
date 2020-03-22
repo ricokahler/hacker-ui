@@ -3,7 +3,7 @@ import { createStyles, PropsFromStyles } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     width: 100%;
     height: 100%;
@@ -19,7 +19,7 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     padding: ${theme.space(1)};
   `,
   title: css`
-    ${staticVar(theme.fonts.h4)};
+    ${theme.fonts.h4};
     margin-bottom: ${theme.space(1)};
   `,
 }));

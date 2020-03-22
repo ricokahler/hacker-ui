@@ -2,11 +2,11 @@ import React from 'react';
 import { ObjectInspector } from 'react-inspector';
 import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     background-color: ${theme.colors.surface};
     margin: ${theme.gap(1)};
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       margin: ${theme.gap(1)} 0;
     }
     box-shadow: ${theme.shadows.standard};

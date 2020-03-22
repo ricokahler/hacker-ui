@@ -22,7 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
-const useStyles = createStyles(({ css, theme, staticVar }) => {
+const useStyles = createStyles(({ css, theme }) => {
   const navBackgroundColor =
     readableColor(theme.colors.surface) === '#000'
       ? darken(0.03, theme.colors.surface)
@@ -36,12 +36,12 @@ const useStyles = createStyles(({ css, theme, staticVar }) => {
       margin: ${theme.gap(1)};
       height: 500px;
 
-      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
         margin: ${theme.space(1)};
       }
     `,
     title: css`
-      ${staticVar(theme.fonts.body1)};
+      ${theme.fonts.body1};
       font-weight: bold;
       flex: 0 0 auto;
       height: ${theme.block(0.5)};
@@ -70,7 +70,7 @@ const useStyles = createStyles(({ css, theme, staticVar }) => {
       flex-direction: column;
     `,
     header: css`
-      ${staticVar(theme.fonts.body1)};
+      ${theme.fonts.body1};
       font-family: monospace;
       flex: 0 0 auto;
       height: ${theme.block(0.5)};
@@ -86,11 +86,11 @@ const useStyles = createStyles(({ css, theme, staticVar }) => {
       flex: 1 1 auto;
       display: flex;
       & > p {
-        ${staticVar(theme.fonts.h2)};
+        ${theme.fonts.h2};
         margin: auto;
 
-        ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
-          ${staticVar(theme.fonts.h3)};
+        ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+          ${theme.fonts.h3};
           margin: auto;
         }
       }

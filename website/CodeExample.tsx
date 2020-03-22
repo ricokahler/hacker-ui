@@ -22,7 +22,7 @@ import { faCode, faCopy } from '@fortawesome/free-solid-svg-icons';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 import CodeSandboxIcon from './CodeSandboxIcon';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     padding: 0 ${theme.space(1)};
   `,
   modalTitle: css`
-    ${staticVar(theme.fonts.h4)};
+    ${theme.fonts.h4};
     margin-right: ${theme.space(1)};
     flex: 0 0 auto;
   `,
@@ -72,7 +72,7 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     padding: ${theme.space(1)};
     margin: 0;
 
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       /* TODO: try to remove this important */
       font-size: 0.8rem !important;
     }

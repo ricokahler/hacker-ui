@@ -4,7 +4,7 @@ import { createStyles, PropsFromStyles } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css``,
   list: css`
     width: ${theme.block(3)};
@@ -23,10 +23,10 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     flex: 1 1 auto;
   `,
   title: css`
-    ${staticVar(theme.fonts.h5)}
+    ${theme.fonts.h5}
   `,
   subtitle: css`
-    ${staticVar(theme.fonts.caption)}
+    ${theme.fonts.caption}
   `,
   icon: css`
     flex: 0 0 auto;

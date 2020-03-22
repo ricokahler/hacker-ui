@@ -2,45 +2,45 @@ import React from 'react';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import { transparentize } from 'polished';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     padding: ${theme.gap(1)};
-    ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
       padding: ${theme.space(1)};
     }
 
     width: 1024px;
     max-width: 100%;
     margin: 0 auto;
-    margin-bottom: calc(50vh - ${theme.block(2)});
+    /* margin-bottom: calc(50vh - ${theme.block(2)}); */
 
     & > h1 {
-      ${staticVar(theme.fonts.h3)};
+      ${theme.fonts.h3};
 
-      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
-        ${staticVar(theme.fonts.h4)};
+      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+        ${theme.fonts.h4};
       }
     }
 
     & > h2 {
-      ${staticVar(theme.fonts.h4)};
+      ${theme.fonts.h4};
 
-      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
-        ${staticVar(theme.fonts.h5)};
+      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+        ${theme.fonts.h5};
       }
     }
 
     & > h3 {
-      ${staticVar(theme.fonts.h5)};
+      ${theme.fonts.h5};
 
-      ${staticVar(theme.breakpoints.down(theme.breakpoints.tablet))} {
-        ${staticVar(theme.fonts.body1)};
+      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+        ${theme.fonts.body1};
         font-weight: 500;
       }
     }
 
     & > p {
-      ${staticVar(theme.fonts.body1)};
+      ${theme.fonts.body1};
       max-width: ${theme.block(7)};
     }
 

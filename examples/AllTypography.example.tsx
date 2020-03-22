@@ -2,7 +2,7 @@ import React from 'react';
 import { useMediaQuery } from 'hacker-ui';
 import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     flex-direction: column;
@@ -11,37 +11,37 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     }
   `,
   heading1: css`
-    ${staticVar(theme.fonts.h1)};
+    ${theme.fonts.h1};
   `,
   heading2: css`
-    ${staticVar(theme.fonts.h2)};
+    ${theme.fonts.h2};
   `,
   heading3: css`
-    ${staticVar(theme.fonts.h3)};
+    ${theme.fonts.h3};
   `,
   heading4: css`
-    ${staticVar(theme.fonts.h4)};
+    ${theme.fonts.h4};
   `,
   heading5: css`
-    ${staticVar(theme.fonts.h5)};
+    ${theme.fonts.h5};
   `,
   body1: css`
-    ${staticVar(theme.fonts.body1)};
+    ${theme.fonts.body1};
   `,
   body2: css`
-    ${staticVar(theme.fonts.body2)};
+    ${theme.fonts.body2};
   `,
   caption: css`
-    ${staticVar(theme.fonts.caption)};
+    ${theme.fonts.caption};
   `,
   button: css`
-    ${staticVar(theme.fonts.button)};
+    ${theme.fonts.button};
   `,
   subtitle1: css`
-    ${staticVar(theme.fonts.subtitle1)};
+    ${theme.fonts.subtitle1};
   `,
   subtitle2: css`
-    ${staticVar(theme.fonts.subtitle2)};
+    ${theme.fonts.subtitle2};
   `,
 }));
 

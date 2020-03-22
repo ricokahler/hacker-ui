@@ -9,7 +9,7 @@ import {
 } from 'hacker-ui';
 import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, staticVar }) => ({
+const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
   `,
@@ -17,11 +17,11 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     margin: ${theme.gap(1)} auto;
   `,
   title: css`
-    ${staticVar(theme.fonts.h4)};
+    ${theme.fonts.h4};
     padding: 0 ${theme.space(1)};
   `,
   paragraph: css`
-    ${staticVar(theme.fonts.body1)};
+    ${theme.fonts.body1};
     margin: ${theme.space(1)} 0;
   `,
   modalScroll: css`
@@ -43,6 +43,8 @@ function ModalExample(props: Props) {
   const theme = useTheme();
 
   const [open, setOpen] = useState(false);
+
+  console.log(styles.cssVariableObject);
 
   return (
     <>
