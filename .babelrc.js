@@ -15,8 +15,8 @@ module.exports = {
         moduleResolver: {
           root: [__dirname],
           alias: {
-            'hacker-ui': './noop.js',
-            [path.resolve(__dirname, './docs')]: './array.js',
+            'hacker-ui': require.resolve('./noop.js'),
+            [path.resolve(__dirname, './docs')]: require.resolve('./array.js'),
           },
         },
       },
