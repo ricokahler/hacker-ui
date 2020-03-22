@@ -139,11 +139,10 @@ function CodeExample(props: Props) {
           content: stripIndent`
             import React from 'react';
             import { render } from 'react-dom';
-            import { ThemeProvider, createTheme } from 'hacker-ui';
+            import { ThemeProvider } from 'hacker-ui';
             import Example from './Example';
+            import theme from './theme';
             import './index.css';
-            
-            const theme = createTheme();
             
             const container = document.createElement('div');
             container.style.position = 'fixed';
@@ -166,6 +165,24 @@ function CodeExample(props: Props) {
             }
             
             render(<App />, container);
+          `,
+          isBinary: false,
+        },
+        [`theme.${codeType === 'typescript' ? 'tsx' : 'js'}`]: {
+          content: stripIndent`
+            import { createTheme } from 'hacker-ui';
+
+            const theme = createTheme({
+              /* add your overrides here */
+            });
+
+            ${
+              codeType === 'typescript'
+                ? 'export type Theme = typeof theme;'
+                : ''
+            }
+            
+            export default theme;
           `,
           isBinary: false,
         },
@@ -237,6 +254,37 @@ function CodeExample(props: Props) {
             
             * {
               box-sizing: border-box;
+            }
+          `,
+          isBinary: false,
+        },
+        'augments.d.ts': {
+          content: stripIndent`
+            import {
+              StyleFnArgs,
+              ReactComponent,
+              StyleProps,
+              GetComponentProps,
+            } from 'react-style-system';
+            
+            declare module 'react-style-system' {
+              type Theme = typeof import('./theme').default;
+
+              // provides an override type that includes the type for your theme
+              export function useTheme(): Theme;
+            
+              // provides an override type that includes the type for your theme
+              export function createStyles<Styles, ComponentType extends ReactComponent>(
+                stylesFn: (args: StyleFnArgs<Theme>) => Styles,
+              ): <Props extends StyleProps<Styles>>(
+                props: Props,
+                component?: ComponentType,
+              ) => {
+                Root: React.ComponentType<GetComponentProps<ComponentType>>;
+                styles: { [P in keyof Styles]: string } & {
+                  cssVariableObject: { [key: string]: string };
+                };
+              } & Omit<Props, keyof StyleProps<any>>;
             }
           `,
           isBinary: false,

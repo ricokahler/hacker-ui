@@ -8,7 +8,7 @@ import { Theme } from './types';
 
 declare module 'react-style-system' {
   export function createStyles<Styles, ComponentType extends ReactComponent>(
-    stylesFn: (args: StyleFnArgs) => Styles,
+    stylesFn: (args: StyleFnArgs<Theme>) => Styles,
   ): <Props extends StyleProps<Styles>>(
     props: Props,
     component?: ComponentType,
