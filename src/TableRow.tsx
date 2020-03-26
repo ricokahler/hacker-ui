@@ -4,7 +4,11 @@ import { PropsFromStyles } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   // table row base styles
-  root: css``,
+  root: css`
+    > :first-child {
+      min-width: 240px;
+    }
+  `,
 }));
 
 type TableRowProps = JSX.IntrinsicElements['tr'];

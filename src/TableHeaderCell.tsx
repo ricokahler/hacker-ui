@@ -4,7 +4,10 @@ import { PropsFromStyles } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   // table header cell base styles
-  root: css``,
+  root: css`
+    font-weight: normal;
+    min-width: 120px;
+  `,
 }));
 
 type TableHeaderCellProps = JSX.IntrinsicElements['th'];

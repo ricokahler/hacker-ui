@@ -11,9 +11,26 @@ import {
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
-  root: css``,
+  root: css`
+    overflow: auto;
+    margin: ${theme.space(1)} 0;
+  `,
   title: css`
     color: ${theme.colors.danger};
+  `,
+  numberCell: css`
+    text-align: right;
+  `,
+  headerRow: css`
+    th {
+      font-weight: 600;
+    }
+  `,
+  hoverableRow: css`
+    :hover {
+      background-color: rgba(204, 204, 204, 0.2);
+      transition: background-color 0.4s;
+    }
   `,
 }));
 
@@ -75,13 +92,13 @@ const rows = [
 ];
 
 function TableExample(props: Props) {
-  const { Root } = useStyles(props);
+  const { Root, styles } = useStyles(props);
 
   return (
     <Root>
       <Table>
         <TableHead>
-          <TableRow>
+          <TableRow className={styles.headerRow}>
             <TableHeaderCell>Package Name</TableHeaderCell>
             <TableHeaderCell>npm Path Name</TableHeaderCell>
             <TableHeaderCell>Bundle Size – Minified (kB)</TableHeaderCell>
@@ -94,13 +111,21 @@ function TableExample(props: Props) {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.name}>
+            <TableRow key={row.name} className={styles.hoverableRow}>
               <TableHeaderCell>{row.name}</TableHeaderCell>
               <TableBodyCell>{row.npmPath}</TableBodyCell>
-              <TableBodyCell>{row.bundleSizeMinified}</TableBodyCell>
-              <TableBodyCell>{row.bundleSizeMinifiedZipped}</TableBodyCell>
-              <TableBodyCell>{row.downloadTime2G}</TableBodyCell>
-              <TableBodyCell>{row.downloadTime3G}</TableBodyCell>
+              <TableBodyCell className={styles.numberCell}>
+                {row.bundleSizeMinified}
+              </TableBodyCell>
+              <TableBodyCell className={styles.numberCell}>
+                {row.bundleSizeMinifiedZipped}
+              </TableBodyCell>
+              <TableBodyCell className={styles.numberCell}>
+                {row.downloadTime2G}
+              </TableBodyCell>
+              <TableBodyCell className={styles.numberCell}>
+                {row.downloadTime3G}
+              </TableBodyCell>
             </TableRow>
           ))}
         </TableBody>

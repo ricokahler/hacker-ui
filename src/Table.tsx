@@ -14,6 +14,10 @@ const useStyles = createStyles(({ css, theme, givenSurface }) => ({
     border-spacing: ${theme.space(0.5)};
     min-width: 500px;
     border-collapse: collapse;
+    text-align: left;
+    -webkit-box-shadow: 0px 2px 6px 0px ${theme.colors.bland};
+    -moz-box-shadow: 0px 2px 6px 0px ${theme.colors.bland};
+    box-shadow: 0px 2px 6px 0px ${theme.colors.bland};
 
     th, td {
       border-bottom: 1px solid ${theme.colors.bland};
