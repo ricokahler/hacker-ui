@@ -26,12 +26,6 @@ const useStyles = createStyles(({ css, theme }) => ({
       font-weight: 600;
     }
   `,
-  hoverableRow: css`
-    :hover {
-      background-color: rgba(204, 204, 204, 0.2);
-      transition: background-color 0.4s;
-    }
-  `,
 }));
 
 interface Props extends PropsFromStyles<typeof useStyles> {}
@@ -111,7 +105,7 @@ function TableExample(props: Props) {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.name} className={styles.hoverableRow}>
+            <TableRow key={row.name} hoverable>
               <TableHeaderCell>{row.name}</TableHeaderCell>
               <TableBodyCell>{row.npmPath}</TableBodyCell>
               <TableBodyCell className={styles.numberCell}>

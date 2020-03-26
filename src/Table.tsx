@@ -33,14 +33,10 @@ type TableVariant = 'contained' | 'ghost' | 'outlined' | 'striped';
 interface Props extends PropsFromStyles<typeof useStyles>, TableProps {
   children: React.ReactNode;
   variant?: TableVariant;
-  hoverable?: boolean;
 }
 
 const Table = (props: Props) => {
-  const { Root, children, variant = 'outlined', hoverable = true } = useStyles(
-    props,
-    'table',
-  );
+  const { Root, children, variant = 'outlined' } = useStyles(props, 'table');
 
   return <Root>{children}</Root>;
 };
