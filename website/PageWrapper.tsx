@@ -12,7 +12,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     width: 1024px;
     max-width: 100%;
     margin: 0 auto;
-    /* margin-bottom: calc(50vh - ${theme.block(2)}); */
+    margin-bottom: calc(50vh - ${theme.block(2)});
 
     & > h1 {
       ${theme.fonts.h3};

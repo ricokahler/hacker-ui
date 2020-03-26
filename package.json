@@ -67,7 +67,7 @@
     "react-dom": "16.13.1",
     "react-inspector": "5.0.1",
     "react-router-dom": "5.1.2",
-    "react-style-system": "0.0.0-49febccb0",
+    "react-style-system": "0.0.0-547ed4a41",
     "react-test-renderer": "16.13.1",
     "rollup": "1.32.1",
     "style-loader": "1.1.3",
