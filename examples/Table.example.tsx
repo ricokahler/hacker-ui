@@ -2,6 +2,7 @@ import React from 'react';
 import {
   createStyles,
   PropsFromStyles,
+  TableContainer,
   Table,
   TableHead,
   TableBody,
@@ -12,8 +13,7 @@ import {
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    overflow: auto;
-    margin: ${theme.space(1)} 0;
+    margin-top: ${theme.space(1)};
   `,
   title: css`
     color: ${theme.colors.danger};
@@ -90,40 +90,44 @@ function TableExample(props: Props) {
 
   return (
     <Root>
-      <Table>
-        <TableHead>
-          <TableRow className={styles.headerRow}>
-            <TableHeaderCell>Package Name</TableHeaderCell>
-            <TableHeaderCell>npm Path Name</TableHeaderCell>
-            <TableHeaderCell>Bundle Size – Minified (kB)</TableHeaderCell>
-            <TableHeaderCell>
-              Bundle Size – Minified + GZipped (kB)
-            </TableHeaderCell>
-            <TableHeaderCell>Download Time – 2G Edge (ms)</TableHeaderCell>
-            <TableHeaderCell>Download Time – Emerging 3G (ms)</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name} hoverable>
-              <TableHeaderCell>{row.name}</TableHeaderCell>
-              <TableBodyCell>{row.npmPath}</TableBodyCell>
-              <TableBodyCell className={styles.numberCell}>
-                {row.bundleSizeMinified}
-              </TableBodyCell>
-              <TableBodyCell className={styles.numberCell}>
-                {row.bundleSizeMinifiedZipped}
-              </TableBodyCell>
-              <TableBodyCell className={styles.numberCell}>
-                {row.downloadTime2G}
-              </TableBodyCell>
-              <TableBodyCell className={styles.numberCell}>
-                {row.downloadTime3G}
-              </TableBodyCell>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow className={styles.headerRow}>
+              <TableHeaderCell>Package Name</TableHeaderCell>
+              <TableHeaderCell>npm Path Name</TableHeaderCell>
+              <TableHeaderCell>Bundle Size – Minified (kB)</TableHeaderCell>
+              <TableHeaderCell>
+                Bundle Size – Minified + GZipped (kB)
+              </TableHeaderCell>
+              <TableHeaderCell>Download Time – 2G Edge (ms)</TableHeaderCell>
+              <TableHeaderCell>
+                Download Time – Emerging 3G (ms)
+              </TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {rows.map(row => (
+              <TableRow key={row.name} hoverable>
+                <TableHeaderCell>{row.name}</TableHeaderCell>
+                <TableBodyCell>{row.npmPath}</TableBodyCell>
+                <TableBodyCell className={styles.numberCell}>
+                  {row.bundleSizeMinified}
+                </TableBodyCell>
+                <TableBodyCell className={styles.numberCell}>
+                  {row.bundleSizeMinifiedZipped}
+                </TableBodyCell>
+                <TableBodyCell className={styles.numberCell}>
+                  {row.downloadTime2G}
+                </TableBodyCell>
+                <TableBodyCell className={styles.numberCell}>
+                  {row.downloadTime3G}
+                </TableBodyCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Root>
   );
 }

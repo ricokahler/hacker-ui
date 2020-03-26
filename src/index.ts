@@ -30,6 +30,7 @@ export { default as Chip } from './Chip';
 export { default as ChipThumbnail } from './ChipThumbnail';
 export { default as TimesIcon } from './TimesIcon';
 export { default as Tooltip } from './Tooltip';
+export { default as TableContainer } from './TableContainer';
 export { default as Table } from './Table';
 export { default as TableHead } from './TableHead';
 export { default as TableBody } from './TableBody';
