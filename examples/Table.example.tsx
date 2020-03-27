@@ -15,16 +15,8 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     margin-top: ${theme.space(1)};
   `,
-  title: css`
-    color: ${theme.colors.danger};
-  `,
   numberCell: css`
     text-align: right;
-  `,
-  headerRow: css`
-    th {
-      font-weight: 600;
-    }
   `,
 }));
 
@@ -93,7 +85,7 @@ function TableExample(props: Props) {
       <TableContainer>
         <Table>
           <TableHead>
-            <TableRow className={styles.headerRow}>
+            <TableRow>
               <TableHeaderCell>Package Name</TableHeaderCell>
               <TableHeaderCell>npm Path Name</TableHeaderCell>
               <TableHeaderCell>Bundle Size – Minified (kB)</TableHeaderCell>
