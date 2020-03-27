@@ -16,11 +16,12 @@ interface Props
   extends PropsFromStyles<typeof useStyles>,
     TableHeaderCellProps {
   children: React.ReactNode;
+  colSpan?: number;
 }
 
 const TableHeaderCell = (props: Props) => {
-  const { Root, children } = useStyles(props, 'th');
-  return <Root>{children}</Root>;
+  const { Root, children, colSpan = 1 } = useStyles(props, 'th');
+  return <Root colSpan={colSpan}>{children}</Root>;
 };
 
 export default TableHeaderCell;

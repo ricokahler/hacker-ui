@@ -4,7 +4,11 @@ import { PropsFromStyles } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   // table head base styles
-  root: css``,
+  root: css`
+    th {
+      font-weight: 600;
+    }
+  `,
 }));
 
 type TableHeadProps = JSX.IntrinsicElements['thead'];
