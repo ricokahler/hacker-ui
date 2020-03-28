@@ -20,35 +20,23 @@ const useStyles = createStyles(({ css, theme, color }) => ({
       }
     }
   `,
-  stickyFirstColumn: css`
-    > :first-child {
-      position: sticky;
-      left: 0;
-      z-index: 1;
-    }
-  `,
 }));
 
 type TableRowProps = JSX.IntrinsicElements['tr'];
 
 interface Props extends PropsFromStyles<typeof useStyles>, TableRowProps {
   hoverable?: boolean;
-  stickyFirstColumn?: boolean;
 }
 
 const TableRow = forwardRef((props: Props, ref: React.Ref<any>) => {
-  const {
-    Root,
-    styles,
-    hoverable = false,
-    stickyFirstColumn = true,
-    ...restOfProps
-  } = useStyles(props, 'tr');
+  const { Root, styles, hoverable = false, ...restOfProps } = useStyles(
+    props,
+    'tr',
+  );
   return (
     <Root
       className={classNames({
         [styles.hoverableRow]: hoverable,
-        [styles.stickyFirstColumn]: stickyFirstColumn,
       })}
       ref={ref}
       {...restOfProps}

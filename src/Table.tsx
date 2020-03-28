@@ -48,6 +48,14 @@ const useStyles = createStyles(({ css, theme, givenSurface }) => ({
       border: none;
     }
   `,
+  // Other props
+  stickyFirstColumn: css`
+    tr > :first-child {
+      position: sticky;
+      left: 0;
+      z-index: 1;
+    }
+  `,
 }));
 
 type TableProps = JSX.IntrinsicElements['table'];
@@ -56,13 +64,17 @@ type TableVariant = 'contained' | 'ghost' | 'outlined' | 'striped';
 
 interface Props extends PropsFromStyles<typeof useStyles>, TableProps {
   variant?: TableVariant;
+  stickyFirstColumn?: boolean;
 }
 
 const Table = forwardRef((props: Props, ref: React.Ref<any>) => {
-  const { Root, styles, variant = 'outlined', ...restOfProps } = useStyles(
-    props,
-    'table',
-  );
+  const {
+    Root,
+    styles,
+    variant = 'outlined',
+    stickyFirstColumn = true,
+    ...restOfProps
+  } = useStyles(props, 'table');
 
   const theme = useTheme();
   const color = props.color || theme.colors.accent;
@@ -75,6 +87,7 @@ const Table = forwardRef((props: Props, ref: React.Ref<any>) => {
           [styles.contained]: variant === 'contained',
           [styles.striped]: variant === 'striped',
           [styles.ghost]: variant === 'ghost',
+          [styles.stickyFirstColumn]: stickyFirstColumn,
         })}
         ref={ref}
         {...restOfProps}
