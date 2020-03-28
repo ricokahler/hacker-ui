@@ -32,6 +32,7 @@ export { default as TimesIcon } from './TimesIcon';
 export { default as Tooltip } from './Tooltip';
 export { default as TableContainer } from './TableContainer';
 export { default as Table } from './Table';
+export { default as TableCaption } from './TableCaption';
 export { default as TableHead } from './TableHead';
 export { default as TableBody } from './TableBody';
 export { default as TableRow } from './TableRow';

@@ -9,6 +9,7 @@ import {
   TableRow,
   TableHeaderCell,
   TableBodyCell,
+  TableCaption,
 } from 'hacker-ui';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -118,6 +119,7 @@ function TableExample(props: Props) {
               </TableRow>
             ))}
           </TableBody>
+          <TableCaption>Source: bundlephobia.com (March, 2020)</TableCaption>
         </Table>
       </TableContainer>
     </Root>
