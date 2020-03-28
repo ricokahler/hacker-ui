@@ -8,8 +8,6 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     border-radius: ${theme.borderRadius};
     margin: ${theme.space(1)} ${theme.space(0.5)};
-    -webkit-box-shadow: 0px 2px 6px 0px ${theme.colors.bland};
-    -moz-box-shadow: 0px 2px 6px 0px ${theme.colors.bland};
     box-shadow: 0px 2px 6px 0px ${theme.colors.bland};
   `,
   responsive: css`
