@@ -1,9 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
+import { lighten } from 'polished';
 import createStyles from './createStyles';
 import { PropsFromStyles } from './types';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, color }) => ({
   // table row base styles
   root: css`
     > :first-child {
@@ -12,8 +13,18 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   hoverableRow: css`
     :hover {
-      background-color: rgba(204, 204, 204, 0.2);
-      transition: background-color 0.4s;
+      th,
+      td {
+        background-color: ${lighten(0.35, color.asBackground)} !important;
+        transition: background-color 0.2s;
+      }
+    }
+  `,
+  stickyFirstColumn: css`
+    > :first-child {
+      position: sticky;
+      left: 0;
+      z-index: 1;
     }
   `,
 }));
@@ -23,12 +34,24 @@ type TableRowProps = JSX.IntrinsicElements['tr'];
 interface Props extends PropsFromStyles<typeof useStyles>, TableRowProps {
   children: React.ReactNode;
   hoverable?: boolean;
+  stickyFirstColumn?: boolean;
 }
 
 const TableRow = (props: Props) => {
-  const { Root, styles, children, hoverable = false } = useStyles(props, 'tr');
+  const {
+    Root,
+    styles,
+    children,
+    hoverable = false,
+    stickyFirstColumn = true,
+  } = useStyles(props, 'tr');
   return (
-    <Root className={classNames({ [styles.hoverableRow]: hoverable })}>
+    <Root
+      className={classNames({
+        [styles.hoverableRow]: hoverable,
+        [styles.stickyFirstColumn]: stickyFirstColumn,
+      })}
+    >
       {children}
     </Root>
   );
