@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import createStyles from './createStyles';
 import { PropsFromStyles } from './types';
 
@@ -13,13 +13,13 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 type TableHeadProps = JSX.IntrinsicElements['thead'];
 
-interface Props extends PropsFromStyles<typeof useStyles>, TableHeadProps {
-  children: React.ReactNode;
-}
+interface Props extends PropsFromStyles<typeof useStyles>, TableHeadProps {}
 
-const TableHead = (props: Props) => {
-  const { Root, children } = useStyles(props, 'thead');
-  return <Root>{children}</Root>;
-};
+const TableHead = forwardRef((props: Props, ref: React.Ref<any>) => {
+  const { Root, styles, ...restOfProps } = useStyles(props, 'thead');
+  return <Root ref={ref} {...restOfProps} />;
+});
+
+TableHead.displayName = 'TableHead';
 
 export default TableHead;

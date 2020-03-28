@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { readableColor, lighten } from 'polished';
 import createStyles from './createStyles';
@@ -55,12 +55,11 @@ type TableProps = JSX.IntrinsicElements['table'];
 type TableVariant = 'contained' | 'ghost' | 'outlined' | 'striped';
 
 interface Props extends PropsFromStyles<typeof useStyles>, TableProps {
-  children: React.ReactNode;
   variant?: TableVariant;
 }
 
-const Table = (props: Props) => {
-  const { Root, styles, children, variant = 'outlined' } = useStyles(
+const Table = forwardRef((props: Props, ref: React.Ref<any>) => {
+  const { Root, styles, variant = 'outlined', ...restOfProps } = useStyles(
     props,
     'table',
   );
@@ -77,11 +76,13 @@ const Table = (props: Props) => {
           [styles.striped]: variant === 'striped',
           [styles.ghost]: variant === 'ghost',
         })}
-      >
-        {children}
-      </Root>
+        ref={ref}
+        {...restOfProps}
+      />
     </ColorProvider>
   );
-};
+});
+
+Table.displayName = 'Table';
 
 export default Table;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import createStyles from './createStyles';
 import { PropsFromStyles } from './types';
 
@@ -9,13 +9,13 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 type TableBodyCellProps = JSX.IntrinsicElements['td'];
 
-interface Props extends PropsFromStyles<typeof useStyles>, TableBodyCellProps {
-  children: React.ReactNode;
-}
+interface Props extends PropsFromStyles<typeof useStyles>, TableBodyCellProps {}
 
-const TableBodyCell = (props: Props) => {
-  const { Root, children } = useStyles(props, 'td');
-  return <Root>{children}</Root>;
-};
+const TableBodyCell = forwardRef((props: Props, ref: React.Ref<any>) => {
+  const { Root, styles, ...restOfProps } = useStyles(props, 'td');
+  return <Root ref={ref} {...restOfProps} />;
+});
+
+TableBodyCell.displayName = 'TableBodyCell';
 
 export default TableBodyCell;

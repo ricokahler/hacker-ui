@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import createStyles from './createStyles';
 import { PropsFromStyles } from './types';
@@ -18,18 +18,24 @@ const useStyles = createStyles(({ css, theme }) => ({
 type TableContainerProps = JSX.IntrinsicElements['div'];
 
 interface Props extends PropsFromStyles<typeof useStyles>, TableContainerProps {
-  children: React.ReactNode;
   responsive?: boolean;
 }
 
-const TableContainer = (props: Props) => {
-  const { Root, styles, children, responsive = true } = useStyles(props, 'div');
+const TableContainer = forwardRef((props: Props, ref: React.Ref<any>) => {
+  const { Root, styles, responsive = true, ...restOfProps } = useStyles(
+    props,
+    'div',
+  );
 
   return (
-    <Root className={classNames({ [styles.responsive]: responsive })}>
-      {children}
-    </Root>
+    <Root
+      className={classNames({ [styles.responsive]: responsive })}
+      ref={ref}
+      {...restOfProps}
+    />
   );
-};
+});
+
+TableContainer.displayName = 'TableContainer';
 
 export default TableContainer;

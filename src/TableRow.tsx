@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { lighten } from 'polished';
 import createStyles from './createStyles';
@@ -32,18 +32,17 @@ const useStyles = createStyles(({ css, theme, color }) => ({
 type TableRowProps = JSX.IntrinsicElements['tr'];
 
 interface Props extends PropsFromStyles<typeof useStyles>, TableRowProps {
-  children: React.ReactNode;
   hoverable?: boolean;
   stickyFirstColumn?: boolean;
 }
 
-const TableRow = (props: Props) => {
+const TableRow = forwardRef((props: Props, ref: React.Ref<any>) => {
   const {
     Root,
     styles,
-    children,
     hoverable = false,
     stickyFirstColumn = true,
+    ...restOfProps
   } = useStyles(props, 'tr');
   return (
     <Root
@@ -51,10 +50,12 @@ const TableRow = (props: Props) => {
         [styles.hoverableRow]: hoverable,
         [styles.stickyFirstColumn]: stickyFirstColumn,
       })}
-    >
-      {children}
-    </Root>
+      ref={ref}
+      {...restOfProps}
+    />
   );
-};
+});
+
+TableRow.displayName = 'TableRow';
 
 export default TableRow;

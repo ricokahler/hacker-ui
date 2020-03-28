@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import createStyles from './createStyles';
 import { PropsFromStyles } from './types';
 
@@ -14,14 +14,13 @@ type TableHeaderCellProps = JSX.IntrinsicElements['th'];
 
 interface Props
   extends PropsFromStyles<typeof useStyles>,
-    TableHeaderCellProps {
-  children: React.ReactNode;
-  colSpan?: number;
-}
+    TableHeaderCellProps {}
 
-const TableHeaderCell = (props: Props) => {
-  const { Root, children, colSpan = 1 } = useStyles(props, 'th');
-  return <Root colSpan={colSpan}>{children}</Root>;
-};
+const TableHeaderCell = forwardRef((props: Props, ref: React.Ref<any>) => {
+  const { Root, styles, ...restOfProps } = useStyles(props, 'th');
+  return <Root ref={ref} {...restOfProps} />;
+});
+
+TableHeaderCell.displayName = 'TableHeaderCell';
 
 export default TableHeaderCell;
