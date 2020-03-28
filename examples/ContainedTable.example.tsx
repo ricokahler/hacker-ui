@@ -51,7 +51,7 @@ function TableExample(props: Props) {
   return (
     <Root>
       <TableContainer>
-        <Table variant="contained">
+        <Table variant="contained" color="orange">
           <TableHead>
             <TableRow>
               <TableHeaderCell colSpan={5}>

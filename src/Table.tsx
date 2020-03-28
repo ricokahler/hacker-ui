@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { readableColor, lighten } from 'polished';
 import createStyles from './createStyles';
+import ColorProvider from './ColorProvider';
+import useTheme from './useTheme';
 import { PropsFromStyles } from './types';
 
 const useStyles = createStyles(({ css, theme, givenSurface }) => ({
@@ -63,16 +65,22 @@ const Table = (props: Props) => {
     'table',
   );
 
+  const theme = useTheme();
+  const color = props.color || theme.colors.accent;
+  const on = props.on || theme.colors.surface;
+
   return (
-    <Root
-      className={classNames({
-        [styles.contained]: variant === 'contained',
-        [styles.striped]: variant === 'striped',
-        [styles.ghost]: variant === 'ghost',
-      })}
-    >
-      {children}
-    </Root>
+    <ColorProvider color={color} on={on}>
+      <Root
+        className={classNames({
+          [styles.contained]: variant === 'contained',
+          [styles.striped]: variant === 'striped',
+          [styles.ghost]: variant === 'ghost',
+        })}
+      >
+        {children}
+      </Root>
+    </ColorProvider>
   );
 };
 
