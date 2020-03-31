@@ -11,7 +11,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
       min-width: 240px;
     }
   `,
-  hoverableRow: css`
+  hoverable: css`
     :hover {
       th,
       td {
@@ -36,7 +36,7 @@ const TableRow = forwardRef((props: Props, ref: React.Ref<any>) => {
   return (
     <Root
       className={classNames({
-        [styles.hoverableRow]: hoverable,
+        [styles.hoverable]: hoverable,
       })}
       ref={ref}
       {...restOfProps}
