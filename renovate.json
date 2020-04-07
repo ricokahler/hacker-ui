@@ -1,6 +1,5 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "groupName": "all"
+  "extends": ["config:base"],
+  "groupName": "all",
+  "schedule": "before 3am on the first day of the month"
 }
