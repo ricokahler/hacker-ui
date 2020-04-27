@@ -142,6 +142,7 @@ function CodeExample(props: Props) {
             import { ThemeProvider } from 'hacker-ui';
             import Example from './Example';
             import theme from './theme';
+            import 'normalize.css';
             import './index.css';
             
             const container = document.createElement('div');
@@ -242,7 +243,6 @@ function CodeExample(props: Props) {
         },
         'index.css': {
           content: stripIndent`
-            @import '~normalize.css';
             body {
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
                 Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
