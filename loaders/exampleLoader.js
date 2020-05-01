@@ -8,6 +8,10 @@ const { createFilenameHash } = require('@react-style-system/common');
 async function exampleLoader(exampleContent) {
   const callback = this.async();
 
+  if (!fs.existsSync(path.resolve(__dirname, '../.cache'))) {
+    fs.promises.mkdir(path.resolve(__dirname, '../.cache'));
+  }
+
   try {
     const prettierConfig = JSON.parse(
       (
