@@ -12,16 +12,15 @@ async function docFolderLoader() {
     }
 
     const hierarchy = createHierarchyFromFileNames(
-      files.map(file => ({
+      files.map((file) => ({
         path: file,
         value: `%%%%${file}%%%%`,
       })),
     );
 
-    const result = `import React from 'react';\nexport default ${JSON.stringify(hierarchy).replace(
-      /"%%%%([^%]*)%%%%"/g,
-      "React.lazy(() => import('$1'))",
-    )}`;
+    const result = `import React from 'react';\nexport default ${JSON.stringify(
+      hierarchy,
+    ).replace(/"%%%%([^%]*)%%%%"/g, "React.lazy(() => import('$1'))")}`;
 
     callback(null, result);
   } catch (e) {

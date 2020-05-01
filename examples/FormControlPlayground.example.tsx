@@ -82,7 +82,7 @@ function FormControlPlaygroundExample(props: Props) {
           <TextArea
             className={styles.textArea}
             value={message}
-            onChange={e => setMessage(e.currentTarget.value)}
+            onChange={(e) => setMessage(e.currentTarget.value)}
             placeholder="Make the message short and sweet."
             rows={5}
           />

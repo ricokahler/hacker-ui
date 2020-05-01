@@ -10,7 +10,7 @@ function convertToTitle(key) {
     // remove empty spaces
     .filter(Boolean)
     // capitalize
-    .map(word => `${word.substring(0, 1).toUpperCase()}${word.substring(1)}`)
+    .map((word) => `${word.substring(0, 1).toUpperCase()}${word.substring(1)}`)
     .join(' ');
   return title;
 }
@@ -38,7 +38,7 @@ function createHierarchyFromFileNames(collection) {
 
     const keys = Object.keys(l);
     const values = Object.values(l);
-    if (values.every(v => typeof v === 'number')) return l;
+    if (values.every((v) => typeof v === 'number')) return l;
     if (keys.length !== 1) return l;
 
     const first = keys[0];

@@ -5,7 +5,7 @@ export const add = (set: { [key: string]: boolean }, keyToAdd: string) => ({
 
 export const remove = (set: { [key: string]: boolean }, keyToRemove: string) =>
   Object.keys(set)
-    .filter(key => key !== keyToRemove)
+    .filter((key) => key !== keyToRemove)
     .reduce((set, key) => {
       set[key] = true;
       return set;

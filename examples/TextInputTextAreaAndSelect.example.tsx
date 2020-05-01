@@ -93,7 +93,7 @@ function TextInputTextAreaAndSelectExample(props: Props) {
           <Label>Variant</Label>
           <Select
             value={variant}
-            onChange={e =>
+            onChange={(e) =>
               setVariant(e.currentTarget.value as 'filled' | 'outlined')
             }
           >
@@ -106,7 +106,7 @@ function TextInputTextAreaAndSelectExample(props: Props) {
           <Label>Color</Label>
           <Select
             value={colorKey}
-            onChange={e =>
+            onChange={(e) =>
               setColorKey(
                 e.currentTarget.value as 'brand' | 'accent' | 'warning',
               )

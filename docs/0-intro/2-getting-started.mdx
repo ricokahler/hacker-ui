@@ -68,21 +68,21 @@ import {
   StyleFnArgs,
   ReactComponent,
   StyleProps,
-  GetComponentProps
-} from "react-style-system";
+  GetComponentProps,
+} from 'react-style-system';
 
-declare module "react-style-system" {
-  type Theme = typeof import("./theme").default;
+declare module 'react-style-system' {
+  type Theme = typeof import('./theme').default;
 
   // provides an override type that includes the type for your theme
   export function useTheme(): Theme;
 
   // provides an override type that includes the type for your theme
   export function createStyles<Styles, ComponentType extends ReactComponent>(
-    stylesFn: (args: StyleFnArgs<Theme>) => Styles
+    stylesFn: (args: StyleFnArgs<Theme>) => Styles,
   ): <Props extends StyleProps<Styles>>(
     props: Props,
-    component?: ComponentType
+    component?: ComponentType,
   ) => {
     Root: React.ComponentType<GetComponentProps<ComponentType>>;
     styles: { [P in keyof Styles]: string } & {

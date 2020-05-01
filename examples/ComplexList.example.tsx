@@ -121,13 +121,13 @@ function ComplexListExample(props: Props) {
           const quantity = quantities[id] ?? 0;
 
           const handleDec = () => {
-            setQuantities(quantities => ({
+            setQuantities((quantities) => ({
               ...quantities,
               [id]: Math.max(0, quantity - 1),
             }));
           };
           const handleInc = () => {
-            setQuantities(quantities => ({
+            setQuantities((quantities) => ({
               ...quantities,
               [id]: quantity + 1,
             }));
