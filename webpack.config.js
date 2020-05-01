@@ -26,6 +26,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.rss-css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          '@react-style-system/loader',
+        ],
+        include: [
+          path.resolve(__dirname, './.cache'),
+          path.resolve(__dirname, './website'),
+        ],
+        // exclude: [path.resolve(__dirname, './node_modules')],
+        sideEffects: true,
+      },
+      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
         include: [
