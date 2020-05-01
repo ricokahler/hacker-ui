@@ -25,7 +25,10 @@ function execute(command) {
 
 async function main() {
   console.log('cleaning…');
-  await execute('rm -rf dist');
+  await execute('rm -rf dist node_modules');
+
+  console.log('installing…');
+  await execute('npm i');
 
   console.log('linting…');
   await execute('npx eslint src --ext .ts,.tsx,.js,.jsx');
@@ -68,12 +71,21 @@ async function main() {
     JSON.stringify(updatedPackageJson, null, 2),
   );
 
+  const readme = await fs.promises.readFile(
+    path.resolve(__dirname, '../README.md'),
+  );
+
+  await fs.promises.writeFile(
+    path.resolve(__dirname, '../dist/README.md'),
+    readme,
+  );
+
   console.log('DONE!');
 }
 
 main()
   .then(() => process.exit(0))
-  .catch(e => {
+  .catch((e) => {
     console.error(e);
     process.exit(1);
   });

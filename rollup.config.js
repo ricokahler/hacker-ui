@@ -1,9 +1,9 @@
-const typescript = require('@rollup/plugin-typescript');
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
 
 const input = 'src/index.ts';
-const plugins = [typescript()];
 
-module.exports = [
+export default [
   {
     input,
     output: {
@@ -11,7 +11,23 @@ module.exports = [
       format: 'esm',
       sourcemap: true,
     },
-    plugins,
+    plugins: [
+      resolve({
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        modulesOnly: true,
+      }),
+      babel({
+        babelrc: false,
+        babelHelpers: 'runtime',
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        presets: [
+          ['@babel/preset-env', { targets: '> 5% and not IE 11' }],
+          '@babel/preset-typescript',
+          '@babel/preset-react',
+        ],
+        plugins: ['@babel/plugin-transform-runtime'],
+      }),
+    ],
     external: [
       'react',
       'classnames',
@@ -19,6 +35,7 @@ module.exports = [
       'nanoid',
       'react-dom',
       'react-style-system',
+      /^@babel\/runtime/,
     ],
   },
   {
@@ -37,7 +54,22 @@ module.exports = [
         'react-dom': 'ReactDOM',
       },
     },
-    plugins,
+    plugins: [
+      resolve({
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        modulesOnly: true,
+      }),
+      babel({
+        babelrc: false,
+        babelHelpers: 'bundled',
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        presets: [
+          ['@babel/preset-env', { targets: 'defaults, not IE 11' }],
+          '@babel/preset-typescript',
+          '@babel/preset-react',
+        ],
+      }),
+    ],
     external: [
       'react',
       'classnames',
