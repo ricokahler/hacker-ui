@@ -23,7 +23,7 @@
     "@fortawesome/free-brands-svg-icons": "5.13.0",
     "@fortawesome/free-solid-svg-icons": "5.13.0",
     "@fortawesome/react-fontawesome": "0.1.9",
-    "@mdx-js/loader": "1.5.8",
+    "@mdx-js/loader": "1.6.0",
     "@rollup/plugin-alias": "3.0.1",
     "@rollup/plugin-typescript": "2.1.0",
     "@types/common-tags": "1.8.0",
