@@ -33,7 +33,7 @@ module.exports = [
         classnames: 'classNames',
         polished: 'polished',
         'react-style-system': 'reactStyleSystem',
-        nanoid: 'nanoId',
+        nanoid: 'nanoid',
         'react-dom': 'ReactDOM',
       },
     },
