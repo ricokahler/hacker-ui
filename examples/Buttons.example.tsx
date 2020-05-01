@@ -73,7 +73,7 @@ function ButtonsExample(props: Props) {
           <Label>Variant</Label>
           <Select
             value={variant}
-            onChange={e => {
+            onChange={(e) => {
               setVariant(
                 e.currentTarget.value as 'filled' | 'outlined' | 'ghost',
               );
@@ -89,7 +89,7 @@ function ButtonsExample(props: Props) {
           <Label>Size</Label>
           <Select
             value={size}
-            onChange={e => {
+            onChange={(e) => {
               setSize(e.currentTarget.value as 'small' | 'standard' | 'large');
             }}
           >
@@ -103,7 +103,7 @@ function ButtonsExample(props: Props) {
           <Label>Shape</Label>
           <Select
             value={shape}
-            onChange={e => {
+            onChange={(e) => {
               setShape(e.currentTarget.value as 'icon' | 'standard');
             }}
           >
@@ -116,7 +116,7 @@ function ButtonsExample(props: Props) {
           <Label>Disabled</Label>
           <Select
             value={disabled ? 'yes' : 'no'}
-            onChange={e => {
+            onChange={(e) => {
               setDisabled(e.currentTarget.value === 'yes');
             }}
           >

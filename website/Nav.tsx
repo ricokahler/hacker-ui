@@ -22,7 +22,7 @@ import { toggle } from './setOperations';
 
 function flattenDocArray(arr: DocArray): DocArray {
   return arr
-    .map(i => (Array.isArray(i.value) ? flattenDocArray(i.value) : [i]))
+    .map((i) => (Array.isArray(i.value) ? flattenDocArray(i.value) : [i]))
     .reduce((flattened, next) => {
       for (const i of next) {
         flattened.push(i);
@@ -31,7 +31,7 @@ function flattenDocArray(arr: DocArray): DocArray {
     }, [] as DocArray);
 }
 
-const flattenedDocArray = docArray.map(i =>
+const flattenedDocArray = docArray.map((i) =>
   Array.isArray(i.value)
     ? { title: i.title, value: flattenDocArray(i.value) }
     : i,
@@ -120,7 +120,7 @@ function Nav(props: Props) {
       <div className={styles.header}>
         {isMobile && (
           <Tooltip title="Close Nav" position="right">
-            {tooltipProps => (
+            {(tooltipProps) => (
               <Button
                 {...tooltipProps}
                 className={styles.closeButton}
@@ -157,7 +157,7 @@ function Nav(props: Props) {
                   <ListItemButton
                     className={styles.item}
                     onClick={() =>
-                      setCollapsedSet(set => toggle(set, rootSlug))
+                      setCollapsedSet((set) => toggle(set, rootSlug))
                     }
                   >
                     <div

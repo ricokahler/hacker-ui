@@ -37,7 +37,7 @@ function AppBar(props: Props) {
     <Root>
       {isMobile && (
         <Tooltip title="Open nav" position="right">
-          {tooltipProps => (
+          {(tooltipProps) => (
             <Button
               {...tooltipProps}
               onClick={onOpenMobileNav}
@@ -53,7 +53,7 @@ function AppBar(props: Props) {
       )}
 
       <Tooltip title="Contribute on GitHub" position="left">
-        {tooltipProps => (
+        {(tooltipProps) => (
           <Button
             className={styles.githubButton}
             aria-label="Contribute on GitHub"

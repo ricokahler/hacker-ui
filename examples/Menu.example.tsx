@@ -63,7 +63,7 @@ function MenuExample(props: Props) {
             <Label>Position</Label>
             <Select
               value={position}
-              onChange={e =>
+              onChange={(e) =>
                 setPosition(
                   e.currentTarget.value as 'top' | 'left' | 'bottom' | 'right',
                 )
@@ -81,14 +81,14 @@ function MenuExample(props: Props) {
             <Button
               className={styles.button}
               variant="filled"
-              onClick={e => setAnchorEl(e.currentTarget)}
+              onClick={(e) => setAnchorEl(e.currentTarget)}
             >
               Open Menu
             </Button>
             <Button
               shape="icon"
               color={theme.colors.brand}
-              onClick={e => setAnchorEl(e.currentTarget)}
+              onClick={(e) => setAnchorEl(e.currentTarget)}
             >
               <FontAwesomeIcon icon={faEllipsisV} />
             </Button>

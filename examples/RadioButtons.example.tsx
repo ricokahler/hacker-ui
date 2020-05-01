@@ -65,7 +65,7 @@ function RadioButtonsExample(props: Props) {
     <Root>
       <RadioGroup
         value={value}
-        onChange={e =>
+        onChange={(e) =>
           setValue(e.currentTarget.value as 'one' | 'two' | 'three')
         }
         className={styles.radioGroup}

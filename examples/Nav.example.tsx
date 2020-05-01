@@ -172,10 +172,7 @@ const links: Links = [
 ];
 
 function titleToSlug(title: string) {
-  return title
-    .toLowerCase()
-    .trim()
-    .replace(/ /g, '-');
+  return title.toLowerCase().trim().replace(/ /g, '-');
 }
 
 /**
@@ -215,7 +212,7 @@ const toggle = (set: { [key: string]: boolean }, keyToToggle: string) =>
 
 const remove = (set: { [key: string]: boolean }, keyToRemove: string) =>
   Object.keys(set)
-    .filter(key => key !== keyToRemove)
+    .filter((key) => key !== keyToRemove)
     .reduce((set, key) => {
       set[key] = true;
       return set;
@@ -254,7 +251,7 @@ function NavExample(props: Props) {
 
         const handleClick = () => {
           if (!isFolder) return;
-          setCollapsed(collapsed => toggle(collapsed, path));
+          setCollapsed((collapsed) => toggle(collapsed, path));
         };
 
         return (

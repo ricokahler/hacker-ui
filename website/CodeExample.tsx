@@ -328,7 +328,7 @@ function CodeExample(props: Props) {
     <>
       <Root>
         <Tooltip title="Show code">
-          {props => (
+          {(props) => (
             <Button
               aria-label="Show code"
               shape="icon"
@@ -353,7 +353,7 @@ function CodeExample(props: Props) {
           <RadioGroup
             className={styles.modalButtons}
             value={codeType}
-            onChange={e => setCodeType(e.currentTarget.value as any)}
+            onChange={(e) => setCodeType(e.currentTarget.value as any)}
           >
             <FormControl className={styles.choice}>
               <Radio className={styles.radio} value="typescript" />
@@ -370,7 +370,7 @@ function CodeExample(props: Props) {
         <ModalContent>
           <div className={styles.floatingButtons}>
             <Tooltip title="Open in CodeSandbox">
-              {props => (
+              {(props) => (
                 <Button
                   component="a"
                   // the props API for `Button` and `a` don't match so we
@@ -392,7 +392,7 @@ function CodeExample(props: Props) {
             </Tooltip>
 
             <Tooltip title="Copy code">
-              {props => (
+              {(props) => (
                 <CopyToClipBoard text={code} onCopy={handleCopy}>
                   <Button
                     shape="icon"

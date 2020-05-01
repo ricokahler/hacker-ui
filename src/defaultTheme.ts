@@ -87,9 +87,9 @@ const defaultTheme: Theme = {
     standard: '0 0 20px 0 rgba(0,0,0,0.13)',
     emphasis: '0 0 30px 0 rgba(0,0,0,0.13)',
   },
-  space: n => `${n * 16}px`,
-  gap: n => `${n * 48}px`,
-  block: n => `${n * 96}px`,
+  space: (n) => `${n * 16}px`,
+  gap: (n) => `${n * 48}px`,
+  block: (n) => `${n * 96}px`,
   zIndex: {
     appBar: 1100,
     drawer: 1200,
