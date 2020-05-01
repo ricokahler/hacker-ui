@@ -38,7 +38,8 @@ const FormControl = forwardRef(
     const colorContext = useColorContext();
     const theme = useTheme();
 
-    const color = props.color ?? colorContext?.color ?? theme.colors.accent;
+    const color =
+      props.color ?? colorContext?.color.original ?? theme.colors.accent;
     const surface =
       props.surface ?? colorContext?.surface ?? theme.colors.surface;
 
