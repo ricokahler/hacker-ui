@@ -126,7 +126,7 @@ const Chip = forwardRef((props: Props, ref: React.Ref<any>) => {
 
   const colorContext = useColorContext();
 
-  let color = props.color ?? colorContext?.color;
+  let color = props.color ?? colorContext?.color.original;
   let surface = props.surface ?? colorContext?.surface;
 
   if (variant === 'filled') {
