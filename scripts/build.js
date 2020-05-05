@@ -25,7 +25,7 @@ function execute(command) {
 
 async function main() {
   console.log('cleaning…');
-  await execute('rm -rf dist node_modules');
+  await execute('rm -rf dist');
 
   console.log('installing…');
   await execute('npm i');

@@ -73,8 +73,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin: 0;
 
     ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-      /* TODO: try to remove this important */
-      font-size: 0.8rem !important;
+      font-size: 0.8rem;
     }
   `,
   floatingButtons: css`

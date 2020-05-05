@@ -11,7 +11,6 @@ module.exports = {
       '@react-style-system/plugin',
       {
         themePath: path.resolve(__dirname, './src/defaultTheme.ts'),
-        cacheDir: path.resolve(__dirname, './.cache'),
         moduleResolver: {
           root: [__dirname],
           alias: {
