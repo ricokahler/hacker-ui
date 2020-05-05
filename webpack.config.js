@@ -29,15 +29,17 @@ module.exports = {
         test: /\.rss-css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 2 },
+          },
           'postcss-loader',
           '@react-style-system/loader',
         ],
         include: [
-          path.resolve(__dirname, './.cache'),
-          path.resolve(__dirname, './website'),
+          ...include,
+          require.resolve('@react-style-system/loader/load.rss-css'),
         ],
-        // exclude: [path.resolve(__dirname, './node_modules')],
         sideEffects: true,
       },
       {
