@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  createStyles,
-  PropsFromStyles,
   TableContainer,
   Table,
   TableHead,
@@ -11,6 +9,7 @@ import {
   TableBodyCell,
   TableCaption,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -100,7 +99,7 @@ function TableExample(props: Props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.name} hoverable>
                 <TableHeaderCell>{row.name}</TableHeaderCell>
                 <TableBodyCell>{row.npmPath}</TableBodyCell>

@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  createStyles,
-  PropsFromStyles,
   TableContainer,
   Table,
   TableHead,
@@ -10,6 +8,7 @@ import {
   TableHeaderCell,
   TableBodyCell,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -60,7 +59,7 @@ function TableExample(props: Props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.language} hoverable>
                 <TableHeaderCell>{row.language}</TableHeaderCell>
                 <TableBodyCell>{row.imperative}</TableBodyCell>

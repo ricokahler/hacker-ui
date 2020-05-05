@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { lighten } from 'polished';
-import createStyles from './createStyles';
-import { PropsFromStyles } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
   // table row base styles
@@ -15,7 +14,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     :hover {
       th,
       td {
-        background-color: ${lighten(0.35, color.asBackground)} !important;
+        background-color: ${lighten(0.35, color.decorative)} !important;
         transition: background-color 0.2s;
       }
     }

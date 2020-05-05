@@ -1,16 +1,18 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { readableColor, lighten } from 'polished';
-import createStyles from './createStyles';
-import ColorProvider from './ColorProvider';
-import useTheme from './useTheme';
-import { PropsFromStyles } from './types';
+import {
+  createStyles,
+  PropsFromStyles,
+  useColorContext,
+  ColorContextProvider,
+} from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, givenSurface }) => ({
+const useStyles = createStyles(({ css, theme, surface }) => ({
   // table base styles
   root: css`
     ${theme.fonts.body2}
-    color: ${readableColor(givenSurface)};
+    color: ${readableColor(surface)};
     border-spacing: ${theme.space(0.5)};
     width: 100%;
     min-width: 500px;
@@ -18,7 +20,7 @@ const useStyles = createStyles(({ css, theme, givenSurface }) => ({
     text-align: left;
     
     th, td {
-      background-color: ${givenSurface};
+      background-color: ${surface};
       border-bottom: 1px solid ${theme.colors.bland};
       padding: ${theme.space(1)}
     }
@@ -76,12 +78,10 @@ const Table = forwardRef((props: Props, ref: React.Ref<any>) => {
     ...restOfProps
   } = useStyles(props, 'table');
 
-  const theme = useTheme();
-  const color = props.color || theme.colors.accent;
-  const on = props.on || theme.colors.surface;
+  const { color, surface } = useColorContext(props);
 
   return (
-    <ColorProvider color={color} on={on}>
+    <ColorContextProvider color={color.original} surface={surface}>
       <Root
         className={classNames({
           [styles.contained]: variant === 'contained',
@@ -92,7 +92,7 @@ const Table = forwardRef((props: Props, ref: React.Ref<any>) => {
         ref={ref}
         {...restOfProps}
       />
-    </ColorProvider>
+    </ColorContextProvider>
   );
 });
 
