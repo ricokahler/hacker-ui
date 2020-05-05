@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
-  FormControl,
-  Label,
-  HelperText,
-  Select,
-  Button,
-} from 'hacker-ui';
+import { FormControl, Label, HelperText, Select, Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -21,10 +13,18 @@ const useStyles = createStyles(({ css, theme }) => ({
   title: css`
     ${theme.fonts.h2};
     line-height: 1;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      ${theme.fonts.h3};
+    }
   `,
   subtitle: css`
     ${theme.fonts.subtitle1};
     line-height: 1;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      ${theme.fonts.subtitle2};
+    }
   `,
   card: css`
     width: ${theme.block(5)};

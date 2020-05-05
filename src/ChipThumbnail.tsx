@@ -1,14 +1,14 @@
 import React, { forwardRef } from 'react';
-import createStyles from './createStyles';
-import { PropsFromStyles, ReactComponent } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     width: ${theme.space(1.5)};
     height: ${theme.space(1.5)};
-    margin-top: -${theme.space(0.5)};
-    margin-bottom: -${theme.space(0.5)};
-    margin-left: -${theme.space(0.5)};
+    margin-top: ${`-${theme.space(0.5)}`};
+    margin-bottom: ${`-${theme.space(0.5)}`};
+    margin-left: ${`-${theme.space(0.5)}`};
     border-radius: 99999px;
     overflow: hidden;
 
@@ -44,5 +44,7 @@ const ChipThumbnail = forwardRef(
     return <Root ref={ref} {...restOfProps} />;
   },
 );
+
+ChipThumbnail.displayName = 'ChipThumbnail';
 
 export default ChipThumbnail;

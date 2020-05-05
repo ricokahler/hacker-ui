@@ -1,15 +1,18 @@
 import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import { transparentize, readableColor } from 'polished';
-import createStyles from './createStyles';
+import {
+  createStyles,
+  createReadablePalette,
+  PropsFromStyles,
+} from 'react-style-system';
 import FormControlContext from './FormControlContext';
-import { PropsFromStyles, ReactComponent } from './types';
-import createDynamicColorPalette from './createDynamicColorPalette';
+import { ReactComponent } from './types';
 import AngleDownIcon from './AngleDownIcon';
 
-const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
-  const bland = createDynamicColorPalette(theme.colors.bland, givenSurface);
-  const danger = createDynamicColorPalette(theme.colors.danger, givenSurface);
+const useStyles = createStyles(({ css, theme, color, surface }) => {
+  const bland = createReadablePalette(theme.colors.bland, surface);
+  const danger = createReadablePalette(theme.colors.danger, surface);
 
   return {
     root: css`
@@ -33,60 +36,60 @@ const useStyles = createStyles(({ css, theme, color, givenSurface }) => {
       }
     `,
     selectFilled: css`
-      background-color: ${transparentize(0.8, bland.asBackground)};
-      color: ${readableColor(givenSurface)};
-      transition: background-color ${theme.durations.standard}ms;
+      background-color: ${transparentize(0.8, bland.decorative)};
+      color: ${readableColor(surface)};
+      transition: background-color ${theme.durations.standard};
 
       &:focus {
-        background-color: ${transparentize(0.92, color.asBackground)};
-        color: ${readableColor(givenSurface)};
+        background-color: ${transparentize(0.92, color.decorative)};
+        color: ${readableColor(surface)};
       }
       &:hover {
-        background-color: ${transparentize(0.9, color.asBackground)};
-        color: ${readableColor(givenSurface)};
+        background-color: ${transparentize(0.9, color.decorative)};
+        color: ${readableColor(surface)};
       }
       &:disabled {
-        background-color: ${transparentize(0.9, bland.asBackground)};
+        background-color: ${transparentize(0.9, bland.decorative)};
       }
     `,
     selectFilledHasError: css`
-      background-color: ${transparentize(0.9, danger.asBackground)};
-      color: ${readableColor(givenSurface)};
+      background-color: ${transparentize(0.9, danger.decorative)};
+      color: ${readableColor(surface)};
       &:focus {
-        background-color: ${transparentize(0.85, danger.asBackground)};
+        background-color: ${transparentize(0.85, danger.decorative)};
       }
       &:not([disabled]):hover {
-        background-color: ${transparentize(0.87, danger.asBackground)};
+        background-color: ${transparentize(0.87, danger.decorative)};
       }
     `,
     selectOutlined: css`
-      background-color: ${givenSurface};
-      transition: border ${theme.durations.standard}ms,
-        background-color ${theme.durations.standard}ms,
-        color ${theme.durations.standard}ms;
-      border: 2px solid ${bland.asBackground};
-      color: ${readableColor(givenSurface)};
+      background-color: ${surface};
+      transition: border ${theme.durations.standard},
+        background-color ${theme.durations.standard},
+        color ${theme.durations.standard};
+      border: 2px solid ${bland.decorative};
+      color: ${readableColor(surface)};
 
       &:focus {
-        border: 2px solid ${color.asBackground};
-        background-color: ${transparentize(0.93, color.asBackground)};
+        border: 2px solid ${color.decorative};
+        background-color: ${transparentize(0.93, color.decorative)};
       }
       &:hover {
-        border: 2px solid ${transparentize(0.3, color.asBackground)};
+        border: 2px solid ${transparentize(0.3, color.decorative)};
       }
       &:disabled {
-        border: 2px solid ${transparentize(0.7, bland.asBackground)};
-        background-color: ${transparentize(0.9, bland.asBackground)};
+        border: 2px solid ${transparentize(0.7, bland.decorative)};
+        background-color: ${transparentize(0.9, bland.decorative)};
       }
     `,
     selectedOutlinedHasError: css`
-      border: 2px solid ${danger.asBackground};
+      border: 2px solid ${danger.decorative};
       &:focus {
-        border: 2px solid ${danger.asBackground};
-        background-color: ${transparentize(0.93, danger.asBackground)};
+        border: 2px solid ${danger.decorative};
+        background-color: ${transparentize(0.93, danger.decorative)};
       }
       &:not([disabled]):hover {
-        border: 2px solid ${transparentize(0.3, danger.asBackground)};
+        border: 2px solid ${transparentize(0.3, danger.decorative)};
       }
     `,
     icon: css`
@@ -172,5 +175,7 @@ const Select = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     </Root>
   );
 });
+
+Select.displayName = 'Select';
 
 export default Select;

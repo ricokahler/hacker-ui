@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  FormControl,
-  Label,
-  Select,
-  Button,
-  Tooltip,
-  Emoji,
-} from 'hacker-ui';
+import { FormControl, Label, Select, Button, Tooltip, Emoji } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -43,7 +35,7 @@ function TooltipExample(props: Props) {
           <Label>Position</Label>
           <Select
             value={position}
-            onChange={e =>
+            onChange={(e) =>
               setPosition(
                 e.currentTarget.value as 'top' | 'bottom' | 'left' | 'right',
               )
@@ -69,7 +61,7 @@ function TooltipExample(props: Props) {
           }
           position={position}
         >
-          {props => (
+          {(props) => (
             <Button className={styles.button} variant="filled" {...props}>
               Hover Here
             </Button>

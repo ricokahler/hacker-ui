@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
   Menu,
   Button,
   Label,
@@ -12,6 +9,7 @@ import {
   ListItem,
   ListItemButton,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
@@ -19,6 +17,10 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     min-height: ${theme.block(3)};
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   controls: css`
     flex: 0 0 auto;
@@ -61,7 +63,7 @@ function MenuExample(props: Props) {
             <Label>Position</Label>
             <Select
               value={position}
-              onChange={e =>
+              onChange={(e) =>
                 setPosition(
                   e.currentTarget.value as 'top' | 'left' | 'bottom' | 'right',
                 )
@@ -79,14 +81,14 @@ function MenuExample(props: Props) {
             <Button
               className={styles.button}
               variant="filled"
-              onClick={e => setAnchorEl(e.currentTarget)}
+              onClick={(e) => setAnchorEl(e.currentTarget)}
             >
               Open Menu
             </Button>
             <Button
               shape="icon"
               color={theme.colors.brand}
-              onClick={e => setAnchorEl(e.currentTarget)}
+              onClick={(e) => setAnchorEl(e.currentTarget)}
             >
               <FontAwesomeIcon icon={faEllipsisV} />
             </Button>

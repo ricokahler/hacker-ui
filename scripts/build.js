@@ -15,7 +15,9 @@ function execute(command) {
         console.error(stderr);
         reject(error);
       } else {
-        resolve(stdout);
+        console.warn(stderr);
+        console.log(stdout);
+        resolve();
       }
     });
   });
@@ -23,20 +25,19 @@ function execute(command) {
 
 async function main() {
   console.log('cleaning…');
-  const rmRfResult = await execute('rm -rf dist');
-  rmRfResult && console.log(rmRfResult);
+  await execute('rm -rf dist');
+
+  console.log('installing…');
+  await execute('npm i');
 
   console.log('linting…');
-  const eslintResult = await execute('npx eslint src --ext .ts,.tsx,.js,.jsx');
-  eslintResult && console.log(eslintResult);
+  await execute('npx eslint src --ext .ts,.tsx,.js,.jsx');
 
   console.log('generating types…');
-  const tsResult = await execute('npx tsc');
-  tsResult && console.log(tsResult);
+  await execute('npx tsc');
 
   console.log('rolling…');
-  const rollupResult = await execute('npx rollup -c');
-  rollupResult && console.log(rollupResult);
+  await execute('npx rollup -c');
 
   const bundleContent = await readFile(
     path.join(__dirname, '../dist/bundle.esm.js'),
@@ -70,12 +71,21 @@ async function main() {
     JSON.stringify(updatedPackageJson, null, 2),
   );
 
+  const readme = await fs.promises.readFile(
+    path.resolve(__dirname, '../README.md'),
+  );
+
+  await fs.promises.writeFile(
+    path.resolve(__dirname, '../dist/README.md'),
+    readme,
+  );
+
   console.log('DONE!');
 }
 
 main()
   .then(() => process.exit(0))
-  .catch(e => {
+  .catch((e) => {
     console.error(e);
     process.exit(1);
   });

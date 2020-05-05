@@ -1,16 +1,16 @@
 import React, { forwardRef } from 'react';
 import { transparentize } from 'polished';
-import createStyles from './createStyles';
-import { PropsFromStyles, ReactComponent } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
   root: css`
-    color: ${color.onSurface};
+    color: ${color.readable};
     text-decoration: underline;
-    transition: color ${theme.durations.standard}ms;
+    transition: color ${theme.durations.standard};
 
     &:active {
-      color: ${transparentize(0.5, color.onSurface)};
+      color: ${transparentize(0.5, color.readable)};
     }
   `,
 }));
@@ -28,5 +28,7 @@ const Anchor = forwardRef((props: Props, ref: React.Ref<HTMLAnchorElement>) => {
 
   return <Root ref={ref} {...restOfProps} />;
 });
+
+Anchor.displayName = 'Anchor';
 
 export default Anchor;

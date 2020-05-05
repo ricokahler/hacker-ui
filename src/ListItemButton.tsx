@@ -1,7 +1,10 @@
 import React, { forwardRef } from 'react';
-import useTheme from './useTheme';
-import createStyles from './createStyles';
-import { PropsFromStyles, PropsFromComponent } from './types';
+import {
+  createStyles,
+  PropsFromStyles,
+  useTheme,
+  PropsFromComponent,
+} from 'react-style-system';
 import Button from './Button';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -33,5 +36,7 @@ const ListItemButton = forwardRef(
     );
   },
 );
+
+ListItemButton.displayName = 'ListItemButton';
 
 export default ListItemButton;

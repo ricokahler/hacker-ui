@@ -6,13 +6,90 @@ import StylingPrimerExample from 'examples/StylingPrimer.example';
 ## Installation
 
 ```
-npm install hacker-ui
+npm install hacker-ui@next react-style-system
 ```
 
 or
 
 ```
-yarn add hacker-ui
+yarn add hacker-ui@next react-style-system
+```
+
+## Adding the theme and the ThemeProvider
+
+First create your theme using the `createTheme` function:
+
+`/src/theme.ts`
+
+```ts
+import { createTheme } from 'hacker-ui';
+
+const theme = createTheme({
+  // you can customize the there here.
+  // your customizations will be merged with default theme
+});
+
+// export the theme's type so it's available to you later
+export type Theme = typeof theme;
+
+export default theme;
+```
+
+Then wrap your app in a `<ThemeProvider>` from `hacker-ui`. Here we'll do it from the index file.
+
+`/src/index.tsx`
+
+```tsx
+import React from 'react';
+import { render } from 'react-dom';
+import { ThemeProvider } from 'hacker-ui';
+import theme from './theme';
+import App from './App';
+
+const container = document.querySelector('#root');
+if (!container) {
+  throw new Error('Could not find root element');
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>,
+  container,
+);
+```
+
+Lastly, add an type augmentation to allow for better auto-correct/intellisense in editors. We recommend doing this even if you're not using TypeScript.
+
+`/src/augments.d.ts`
+
+```ts
+import {
+  StyleFnArgs,
+  ReactComponent,
+  StyleProps,
+  GetComponentProps,
+} from 'react-style-system';
+
+declare module 'react-style-system' {
+  type Theme = typeof import('./theme').default;
+
+  // provides an override type that includes the type for your theme
+  export function useTheme(): Theme;
+
+  // provides an override type that includes the type for your theme
+  export function createStyles<Styles, ComponentType extends ReactComponent>(
+    stylesFn: (args: StyleFnArgs<Theme>) => Styles,
+  ): <Props extends StyleProps<Styles>>(
+    props: Props,
+    component?: ComponentType,
+  ) => {
+    Root: React.ComponentType<GetComponentProps<ComponentType>>;
+    styles: { [P in keyof Styles]: string } & {
+      cssVariableObject: { [key: string]: string };
+    };
+  } & Omit<Props, keyof StyleProps<any>>;
+}
 ```
 
 ## Styling Primer
@@ -23,7 +100,7 @@ First, import `createStyles` (and `PropsFromStyles` if you're using TypeScript) 
 
 ```tsx
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 // useStyles is a custom hook
 const useStyles = createStyles(({ css, theme }) => ({
@@ -31,6 +108,8 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     background-color: aquamarine;
     color: red;
+    /* add some variables from your theme */
+    border: 1px solid ${theme.colors.accent};
   `,
   title: css`
     font-size: 24px;
@@ -67,7 +146,7 @@ The `<Root />` component automatically drills down the `className` and `style` p
 
 ```tsx
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 import MyComponent from './MyComponent';
 

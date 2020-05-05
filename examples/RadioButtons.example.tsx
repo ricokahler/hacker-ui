@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  RadioGroup,
-  FormControl,
-  Label,
-  Radio,
-  HelperText,
-} from 'hacker-ui';
+import { RadioGroup, FormControl, Label, Radio, HelperText } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     align-items: center;
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   formControl: css`
     display: flex;
@@ -27,6 +23,9 @@ const useStyles = createStyles(({ css, theme }) => ({
     overflow: hidden;
     width: ${theme.block(2)};
     margin: ${theme.gap(1)} 0;
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      margin: ${theme.space(1)} 0;
+    }
     margin-right: ${theme.space(1)};
   `,
   pickOne: css`
@@ -41,6 +40,9 @@ const useStyles = createStyles(({ css, theme }) => ({
     display: flex;
     flex-direction: column;
     margin: ${theme.gap(1)} auto;
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      margin: ${theme.space(1)} auto;
+    }
     text-align: center;
   `,
   youSelected: css`
@@ -63,7 +65,7 @@ function RadioButtonsExample(props: Props) {
     <Root>
       <RadioGroup
         value={value}
-        onChange={e =>
+        onChange={(e) =>
           setValue(e.currentTarget.value as 'one' | 'two' | 'three')
         }
         className={styles.radioGroup}

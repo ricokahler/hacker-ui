@@ -2,9 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const prettier = require('prettier');
 const typescript = require('typescript');
+const loaderUtils = require('loader-utils');
+const { createFilenameHash } = require('@react-style-system/common');
 
 async function exampleLoader(exampleContent) {
   const callback = this.async();
+
+  if (!fs.existsSync(path.resolve(__dirname, '../.cache'))) {
+    fs.promises.mkdir(path.resolve(__dirname, '../.cache'));
+  }
 
   try {
     const prettierConfig = JSON.parse(
@@ -28,35 +34,45 @@ async function exampleLoader(exampleContent) {
       }).outputText,
     );
 
-    const compiledExample = typescript.transpileModule(exampleContent, {
-      compilerOptions: {
-        jsx: 'react',
-        module: 'commonjs',
-        target: 'es2015',
-        allowSyntheticDefaultImports: true,
-        esModuleInterop: true,
-      },
-    }).outputText;
+    const { cacheDir } = loaderUtils.getOptions(this);
+    const extname = path.extname(this.resourcePath);
+    const filename = path.join(
+      cacheDir,
+      `${createFilenameHash(this.resourcePath)}${extname}`,
+    );
 
-    const exampleComponent = `(() => {
-        const example = {};
-        ((exports) => {${compiledExample}})(example);
-        return example.default;
-      })()`;
+    // not the best solution for this but it works for now
+    await fs.promises.writeFile(filename, exampleContent);
+
+    const jsFilename = path.join(
+      cacheDir,
+      `${createFilenameHash(this.resourcePath)}-example-js.js`,
+    );
+    await fs.promises.writeFile(
+      jsFilename,
+      `export default ${JSON.stringify(javascriptSource)}`,
+    );
+
+    const tsFilename = path.join(
+      cacheDir,
+      `${createFilenameHash(this.resourcePath)}-example-ts.js`,
+    );
+    await fs.promises.writeFile(
+      tsFilename,
+      `export default ${JSON.stringify(typescriptSource)}`,
+    );
 
     const result = typescript.transpileModule(
       `
         import React from 'react';
         import CodeExample from 'website/CodeExample';
 
-        const Example = ${exampleComponent};
-        const javascriptCode = ${JSON.stringify(javascriptSource)};
-        const typescriptCode = ${JSON.stringify(typescriptSource)};
+        import Example from ${JSON.stringify(filename)}
 
         function CodeExampleSection({ children, ...restOfProps}) {
           return <CodeExample
-            javascriptCode={javascriptCode}
-            typescriptCode={typescriptCode}
+            javascriptCodePromise={import(${JSON.stringify(jsFilename)})}
+            typescriptCodePromise={import(${JSON.stringify(tsFilename)})}
             {...restOfProps}
           >
             <Example />
@@ -68,7 +84,7 @@ async function exampleLoader(exampleContent) {
       {
         compilerOptions: {
           jsx: 'react',
-          module: 'commonjs',
+          module: 'esnext',
           target: 'es2015',
           allowSyntheticDefaultImports: true,
           esModuleInterop: true,

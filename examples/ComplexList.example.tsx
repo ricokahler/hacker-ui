@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  List,
-  ListItem,
-  Button,
-} from 'hacker-ui';
+import { List, ListItem, Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -126,13 +121,13 @@ function ComplexListExample(props: Props) {
           const quantity = quantities[id] ?? 0;
 
           const handleDec = () => {
-            setQuantities(quantities => ({
+            setQuantities((quantities) => ({
               ...quantities,
               [id]: Math.max(0, quantity - 1),
             }));
           };
           const handleInc = () => {
-            setQuantities(quantities => ({
+            setQuantities((quantities) => ({
               ...quantities,
               [id]: quantity + 1,
             }));

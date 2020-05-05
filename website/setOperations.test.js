@@ -1,4 +1,4 @@
-import { add, remove, toggle } from './set-operations';
+import { add, remove, toggle } from './setOperations';
 
 const set = {
   foo: true,

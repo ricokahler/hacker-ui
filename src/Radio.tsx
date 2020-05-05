@@ -1,16 +1,19 @@
 import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import { transparentize } from 'polished';
-import createDynamicColorPalette from './createDynamicColorPalette';
+import {
+  createStyles,
+  PropsFromStyles,
+  createReadablePalette,
+} from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import RadioGroupContext from './RadioGroupContext';
-import createStyles from './createStyles';
-import { PropsFromStyles, ReactComponent } from './types';
+import { ReactComponent } from './types';
 import CircleIcon from './CircleIcon';
 
-const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
-  const bland = createDynamicColorPalette(theme.colors.bland, givenSurface);
-  const danger = createDynamicColorPalette(theme.colors.danger, givenSurface);
+const useStyles = createStyles(({ css, color, theme, surface }) => {
+  const bland = createReadablePalette(theme.colors.bland, surface);
+  const danger = createReadablePalette(theme.colors.danger, surface);
 
   const width = theme.space(2);
   const height = theme.space(2);
@@ -27,20 +30,20 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       margin: ${theme.space(0.5)} 0;
     `,
     hasError: css`
-      color: ${danger.asBackground};
+      color: ${danger.decorative};
       & .facade {
-        border: 2px solid ${danger.asBackground};
+        border: 2px solid ${danger.decorative};
       }
       & .radio:focus ~ .facade {
-        border: 2px solid ${danger.asBackground};
-        background-color: ${transparentize(0.93, danger.asBackground)};
+        border: 2px solid ${danger.decorative};
+        background-color: ${transparentize(0.93, danger.decorative)};
       }
       & .radio:not([disabled]):hover ~ .facade {
-        border: 2px solid ${transparentize(0.3, danger.asBackground)};
-        background-color: ${transparentize(0.93, danger.asBackground)};
+        border: 2px solid ${transparentize(0.3, danger.decorative)};
+        background-color: ${transparentize(0.93, danger.decorative)};
       }
       & .radio:active ~ .facade {
-        background-color: ${transparentize(0.9, danger.asBackground)};
+        background-color: ${transparentize(0.9, danger.decorative)};
       }
     `,
     radio: css`
@@ -51,21 +54,21 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       left: 0;
 
       &:focus ~ .facade {
-        border: 2px solid ${color.asBackground};
-        background-color: ${transparentize(0.93, color.asBackground)};
+        border: 2px solid ${color.decorative};
+        background-color: ${transparentize(0.93, color.decorative)};
       }
       &:hover ~ .facade {
-        border: 2px solid ${transparentize(0.3, color.asBackground)};
-        background-color: ${transparentize(0.93, color.asBackground)};
+        border: 2px solid ${transparentize(0.3, color.decorative)};
+        background-color: ${transparentize(0.93, color.decorative)};
       }
       &:active ~ .facade {
-        background-color: ${transparentize(0.9, color.asBackground)};
+        background-color: ${transparentize(0.9, color.decorative)};
       }
 
       &:disabled ~ .facade {
         cursor: not-allowed;
-        border: 2px solid ${transparentize(0.7, bland.asBackground)};
-        background-color: ${transparentize(0.9, bland.asBackground)};
+        border: 2px solid ${transparentize(0.7, bland.decorative)};
+        background-color: ${transparentize(0.9, bland.decorative)};
       }
 
       &:disabled {
@@ -97,10 +100,10 @@ const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
       align-items: center;
       flex: 0 0 auto;
       background-color: white;
-      transition: border ${theme.durations.standard}ms,
-        background-color ${theme.durations.standard}ms;
-      border: 2px solid ${bland.asBackground};
-      background-color: ${givenSurface};
+      transition: border ${theme.durations.standard},
+        background-color ${theme.durations.standard};
+      border: 2px solid ${bland.decorative};
+      background-color: ${surface};
     `,
     facadeSmall: css`
       width: ${widthSmall};
@@ -231,5 +234,7 @@ const Radio = forwardRef((props: Props, ref: React.Ref<HTMLDivElement>) => {
     </Root>
   );
 });
+
+Radio.displayName = 'Radio';
 
 export default Radio;

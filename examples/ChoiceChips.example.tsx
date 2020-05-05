@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-
-import {
-  createStyles,
-  PropsFromStyles,
-  Chip,
-  Button,
-  useTheme,
-} from 'hacker-ui';
+import { Chip, Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -14,7 +8,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   card: css`
     margin: ${theme.gap(1)} auto;
-    width: ${theme.breakpoints.mobile}px;
+    width: ${theme.breakpoints.mobile};
     max-width: 100%;
     background-color: ${theme.colors.surface};
     box-shadow: ${theme.shadows.standard};

@@ -11,7 +11,7 @@ it('creates a hierarchy from a flat file list', () => {
       { path: '/prefix/sorted/0-zz.mdx', value: 'zz' },
       { path: '/prefix/sorted/1-azz.mdx', value: 'azz' },
     ],
-    item => item.path,
+    (item) => item.path,
   );
 
   expect(hierarchy).toMatchInlineSnapshot(`

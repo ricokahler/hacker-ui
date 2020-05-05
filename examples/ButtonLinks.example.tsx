@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, createStyles, PropsFromStyles, useTheme } from 'hacker-ui';
+import { Button } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { Link, StaticRouter } from 'react-router-dom';
 
 const useStyles = createStyles(({ css, theme }) => ({
@@ -44,8 +45,9 @@ function ButtonLinksExample(props: Props) {
           <Button
             className={styles.button}
             variant="outlined"
-            // eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid
-            component={props => <a href="#" {...props} />}
+            component="a"
+            // @ts-ignore
+            href="#"
           >
             Normal Link
           </Button>
@@ -63,9 +65,9 @@ function ButtonLinksExample(props: Props) {
               className={styles.button}
               variant="filled"
               color={theme.colors.brand}
-              component={props => (
-                <Link to="/components/buttons-and-links" {...props} />
-              )}
+              component={Link}
+              // @ts-ignore
+              to="/components/buttons-and-links"
             >
               Router Link
             </Button>

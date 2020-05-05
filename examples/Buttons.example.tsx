@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  useTheme,
-  PropsFromStyles,
-  Select,
-  FormControl,
-  Label,
-  Button,
-  CheckIcon,
-} from 'hacker-ui';
+import { Select, FormControl, Label, Button, CheckIcon } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   controls: css`
     flex: 0 0 auto;
     width: ${theme.block(2)};
     overflow: hidden;
     margin-right: ${theme.gap(1)};
+    display: flex;
+    flex-direction: column;
 
     & > *:not(:last-child) {
       margin-bottom: ${theme.space(0.5)};
+
+      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+        margin-right: ${theme.space(0.5)};
+      }
     }
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  `,
+  formControl: css`
+    min-width: ${theme.block(1.5)};
   `,
   buttons: css`
     display: flex;
@@ -58,11 +69,11 @@ function ButtonsExample(props: Props) {
   return (
     <Root>
       <div className={styles.controls}>
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Variant</Label>
           <Select
             value={variant}
-            onChange={e => {
+            onChange={(e) => {
               setVariant(
                 e.currentTarget.value as 'filled' | 'outlined' | 'ghost',
               );
@@ -74,11 +85,11 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Size</Label>
           <Select
             value={size}
-            onChange={e => {
+            onChange={(e) => {
               setSize(e.currentTarget.value as 'small' | 'standard' | 'large');
             }}
           >
@@ -88,11 +99,11 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Shape</Label>
           <Select
             value={shape}
-            onChange={e => {
+            onChange={(e) => {
               setShape(e.currentTarget.value as 'icon' | 'standard');
             }}
           >
@@ -101,11 +112,11 @@ function ButtonsExample(props: Props) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl className={styles.formControl}>
           <Label>Disabled</Label>
           <Select
             value={disabled ? 'yes' : 'no'}
-            onChange={e => {
+            onChange={(e) => {
               setDisabled(e.currentTarget.value === 'yes');
             }}
           >

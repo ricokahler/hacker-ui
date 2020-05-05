@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
-import createStyles from './createStyles';
-import { PropsFromStyles, ReactComponent } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css }) => ({
   root: css`
     flex: 1 1 auto;
     position: relative;
@@ -26,5 +26,7 @@ const ModalContent = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
 
   return <Root ref={ref} {...restOfProps} />;
 });
+
+ModalContent.displayName = 'ModalContent';
 
 export default ModalContent;

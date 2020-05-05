@@ -1,27 +1,30 @@
 import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import { transparentize } from 'polished';
+import {
+  PropsFromStyles,
+  createStyles,
+  createReadablePalette,
+} from 'react-style-system';
 import FormControlContext from './FormControlContext';
-import createDynamicColorPalette from './createDynamicColorPalette';
-import createStyles from './createStyles';
-import { PropsFromStyles, ReactComponent } from './types';
+import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, color, theme, givenSurface }) => {
-  const bland = createDynamicColorPalette(theme.colors.bland, givenSurface);
+const useStyles = createStyles(({ css, color, theme, surface }) => {
+  const bland = createReadablePalette(theme.colors.bland, surface);
 
   return {
     root: css`
       ${theme.fonts.caption};
-      transition: color ${theme.durations.standard}ms;
+      transition: color ${theme.durations.standard};
     `,
     focused: css`
-      color: ${color.onSurface};
+      color: ${color.readable};
     `,
     hasError: css`
       color: ${theme.colors.danger};
     `,
     disabled: css`
-      color: ${transparentize(0.3, bland.onSurface)};
+      color: ${transparentize(0.3, bland.readable)};
       cursor: not-allowed;
     `,
   };
@@ -65,5 +68,7 @@ const HelperText = forwardRef(
     );
   },
 );
+
+HelperText.displayName = 'HelperText';
 
 export default HelperText;

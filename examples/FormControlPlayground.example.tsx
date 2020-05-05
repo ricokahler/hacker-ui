@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  PropsFromStyles,
-  FormControl,
-  Label,
-  Checkbox,
-  TextArea,
-  HelperText,
-} from 'hacker-ui';
+import { FormControl, Label, Checkbox, TextArea, HelperText } from 'hacker-ui';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   controls: css`
     flex: 0 0 auto;
@@ -85,7 +82,7 @@ function FormControlPlaygroundExample(props: Props) {
           <TextArea
             className={styles.textArea}
             value={message}
-            onChange={e => setMessage(e.currentTarget.value)}
+            onChange={(e) => setMessage(e.currentTarget.value)}
             placeholder="Make the message short and sweet."
             rows={5}
           />

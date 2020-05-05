@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
-import createStyles from './createStyles';
-import { PropsFromStyles } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -32,9 +31,11 @@ const Emoji = forwardRef((props: Props, ref: React.Ref<HTMLSpanElement>) => {
 
   return (
     <Root role="img" aria-label={label} ref={ref} {...restOfProps}>
-      <div className={styles.wrapper}>{children}</div>
+      <span className={styles.wrapper}>{children}</span>
     </Root>
   );
 });
+
+Emoji.displayName = 'Emoji';
 
 export default Emoji;

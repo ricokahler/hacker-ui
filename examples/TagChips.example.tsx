@@ -1,13 +1,19 @@
 import React from 'react';
-import { createStyles, PropsFromStyles, Chip, useTheme } from 'hacker-ui';
+import { Chip } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css``,
   card: css`
-    width: ${theme.breakpoints.tablet}px;
-    max-width: 100;
+    width: ${theme.breakpoints.tablet};
+    max-width: 100%;
+
     margin: ${theme.gap(1)} auto;
     padding: ${theme.gap(1)};
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      padding: ${theme.space(1)};
+    }
+
     background-color: ${theme.colors.surface};
     box-shadow: ${theme.shadows.standard};
     display: flex;
@@ -15,6 +21,9 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   title: css`
     ${theme.fonts.h3};
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      ${theme.fonts.h4};
+    }
   `,
   subtitle: css`
     ${theme.fonts.body1};
@@ -24,8 +33,10 @@ const useStyles = createStyles(({ css, theme }) => ({
     display: flex;
     align-items: center;
     margin-bottom: ${theme.space(1)};
-    & > *:not(:last-child) {
+    flex-wrap: wrap;
+    & > * {
       margin-right: ${theme.space(0.5)};
+      margin-bottom: ${theme.space(0.5)};
     }
   `,
   body: css`

@@ -4,11 +4,8 @@ import { stripIndent } from 'common-tags';
 import { transparentize } from 'polished';
 import { getParameters } from 'codesandbox/lib/api/define';
 import {
-  createStyles,
-  PropsFromStyles,
   Button,
   Tooltip,
-  useTheme,
   Modal,
   ModalHeader,
   ModalContent,
@@ -19,6 +16,7 @@ import {
   RadioGroup,
   Label,
 } from 'hacker-ui';
+import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faCopy } from '@fortawesome/free-solid-svg-icons';
 import CopyToClipBoard from 'react-copy-to-clipboard';
@@ -73,6 +71,10 @@ const useStyles = createStyles(({ css, theme }) => ({
     color: white;
     padding: ${theme.space(1)};
     margin: 0;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      font-size: 0.8rem;
+    }
   `,
   floatingButtons: css`
     position: absolute;
@@ -90,22 +92,36 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 interface Props extends PropsFromStyles<typeof useStyles> {
   children: React.ReactNode;
-  typescriptCode: string;
-  javascriptCode: string;
+  typescriptCodePromise: Promise<any>;
+  javascriptCodePromise: Promise<any>;
 }
 
 function CodeExample(props: Props) {
-  const { Root, styles, children, javascriptCode, typescriptCode } = useStyles(
-    props,
-    'section',
-  );
+  const {
+    Root,
+    styles,
+    children,
+    javascriptCodePromise,
+    typescriptCodePromise,
+  } = useStyles(props, 'section');
   const theme = useTheme();
   const [codeExampleOpen, setCodeExampleOpen] = useState(false);
   const [codeType, setCodeType] = useState<'typescript' | 'javascript'>(
     'typescript',
   );
 
+  const [typescriptCode, setTypescriptCode] = useState('Loading…');
+  const [javascriptCode, setJavascriptCode] = useState('Loading…');
+
   const code = codeType === 'typescript' ? typescriptCode : javascriptCode;
+
+  useEffect(() => {
+    javascriptCodePromise.then((mod: any) => setJavascriptCode(mod.default));
+  }, [javascriptCodePromise]);
+
+  useEffect(() => {
+    typescriptCodePromise.then((mod: any) => setTypescriptCode(mod.default));
+  }, [typescriptCodePromise]);
 
   const handleCopy = () => {
     alert('Code copied to clipboard!');
@@ -122,10 +138,11 @@ function CodeExample(props: Props) {
           content: stripIndent`
             import React from 'react';
             import { render } from 'react-dom';
-            import { ThemeProvider, createTheme, useCssReset } from 'hacker-ui';
+            import { ThemeProvider } from 'hacker-ui';
             import Example from './Example';
-            
-            const theme = createTheme();
+            import theme from './theme';
+            import 'normalize.css';
+            import './index.css';
             
             const container = document.createElement('div');
             container.style.position = 'fixed';
@@ -140,8 +157,6 @@ function CodeExample(props: Props) {
             document.body.appendChild(container);
             
             function App() {
-              useCssReset();
-            
               return (
                 <ThemeProvider theme={theme}>
                   <Example />
@@ -150,6 +165,24 @@ function CodeExample(props: Props) {
             }
             
             render(<App />, container);
+          `,
+          isBinary: false,
+        },
+        [`theme.${codeType === 'typescript' ? 'tsx' : 'js'}`]: {
+          content: stripIndent`
+            import { createTheme } from 'hacker-ui';
+
+            const theme = createTheme({
+              /* add your overrides here */
+            });
+
+            ${
+              codeType === 'typescript'
+                ? 'export type Theme = typeof theme;'
+                : ''
+            }
+            
+            export default theme;
           `,
           isBinary: false,
         },
@@ -162,7 +195,7 @@ function CodeExample(props: Props) {
               keywords: [],
               main: `src/index.${codeType === 'typescript' ? 'tsx' : 'js'}`,
               dependencies: {
-                'hacker-ui': '0.1.0-alpha.1',
+                'hacker-ui': '0.0.0-88cd8a409',
                 react: '16.12.0',
                 'react-dom': '16.12.0',
                 'react-scripts': '3.0.1',
@@ -170,6 +203,7 @@ function CodeExample(props: Props) {
                 '@fortawesome/free-brands-svg-icons': '^5.12.1',
                 '@fortawesome/free-solid-svg-icons': '^5.12.0',
                 '@fortawesome/react-fontawesome': '^0.1.8',
+                'normalize.css': '^8.0.1',
               },
               devDependencies: {
                 '@types/react': '16.9.19',
@@ -206,6 +240,54 @@ function CodeExample(props: Props) {
           ),
           isBinary: false,
         },
+        'index.css': {
+          content: stripIndent`
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+                Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            }
+            
+            :root {
+              font-size: 16px;
+            }
+            
+            * {
+              box-sizing: border-box;
+            }
+          `,
+          isBinary: false,
+        },
+        'augments.d.ts': {
+          content: stripIndent`
+            import {
+              StyleFnArgs,
+              ReactComponent,
+              StyleProps,
+              GetComponentProps,
+            } from 'react-style-system';
+            
+            declare module 'react-style-system' {
+              type Theme = typeof import('./theme').default;
+
+              // provides an override type that includes the type for your theme
+              export function useTheme(): Theme;
+            
+              // provides an override type that includes the type for your theme
+              export function createStyles<Styles, ComponentType extends ReactComponent>(
+                stylesFn: (args: StyleFnArgs<Theme>) => Styles,
+              ): <Props extends StyleProps<Styles>>(
+                props: Props,
+                component?: ComponentType,
+              ) => {
+                Root: React.ComponentType<GetComponentProps<ComponentType>>;
+                styles: { [P in keyof Styles]: string } & {
+                  cssVariableObject: { [key: string]: string };
+                };
+              } & Omit<Props, keyof StyleProps<any>>;
+            }
+          `,
+          isBinary: false,
+        },
         ...(codeType === 'typescript'
           ? {
               'tsconfig.json': {
@@ -238,15 +320,14 @@ function CodeExample(props: Props) {
       const { Prism } = window as any;
       if (!Prism) return;
       Prism.highlightAll();
-      console.log('called highligh all');
-    }, 100);
+    }, 250);
   }, [codeExampleOpen, codeType]);
 
   return (
     <>
       <Root>
         <Tooltip title="Show code">
-          {props => (
+          {(props) => (
             <Button
               aria-label="Show code"
               shape="icon"
@@ -262,12 +343,16 @@ function CodeExample(props: Props) {
         {children}
       </Root>
 
-      <Modal open={codeExampleOpen} onClose={() => setCodeExampleOpen(false)}>
+      <Modal
+        style={styles.cssVariableObject}
+        open={codeExampleOpen}
+        onClose={() => setCodeExampleOpen(false)}
+      >
         <ModalHeader className={styles.modalHeader}>
           <RadioGroup
             className={styles.modalButtons}
             value={codeType}
-            onChange={e => setCodeType(e.currentTarget.value as any)}
+            onChange={(e) => setCodeType(e.currentTarget.value as any)}
           >
             <FormControl className={styles.choice}>
               <Radio className={styles.radio} value="typescript" />
@@ -284,20 +369,18 @@ function CodeExample(props: Props) {
         <ModalContent>
           <div className={styles.floatingButtons}>
             <Tooltip title="Open in CodeSandbox">
-              {props => (
+              {(props) => (
                 <Button
-                  component={props => (
-                    // eslint-disable-next-line jsx-a11y/anchor-has-content
-                    <a
-                      href={codeSandboxUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      {...props}
-                    />
-                  )}
+                  component="a"
+                  // the props API for `Button` and `a` don't match so we
+                  // use `@ts-ignore` to get around it for this issue
+                  // @ts-ignore
+                  href={codeSandboxUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   shape="icon"
                   color="white"
-                  on="black"
+                  surface="black"
                   size="large"
                   variant="filled"
                   {...props}
@@ -308,12 +391,12 @@ function CodeExample(props: Props) {
             </Tooltip>
 
             <Tooltip title="Copy code">
-              {props => (
+              {(props) => (
                 <CopyToClipBoard text={code} onCopy={handleCopy}>
                   <Button
                     shape="icon"
                     color="white"
-                    on="black"
+                    surface="black"
                     size="large"
                     variant="filled"
                     {...props}

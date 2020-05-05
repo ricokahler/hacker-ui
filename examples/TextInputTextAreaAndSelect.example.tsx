@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import {
-  useTheme,
-  createStyles,
-  PropsFromStyles,
   TextInput,
   TextArea,
   FormControl,
@@ -11,10 +8,15 @@ import {
   Select,
   HelperText,
 } from 'hacker-ui';
+import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
+
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      flex-direction: column;
+    }
   `,
   title: css`
     ${theme.fonts.h5};
@@ -22,6 +24,9 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   controls: css`
     margin: ${theme.gap(1)} 0;
+    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      margin: ${theme.space(1)} 0;
+    }
     margin-right: ${theme.space(1)};
     flex: 0 0 auto;
     overflow: hidden;
@@ -88,7 +93,7 @@ function TextInputTextAreaAndSelectExample(props: Props) {
           <Label>Variant</Label>
           <Select
             value={variant}
-            onChange={e =>
+            onChange={(e) =>
               setVariant(e.currentTarget.value as 'filled' | 'outlined')
             }
           >
@@ -101,7 +106,7 @@ function TextInputTextAreaAndSelectExample(props: Props) {
           <Label>Color</Label>
           <Select
             value={colorKey}
-            onChange={e =>
+            onChange={(e) =>
               setColorKey(
                 e.currentTarget.value as 'brand' | 'accent' | 'warning',
               )

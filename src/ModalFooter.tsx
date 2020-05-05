@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import createStyles from './createStyles';
-import { PropsFromStyles, ReactComponent } from './types';
+import { createStyles, PropsFromStyles } from 'react-style-system';
+import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -24,5 +24,7 @@ const ModalFooter = forwardRef((props: Props, ref: React.Ref<HTMLElement>) => {
   );
   return <Root ref={ref} {...restOfProps} />;
 });
+
+ModalFooter.displayName = 'ModalFooter';
 
 export default ModalFooter;
