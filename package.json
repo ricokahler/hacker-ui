@@ -84,7 +84,7 @@
     "@types/classnames": "2.2.10",
     "@types/invariant": "2.2.32",
     "classnames": "2.2.6",
-    "nanoid": "3.1.4",
+    "nanoid": "3.1.5",
     "polished": "3.6.1"
   },
   "peerDependencies": {
