@@ -62,8 +62,6 @@ function AppBar(props: Props) {
             component="a"
             // @ts-ignore
             href="https://github.com/ricokahler/hacker-ui"
-            target="_blank"
-            rel="noopener noreferrer"
             {...tooltipProps}
           >
             {/*
