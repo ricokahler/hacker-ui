@@ -33,6 +33,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
     overflow: auto;
     position: relative;
+    border-radius: ${theme.borderRadius};
   `,
   codeButton: css`
     position: absolute;

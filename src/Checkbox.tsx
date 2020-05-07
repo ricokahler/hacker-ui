@@ -103,6 +103,7 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
         background-color ${theme.durations.standard};
       border: 2px solid ${bland.decorative};
       background-color: ${surface};
+      border-radius: ${theme.borderRadius};
     `,
     facadeSmall: css`
       width: ${widthSmall};
