@@ -17,6 +17,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     outline: none;
     background: transparent;
     border: none;
+    border-radius: ${theme.borderRadius};
     text-decoration: none;
     cursor: pointer;
 

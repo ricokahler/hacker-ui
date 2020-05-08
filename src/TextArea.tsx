@@ -22,6 +22,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       appearance: none;
       background: none;
       margin: ${theme.space(0.5)} 0;
+      border-radius: ${theme.borderRadius};
 
       &:disabled {
         cursor: not-allowed;

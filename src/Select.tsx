@@ -28,7 +28,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       border: none;
       background: none;
       padding: ${theme.space(0.75)} ${theme.space(0.5)};
-      border-radius: 0;
+      border-radius: ${theme.borderRadius};
       cursor: pointer;
 
       &:disabled {
