@@ -11,8 +11,8 @@ import { ReactComponent } from './types';
 import AngleDownIcon from './AngleDownIcon';
 
 const useStyles = createStyles(({ css, theme, color, surface }) => {
-  const bland = createReadablePalette(theme.colors.bland, surface);
-  const danger = createReadablePalette(theme.colors.danger, surface);
+  const bland = createReadablePalette(theme.bland, surface);
+  const danger = createReadablePalette(theme.danger, surface);
 
   return {
     root: css`
@@ -20,7 +20,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       margin: ${theme.space(0.5)} 0;
     `,
     select: css`
-      ${theme.fonts.body1};
+      ${theme.body1};
       width: 100%;
       height: 100%;
       appearance: none;
@@ -38,7 +38,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
     selectFilled: css`
       background-color: ${transparentize(0.8, bland.decorative)};
       color: ${readableColor(surface)};
-      transition: background-color ${theme.durations.standard};
+      transition: background-color ${theme.duration.standard};
 
       &:focus {
         background-color: ${transparentize(0.92, color.decorative)};
@@ -64,9 +64,9 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
     `,
     selectOutlined: css`
       background-color: ${surface};
-      transition: border ${theme.durations.standard},
-        background-color ${theme.durations.standard},
-        color ${theme.durations.standard};
+      transition: border ${theme.duration.standard},
+        background-color ${theme.duration.standard},
+        color ${theme.duration.standard};
       border: 2px solid ${bland.decorative};
       color: ${readableColor(surface)};
 

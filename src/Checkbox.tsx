@@ -11,8 +11,8 @@ import { ReactComponent } from './types';
 import CheckIcon from './CheckIcon';
 
 const useStyles = createStyles(({ css, color, theme, surface }) => {
-  const bland = createReadablePalette(theme.colors.bland, surface);
-  const danger = createReadablePalette(theme.colors.danger, surface);
+  const bland = createReadablePalette(theme.bland, surface);
+  const danger = createReadablePalette(theme.danger, surface);
 
   const width = theme.space(2);
   const height = theme.space(2);
@@ -99,8 +99,8 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       align-items: center;
       flex: 0 0 auto;
       background-color: white;
-      transition: border ${theme.durations.standard},
-        background-color ${theme.durations.standard};
+      transition: border ${theme.duration.standard},
+        background-color ${theme.duration.standard};
       border: 2px solid ${bland.decorative};
       background-color: ${surface};
       border-radius: ${theme.borderRadius};

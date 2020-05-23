@@ -7,7 +7,7 @@ import { ReactComponent } from './types';
 const useStyles = createStyles(({ css, theme, color }) => ({
   // button base styles
   root: css`
-    ${theme.fonts.button}
+    ${theme.button}
 
     display: inline-flex;
     justify-content: center;
@@ -45,8 +45,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     border: 1px solid ${color.readable};
     color: ${color.readable};
 
-    transition: background-color ${theme.durations.standard},
-      border ${theme.durations.standard};
+    transition: background-color ${theme.duration.standard},
+      border ${theme.duration.standard};
 
     &:focus {
       background-color: ${transparentize(0.92, color.decorative)};
@@ -66,8 +66,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     background-color: ${color.decorative};
     color: ${readableColor(color.decorative)};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard},
-      border ${theme.durations.standard};
+    transition: background-color ${theme.duration.standard},
+      border ${theme.duration.standard};
 
     &:focus {
       background-color: ${transparentize(0.18, color.decorative)};
@@ -89,8 +89,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   ghost: css`
     color: ${color.readable};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard},
-      border ${theme.durations.standard};
+    transition: background-color ${theme.duration.standard},
+      border ${theme.duration.standard};
 
     &:focus {
       background-color: ${transparentize(0.92, color.decorative)};

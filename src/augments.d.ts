@@ -4,11 +4,11 @@ import {
   StyleProps,
   GetComponentProps,
 } from 'react-style-system';
-import { Theme } from './types';
+import { DefaultTheme } from './types';
 
 declare module 'react-style-system' {
   export function createStyles<Styles, ComponentType extends ReactComponent>(
-    stylesFn: (args: StyleFnArgs<Theme>) => Styles,
+    stylesFn: (args: StyleFnArgs<DefaultTheme>) => Styles,
   ): <Props extends StyleProps<Styles>>(
     props: Props,
     component?: ComponentType,
@@ -19,5 +19,5 @@ declare module 'react-style-system' {
     };
   } & Omit<Props, keyof StyleProps<any>>;
 
-  export function useTheme(): Theme;
+  export function useTheme(): DefaultTheme;
 }

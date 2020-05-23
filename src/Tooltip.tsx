@@ -9,7 +9,7 @@ import useDebounce from './useDebounce';
 
 const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
-    ${theme.fonts.caption};
+    ${theme.caption};
     position: absolute;
     pointer-events: auto;
     padding: ${theme.space(0.5)} ${theme.space(1)};

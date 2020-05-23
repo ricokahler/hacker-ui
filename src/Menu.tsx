@@ -9,7 +9,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     position: absolute;
     width: ${theme.block(2)};
     box-shadow: ${theme.shadows.subtle};
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     z-index: ${theme.zIndex.modal};
   `,
   top: css`

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { lighten } from 'polished';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css, color }) => ({
   // table row base styles
   root: css`
     > :first-child {

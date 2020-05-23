@@ -9,8 +9,8 @@ import {
 import FormControlContext from './FormControlContext';
 
 const useStyles = createStyles(({ css, color, theme, surface }) => {
-  const bland = createReadablePalette(theme.colors.bland, surface);
-  const danger = createReadablePalette(theme.colors.danger, surface);
+  const bland = createReadablePalette(theme.bland, surface);
+  const danger = createReadablePalette(theme.danger, surface);
 
   const width = theme.space(3.5);
   const height = theme.space(2);
@@ -117,8 +117,8 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       align-items: center;
       flex: 0 0 auto;
       background-color: white;
-      transition: border ${theme.durations.standard},
-        background-color ${theme.durations.standard};
+      transition: border ${theme.duration.standard},
+        background-color ${theme.duration.standard};
       border: 2px solid ${bland.decorative};
       background-color: ${surface};
     `,
@@ -141,8 +141,7 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       pointer-events: none;
     `,
     dot: css`
-      transition: cx ${theme.durations.standard},
-        fill ${theme.durations.standard};
+      transition: cx ${theme.duration.standard}, fill ${theme.duration.standard};
     `,
     dotSmall: css`
       r: 30;

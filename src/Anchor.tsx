@@ -7,7 +7,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   root: css`
     color: ${color.readable};
     text-decoration: underline;
-    transition: color ${theme.durations.standard};
+    transition: color ${theme.duration.standard};
 
     &:active {
       color: ${transparentize(0.5, color.readable)};

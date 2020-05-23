@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css }) => ({
   // table head base styles
   root: css`
     th {

@@ -12,7 +12,7 @@ import { ReactComponent } from './types';
 const useStyles = createStyles(({ css, theme, color }) => ({
   // button base styles
   root: css`
-    ${theme.fonts.caption}
+    ${theme.caption}
     font-weight: bold;
 
     display: inline-flex;
@@ -49,8 +49,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     border: 1px solid ${color.readable};
     color: ${color.readable};
 
-    transition: background-color ${theme.durations.standard},
-      border ${theme.durations.standard};
+    transition: background-color ${theme.duration.standard},
+      border ${theme.duration.standard};
 
     &:disabled {
       &,
@@ -77,8 +77,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     background-color: ${color.decorative};
     color: ${readableColor(color.decorative)};
     border: 2px solid transparent;
-    transition: background-color ${theme.durations.standard},
-      border ${theme.durations.standard};
+    transition: background-color ${theme.duration.standard},
+      border ${theme.duration.standard};
 
     &:disabled {
       background-color: ${transparentize(0.5, color.decorative)};

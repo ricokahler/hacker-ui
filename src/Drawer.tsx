@@ -6,7 +6,7 @@ import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};
     width: ${theme.block(3)};
     max-width: 100%;

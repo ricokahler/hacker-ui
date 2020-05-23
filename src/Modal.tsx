@@ -9,8 +9,8 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     max-height: 90%;
     width: ${theme.block(8)};
     max-width: 100%;
-    background-color: ${theme.colors.surface};
-    color: ${readableColor(theme.colors.surface)};
+    background-color: ${theme.surface};
+    color: ${readableColor(theme.surface)};
     z-index: ${theme.zIndex.modal};
     margin: auto;
     overflow: hidden;

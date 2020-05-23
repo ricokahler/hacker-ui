@@ -11,7 +11,7 @@ import {
 const useStyles = createStyles(({ css, theme, surface }) => ({
   // table base styles
   root: css`
-    ${theme.fonts.body2}
+    ${theme.body2}
     color: ${readableColor(surface)};
     border-spacing: ${theme.space(0.5)};
     width: 100%;
@@ -21,7 +21,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
     
     th, td {
       background-color: ${surface};
-      border-bottom: 1px solid ${theme.colors.bland};
+      border-bottom: 1px solid ${theme.bland};
       padding: ${theme.space(1)}
     }
   `,
@@ -29,14 +29,14 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
   contained: css`
     th,
     td {
-      border: 1px solid ${theme.colors.bland};
+      border: 1px solid ${theme.bland};
     }
   `,
   striped: css`
     tbody tr:nth-child(odd) {
       th,
       td {
-        background-color: ${lighten(0.15, theme.colors.bland)};
+        background-color: ${lighten(0.15, theme.bland)};
       }
     }
     th,

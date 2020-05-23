@@ -39,9 +39,9 @@ const FormControl = forwardRef(
     const theme = useTheme();
 
     const color =
-      props.color ?? colorContext?.color.original ?? theme.colors.accent;
+      props.color ?? colorContext?.color.original ?? theme.accent;
     const surface =
-      props.surface ?? colorContext?.surface ?? theme.colors.surface;
+      props.surface ?? colorContext?.surface ?? theme.surface;
 
     const id = useMemo(() => `hui-${nanoid()}`, []);
     const [focused, setFocused] = useState(false);

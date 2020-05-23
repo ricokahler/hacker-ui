@@ -3,20 +3,18 @@ import {
   ThemeProvider as RssThemeProvider,
   ColorContextProvider,
 } from 'react-style-system';
-import { Theme } from './types';
+import { DefaultTheme } from './types';
+import defaultTheme from './defaultTheme';
 
 interface Props {
-  theme: Theme;
-  children: React.ReactNode;
+  theme?: DefaultTheme;
+  children?: React.ReactNode;
 }
 
-function ThemeProvider({ theme, children }: Props) {
+function ThemeProvider({ theme = defaultTheme, children }: Props) {
   return (
     <RssThemeProvider theme={theme}>
-      <ColorContextProvider
-        color={theme.colors.accent}
-        surface={theme.colors.surface}
-      >
+      <ColorContextProvider color={theme.accent} surface={theme.surface}>
         {children}
       </ColorContextProvider>
     </RssThemeProvider>

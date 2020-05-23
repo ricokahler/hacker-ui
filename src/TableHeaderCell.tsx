@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css }) => ({
   // table header cell base styles
   root: css`
     font-weight: normal;

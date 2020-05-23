@@ -7,20 +7,20 @@ import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color, surface }) => {
-  const bland = createReadablePalette(theme.colors.bland, surface);
+  const bland = createReadablePalette(theme.bland, surface);
 
   return {
     root: css`
-      ${theme.fonts.body1};
-      color: ${readableColor(theme.colors.surface)};
-      transition: color ${theme.durations.standard};
+      ${theme.body1};
+      color: ${readableColor(theme.surface)};
+      transition: color ${theme.duration.standard};
       cursor: pointer;
     `,
     focused: css`
       color: ${color.readable};
     `,
     hasError: css`
-      color: ${theme.colors.danger};
+      color: ${theme.danger};
     `,
     disabled: css`
       color: ${transparentize(0.3, bland.readable)};
