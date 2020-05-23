@@ -29,7 +29,7 @@ export function recursiveMerge<
     const incomingValue = incoming[key];
 
     if (isObject(baseValue) || isObject(incomingValue)) {
-      merged[key] = recursiveMerge(baseValue, incomingValue || {});
+      merged[key] = recursiveMerge(baseValue || {}, incomingValue || {});
       return merged;
     }
 
