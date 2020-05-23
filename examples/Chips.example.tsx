@@ -29,7 +29,7 @@ function ChipsExample(props: Props) {
 
       <Chip variant="filled">Filled</Chip>
 
-      <Chip variant="filled" color={theme.colors.danger}>
+      <Chip variant="filled" color={theme.danger}>
         Danger
       </Chip>
 
@@ -37,11 +37,7 @@ function ChipsExample(props: Props) {
         Clickable
       </Chip>
 
-      <Chip
-        clickable
-        onClick={() => setClicked(!clicked)}
-        color={theme.colors.brand}
-      >
+      <Chip clickable onClick={() => setClicked(!clicked)} color={theme.brand}>
         {clicked && (
           <ChipThumbnail>
             <CheckIcon />

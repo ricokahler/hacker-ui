@@ -8,7 +8,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     height: ${theme.block(0.75)};
-    border-bottom: 1px solid ${theme.colors.bland};
+    border-bottom: 1px solid ${theme.bland};
     display: flex;
     align-items: center;
     padding: ${theme.space(1)};
@@ -30,7 +30,7 @@ function AppBar(props: Props) {
   const theme = useTheme();
 
   const isMobile = useMediaQuery(
-    theme.breakpoints.down(theme.breakpoints.tablet),
+    theme.down(theme.tablet),
   );
 
   return (

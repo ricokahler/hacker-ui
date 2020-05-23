@@ -9,28 +9,28 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   card: css`
     margin: ${theme.gap(1)} auto;
-    width: ${theme.breakpoints.mobile};
+    width: ${theme.mobile};
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};
   `,
   header: css`
     display: flex;
     align-items: center;
-    background-color: ${theme.colors.brand};
-    color: ${readableColor(theme.colors.brand)};
+    background-color: ${theme.brand};
+    color: ${readableColor(theme.brand)};
     padding: ${theme.space(0.5)};
   `,
   closeButton: css`
     margin-right: ${theme.space(1)};
   `,
   title: css`
-    ${theme.fonts.h5};
+    ${theme.h6};
   `,
   label: css`
-    ${theme.fonts.caption};
+    ${theme.caption};
     margin-bottom: ${theme.space(0.5)};
   `,
   content: css`
@@ -89,8 +89,8 @@ function FilterChipsExample(props: Props) {
           <Button
             className={styles.closeButton}
             shape="icon"
-            surface={theme.colors.brand}
-            color={readableColor(theme.colors.brand)}
+            surface={theme.brand}
+            color={readableColor(theme.brand)}
           >
             <TimesIcon />
           </Button>

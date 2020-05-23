@@ -7,7 +7,7 @@ import { ReactComponent } from './types';
 const useStyles = createStyles(({ css, theme, color }) => ({
   // button base styles
   root: css`
-    ${theme.button}
+    ${theme.button};
 
     display: inline-flex;
     justify-content: center;

@@ -28,7 +28,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
     margin-bottom: ${theme.gap(1)};
     padding: ${theme.space(1)};
-    background-color: ${transparentize(0.8, theme.colors.bland)};
+    background-color: ${transparentize(0.8, theme.bland)};
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -46,7 +46,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: 0 ${theme.space(1)};
   `,
   modalTitle: css`
-    ${theme.fonts.h4};
+    ${theme.h4};
     margin-right: ${theme.space(1)};
     flex: 0 0 auto;
   `,
@@ -73,7 +73,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: ${theme.space(1)};
     margin: 0;
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.down(theme.tablet)} {
       font-size: 0.8rem;
     }
   `,
@@ -333,7 +333,7 @@ function CodeExample(props: Props) {
               aria-label="Show code"
               shape="icon"
               className={styles.codeButton}
-              color={theme.colors.bland}
+              color={theme.bland}
               onClick={() => setCodeExampleOpen(true)}
               {...props}
             >
@@ -424,7 +424,7 @@ function CodeExample(props: Props) {
         <ModalFooter>
           <ModalActions>
             <Button
-              color={theme.colors.bland}
+              color={theme.bland}
               onClick={() => setCodeExampleOpen(false)}
             >
               Close

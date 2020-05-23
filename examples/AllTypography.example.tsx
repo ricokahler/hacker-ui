@@ -11,37 +11,37 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
   `,
   heading1: css`
-    ${theme.fonts.h1};
+    ${theme.h1};
   `,
   heading2: css`
-    ${theme.fonts.h2};
+    ${theme.h2};
   `,
   heading3: css`
-    ${theme.fonts.h3};
+    ${theme.h3};
   `,
   heading4: css`
-    ${theme.fonts.h4};
+    ${theme.h4};
   `,
   heading5: css`
-    ${theme.fonts.h5};
+    ${theme.h5};
   `,
   body1: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
   `,
   body2: css`
-    ${theme.fonts.body2};
+    ${theme.body2};
   `,
   caption: css`
-    ${theme.fonts.caption};
+    ${theme.caption};
   `,
   button: css`
-    ${theme.fonts.button};
+    ${theme.button};
   `,
   subtitle1: css`
-    ${theme.fonts.subtitle1};
+    ${theme.subtitle1};
   `,
   subtitle2: css`
-    ${theme.fonts.subtitle2};
+    ${theme.subtitle2};
   `,
 }));
 
@@ -50,9 +50,7 @@ interface Props extends PropsFromStyles<typeof useStyles> {}
 function AllTypographyExample(props: Props) {
   const { Root, styles } = useStyles(props);
   const theme = useTheme();
-  const isMobile = useMediaQuery(
-    theme.breakpoints.down(theme.breakpoints.tablet),
-  );
+  const isMobile = useMediaQuery(theme.down(theme.tablet));
 
   return (
     <Root>

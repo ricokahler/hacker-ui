@@ -17,11 +17,11 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin: ${theme.gap(1)} auto;
   `,
   title: css`
-    ${theme.fonts.h4};
+    ${theme.h5};
     padding: 0 ${theme.space(1)};
   `,
   paragraph: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
     margin: ${theme.space(1)} 0;
   `,
   modalScroll: css`
@@ -29,10 +29,10 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: 0 ${theme.space(1)};
   `,
   modalHeader: css`
-    border-bottom: 1px solid ${theme.colors.bland};
+    border-bottom: 1px solid ${theme.bland};
   `,
   modalFooter: css`
-    border-top: 1px solid ${theme.colors.bland};
+    border-top: 1px solid ${theme.bland};
   `,
 }));
 
@@ -83,7 +83,7 @@ function ModalExample(props: Props) {
         </ModalContent>
         <ModalFooter className={styles.modalFooter}>
           <ModalActions>
-            <Button color={theme.colors.bland} onClick={() => setOpen(false)}>
+            <Button color={theme.bland} onClick={() => setOpen(false)}>
               Cancel
             </Button>
             <Button variant="filled" onClick={() => setOpen(false)}>

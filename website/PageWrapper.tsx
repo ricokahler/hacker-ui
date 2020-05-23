@@ -5,7 +5,7 @@ import { transparentize } from 'polished';
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     padding: ${theme.gap(1)};
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.down(theme.tablet)} {
       padding: ${theme.space(1)};
     }
 
@@ -15,33 +15,23 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: calc(50vh - ${theme.block(2)});
 
     & > h1 {
-      ${theme.fonts.h3};
-
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-        ${theme.fonts.h4};
-      }
+      ${theme.h3};
     }
 
     & > h2 {
-      ${theme.fonts.h4};
-
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-        ${theme.fonts.h5};
-      }
+      ${theme.h5};
+      margin-top: ${theme.gap(1)};
+      margin-bottom: ${theme.space(1)};
     }
 
     & > h3 {
-      ${theme.fonts.h5};
-
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-        ${theme.fonts.body1};
-        font-weight: 500;
-      }
+      ${theme.h6};
     }
 
     & > p {
-      ${theme.fonts.body1};
+      ${theme.body1};
       max-width: ${theme.block(7)};
+      margin-bottom: ${theme.space(1)};
     }
 
     & > pre {
@@ -57,12 +47,14 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
 
     & code {
-      background-color: ${transparentize(0.7, theme.colors.bland)};
+      background-color: ${transparentize(0.7, theme.bland)};
       padding: 0 ${theme.space(0.25)};
     }
 
-    & > *:not(:last-child) {
-      margin-bottom: ${theme.space(1)};
+    & ul {
+      & > * + * {
+        margin-top: ${theme.space(0.5)};
+      }
     }
   `,
 }));

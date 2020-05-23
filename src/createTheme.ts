@@ -28,8 +28,8 @@ export function recursiveMerge<
     const baseValue = (base as any)[key];
     const incomingValue = incoming[key];
 
-    if (isObject(baseValue)) {
-      merged[key] = recursiveMerge(baseValue, incomingValue);
+    if (isObject(baseValue) || isObject(incomingValue)) {
+      merged[key] = recursiveMerge(baseValue, incomingValue || {});
       return merged;
     }
 

@@ -7,7 +7,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 const useStyles = createStyles(({ css, theme }) => ({
   root: css``,
   list: css`
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};
     width: ${theme.block(6)};
     margin: ${theme.gap(1)} auto;
@@ -32,10 +32,10 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
   `,
   title: css`
-    ${theme.fonts.h5};
+    ${theme.h5};
   `,
   subtitle: css`
-    ${theme.fonts.caption};
+    ${theme.caption};
   `,
   buttonSection: css`
     min-width: ${theme.block(1)};
@@ -54,7 +54,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
   `,
   quantityCount: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
     flex: 1 1 auto;
     text-align: center;
   `,
@@ -68,13 +68,13 @@ const useStyles = createStyles(({ css, theme }) => ({
     justify-content: center;
   `,
   subtotal: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
     font-weight: bold;
     color: #444;
     margin-bottom: ${theme.space(0.5)};
   `,
   subLabel: css`
-    ${theme.fonts.caption};
+    ${theme.caption};
     color: #444;
     text-align: center;
   `,

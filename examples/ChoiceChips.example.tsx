@@ -8,23 +8,24 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   card: css`
     margin: ${theme.gap(1)} auto;
-    width: ${theme.breakpoints.mobile};
+    width: ${theme.mobile};
     max-width: 100%;
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};
     padding: ${theme.space(1)};
     display: flex;
     flex-direction: column;
   `,
   title: css`
-    ${theme.fonts.h4};
+    ${theme.h5};
+    margin-bottom: ${theme.space(0.5)};
   `,
   description: css`
-    ${theme.fonts.body1};
+    ${theme.body2};
     margin-bottom: ${theme.space(1)};
   `,
   label: css`
-    ${theme.fonts.caption};
+    ${theme.caption};
     margin-bottom: ${theme.space(0.5)};
   `,
   hr: css`
@@ -100,7 +101,7 @@ function ChoiceChipsExample(props: Props) {
             Hard
           </Chip>
         </div>
-        <Button variant="filled" color={theme.colors.brand}>
+        <Button variant="filled" color={theme.brand}>
           Add to Cart
         </Button>
       </section>

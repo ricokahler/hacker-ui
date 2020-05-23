@@ -13,15 +13,16 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
     padding: ${theme.space(1)};
     box-shadow: ${theme.shadows.standard};
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     width: ${theme.block(4)};
   `,
   title: css`
     flex: 0 0 auto;
-    ${theme.fonts.h4};
+    ${theme.h5};
+    margin-bottom: ${theme.space(1)};
   `,
   description: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
     margin-bottom: ${theme.space(1)};
   `,
   actions: css`
@@ -49,10 +50,10 @@ function ActionEmphasis(props: Props) {
           ghost, outlined, and filled buttons.
         </p>
         <div className={styles.actions}>
-          <Button variant="ghost" color={theme.colors.bland}>
+          <Button variant="ghost" color={theme.bland}>
             Cancel
           </Button>
-          <Button variant="filled" color={theme.colors.brand}>
+          <Button variant="filled" color={theme.brand}>
             Okay
           </Button>
         </div>

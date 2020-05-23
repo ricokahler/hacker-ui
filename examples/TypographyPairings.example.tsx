@@ -11,19 +11,15 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: ${theme.gap(1)};
   `,
   title: css`
-    ${theme.fonts.h2};
+    ${theme.h2};
     line-height: 1;
-
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-      ${theme.fonts.h3};
-    }
   `,
   subtitle: css`
-    ${theme.fonts.subtitle1};
+    ${theme.subtitle1};
     line-height: 1;
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-      ${theme.fonts.subtitle2};
+    ${theme.down(theme.tablet)} {
+      ${theme.subtitle2};
     }
   `,
   card: css`
@@ -32,23 +28,23 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: ${theme.gap(1)};
     max-width: 100%;
     padding: ${theme.space(1)};
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};
     display: flex;
     flex-direction: column;
   `,
   cardTitle: css`
-    ${theme.fonts.h4};
+    ${theme.h4};
   `,
   cardDescription: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
     margin-bottom: ${theme.space(1)};
   `,
   label: css`
     font-weight: bold;
   `,
   subtext: css`
-    ${theme.fonts.body2};
+    ${theme.body2};
     margin-bottom: ${theme.space(1)};
   `,
   formControl: css`
@@ -101,7 +97,7 @@ function TypographyPairingsExample(props: Props) {
         </FormControl>
 
         <div className={styles.actions}>
-          <Button color={theme.colors.bland}>Cancel</Button>
+          <Button color={theme.bland}>Cancel</Button>
           <Button variant="filled">Go!</Button>
         </div>
       </section>

@@ -20,6 +20,7 @@
     "@babel/core": "7.9.6",
     "@babel/plugin-transform-runtime": "7.9.6",
     "@babel/polyfill": "7.8.7",
+    "@color2k/compat": "^1.0.0-rc.4",
     "@fortawesome/fontawesome-svg-core": "1.2.28",
     "@fortawesome/free-brands-svg-icons": "5.13.0",
     "@fortawesome/free-solid-svg-icons": "5.13.0",

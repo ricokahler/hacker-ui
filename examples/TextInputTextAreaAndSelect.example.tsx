@@ -14,17 +14,17 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.down(theme.tablet)} {
       flex-direction: column;
     }
   `,
   title: css`
-    ${theme.fonts.h5};
-    margin-bottom: ${theme.space(1)};
+    ${theme.h6};
+    margin-bottom: ${theme.space(0.5)};
   `,
   controls: css`
     margin: ${theme.gap(1)} 0;
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.down(theme.tablet)} {
       margin: ${theme.space(1)} 0;
     }
     margin-right: ${theme.space(1)};
@@ -55,7 +55,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin: ${theme.gap(1)} auto;
     display: flex;
     flex-direction: column;
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     padding: ${theme.space(1)};
     box-shadow: ${theme.shadows.standard};
     & > *:not(:last-child) {
@@ -63,7 +63,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
   `,
   label: css`
-    ${theme.fonts.h5};
+    ${theme.h6};
   `,
   textArea: css`
     resize: vertical;
@@ -83,7 +83,7 @@ function TextInputTextAreaAndSelectExample(props: Props) {
     'accent',
   );
 
-  const color = theme.colors[colorKey];
+  const color = theme[colorKey];
 
   return (
     <Root>

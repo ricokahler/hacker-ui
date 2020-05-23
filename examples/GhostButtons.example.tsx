@@ -21,11 +21,11 @@ function GhostButtons(props: Props) {
 
   return (
     <Root>
-      <Button color={theme.colors.brand}>Brfand</Button>
-      <Button color={theme.colors.accent}>Accent</Button>
-      <Button color={theme.colors.bland}>Bland</Button>
-      <Button color={theme.colors.warning}>Warning</Button>
-      <Button color={theme.colors.danger}>Danger</Button>
+      <Button color={theme.brand}>Brfand</Button>
+      <Button color={theme.accent}>Accent</Button>
+      <Button color={theme.bland}>Bland</Button>
+      <Button color={theme.warning}>Warning</Button>
+      <Button color={theme.danger}>Danger</Button>
     </Root>
   );
 }

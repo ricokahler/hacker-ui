@@ -18,51 +18,68 @@ const defaultTheme = {
   // non-responsive font-sizes
   fontStatic: {
     h1: css`
-      font-size: 96px;
+      font-size: 144px;
+      letter-spacing: -0.3px;
       font-weight: bold;
+      text-transform: none;
       margin: 0;
     `,
     h2: css`
-      font-size: 60px;
+      font-size: 96px;
+      letter-spacing: -0.3px;
       font-weight: bold;
+      text-transform: none;
       margin: 0;
     `,
     h3: css`
-      font-size: 48px;
+      font-size: 60px;
+      letter-spacing: -0.3px;
       font-weight: bold;
+      text-transform: none;
       margin: 0;
     `,
     h4: css`
-      font-size: 34px;
+      font-size: 42px;
+      letter-spacing: -0.3px;
       font-weight: bold;
+      text-transform: none;
       margin: 0;
     `,
     h5: css`
-      font-size: 24px;
+      font-size: 28px;
+      letter-spacing: -0.3px;
       font-weight: bold;
+      text-transform: none;
       margin: 0;
     `,
     h6: css`
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
+      text-transform: none;
       margin: 0;
     `,
     subtitle1: css`
       font-size: 16px;
+      text-transform: none;
       margin: 0;
     `,
     subtitle2: css`
       font-size: 14px;
       font-weight: bold;
+      text-transform: none;
       margin: 0;
     `,
     body1: css`
       font-size: 18px;
-      line-height: 1.7;
+      line-height: 1.6;
+      text-transform: none;
+      font-weight: 400;
       margin: 0;
     `,
     body2: css`
-      font-size: 14px;
+      font-size: 16px;
+      text-transform: none;
+      line-height: 1.5;
       margin: 0;
     `,
     button: css`
@@ -72,20 +89,24 @@ const defaultTheme = {
       margin: 0;
     `,
     caption: css`
-      font-size: 12px;
+      font-size: 14px;
+      font-weight: normal;
+      text-transform: none;
+      margin: 0;
     `,
     overline: css`
       font-size: 10px;
       font-weight: 300;
       letter-spacing: 1.5px;
       text-transform: uppercase;
+      margin: 0;
     `,
   },
 
   // responsive/default font-sizes
   get h1() {
     return css`
-      ${this.fontStatic.h1},
+      ${this.fontStatic.h1};
       ${this.down(this.tablet)} {
         ${this.fontStatic.h2};
       }
@@ -93,7 +114,7 @@ const defaultTheme = {
   },
   get h2() {
     return css`
-      ${this.fontStatic.h2},
+      ${this.fontStatic.h2};
       ${this.down(this.tablet)} {
         ${this.fontStatic.h3};
       }
@@ -101,7 +122,7 @@ const defaultTheme = {
   },
   get h3() {
     return css`
-      ${this.fontStatic.h3},
+      ${this.fontStatic.h3};
       ${this.down(this.tablet)} {
         ${this.fontStatic.h4};
       }
@@ -109,7 +130,7 @@ const defaultTheme = {
   },
   get h4() {
     return css`
-      ${this.fontStatic.h4},
+      ${this.fontStatic.h4};
       ${this.down(this.tablet)} {
         ${this.fontStatic.h5};
       }
@@ -146,7 +167,7 @@ const defaultTheme = {
   warning: '#f56200',
   info: '#2962ff',
   get bland() {
-    return readableColorIsBlack(this.surface) ? '#ddd' : '#222';
+    return readableColorIsBlack(this.surface) ? '#ccc' : '#333';
   },
 
   // z-indexes

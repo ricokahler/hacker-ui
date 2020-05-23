@@ -9,7 +9,7 @@ import Button from './Button';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    ${theme.body1}
+    ${theme.body2};
     align-items: flex-start;
     width: 100%;
     display: flex;

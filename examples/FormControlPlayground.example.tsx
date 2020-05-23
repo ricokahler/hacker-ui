@@ -6,7 +6,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.down(theme.tablet)} {
       flex-direction: column;
     }
   `,
@@ -19,7 +19,8 @@ const useStyles = createStyles(({ css, theme }) => ({
     justify-content: center;
   `,
   title: css`
-    ${theme.fonts.h5};
+    ${theme.h6};
+    margin-bottom: ${theme.space(0.5)};
   `,
   content: css`
     flex: 1 1 auto;

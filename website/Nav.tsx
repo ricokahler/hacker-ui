@@ -39,9 +39,9 @@ const flattenedDocArray = docArray.map((i) =>
 
 const useStyles = createStyles(({ css, theme }) => {
   const backgroundColor =
-    readableColor(theme.colors.surface) === '#000'
-      ? darken(0.03, theme.colors.surface)
-      : lighten(0.03, theme.colors.surface);
+    readableColor(theme.surface) === '#000'
+      ? darken(0.03, theme.surface)
+      : lighten(0.03, theme.surface);
 
   return {
     root: css`
@@ -56,7 +56,7 @@ const useStyles = createStyles(({ css, theme }) => {
     header: css`
       flex: 0 0 auto;
       padding: ${theme.space(1)};
-      border-bottom: 1px solid ${theme.colors.bland};
+      border-bottom: 1px solid ${theme.bland};
       min-height: ${theme.block(0.75)};
       display: flex;
     `,
@@ -69,10 +69,10 @@ const useStyles = createStyles(({ css, theme }) => {
       justify-content: center;
     `,
     title: css`
-      ${theme.fonts.h5};
+      ${theme.h6};
     `,
     version: css`
-      ${theme.fonts.caption};
+      ${theme.caption};
     `,
     body: css`
       flex: 1 1 auto;
@@ -87,14 +87,20 @@ const useStyles = createStyles(({ css, theme }) => {
       margin-left: auto;
     `,
     itemTitle: css`
-      ${theme.fonts.body1};
+      font-weight: 400;
       margin-right: ${theme.space(1)};
     `,
     itemTitleBold: css`
       font-weight: bold;
     `,
     routeBody: css`
-      ${theme.fonts.caption};
+      ${theme.caption};
+    `,
+    headerItem: css`
+      margin-top: ${theme.space(1)};
+    `,
+    nestedItem: css`
+      padding-left: ${theme.space(1.5)};
     `,
   };
 });
@@ -111,9 +117,7 @@ function Nav(props: Props) {
     {},
   );
 
-  const isMobile = useMediaQuery(
-    theme.breakpoints.down(theme.breakpoints.tablet),
-  );
+  const isMobile = useMediaQuery(theme.down(theme.tablet));
 
   const content = (
     <Root>
@@ -125,7 +129,7 @@ function Nav(props: Props) {
                 {...tooltipProps}
                 className={styles.closeButton}
                 shape="icon"
-                color={theme.colors.brand}
+                color={theme.brand}
                 aria-label="Close Nav"
                 onClick={onClose}
                 autoFocus
@@ -155,7 +159,7 @@ function Nav(props: Props) {
               <Fragment key={rootSlug}>
                 <ListItem>
                   <ListItemButton
-                    className={styles.item}
+                    className={classNames(styles.item, styles.headerItem)}
                     onClick={() =>
                       setCollapsedSet((set) => toggle(set, rootSlug))
                     }
@@ -185,7 +189,10 @@ function Nav(props: Props) {
                       return (
                         <ListItem key={slug}>
                           <ListItemButton
-                            className={styles.item}
+                            className={classNames(
+                              styles.item,
+                              styles.nestedItem,
+                            )}
                             component={Link}
                             // @ts-ignore
                             to={path}

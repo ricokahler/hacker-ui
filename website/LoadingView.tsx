@@ -10,7 +10,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     display: flex;
   `,
   container: css`
-    width: ${theme.breakpoints.mobile};
+    width: ${theme.mobile};
     max-width: 100%;
     margin: auto;
     display: flex;
@@ -19,7 +19,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: ${theme.space(1)};
   `,
   title: css`
-    ${theme.fonts.h4};
+    ${theme.h4};
     margin-bottom: ${theme.space(1)};
   `,
 }));
