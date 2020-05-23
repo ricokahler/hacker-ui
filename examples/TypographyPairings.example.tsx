@@ -15,12 +15,8 @@ const useStyles = createStyles(({ css, theme }) => ({
     line-height: 1;
   `,
   subtitle: css`
-    ${theme.subtitle1};
+    ${theme.h4};
     line-height: 1;
-
-    ${theme.down(theme.tablet)} {
-      ${theme.subtitle2};
-    }
   `,
   card: css`
     width: ${theme.block(5)};
