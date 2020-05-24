@@ -19,14 +19,14 @@ const defaultTheme = {
   fontStatic: {
     h1: css`
       font-size: 144px;
-      letter-spacing: -0.3px;
+      letter-spacing: -3px;
       font-weight: bold;
       text-transform: none;
       margin: 0;
     `,
     h2: css`
       font-size: 96px;
-      letter-spacing: -0.3px;
+      letter-spacing: -2px;
       font-weight: bold;
       text-transform: none;
       margin: 0;
@@ -72,6 +72,7 @@ const defaultTheme = {
     body1: css`
       font-size: 18px;
       line-height: 1.6;
+      letter-spacing: -0.333px;
       text-transform: none;
       font-weight: 400;
       margin: 0;
@@ -95,9 +96,9 @@ const defaultTheme = {
       margin: 0;
     `,
     overline: css`
-      font-size: 10px;
-      font-weight: 300;
-      letter-spacing: 1.5px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       margin: 0;
     `,
@@ -159,6 +160,9 @@ const defaultTheme = {
   },
   get button() {
     return this.fontStatic.button;
+  },
+  get overline() {
+    return this.fontStatic.overline;
   },
   surface: '#fff',
   brand: '#000',

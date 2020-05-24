@@ -16,6 +16,7 @@ const useStyles = createStyles(({ css, theme }) => ({
 
     & > h1 {
       ${theme.h3};
+      margin-bottom: ${theme.space(0.5)};
     }
 
     & > h2 {

@@ -25,6 +25,9 @@ const useStyles = createStyles(({ css, theme }) => ({
   heading5: css`
     ${theme.h5};
   `,
+  heading6: css`
+    ${theme.h6};
+  `,
   body1: css`
     ${theme.body1};
   `,
@@ -43,6 +46,9 @@ const useStyles = createStyles(({ css, theme }) => ({
   subtitle2: css`
     ${theme.subtitle2};
   `,
+  overline: css`
+    ${theme.overline};
+  `,
 }));
 
 interface Props extends PropsFromStyles<typeof useStyles> {}
@@ -59,6 +65,7 @@ function AllTypographyExample(props: Props) {
       <div className={styles.heading3}>Heading 3</div>
       <div className={styles.heading4}>Heading 4</div>
       <div className={styles.heading5}>Heading 5</div>
+      <div className={styles.heading6}>Heading 6</div>
       <div className={styles.body1}>
         <strong>body1: Use for normal text.</strong> Lorem ipsum dolor sit amet,
         consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -81,6 +88,7 @@ function AllTypographyExample(props: Props) {
       <div className={styles.button}>Button text</div>
       <div className={styles.subtitle1}>Subtitle 1</div>
       <div className={styles.subtitle2}>Subtitle 2</div>
+      <div className={styles.overline}>Overline</div>
     </Root>
   );
 }
