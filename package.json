@@ -69,7 +69,7 @@
     "react-dom": "16.13.1",
     "react-inspector": "5.0.1",
     "react-router-dom": "5.1.2",
-    "react-style-system": "0.0.0-e5ed7cc04",
+    "react-style-system": "^0.2.0",
     "react-test-renderer": "16.13.1",
     "rollup": "2.8.2",
     "style-loader": "1.2.1",
@@ -90,7 +90,7 @@
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "react-style-system": "^0.1.1"
+    "react-style-system": "^0.2.0"
   },
   "sideEffects": false,
   "browserslist": "> 5%"
