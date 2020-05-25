@@ -1,8 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
-import { transparentize, readableColor } from 'polished';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  transparentize,
+  readableColor,
+} from 'react-style-system';
 import { TooltipProps } from './types';
 import delay from './delay';
 import useDebounce from './useDebounce';
@@ -16,7 +20,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
     min-width: ${theme.block(1)};
     text-align: center;
     color: ${readableColor(readableColor(surface))};
-    background-color: ${transparentize(0.2, readableColor(surface))};
+    background-color: ${transparentize(readableColor(surface), 0.2)};
     z-index: ${theme.zIndex.tooltip};
   `,
   top: css`

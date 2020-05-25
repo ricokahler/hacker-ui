@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { readableColor, darken, lighten } from 'polished';
 import {
   Link,
   MemoryRouter,
@@ -17,16 +16,22 @@ import {
   Drawer,
   Button,
 } from 'hacker-ui';
-import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  useTheme,
+  readableColorIsBlack,
+  darken,
+  lighten,
+} from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
 const useStyles = createStyles(({ css, theme }) => {
-  const navBackgroundColor =
-    readableColor(theme.surface) === '#000'
-      ? darken(0.03, theme.surface)
-      : lighten(0.03, theme.surface);
+  const navBackgroundColor = readableColorIsBlack(theme.surface)
+    ? darken(theme.surface, 0.03)
+    : lighten(0.03, theme.surface);
 
   return {
     root: css`
@@ -103,16 +108,16 @@ const useStyles = createStyles(({ css, theme }) => {
       margin-left: auto;
     `,
     itemActive: css`
-      background-color: ${darken(0.09, navBackgroundColor)};
+      background-color: ${darken(navBackgroundColor, 0.09)};
 
       &:focus {
-        background-color: ${darken(0.07, navBackgroundColor)};
+        background-color: ${darken(navBackgroundColor, 0.07)};
       }
       &:hover {
-        background-color: ${darken(0.05, navBackgroundColor)};
+        background-color: ${darken(navBackgroundColor, 0.05)};
       }
       &:active {
-        background-color: ${darken(0.03, navBackgroundColor)};
+        background-color: ${darken(navBackgroundColor, 0.03)};
       }
     `,
   };

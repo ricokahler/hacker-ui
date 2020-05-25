@@ -69,13 +69,14 @@
     "react-dom": "16.13.1",
     "react-inspector": "5.0.1",
     "react-router-dom": "5.1.2",
-    "react-style-system": "0.0.0-299d8d9a8",
+    "react-style-system": "0.0.0-e5ed7cc04",
     "react-test-renderer": "16.13.1",
     "rollup": "2.8.2",
     "style-loader": "1.2.1",
     "sugarss": "2.0.0",
     "ts-loader": "7.0.3",
     "typescript": "3.8.3",
+    "uid": "^1.0.0",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.11.0"
@@ -84,9 +85,7 @@
     "@babel/runtime": "7.9.6",
     "@types/classnames": "2.2.10",
     "@types/invariant": "2.2.32",
-    "classnames": "2.2.6",
-    "nanoid": "3.1.6",
-    "polished": "3.6.2"
+    "classnames": "2.2.6"
   },
   "peerDependencies": {
     "react": "^16.8.0",

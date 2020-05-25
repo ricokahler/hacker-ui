@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react';
 import classNames from 'classnames';
-import { darken, lighten, readableColor } from 'polished';
 import {
   List,
   ListItemButton,
@@ -11,7 +10,14 @@ import {
   ListItem,
   Tooltip,
 } from 'hacker-ui';
-import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  useTheme,
+  darken,
+  lighten,
+  readableColor,
+} from 'react-style-system';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -40,7 +46,7 @@ const flattenedDocArray = docArray.map((i) =>
 const useStyles = createStyles(({ css, theme }) => {
   const backgroundColor =
     readableColor(theme.surface) === '#000'
-      ? darken(0.03, theme.surface)
+      ? darken(theme.surface, 0.03)
       : lighten(0.03, theme.surface);
 
   return {

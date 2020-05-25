@@ -1,11 +1,12 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import { transparentize, readableColor } from 'polished';
 import {
   createStyles,
   ColorContextProvider,
   useColorContext,
   PropsFromStyles,
+  transparentize,
+  readableColor,
 } from 'react-style-system';
 import { ReactComponent } from './types';
 
@@ -56,7 +57,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
       &,
       &:hover,
       &:focus {
-        color: ${transparentize(0.4, color.readable)};
+        color: ${transparentize(color.readable, 0.4)};
         background-color: transparent;
       }
     }
@@ -64,13 +65,13 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   outlinedClickable: css`
     cursor: pointer;
     &:focus {
-      background-color: ${transparentize(0.92, color.decorative)};
+      background-color: ${transparentize(color.decorative, 0.92)};
     }
     &:hover {
-      background-color: ${transparentize(0.9, color.decorative)};
+      background-color: ${transparentize(color.decorative, 0.9)};
     }
     &:active {
-      background-color: ${transparentize(0.8, color.decorative)};
+      background-color: ${transparentize(color.decorative, 0.8)};
     }
   `,
   filled: css`
@@ -81,23 +82,23 @@ const useStyles = createStyles(({ css, theme, color }) => ({
       border ${theme.duration.standard};
 
     &:disabled {
-      background-color: ${transparentize(0.5, color.decorative)};
+      background-color: ${transparentize(color.decorative, 0.5)};
       border: 2px solid transparent;
-      color: ${transparentize(0.2, readableColor(color.decorative))};
+      color: ${transparentize(readableColor(color.decorative), 0.2)};
     }
   `,
   filledClickable: css`
     cursor: pointer;
     &:focus {
-      background-color: ${transparentize(0.18, color.decorative)};
-      border: 2px solid ${transparentize(0.7, '#fff')};
+      background-color: ${transparentize(color.decorative, 0.18)};
+      border: 2px solid ${transparentize('#fff', 0.7)};
     }
     &:hover {
-      background-color: ${transparentize(0.23, color.decorative)};
+      background-color: ${transparentize(color.decorative, 0.23)};
     }
     &:active {
-      background-color: ${transparentize(0.3, color.decorative)};
-      border: 2px solid ${transparentize(0.5, '#fff')};
+      background-color: ${transparentize(color.decorative, 0.3)};
+      border: 2px solid ${transparentize('#fff', 0.5)};
     }
   `,
 }));

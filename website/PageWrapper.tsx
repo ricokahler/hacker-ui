@@ -1,6 +1,9 @@
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'react-style-system';
-import { transparentize } from 'polished';
+import {
+  createStyles,
+  PropsFromStyles,
+  transparentize,
+} from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
@@ -48,7 +51,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
 
     & code {
-      background-color: ${transparentize(0.7, theme.bland)};
+      background-color: ${transparentize(theme.bland, 0.7)};
       padding: 0 ${theme.space(0.25)};
     }
 

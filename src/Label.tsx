@@ -1,7 +1,10 @@
 import React, { useContext, forwardRef } from 'react';
 import classNames from 'classnames';
-import { readableColor, transparentize } from 'polished';
-import { createStyles } from 'react-style-system';
+import {
+  createStyles,
+  readableColor,
+  transparentize,
+} from 'react-style-system';
 import { createReadablePalette, PropsFromStyles } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
@@ -23,7 +26,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       color: ${theme.danger};
     `,
     disabled: css`
-      color: ${transparentize(0.3, bland.readable)};
+      color: ${transparentize(bland.readable, 0.3)};
       cursor: not-allowed;
     `,
   };

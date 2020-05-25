@@ -1,6 +1,9 @@
 import React, { forwardRef } from 'react';
-import { transparentize } from 'polished';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  transparentize,
+} from 'react-style-system';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color }) => ({
@@ -10,7 +13,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     transition: color ${theme.duration.standard};
 
     &:active {
-      color: ${transparentize(0.5, color.readable)};
+      color: ${transparentize(color.readable, 0.5)};
     }
   `,
 }));

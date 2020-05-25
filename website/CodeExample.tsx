@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import classNames from 'classnames';
 import { stripIndent } from 'common-tags';
-import { transparentize } from 'polished';
 import { getParameters } from 'codesandbox/lib/api/define';
 import {
   Button,
@@ -16,7 +15,12 @@ import {
   RadioGroup,
   Label,
 } from 'hacker-ui';
-import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  useTheme,
+  transparentize,
+} from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faCopy } from '@fortawesome/free-solid-svg-icons';
 import CopyToClipBoard from 'react-copy-to-clipboard';
@@ -28,7 +32,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
     margin-bottom: ${theme.gap(1)};
     padding: ${theme.space(1)};
-    background-color: ${transparentize(0.8, theme.bland)};
+    background-color: ${transparentize(theme.bland, 0.8)};
     display: flex;
     flex-direction: column;
     overflow: auto;

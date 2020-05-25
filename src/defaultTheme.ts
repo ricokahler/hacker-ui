@@ -1,13 +1,20 @@
 import { css } from 'react-style-system';
-import { math } from 'polished';
 import { readableColorIsBlack } from 'react-style-system';
+
+const parsePx = (value: string) => {
+  const match = value.match(/([\d.]+)px.*/i);
+  if (!match) {
+    throw new Error(`Expected value to have px units. Got: "${value}"`);
+  }
+  return parseFloat(match[1]);
+};
 
 const defaultTheme = {
   // responsive helpers
-  up: (value: string) => `@media (min-width: ${math(`${value} + 1px`)})`,
+  up: (value: string) => `@media (min-width: ${parsePx(value) + 1}px)`,
   down: (value: string) => `@media (max-width: ${value})`,
   between: (min: string, max: string) =>
-    `@media (max-width: ${min}) and (min-width: ${math(`${max} - 1px`)})`,
+    `@media (max-width: ${min}) and (min-width: ${parsePx(max) + 1}px)`,
 
   // breakpoints
   mobile: '375px',
@@ -171,7 +178,7 @@ const defaultTheme = {
   warning: '#f56200',
   info: '#2962ff',
   get bland() {
-    return readableColorIsBlack(this.surface) ? '#ccc' : '#333';
+    return readableColorIsBlack(this.surface) ? '#ccc' : '#555';
   },
 
   // z-indexes

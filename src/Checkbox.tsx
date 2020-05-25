@@ -1,10 +1,10 @@
 import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import { transparentize } from 'polished';
 import {
   createStyles,
   createReadablePalette,
   PropsFromStyles,
+  transparentize,
 } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
@@ -36,14 +36,14 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       }
       & .checkbox:focus ~ .facade {
         border: 2px solid ${danger.decorative};
-        background-color: ${transparentize(0.93, danger.decorative)};
+        background-color: ${transparentize(danger.decorative, 0.93)};
       }
       & .checkbox:not([disabled]):hover ~ .facade {
-        border: 2px solid ${transparentize(0.3, danger.decorative)};
-        background-color: ${transparentize(0.93, danger.decorative)};
+        border: 2px solid ${transparentize(danger.decorative, 0.3)};
+        background-color: ${transparentize(danger.decorative, 0.93)};
       }
       & .checkbox:active ~ .facade {
-        background-color: ${transparentize(0.9, danger.decorative)};
+        background-color: ${transparentize(danger.decorative, 0.9)};
       }
     `,
     checkbox: css`
@@ -55,20 +55,20 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
 
       &:focus ~ .facade {
         border: 2px solid ${color.decorative};
-        background-color: ${transparentize(0.93, color.decorative)};
+        background-color: ${transparentize(color.decorative, 0.93)};
       }
       &:hover ~ .facade {
-        border: 2px solid ${transparentize(0.3, color.decorative)};
-        background-color: ${transparentize(0.93, color.decorative)};
+        border: 2px solid ${transparentize(color.decorative, 0.3)};
+        background-color: ${transparentize(color.decorative, 0.93)};
       }
       &:active ~ .facade {
-        background-color: ${transparentize(0.9, color.decorative)};
+        background-color: ${transparentize(color.decorative, 0.9)};
       }
 
       &:disabled ~ .facade {
         cursor: not-allowed;
-        border: 2px solid ${transparentize(0.7, bland.decorative)};
-        background-color: ${transparentize(0.9, bland.decorative)};
+        border: 2px solid ${transparentize(bland.decorative, 0.7)};
+        background-color: ${transparentize(bland.decorative, 0.9)};
       }
 
       &:disabled {

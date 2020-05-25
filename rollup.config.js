@@ -31,8 +31,7 @@ export default [
     external: [
       'react',
       'classnames',
-      'polished',
-      'nanoid',
+      'uid',
       'react-dom',
       'react-style-system',
       /^@babel\/runtime/,
@@ -48,9 +47,8 @@ export default [
       globals: {
         react: 'React',
         classnames: 'classNames',
-        polished: 'polished',
         'react-style-system': 'reactStyleSystem',
-        nanoid: 'nanoid',
+        uid: 'uid',
         'react-dom': 'ReactDOM',
       },
     },
@@ -73,8 +71,7 @@ export default [
     external: [
       'react',
       'classnames',
-      'polished',
-      'nanoid',
+      'uid',
       'react-dom',
       'react-style-system',
     ],

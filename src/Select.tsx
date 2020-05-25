@@ -1,10 +1,11 @@
 import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import { transparentize, readableColor } from 'polished';
 import {
   createStyles,
   createReadablePalette,
   PropsFromStyles,
+  transparentize,
+  readableColor,
 } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
@@ -36,30 +37,30 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       }
     `,
     selectFilled: css`
-      background-color: ${transparentize(0.8, bland.decorative)};
+      background-color: ${transparentize(bland.decorative, 0.8)};
       color: ${readableColor(surface)};
       transition: background-color ${theme.duration.standard};
 
       &:focus {
-        background-color: ${transparentize(0.92, color.decorative)};
+        background-color: ${transparentize(color.decorative, 0.92)};
         color: ${readableColor(surface)};
       }
       &:hover {
-        background-color: ${transparentize(0.9, color.decorative)};
+        background-color: ${transparentize(color.decorative, 0.9)};
         color: ${readableColor(surface)};
       }
       &:disabled {
-        background-color: ${transparentize(0.9, bland.decorative)};
+        background-color: ${transparentize(bland.decorative, 0.9)};
       }
     `,
     selectFilledHasError: css`
-      background-color: ${transparentize(0.9, danger.decorative)};
+      background-color: ${transparentize(danger.decorative, 0.9)};
       color: ${readableColor(surface)};
       &:focus {
-        background-color: ${transparentize(0.85, danger.decorative)};
+        background-color: ${transparentize(danger.decorative, 0.85)};
       }
       &:not([disabled]):hover {
-        background-color: ${transparentize(0.87, danger.decorative)};
+        background-color: ${transparentize(danger.decorative, 0.87)};
       }
     `,
     selectOutlined: css`
@@ -72,24 +73,24 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
 
       &:focus {
         border: 2px solid ${color.decorative};
-        background-color: ${transparentize(0.93, color.decorative)};
+        background-color: ${transparentize(color.decorative, 0.93)};
       }
       &:hover {
-        border: 2px solid ${transparentize(0.3, color.decorative)};
+        border: 2px solid ${transparentize(color.decorative, 0.3)};
       }
       &:disabled {
-        border: 2px solid ${transparentize(0.7, bland.decorative)};
-        background-color: ${transparentize(0.9, bland.decorative)};
+        border: 2px solid ${transparentize(bland.decorative, 0.7)};
+        background-color: ${transparentize(bland.decorative, 0.9)};
       }
     `,
     selectedOutlinedHasError: css`
       border: 2px solid ${danger.decorative};
       &:focus {
         border: 2px solid ${danger.decorative};
-        background-color: ${transparentize(0.93, danger.decorative)};
+        background-color: ${transparentize(danger.decorative, 0.93)};
       }
       &:not([disabled]):hover {
-        border: 2px solid ${transparentize(0.3, danger.decorative)};
+        border: 2px solid ${transparentize(danger.decorative, 0.3)};
       }
     `,
     icon: css`

@@ -1,11 +1,12 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import { readableColor, lighten } from 'polished';
 import {
   createStyles,
   PropsFromStyles,
   useColorContext,
   ColorContextProvider,
+  readableColor,
+  lighten,
 } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme, surface }) => ({
@@ -36,7 +37,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
     tbody tr:nth-child(odd) {
       th,
       td {
-        background-color: ${lighten(0.15, theme.bland)};
+        background-color: ${lighten(theme.bland, 0.15)};
       }
     }
     th,
