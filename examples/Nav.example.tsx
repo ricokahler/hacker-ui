@@ -31,7 +31,7 @@ import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 const useStyles = createStyles(({ css, theme }) => {
   const navBackgroundColor = readableColorIsBlack(theme.surface)
     ? darken(theme.surface, 0.03)
-    : lighten(0.03, theme.surface);
+    : lighten(theme.surface, 0.03);
 
   return {
     root: css`

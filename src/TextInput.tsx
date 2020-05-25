@@ -24,6 +24,11 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       background: none;
       margin: ${theme.space(0.5)} 0;
       border-radius: ${theme.borderRadius};
+      color: ${readableColor(theme.surface)};
+
+      &::placeholder {
+        color: ${transparentize(readableColor(theme.surface), 0.25)};
+      }
 
       &:disabled {
         cursor: not-allowed;

@@ -40,8 +40,8 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   icon: css`
     border-radius: 99999px;
     & > svg {
-      width: ${theme.space(1)};
-      height: ${theme.space(1)};
+      width: ${theme.space(1.25)};
+      height: ${theme.space(1.25)};
     }
   `,
   // variants
@@ -68,7 +68,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
   `,
   filled: css`
     background-color: ${color.decorative};
-    color: ${readableColor(color.decorative)};
+    color: ${readableColor(color.decorative)} !important;
     border: 2px solid transparent;
     transition: background-color ${theme.duration.standard},
       border ${theme.duration.standard};

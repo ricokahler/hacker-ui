@@ -47,7 +47,7 @@ const useStyles = createStyles(({ css, theme }) => {
   const backgroundColor =
     readableColor(theme.surface) === '#000'
       ? darken(theme.surface, 0.03)
-      : lighten(0.03, theme.surface);
+      : lighten(theme.surface, 0.03);
 
   return {
     root: css`

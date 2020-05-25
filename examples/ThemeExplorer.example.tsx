@@ -4,7 +4,8 @@ import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    background-color: ${theme.surface};
+    color: black;
+    background-color: white;
     margin: ${theme.gap(1)};
     ${theme.down(theme.tablet)} {
       margin: ${theme.gap(1)} 0;

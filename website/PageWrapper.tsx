@@ -3,10 +3,12 @@ import {
   createStyles,
   PropsFromStyles,
   transparentize,
+  readableColor,
 } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
+    color: ${readableColor(surface)};
     padding: ${theme.gap(1)};
     ${theme.down(theme.tablet)} {
       padding: ${theme.space(1)};
@@ -58,6 +60,15 @@ const useStyles = createStyles(({ css, theme }) => ({
     & ul {
       & > * + * {
         margin-top: ${theme.space(0.5)};
+      }
+    }
+
+    & a {
+      color: ${theme.accent};
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
       }
     }
   `,

@@ -1,6 +1,10 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import { createStyles, PropsFromStyles, lighten } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  transparentize,
+} from 'react-style-system';
 
 const useStyles = createStyles(({ css, color }) => ({
   // table row base styles
@@ -13,7 +17,7 @@ const useStyles = createStyles(({ css, color }) => ({
     :hover {
       th,
       td {
-        background-color: ${lighten(color.decorative, 0.35)} !important;
+        background-color: ${transparentize(color.decorative, 0.65)} !important;
         transition: background-color 0.2s;
       }
     }

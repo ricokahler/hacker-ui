@@ -88,6 +88,7 @@ const defaultTheme = {
       font-size: 16px;
       text-transform: none;
       line-height: 1.5;
+      font-weight: 400;
       margin: 0;
     `,
     button: css`
@@ -173,10 +174,11 @@ const defaultTheme = {
   },
   surface: '#fff',
   brand: '#000',
-  accent: '#2962ff',
+  get accent() {
+    return readableColorIsBlack(this.surface) ? '#2962ff' : '#7a9eff';
+  },
   danger: '#eb002b',
   warning: '#f56200',
-  info: '#2962ff',
   get bland() {
     return readableColorIsBlack(this.surface) ? '#ccc' : '#555';
   },

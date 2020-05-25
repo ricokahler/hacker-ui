@@ -5,50 +5,56 @@ import {
   PropsFromStyles,
   useTheme,
   readableColor,
+  createReadablePalette,
 } from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
-  root: css`
-    display: flex;
-  `,
-  card: css`
-    margin: ${theme.gap(1)} auto;
-    width: ${theme.mobile};
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: ${theme.surface};
-    box-shadow: ${theme.shadows.standard};
-  `,
-  header: css`
-    display: flex;
-    align-items: center;
-    background-color: ${theme.brand};
-    color: ${readableColor(theme.brand)};
-    padding: ${theme.space(0.5)};
-  `,
-  closeButton: css`
-    margin-right: ${theme.space(1)};
-  `,
-  title: css`
-    ${theme.h6};
-  `,
-  label: css`
-    ${theme.caption};
-    margin-bottom: ${theme.space(0.5)};
-  `,
-  content: css`
-    padding: ${theme.space(1)};
-  `,
-  chips: css`
-    display: flex;
-    flex-wrap: wrap;
-    & > * {
-      margin-right: ${theme.space(0.5)};
+const useStyles = createStyles(({ css, theme, surface }) => {
+  const brand = createReadablePalette(theme.brand, surface);
+
+  return {
+    root: css`
+      display: flex;
+    `,
+    card: css`
+      margin: ${theme.gap(1)} auto;
+      width: ${theme.mobile};
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: ${theme.surface};
+      box-shadow: ${theme.shadows.standard};
+    `,
+    header: css`
+      display: flex;
+      align-items: center;
+      background-color: ${brand.decorative};
+      color: ${readableColor(brand.decorative)};
+      padding: ${theme.space(0.5)};
+    `,
+    closeButton: css`
+      color: ${readableColor(brand.decorative)};
+      margin-right: ${theme.space(1)};
+    `,
+    title: css`
+      ${theme.h6};
+    `,
+    label: css`
+      ${theme.caption};
       margin-bottom: ${theme.space(0.5)};
-    }
-  `,
-}));
+    `,
+    content: css`
+      padding: ${theme.space(1)};
+    `,
+    chips: css`
+      display: flex;
+      flex-wrap: wrap;
+      & > * {
+        margin-right: ${theme.space(0.5)};
+        margin-bottom: ${theme.space(0.5)};
+      }
+    `,
+  };
+});
 
 interface Props extends PropsFromStyles<typeof useStyles> {}
 

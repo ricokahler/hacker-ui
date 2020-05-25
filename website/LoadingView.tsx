@@ -1,10 +1,15 @@
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  readableColor,
+} from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
+    color: ${readableColor(surface)};
     width: 100%;
     height: 100%;
     display: flex;
