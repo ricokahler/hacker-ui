@@ -3,140 +3,148 @@ import classNames from 'classnames';
 import {
   createStyles,
   PropsFromStyles,
-  transparentize,
   readableColor,
+  mix,
+  transparentize,
 } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
-  // button base styles
-  root: css`
-    ${theme.button};
+const useStyles = createStyles(({ css, theme, color, surface }) => {
+  const mixWithSurface = (color: string, amount: number) =>
+    mix(color, surface, amount);
 
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+  return {
+    // button base styles
+    root: css`
+      ${theme.button};
 
-    appearance: none;
-    outline: none;
-    background: transparent;
-    border: none;
-    border-radius: ${theme.borderRadius};
-    text-decoration: none;
-    cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
 
-    &:disabled {
-      cursor: not-allowed;
-    }
-  `,
-  // shapes
-  standard: css`
-    min-width: ${theme.block(1)};
+      appearance: none;
+      outline: none;
+      background: transparent;
+      border: none;
+      border-radius: ${theme.borderRadius};
+      text-decoration: none;
+      cursor: pointer;
 
-    & > *:not(:last-child) {
-      margin-right: ${theme.space(1)};
-    }
-  `,
-  icon: css`
-    border-radius: 99999px;
-    & > svg {
-      width: ${theme.space(1.25)};
-      height: ${theme.space(1.25)};
-    }
-  `,
-  // variants
-  outlined: css`
-    border: 1px solid ${color.readable};
-    color: ${color.readable};
+      &:disabled {
+        cursor: not-allowed;
+      }
+    `,
+    // shapes
+    standard: css`
+      min-width: ${theme.block(1)};
 
-    transition: background-color ${theme.duration.standard},
-      border ${theme.duration.standard};
+      & > *:not(:last-child) {
+        margin-right: ${theme.space(1)};
+      }
+    `,
+    icon: css`
+      border-radius: 99999px;
+      & > svg {
+        width: ${theme.space(1.25)};
+        height: ${theme.space(1.25)};
+      }
+    `,
+    // variants
+    outlined: css`
+      border: 1px solid ${color.readable};
+      color: ${color.readable};
 
-    &:focus {
-      background-color: ${transparentize(color.decorative, 0.92)};
-    }
-    &:hover {
-      background-color: ${transparentize(color.decorative, 0.9)};
-    }
-    &:active {
-      background-color: ${transparentize(color.decorative, 0.8)};
-    }
-    &:disabled {
-      color: ${transparentize(color.readable, 0.4)};
-      background-color: transparent;
-    }
-  `,
-  filled: css`
-    background-color: ${color.decorative};
-    color: ${readableColor(color.decorative)} !important;
-    border: 2px solid transparent;
-    transition: background-color ${theme.duration.standard},
-      border ${theme.duration.standard};
+      transition: background-color ${theme.duration.standard},
+        border ${theme.duration.standard};
 
-    &:focus {
-      background-color: ${transparentize(color.decorative, 0.18)};
-      border: 2px solid ${transparentize('#fff', 0.7)};
-    }
-    &:hover {
-      background-color: ${transparentize(color.decorative, 0.23)};
-    }
-    &:active {
-      background-color: ${transparentize(color.decorative, 0.3)};
-      border: 2px solid ${transparentize('#fff', 0.5)};
-    }
-    &:disabled {
-      background-color: ${transparentize(color.decorative, 0.5)};
+      &:focus {
+        background-color: ${mixWithSurface(color.decorative, 0.92)};
+      }
+      &:hover {
+        background-color: ${mixWithSurface(color.decorative, 0.9)};
+      }
+      &:active {
+        background-color: ${mixWithSurface(color.decorative, 0.8)};
+      }
+      &:disabled {
+        color: ${mixWithSurface(color.readable, 0.4)};
+        background-color: transparent;
+      }
+    `,
+    filled: css`
+      background-color: ${color.decorative};
+      color: ${readableColor(color.decorative)} !important;
       border: 2px solid transparent;
-      color: ${transparentize(readableColor(color.decorative), 0.2)};
-    }
-  `,
-  ghost: css`
-    color: ${color.readable};
-    border: 2px solid transparent;
-    transition: background-color ${theme.duration.standard},
-      border ${theme.duration.standard};
+      transition: background-color ${theme.duration.standard},
+        border ${theme.duration.standard};
 
-    &:focus {
-      background-color: ${transparentize(color.decorative, 0.92)};
-      border: 2px solid ${transparentize(readableColor(color.decorative), 0.8)};
-    }
-    &:hover {
-      background-color: ${transparentize(color.decorative, 0.9)};
-    }
-    &:active {
-      background-color: ${transparentize(color.decorative, 0.8)};
-    }
-    &:disabled {
-      color: ${transparentize(color.readable, 0.4)};
+      &:focus {
+        background-color: ${mixWithSurface(color.decorative, 0.18)};
+        border: 2px solid ${transparentize('#fff', 0.7)};
+      }
+      &:hover {
+        background-color: ${mixWithSurface(color.decorative, 0.23)};
+      }
+      &:active {
+        background-color: ${mixWithSurface(color.decorative, 0.3)};
+        border: 2px solid ${transparentize('#fff', 0.5)};
+      }
+      &:disabled {
+        background-color: ${mixWithSurface(color.decorative, 0.5)};
+        border: 2px solid transparent;
+        color: ${mixWithSurface(readableColor(color.decorative), 0.2)};
+      }
+    `,
+    ghost: css`
+      color: ${color.readable};
+      border: 2px solid transparent;
+      transition: background-color ${theme.duration.standard},
+        border ${theme.duration.standard};
+
+      &:focus {
+        background-color: ${mixWithSurface(color.decorative, 0.92)};
+        border: 2px solid
+          ${transparentize(readableColor(color.decorative), 0.8)};
+      }
+      &:hover {
+        background-color: ${mixWithSurface(color.decorative, 0.9)};
+      }
+      &:active {
+        background-color: ${mixWithSurface(color.decorative, 0.8)};
+      }
+      &:disabled {
+        color: ${mixWithSurface(color.readable, 0.4)};
       background-color: transparent;
-    }
-  `,
-  // sizes
-  standardSmall: css`
-    padding: ${theme.space(0.5)} ${theme.space(0.75)};
-    min-width: ${theme.block(1)};
-  `,
-  standardStandard: css`
-    padding: ${theme.space(0.75)} ${theme.space(1)};
-    min-width: ${theme.block(1)};
-  `,
-  standardLarge: css`
-    padding: ${theme.space(1)} ${theme.space(1.25)};
-    min-width: ${theme.block(1.5)};
-  `,
-  iconSmall: css`
-    width: ${theme.space(2)};
-    height: ${theme.space(2)};
-  `,
-  iconStandard: css`
-    width: ${theme.space(2.5)};
-    height: ${theme.space(2.5)};
-  `,
-  iconLarge: css`
-    width: ${theme.space(3)};
-    height: ${theme.space(3)};
-  `,
-}));
+      }
+    `,
+    // sizes
+    standardSmall: css`
+      padding: ${theme.space(0.5)} ${theme.space(0.75)};
+      min-width: ${theme.block(0.75)};
+    `,
+    standardStandard: css`
+      padding: ${theme.space(0.75)} ${theme.space(1)};
+      min-width: ${theme.block(1)};
+    `,
+    standardLarge: css`
+      padding: ${theme.space(1)} ${theme.space(1.25)};
+      min-width: ${theme.block(1.5)};
+      font-size: 0.8rem;
+    `,
+    iconSmall: css`
+      width: ${theme.space(2)};
+      height: ${theme.space(2)};
+    `,
+    iconStandard: css`
+      width: ${theme.space(2.5)};
+      height: ${theme.space(2.5)};
+    `,
+    iconLarge: css`
+      width: ${theme.space(3)};
+      height: ${theme.space(3)};
+    `,
+  };
+});
 
 type ButtonProps = JSX.IntrinsicElements['button'];
 interface Props extends PropsFromStyles<typeof useStyles>, ButtonProps {

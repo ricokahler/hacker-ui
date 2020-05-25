@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import {
   createStyles,
   PropsFromStyles,
-  transparentize,
+  mix,
 } from 'react-style-system';
 
-const useStyles = createStyles(({ css, color }) => ({
+const useStyles = createStyles(({ css, color, surface }) => ({
   // table row base styles
   root: css`
     > :first-child {
@@ -17,7 +17,7 @@ const useStyles = createStyles(({ css, color }) => ({
     :hover {
       th,
       td {
-        background-color: ${transparentize(color.decorative, 0.65)} !important;
+        background-color: ${mix(color.decorative, surface, 0.75)} !important;
         transition: background-color 0.2s;
       }
     }

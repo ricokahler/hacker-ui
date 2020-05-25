@@ -6,11 +6,15 @@ import {
   PropsFromStyles,
   transparentize,
   readableColor,
+  mix,
 } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, color, surface }) => {
+  const mixWithSurface = (color: string, amount: number) =>
+    mix(color, surface, amount);
+
   const bland = createReadablePalette(theme.bland, surface);
   const danger = createReadablePalette(theme.danger, surface);
 
@@ -27,7 +31,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       color: ${readableColor(theme.surface)};
 
       &::placeholder {
-        color: ${transparentize(readableColor(theme.surface), 0.25)};
+        color: ${mixWithSurface(readableColor(theme.surface), 0.25)};
       }
 
       &:disabled {
@@ -35,30 +39,30 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       }
     `,
     filled: css`
-      background-color: ${transparentize(bland.decorative, 0.8)};
+      background-color: ${mixWithSurface(bland.decorative, 0.8)};
       color: ${readableColor(surface)};
       transition: background-color ${theme.duration.standard};
 
       &:focus {
-        background-color: ${transparentize(color.decorative, 0.92)};
+        background-color: ${mixWithSurface(color.decorative, 0.92)};
         color: ${readableColor(surface)};
       }
       &:hover {
-        background-color: ${transparentize(color.decorative, 0.9)};
+        background-color: ${mixWithSurface(color.decorative, 0.9)};
         color: ${readableColor(surface)};
       }
       &:disabled {
-        background-color: ${transparentize(bland.decorative, 0.9)};
+        background-color: ${mixWithSurface(bland.decorative, 0.9)};
       }
     `,
     filledHasError: css`
-      background-color: ${transparentize(danger.decorative, 0.9)};
+      background-color: ${mixWithSurface(danger.decorative, 0.9)};
       color: ${readableColor(surface)};
       &:focus {
-        background-color: ${transparentize(danger.decorative, 0.85)};
+        background-color: ${mixWithSurface(danger.decorative, 0.85)};
       }
       &:not([disabled]):hover {
-        background-color: ${transparentize(danger.decorative, 0.87)};
+        background-color: ${mixWithSurface(danger.decorative, 0.87)};
       }
     `,
     outlined: css`
@@ -69,21 +73,21 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
 
       &:focus {
         border: 2px solid ${color.decorative};
-        background-color: ${transparentize(color.decorative, 0.93)};
+        background-color: ${mixWithSurface(color.decorative, 0.93)};
       }
       &:hover {
         border: 2px solid ${transparentize(color.decorative, 0.3)};
       }
       &:disabled {
         border: 2px solid ${transparentize(bland.decorative, 0.7)};
-        background-color: ${transparentize(bland.decorative, 0.9)};
+        background-color: ${mixWithSurface(bland.decorative, 0.9)};
       }
     `,
     outlinedHasError: css`
       border: 2px solid ${danger.decorative};
       &:focus {
         border: 2px solid ${danger.decorative};
-        background-color: ${transparentize(danger.decorative, 0.93)};
+        background-color: ${mixWithSurface(danger.decorative, 0.93)};
       }
       &:not([disabled]):hover {
         border: 2px solid ${transparentize(danger.decorative, 0.3)};

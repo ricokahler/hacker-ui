@@ -4,7 +4,7 @@ import {
   PropsFromStyles,
   createStyles,
   createReadablePalette,
-  transparentize,
+  mix,
 } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
@@ -24,7 +24,7 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       color: ${theme.danger};
     `,
     disabled: css`
-      color: ${transparentize(bland.readable, 0.3)};
+      color: ${mix(bland.readable, surface, 0.3)};
       cursor: not-allowed;
     `,
   };

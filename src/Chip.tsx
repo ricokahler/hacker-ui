@@ -7,101 +7,107 @@ import {
   PropsFromStyles,
   transparentize,
   readableColor,
+  mix,
 } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
-  // button base styles
-  root: css`
-    ${theme.caption}
-    font-weight: bold;
+const useStyles = createStyles(({ css, theme, color, surface }) => {
+  const mixWithSurface = (color: string, amount: number) =>
+    mix(color, surface, amount);
 
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+  return {
+    // button base styles
+    root: css`
+      ${theme.caption}
+      font-weight: bold;
 
-    appearance: none;
-    outline: none;
-    background: transparent;
-    border: none;
-    text-decoration: none;
-    border-radius: 999999px;
-    min-height: 34px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
 
-    &:disabled {
-      cursor: not-allowed;
-    }
+      appearance: none;
+      outline: none;
+      background: transparent;
+      border: none;
+      text-decoration: none;
+      border-radius: 999999px;
+      min-height: 34px;
 
-    padding: ${theme.space(0.5)} ${theme.space(0.75)};
-
-    & > *:not(:last-child) {
-      margin-right: ${theme.space(0.5)};
-    }
-
-    & > .hui-button {
-      margin-top: ${`-${theme.space(0.5)}`};
-      margin-bottom: ${`-${theme.space(0.5)}`};
-      margin-right: ${`-${theme.space(0.75)}`};
-      margin-left: ${`-${theme.space(0.25)}`};
-    }
-  `,
-  // variants
-  outlined: css`
-    border: 1px solid ${color.readable};
-    color: ${color.readable};
-
-    transition: background-color ${theme.duration.standard},
-      border ${theme.duration.standard};
-
-    &:disabled {
-      &,
-      &:hover,
-      &:focus {
-        color: ${transparentize(color.readable, 0.4)};
-        background-color: transparent;
+      &:disabled {
+        cursor: not-allowed;
       }
-    }
-  `,
-  outlinedClickable: css`
-    cursor: pointer;
-    &:focus {
-      background-color: ${transparentize(color.decorative, 0.92)};
-    }
-    &:hover {
-      background-color: ${transparentize(color.decorative, 0.9)};
-    }
-    &:active {
-      background-color: ${transparentize(color.decorative, 0.8)};
-    }
-  `,
-  filled: css`
-    background-color: ${color.decorative};
-    color: ${readableColor(color.decorative)};
-    border: 2px solid transparent;
-    transition: background-color ${theme.duration.standard},
-      border ${theme.duration.standard};
 
-    &:disabled {
-      background-color: ${transparentize(color.decorative, 0.5)};
+      padding: ${theme.space(0.5)} ${theme.space(0.75)};
+
+      & > *:not(:last-child) {
+        margin-right: ${theme.space(0.5)};
+      }
+
+      & > .hui-button {
+        margin-top: ${`-${theme.space(0.5)}`};
+        margin-bottom: ${`-${theme.space(0.5)}`};
+        margin-right: ${`-${theme.space(0.75)}`};
+        margin-left: ${`-${theme.space(0.25)}`};
+      }
+    `,
+    // variants
+    outlined: css`
+      border: 1px solid ${color.readable};
+      color: ${color.readable};
+
+      transition: background-color ${theme.duration.standard},
+        border ${theme.duration.standard};
+
+      &:disabled {
+        &,
+        &:hover,
+        &:focus {
+          color: ${mixWithSurface(color.readable, 0.4)};
+          background-color: transparent;
+        }
+      }
+    `,
+    outlinedClickable: css`
+      cursor: pointer;
+      &:focus {
+        background-color: ${mixWithSurface(color.decorative, 0.92)};
+      }
+      &:hover {
+        background-color: ${mixWithSurface(color.decorative, 0.9)};
+      }
+      &:active {
+        background-color: ${mixWithSurface(color.decorative, 0.8)};
+      }
+    `,
+    filled: css`
+      background-color: ${color.decorative};
+      color: ${readableColor(color.decorative)};
       border: 2px solid transparent;
-      color: ${transparentize(readableColor(color.decorative), 0.2)};
-    }
-  `,
-  filledClickable: css`
-    cursor: pointer;
-    &:focus {
-      background-color: ${transparentize(color.decorative, 0.18)};
-      border: 2px solid ${transparentize('#fff', 0.7)};
-    }
-    &:hover {
-      background-color: ${transparentize(color.decorative, 0.23)};
-    }
-    &:active {
-      background-color: ${transparentize(color.decorative, 0.3)};
-      border: 2px solid ${transparentize('#fff', 0.5)};
-    }
-  `,
-}));
+      transition: background-color ${theme.duration.standard},
+        border ${theme.duration.standard};
+
+      &:disabled {
+        background-color: ${mixWithSurface(color.decorative, 0.5)};
+        border: 2px solid transparent;
+        color: ${mixWithSurface(readableColor(color.decorative), 0.2)};
+      }
+    `,
+    filledClickable: css`
+      cursor: pointer;
+      &:focus {
+        background-color: ${mixWithSurface(color.decorative, 0.18)};
+        border: 2px solid ${transparentize('#fff', 0.7)};
+      }
+      &:hover {
+        background-color: ${mixWithSurface(color.decorative, 0.23)};
+      }
+      &:active {
+        background-color: ${mixWithSurface(color.decorative, 0.3)};
+        border: 2px solid ${transparentize('#fff', 0.5)};
+      }
+    `,
+  };
+});
 
 type ButtonProps = JSX.IntrinsicElements['button'];
 interface Props extends PropsFromStyles<typeof useStyles>, ButtonProps {

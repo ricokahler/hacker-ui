@@ -2,7 +2,7 @@ import React from 'react';
 import {
   createStyles,
   PropsFromStyles,
-  transparentize,
+  mix,
   readableColor,
 } from 'react-style-system';
 
@@ -53,7 +53,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
     }
 
     & code {
-      background-color: ${transparentize(theme.bland, 0.7)};
+      background-color: ${mix(theme.bland, surface, 0.7)};
       padding: 0 ${theme.space(0.25)};
     }
 
@@ -63,7 +63,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
       }
     }
 
-    & a {
+    & a:not(.hui-anchor) {
       color: ${theme.accent};
       text-decoration: none;
 

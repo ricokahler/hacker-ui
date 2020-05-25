@@ -6,7 +6,7 @@ import {
   useColorContext,
   ColorContextProvider,
   readableColor,
-  transparentize,
+  mix,
 } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme, surface }) => ({
@@ -37,7 +37,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
     tbody tr:nth-child(odd) {
       th,
       td {
-        background-color: ${transparentize(theme.bland, 0.85)};
+        background-color: ${mix(theme.bland, surface, 0.85)};
       }
     }
     th,

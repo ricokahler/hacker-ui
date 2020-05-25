@@ -4,12 +4,12 @@ import {
   createStyles,
   PropsFromStyles,
   readableColor,
-  transparentize,
+  mix,
 } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css``,
   list: css`
     background-color: ${theme.surface};
@@ -80,7 +80,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   subLabel: css`
     ${theme.caption};
-    color: ${transparentize(readableColor(theme.surface), 0.2)};
+    color: ${mix(readableColor(theme.surface), theme.surface, 0.3)};
     text-align: center;
   `,
 }));

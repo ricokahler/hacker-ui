@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import {
   createStyles,
   PropsFromStyles,
-  transparentize,
+  mix,
   readableColor,
 } from 'react-style-system';
 import { TooltipProps } from './types';
@@ -20,7 +20,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
     min-width: ${theme.block(1)};
     text-align: center;
     color: ${readableColor(readableColor(surface))};
-    background-color: ${transparentize(readableColor(surface), 0.2)};
+    background-color: ${mix(readableColor(surface), surface, 0.2)};
     z-index: ${theme.zIndex.tooltip};
   `,
   top: css`

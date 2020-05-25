@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import {
   createStyles,
   readableColor,
-  transparentize,
+  mix,
 } from 'react-style-system';
 import { createReadablePalette, PropsFromStyles } from 'react-style-system';
 import FormControlContext from './FormControlContext';
@@ -26,7 +26,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       color: ${theme.danger};
     `,
     disabled: css`
-      color: ${transparentize(bland.readable, 0.3)};
+      color: ${mix(bland.readable, surface, 0.3)};
       cursor: not-allowed;
     `,
   };

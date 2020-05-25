@@ -19,20 +19,20 @@ import {
   createStyles,
   PropsFromStyles,
   useTheme,
-  transparentize,
+  mix,
 } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faCopy } from '@fortawesome/free-solid-svg-icons';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 import CodeSandboxIcon from './CodeSandboxIcon';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
     display: flex;
     flex-direction: column;
     margin-bottom: ${theme.gap(1)};
     padding: ${theme.space(1)};
-    background-color: ${transparentize(theme.bland, 0.8)};
+    background-color: ${mix(theme.bland, surface, 0.8)};
     display: flex;
     flex-direction: column;
     overflow: auto;

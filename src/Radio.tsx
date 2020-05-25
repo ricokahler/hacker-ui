@@ -5,6 +5,7 @@ import {
   PropsFromStyles,
   createReadablePalette,
   transparentize,
+  mix,
 } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import RadioGroupContext from './RadioGroupContext';
@@ -12,6 +13,9 @@ import { ReactComponent } from './types';
 import CircleIcon from './CircleIcon';
 
 const useStyles = createStyles(({ css, color, theme, surface }) => {
+  const mixWithSurface = (color: string, amount: number) =>
+    mix(color, surface, amount);
+
   const bland = createReadablePalette(theme.bland, surface);
   const danger = createReadablePalette(theme.danger, surface);
 
@@ -36,14 +40,14 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       }
       & .radio:focus ~ .facade {
         border: 2px solid ${danger.decorative};
-        background-color: ${transparentize(danger.decorative, 0.93)};
+        background-color: ${mixWithSurface(danger.decorative, 0.93)};
       }
       & .radio:not([disabled]):hover ~ .facade {
         border: 2px solid ${transparentize(danger.decorative, 0.3)};
-        background-color: ${transparentize(danger.decorative, 0.93)};
+        background-color: ${mixWithSurface(danger.decorative, 0.93)};
       }
       & .radio:active ~ .facade {
-        background-color: ${transparentize(danger.decorative, 0.9)};
+        background-color: ${mixWithSurface(danger.decorative, 0.9)};
       }
     `,
     radio: css`
@@ -55,20 +59,20 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
 
       &:focus ~ .facade {
         border: 2px solid ${color.decorative};
-        background-color: ${transparentize(color.decorative, 0.93)};
+        background-color: ${mixWithSurface(color.decorative, 0.93)};
       }
       &:hover ~ .facade {
         border: 2px solid ${transparentize(color.decorative, 0.3)};
-        background-color: ${transparentize(color.decorative, 0.93)};
+        background-color: ${mixWithSurface(color.decorative, 0.93)};
       }
       &:active ~ .facade {
-        background-color: ${transparentize(color.decorative, 0.9)};
+        background-color: ${mixWithSurface(color.decorative, 0.9)};
       }
 
       &:disabled ~ .facade {
         cursor: not-allowed;
         border: 2px solid ${transparentize(bland.decorative, 0.7)};
-        background-color: ${transparentize(bland.decorative, 0.9)};
+        background-color: ${mixWithSurface(bland.decorative, 0.9)};
       }
 
       &:disabled {
