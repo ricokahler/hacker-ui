@@ -1,5 +1,5 @@
 import { css } from 'react-style-system';
-import { readableColorIsBlack } from 'react-style-system';
+import { readableColorIsBlack, lighten } from 'react-style-system';
 
 const parsePx = (value: string) => {
   const match = value.match(/([\d.]+)px.*/i);
@@ -175,9 +175,13 @@ const defaultTheme = {
   surface: '#fff',
   brand: '#000',
   get accent() {
-    return readableColorIsBlack(this.surface) ? '#2962ff' : '#7a9eff';
+    const accent = '#2962ff';
+    return readableColorIsBlack(this.surface) ? accent : lighten(accent, 0.1);
   },
-  danger: '#eb002b',
+  get danger() {
+    const danger = '#eb002b';
+    return readableColorIsBlack(this.surface) ? danger : lighten(danger, 0.2);
+  },
   warning: '#f56200',
   get bland() {
     return readableColorIsBlack(this.surface) ? '#ccc' : '#555';

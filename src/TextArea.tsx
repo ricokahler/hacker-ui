@@ -17,6 +17,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
   return {
     root: css`
       ${theme.body1};
+      color: ${readableColor(theme.surface)};
       padding: ${theme.space(0.75)} ${theme.space(0.5)};
       border: none;
       outline: none;

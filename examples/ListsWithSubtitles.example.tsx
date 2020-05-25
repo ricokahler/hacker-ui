@@ -23,7 +23,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex: 1 1 auto;
   `,
   title: css`
-    ${theme.h5}
+    ${theme.h6}
   `,
   subtitle: css`
     ${theme.caption}

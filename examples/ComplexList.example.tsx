@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { List, ListItem, Button } from 'hacker-ui';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  readableColor,
+  transparentize,
+} from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,7 +37,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
   `,
   title: css`
-    ${theme.h5};
+    ${theme.h6};
   `,
   subtitle: css`
     ${theme.caption};
@@ -70,12 +75,12 @@ const useStyles = createStyles(({ css, theme }) => ({
   subtotal: css`
     ${theme.body1};
     font-weight: bold;
-    color: #444;
+    color: ${readableColor(theme.surface)};
     margin-bottom: ${theme.space(0.5)};
   `,
   subLabel: css`
     ${theme.caption};
-    color: #444;
+    color: ${transparentize(readableColor(theme.surface), 0.2)};
     text-align: center;
   `,
 }));
