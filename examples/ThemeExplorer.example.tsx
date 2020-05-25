@@ -7,7 +7,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     color: black;
     background-color: white;
     margin: ${theme.gap(1)};
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       margin: ${theme.gap(1)} 0;
     }
     box-shadow: ${theme.shadows.standard};

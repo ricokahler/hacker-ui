@@ -10,7 +10,7 @@ const useStyles = createStyles(({ css, theme }) => ({
 
     margin: ${theme.gap(1)} auto;
     padding: ${theme.gap(1)};
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       padding: ${theme.space(1)};
     }
 

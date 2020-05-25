@@ -6,7 +6,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
 
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       flex-direction: column;
     }
   `,

@@ -1,5 +1,5 @@
-import React, { useEffect, useState, memo, Suspense } from 'react';
-import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
+import React, { useState, Suspense } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import docArray from '../docs';
 import flattenDocArray from './flattenDocArray';
@@ -9,8 +9,6 @@ import AppBar from './AppBar';
 import NoRoute from './NoRoute';
 import PageWrapper from './PageWrapper';
 import LoadingView from './LoadingView';
-import Docs from './Docs';
-import Landing from './Landing';
 
 const routes = flattenDocArray(docArray).map(
   ({ component, ...restOfProps }) => {
@@ -57,35 +55,41 @@ const useStyles = createStyles(({ css, theme }) => ({
 
 interface Props extends PropsFromStyles<typeof useStyles> {}
 
-function App(props: Props) {
+function Docs(props: Props) {
   const { Root, styles } = useStyles(props);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const history = useHistory();
-
-  useEffect(() => {
-    const handler = () =>
-      // TODO: this timeout is not reliable
-      setTimeout(() => {
-        const { Prism } = window as any;
-        if (!Prism) return;
-        Prism.highlightAll();
-
-        window.scrollTo(0, 0);
-      }, 500);
-
-    const unsubscribe = history.listen(handler);
-    handler();
-
-    return unsubscribe;
-  }, [history]);
-
   return (
-    <Switch>
-      <Route path="/" exact component={Landing} />
-      <Docs />
-    </Switch>
+    <Root>
+      <Nav
+        className={styles.nav}
+        open={mobileNavOpen}
+        onClose={() => setMobileNavOpen(false)}
+      />
+      <div className={styles.content}>
+        <AppBar
+          className={styles.appBar}
+          onOpenMobileNav={() => setMobileNavOpen(true)}
+        />
+        <main className={styles.main}>
+          <Suspense fallback={<LoadingView />}>
+            <Switch>
+              <Route
+                path="/"
+                exact
+                render={() => <Redirect to={firstPath} />}
+              />
+              {routes.map(({ title, ...restOfRoute }, index) => (
+                <Route key={index} {...restOfRoute} />
+              ))}
+              <Route path="/404" component={NoRoute} />
+              <Redirect to="/404" />
+            </Switch>
+          </Suspense>
+        </main>
+      </div>
+    </Root>
   );
 }
 
-export default memo(App);
+export default Docs;

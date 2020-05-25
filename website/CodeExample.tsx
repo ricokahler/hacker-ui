@@ -77,7 +77,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
     padding: ${theme.space(1)};
     margin: 0;
 
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       font-size: 0.8rem;
     }
   `,

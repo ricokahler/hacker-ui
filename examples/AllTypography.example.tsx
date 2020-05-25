@@ -56,7 +56,7 @@ interface Props extends PropsFromStyles<typeof useStyles> {}
 function AllTypographyExample(props: Props) {
   const { Root, styles } = useStyles(props);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.down(theme.tablet));
+  const isMobile = useMediaQuery(theme.media.down('tablet'));
 
   return (
     <Root>

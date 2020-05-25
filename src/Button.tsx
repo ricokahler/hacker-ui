@@ -102,7 +102,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
         border ${theme.duration.standard};
 
       &:focus {
-        background-color: ${mixWithSurface(color.decorative, 0.92)};
+        background-color: ${transparentize(color.decorative, 0.92)};
         /* TODO: there's a bug in react-style-system that requires prettier-ignore */
         /* prettier-ignore */
         border: 2px solid ${transparentize(
@@ -111,13 +111,13 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
         )};
       }
       &:hover {
-        background-color: ${mixWithSurface(color.decorative, 0.9)};
+        background-color: ${transparentize(color.decorative, 0.9)};
       }
       &:active {
-        background-color: ${mixWithSurface(color.decorative, 0.8)};
+        background-color: ${transparentize(color.decorative, 0.8)};
       }
       &:disabled {
-        color: ${mixWithSurface(color.readable, 0.4)};
+        color: ${transparentize(color.readable, 0.4)};
         background-color: transparent;
       }
     `,

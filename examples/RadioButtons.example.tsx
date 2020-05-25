@@ -6,7 +6,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
     align-items: center;
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       flex-direction: column;
     }
   `,
@@ -23,7 +23,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     overflow: hidden;
     width: ${theme.block(2)};
     margin: ${theme.gap(1)} 0;
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       margin: ${theme.space(1)} 0;
     }
     margin-right: ${theme.space(1)};
@@ -40,7 +40,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     display: flex;
     flex-direction: column;
     margin: ${theme.gap(1)} auto;
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       margin: ${theme.space(1)} auto;
     }
     text-align: center;

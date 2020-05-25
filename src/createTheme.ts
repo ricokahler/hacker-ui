@@ -43,6 +43,11 @@ export function recursiveMerge<
       (incomingDescriptor && 'value' in incomingDescriptor) || false;
 
     if (incomingIsValue) {
+      // TODO: test if this is needed
+      if (typeof incomingValue === 'function') {
+        merged[key] = incomingValue.bind(merged);
+        return merged;
+      }
       merged[key] = incomingValue;
       return merged;
     }
@@ -65,6 +70,11 @@ export function recursiveMerge<
       return merged;
     }
 
+    // TODO: test if this is needed
+    if (typeof baseValue === 'function') {
+      merged[key] = baseValue.bind(merged);
+      return merged;
+    }
     merged[key] = baseValue;
     return merged;
   }, {} as T & U);

@@ -41,7 +41,7 @@ const useStyles = createStyles(({ css, theme }) => {
       margin: ${theme.gap(1)};
       height: 500px;
 
-      ${theme.down(theme.tablet)} {
+      ${theme.media.down('tablet')} {
         margin: ${theme.space(1)};
       }
     `,
@@ -231,7 +231,7 @@ function NavExample(props: Props) {
   const [collapsed, setCollapsed] = useState({} as { [key: string]: boolean });
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
-  const isMobile = useMediaQuery(theme.down(theme.tablet));
+  const isMobile = useMediaQuery(theme.media.down('tablet'));
 
   /**
    * recursively creates

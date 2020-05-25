@@ -18,7 +18,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     display: flex;
     min-height: ${theme.block(3)};
 
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       flex-direction: column;
     }
   `,

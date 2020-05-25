@@ -9,18 +9,29 @@ const parsePx = (value: string) => {
   return parseFloat(match[1]);
 };
 
-const defaultTheme = {
-  // responsive helpers
-  up: (value: string) => `@media (min-width: ${parsePx(value) + 1}px)`,
-  down: (value: string) => `@media (max-width: ${value})`,
-  between: (min: string, max: string) =>
-    `@media (max-width: ${min}) and (min-width: ${parsePx(max) + 1}px)`,
+export type Breakpoint = 'mobile' | 'tablet' | 'desktop' | 'desktopLarge';
 
-  // breakpoints
-  mobile: '375px',
-  tablet: '768px',
-  desktop: '1024px',
-  desktopLarge: '1440px',
+const defaultTheme = {
+  // media queries
+  media: {
+    up(value: Breakpoint) {
+      console.log('this value', this[value]);
+      return `@media (min-width: ${parsePx(this[value]) + 1}px)`;
+    },
+    down(value: Breakpoint) {
+      console.log('this value', this[value]);
+      return `@media (max-width: ${this[value]})`;
+    },
+    between(min: Breakpoint, max: Breakpoint) {
+      return `@media (max-width: ${this[min]}) and (min-width: ${
+        parsePx(this[max]) + 1
+      }px)`;
+    },
+    mobile: '425px',
+    tablet: '768px',
+    desktop: '1024px',
+    desktopLarge: '1440px',
+  },
 
   // non-responsive font-sizes
   fontStatic: {
@@ -112,11 +123,19 @@ const defaultTheme = {
     `,
   },
 
+  weight: {
+    light: 300 as 300,
+    normal: 400 as 400,
+    semiBold: 600 as 600,
+    bold: 700 as 700,
+    black: 900 as 900,
+  },
+
   // responsive/default font-sizes
   get h1() {
     return css`
       ${this.fontStatic.h1};
-      ${this.down(this.tablet)} {
+      ${this.media.down('tablet')} {
         ${this.fontStatic.h2};
       }
     `;
@@ -124,7 +143,7 @@ const defaultTheme = {
   get h2() {
     return css`
       ${this.fontStatic.h2};
-      ${this.down(this.tablet)} {
+      ${this.media.down('tablet')} {
         ${this.fontStatic.h3};
       }
     `;
@@ -132,7 +151,7 @@ const defaultTheme = {
   get h3() {
     return css`
       ${this.fontStatic.h3};
-      ${this.down(this.tablet)} {
+      ${this.media.down('tablet')} {
         ${this.fontStatic.h4};
       }
     `;
@@ -140,7 +159,7 @@ const defaultTheme = {
   get h4() {
     return css`
       ${this.fontStatic.h4};
-      ${this.down(this.tablet)} {
+      ${this.media.down('tablet')} {
         ${this.fontStatic.h5};
       }
     `;
@@ -158,7 +177,12 @@ const defaultTheme = {
     return this.fontStatic.subtitle2;
   },
   get body1() {
-    return this.fontStatic.body1;
+    return css`
+      ${this.fontStatic.body1};
+      ${this.media.down('mobile')} {
+        ${this.fontStatic.body2};
+      }
+    `;
   },
   get body2() {
     return this.fontStatic.body2;
@@ -172,6 +196,8 @@ const defaultTheme = {
   get overline() {
     return this.fontStatic.overline;
   },
+
+  // colors
   surface: '#fff',
   brand: '#000',
   get accent() {

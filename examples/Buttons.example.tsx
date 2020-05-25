@@ -6,7 +6,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
 
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       flex-direction: column;
     }
   `,
@@ -21,12 +21,12 @@ const useStyles = createStyles(({ css, theme }) => ({
     & > *:not(:last-child) {
       margin-bottom: ${theme.space(0.5)};
 
-      ${theme.down(theme.tablet)} {
+      ${theme.media.down('tablet')} {
         margin-right: ${theme.space(0.5)};
       }
     }
 
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       flex-direction: row;
       flex-wrap: wrap;
       width: 100%;

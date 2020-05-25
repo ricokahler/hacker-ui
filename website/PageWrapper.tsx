@@ -4,13 +4,14 @@ import {
   PropsFromStyles,
   mix,
   readableColor,
+  transparentize,
 } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
     color: ${readableColor(surface)};
     padding: ${theme.gap(1)};
-    ${theme.down(theme.tablet)} {
+    ${theme.media.down('tablet')} {
       padding: ${theme.space(1)};
     }
 
@@ -34,10 +35,14 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
       ${theme.h6};
     }
 
+    & > p + h3 {
+      margin-top: ${theme.gap(1)};
+    }
+
     & > p {
       ${theme.body1};
       max-width: ${theme.block(7)};
-      margin-bottom: ${theme.space(1)};
+      margin-bottom: ${theme.space(1)} !important;
     }
 
     & > pre {
@@ -70,6 +75,11 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
       &:hover {
         text-decoration: underline;
       }
+    }
+
+    & > hr {
+      margin: ${theme.space(1.5)} 0;
+      border: 1px solid ${transparentize(readableColor(theme.surface), 0.9)};
     }
   `,
 }));

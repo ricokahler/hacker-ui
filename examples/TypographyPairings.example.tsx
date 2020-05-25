@@ -13,10 +13,12 @@ const useStyles = createStyles(({ css, theme }) => ({
   title: css`
     ${theme.h2};
     line-height: 1;
+    margin-bottom: ${theme.space(1)};
   `,
   subtitle: css`
     ${theme.h4};
     line-height: 1;
+    font-weight: ${theme.weight.normal};
   `,
   card: css`
     width: ${theme.block(5)};
@@ -37,7 +39,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: ${theme.space(1)};
   `,
   label: css`
-    font-weight: bold;
+    ${theme.overline};
   `,
   subtext: css`
     ${theme.body2};
@@ -65,7 +67,7 @@ function TypographyPairingsExample(props: Props) {
     <Root>
       <section className={styles.pairing}>
         <h3 className={styles.title}>Hacker UI</h3>
-        <p className={styles.subtitle}>— a simple design system</p>
+        <p className={styles.subtitle}>— a simple component library</p>
       </section>
 
       <section className={styles.card}>

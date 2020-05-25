@@ -32,7 +32,7 @@ function AppBar(props: Props) {
   const { Root, styles, onOpenMobileNav } = useStyles(props);
   const theme = useTheme();
 
-  const isMobile = useMediaQuery(theme.down(theme.tablet));
+  const isMobile = useMediaQuery(theme.media.down('tablet'));
   const { darkMode, setDarkMode } = useDarkMode();
 
   return (
