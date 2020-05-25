@@ -15,7 +15,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
     display: flex;
   `,
   container: css`
-    width: ${theme.mobile};
+    width: ${theme.media.mobile};
     max-width: 100%;
     margin: auto;
     display: flex;

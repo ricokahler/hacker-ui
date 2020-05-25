@@ -17,7 +17,7 @@ const useStyles = createStyles(({ css, theme, surface }) => {
     `,
     card: css`
       margin: ${theme.gap(1)} auto;
-      width: ${theme.mobile};
+      width: ${theme.media.mobile};
       max-width: 100%;
       display: flex;
       flex-direction: column;

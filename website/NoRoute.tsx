@@ -20,7 +20,7 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
   content: css`
     margin: auto;
     text-align: center;
-    width: ${theme.mobile};
+    width: ${theme.media.mobile};
     max-width: 100%;
     padding: ${theme.space(1)};
   `,

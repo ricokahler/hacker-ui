@@ -8,7 +8,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   card: css`
     margin: ${theme.gap(1)} auto;
-    width: ${theme.mobile};
+    width: ${theme.media.mobile};
     max-width: 100%;
     background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};

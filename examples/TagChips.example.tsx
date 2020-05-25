@@ -5,7 +5,7 @@ import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 const useStyles = createStyles(({ css, theme }) => ({
   root: css``,
   card: css`
-    width: ${theme.tablet};
+    width: ${theme.media.tablet};
     max-width: 100%;
 
     margin: ${theme.gap(1)} auto;

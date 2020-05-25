@@ -42,13 +42,9 @@ const useStyles = createStyles(({ css, theme, surface }) => ({
   `,
   container: css`
     margin: auto;
-    width: ${theme.tablet};
+    width: ${theme.media.tablet};
     max-width: 100%;
     padding: ${theme.gap(1)};
-
-    @media (max-width: ${theme.mobile}) {
-
-    }
 
     ${theme.media.down('mobile')} {
       padding: ${theme.space(1)};
