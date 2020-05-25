@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react';
 import classNames from 'classnames';
-import { darken, lighten, readableColor } from 'polished';
 import {
   List,
   ListItemButton,
@@ -11,7 +10,14 @@ import {
   ListItem,
   Tooltip,
 } from 'hacker-ui';
-import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  useTheme,
+  darken,
+  lighten,
+  readableColor,
+} from 'react-style-system';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -37,15 +43,15 @@ const flattenedDocArray = docArray.map((i) =>
     : i,
 ) as DocArray;
 
-const useStyles = createStyles(({ css, theme }) => {
+const useStyles = createStyles(({ css, theme, surface }) => {
   const backgroundColor =
-    readableColor(theme.colors.surface) === '#000'
-      ? darken(0.03, theme.colors.surface)
-      : lighten(0.03, theme.colors.surface);
+    readableColor(theme.surface) === '#000'
+      ? darken(theme.surface, 0.03)
+      : lighten(theme.surface, 0.03);
 
   return {
     root: css`
-      width: ${theme.block(3)};
+      width: ${theme.block(2.5)};
       background-color: ${backgroundColor};
       color: ${readableColor(backgroundColor)};
       display: flex;
@@ -53,10 +59,13 @@ const useStyles = createStyles(({ css, theme }) => {
       overflow: hidden;
       height: 100%;
     `,
+    drawer: css`
+      width: ${theme.block(2.5)};
+    `,
     header: css`
       flex: 0 0 auto;
       padding: ${theme.space(1)};
-      border-bottom: 1px solid ${theme.colors.bland};
+      border-bottom: 1px solid ${theme.bland};
       min-height: ${theme.block(0.75)};
       display: flex;
     `,
@@ -69,10 +78,15 @@ const useStyles = createStyles(({ css, theme }) => {
       justify-content: center;
     `,
     title: css`
-      ${theme.fonts.h5};
+      ${theme.h6};
+      color: ${readableColor(surface)};
+
+      &:hover {
+        text-decoration: underline;
+      }
     `,
     version: css`
-      ${theme.fonts.caption};
+      ${theme.caption};
     `,
     body: css`
       flex: 1 1 auto;
@@ -87,14 +101,20 @@ const useStyles = createStyles(({ css, theme }) => {
       margin-left: auto;
     `,
     itemTitle: css`
-      ${theme.fonts.body1};
+      font-weight: 400;
       margin-right: ${theme.space(1)};
     `,
     itemTitleBold: css`
       font-weight: bold;
     `,
     routeBody: css`
-      ${theme.fonts.caption};
+      ${theme.caption};
+    `,
+    headerItem: css`
+      margin-top: ${theme.space(1)};
+    `,
+    nestedItem: css`
+      padding-left: ${theme.space(1.5)};
     `,
   };
 });
@@ -111,9 +131,7 @@ function Nav(props: Props) {
     {},
   );
 
-  const isMobile = useMediaQuery(
-    theme.breakpoints.down(theme.breakpoints.tablet),
-  );
+  const isMobile = useMediaQuery(theme.media.down('tablet'));
 
   const content = (
     <Root>
@@ -125,7 +143,7 @@ function Nav(props: Props) {
                 {...tooltipProps}
                 className={styles.closeButton}
                 shape="icon"
-                color={theme.colors.brand}
+                color={theme.brand}
                 aria-label="Close Nav"
                 onClick={onClose}
                 autoFocus
@@ -136,9 +154,9 @@ function Nav(props: Props) {
           </Tooltip>
         )}
         <div className={styles.headerInfo}>
-          <h1 className={styles.title}>
-            <span>Hacker UI</span>
-          </h1>
+          <Link to="/">
+            <h1 className={styles.title}>Hacker UI</h1>
+          </Link>
           <span className={styles.version}>{version}</span>
         </div>
       </div>
@@ -155,7 +173,7 @@ function Nav(props: Props) {
               <Fragment key={rootSlug}>
                 <ListItem>
                   <ListItemButton
-                    className={styles.item}
+                    className={classNames(styles.item, styles.headerItem)}
                     onClick={() =>
                       setCollapsedSet((set) => toggle(set, rootSlug))
                     }
@@ -185,7 +203,10 @@ function Nav(props: Props) {
                       return (
                         <ListItem key={slug}>
                           <ListItemButton
-                            className={styles.item}
+                            className={classNames(
+                              styles.item,
+                              styles.nestedItem,
+                            )}
                             component={Link}
                             // @ts-ignore
                             to={path}
@@ -209,7 +230,7 @@ function Nav(props: Props) {
   if (!isMobile) return content;
 
   return (
-    <Drawer open={open} onClose={onClose}>
+    <Drawer className={styles.drawer} open={open} onClose={onClose}>
       {content}
     </Drawer>
   );

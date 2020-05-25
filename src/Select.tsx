@@ -1,18 +1,23 @@
 import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import { transparentize, readableColor } from 'polished';
 import {
   createStyles,
   createReadablePalette,
   PropsFromStyles,
+  transparentize,
+  readableColor,
+  mix,
 } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 import AngleDownIcon from './AngleDownIcon';
 
 const useStyles = createStyles(({ css, theme, color, surface }) => {
-  const bland = createReadablePalette(theme.colors.bland, surface);
-  const danger = createReadablePalette(theme.colors.danger, surface);
+  const mixWithSurface = (color: string, amount: number) =>
+    mix(color, surface, amount);
+
+  const bland = createReadablePalette(theme.bland, surface);
+  const danger = createReadablePalette(theme.danger, surface);
 
   return {
     root: css`
@@ -20,7 +25,7 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       margin: ${theme.space(0.5)} 0;
     `,
     select: css`
-      ${theme.fonts.body1};
+      ${theme.body1};
       width: 100%;
       height: 100%;
       appearance: none;
@@ -36,60 +41,60 @@ const useStyles = createStyles(({ css, theme, color, surface }) => {
       }
     `,
     selectFilled: css`
-      background-color: ${transparentize(0.8, bland.decorative)};
+      background-color: ${mixWithSurface(bland.decorative, 0.8)};
       color: ${readableColor(surface)};
-      transition: background-color ${theme.durations.standard};
+      transition: background-color ${theme.duration.standard};
 
       &:focus {
-        background-color: ${transparentize(0.92, color.decorative)};
+        background-color: ${mixWithSurface(color.decorative, 0.92)};
         color: ${readableColor(surface)};
       }
       &:hover {
-        background-color: ${transparentize(0.9, color.decorative)};
+        background-color: ${mixWithSurface(color.decorative, 0.9)};
         color: ${readableColor(surface)};
       }
       &:disabled {
-        background-color: ${transparentize(0.9, bland.decorative)};
+        background-color: ${mixWithSurface(bland.decorative, 0.9)};
       }
     `,
     selectFilledHasError: css`
-      background-color: ${transparentize(0.9, danger.decorative)};
+      background-color: ${mixWithSurface(danger.decorative, 0.9)};
       color: ${readableColor(surface)};
       &:focus {
-        background-color: ${transparentize(0.85, danger.decorative)};
+        background-color: ${mixWithSurface(danger.decorative, 0.85)};
       }
       &:not([disabled]):hover {
-        background-color: ${transparentize(0.87, danger.decorative)};
+        background-color: ${mixWithSurface(danger.decorative, 0.87)};
       }
     `,
     selectOutlined: css`
       background-color: ${surface};
-      transition: border ${theme.durations.standard},
-        background-color ${theme.durations.standard},
-        color ${theme.durations.standard};
+      transition: border ${theme.duration.standard},
+        background-color ${theme.duration.standard},
+        color ${theme.duration.standard};
       border: 2px solid ${bland.decorative};
       color: ${readableColor(surface)};
 
       &:focus {
         border: 2px solid ${color.decorative};
-        background-color: ${transparentize(0.93, color.decorative)};
+        background-color: ${mixWithSurface(color.decorative, 0.93)};
       }
       &:hover {
-        border: 2px solid ${transparentize(0.3, color.decorative)};
+        border: 2px solid ${transparentize(color.decorative, 0.3)};
       }
       &:disabled {
-        border: 2px solid ${transparentize(0.7, bland.decorative)};
-        background-color: ${transparentize(0.9, bland.decorative)};
+        border: 2px solid ${transparentize(bland.decorative, 0.7)};
+        background-color: ${mixWithSurface(bland.decorative, 0.9)};
       }
     `,
     selectedOutlinedHasError: css`
       border: 2px solid ${danger.decorative};
       &:focus {
         border: 2px solid ${danger.decorative};
-        background-color: ${transparentize(0.93, danger.decorative)};
+        background-color: ${mixWithSurface(danger.decorative, 0.93)};
       }
       &:not([disabled]):hover {
-        border: 2px solid ${transparentize(0.3, danger.decorative)};
+        border: 2px solid ${transparentize(danger.decorative, 0.3)};
       }
     `,
     icon: css`

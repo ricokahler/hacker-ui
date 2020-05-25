@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useRef,
 } from 'react';
-import { nanoid } from 'nanoid';
+import uid from 'uid';
 import { createStyles, PropsFromStyles } from 'react-style-system';
 import RadioGroupContext from './RadioGroupContext';
 
@@ -31,7 +31,7 @@ const RadioGroup = forwardRef(
       ...restOfProps
     } = useStyles(props, props.component ?? 'div');
 
-    const name = useMemo(() => `hui-group-${nanoid()}`, []);
+    const name = useMemo(() => `hui-group-${uid()}`, []);
 
     const [stateValue, setStateValue] = useState('');
 

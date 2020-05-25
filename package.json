@@ -20,6 +20,7 @@
     "@babel/core": "7.9.6",
     "@babel/plugin-transform-runtime": "7.9.6",
     "@babel/polyfill": "7.8.7",
+    "@color2k/compat": "^1.0.0-rc.5",
     "@fortawesome/fontawesome-svg-core": "1.2.28",
     "@fortawesome/free-brands-svg-icons": "5.13.0",
     "@fortawesome/free-solid-svg-icons": "5.13.0",
@@ -68,13 +69,14 @@
     "react-dom": "16.13.1",
     "react-inspector": "5.0.1",
     "react-router-dom": "5.1.2",
-    "react-style-system": "0.1.1",
+    "react-style-system": "^0.2.0",
     "react-test-renderer": "16.13.1",
     "rollup": "2.8.2",
     "style-loader": "1.2.1",
     "sugarss": "2.0.0",
     "ts-loader": "7.0.3",
     "typescript": "3.8.3",
+    "uid": "^1.0.0",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.11.0"
@@ -83,14 +85,12 @@
     "@babel/runtime": "7.9.6",
     "@types/classnames": "2.2.10",
     "@types/invariant": "2.2.32",
-    "classnames": "2.2.6",
-    "nanoid": "3.1.6",
-    "polished": "3.6.2"
+    "classnames": "2.2.6"
   },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "react-style-system": "^0.1.1"
+    "react-style-system": "^0.2.0"
   },
   "sideEffects": false,
   "browserslist": "> 5%"

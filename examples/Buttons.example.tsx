@@ -6,7 +6,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     display: flex;
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.media.down('tablet')} {
       flex-direction: column;
     }
   `,
@@ -21,12 +21,12 @@ const useStyles = createStyles(({ css, theme }) => ({
     & > *:not(:last-child) {
       margin-bottom: ${theme.space(0.5)};
 
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      ${theme.media.down('tablet')} {
         margin-right: ${theme.space(0.5)};
       }
     }
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.media.down('tablet')} {
       flex-direction: row;
       flex-wrap: wrap;
       width: 100%;
@@ -130,7 +130,7 @@ function ButtonsExample(props: Props) {
         <Button
           variant={variant}
           size={size}
-          color={theme.colors.brand}
+          color={theme.brand}
           shape={shape}
           disabled={disabled}
         >
@@ -139,7 +139,7 @@ function ButtonsExample(props: Props) {
         <Button
           variant={variant}
           size={size}
-          color={theme.colors.accent}
+          color={theme.accent}
           shape={shape}
           disabled={disabled}
         >
@@ -148,7 +148,7 @@ function ButtonsExample(props: Props) {
         <Button
           variant={variant}
           size={size}
-          color={theme.colors.bland}
+          color={theme.bland}
           shape={shape}
           disabled={disabled}
         >
@@ -157,7 +157,7 @@ function ButtonsExample(props: Props) {
         <Button
           variant={variant}
           size={size}
-          color={theme.colors.danger}
+          color={theme.danger}
           shape={shape}
           disabled={disabled}
         >

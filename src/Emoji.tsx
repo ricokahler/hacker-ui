@@ -19,18 +19,13 @@ const useStyles = createStyles(({ css, theme }) => ({
 }));
 
 type SpanProps = JSX.IntrinsicElements['span'];
-interface Props extends SpanProps, PropsFromStyles<typeof useStyles> {
-  label: string;
-}
+interface Props extends SpanProps, PropsFromStyles<typeof useStyles> {}
 
 const Emoji = forwardRef((props: Props, ref: React.Ref<HTMLSpanElement>) => {
-  const { Root, styles, label, children, ...restOfProps } = useStyles(
-    props,
-    'span',
-  );
+  const { Root, styles, children, ...restOfProps } = useStyles(props, 'span');
 
   return (
-    <Root role="img" aria-label={label} ref={ref} {...restOfProps}>
+    <Root ref={ref} {...restOfProps}>
       <span className={styles.wrapper}>{children}</span>
     </Root>
   );

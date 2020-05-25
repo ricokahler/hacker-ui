@@ -1,30 +1,30 @@
 import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import { transparentize } from 'polished';
 import {
   PropsFromStyles,
   createStyles,
   createReadablePalette,
+  mix,
 } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, color, theme, surface }) => {
-  const bland = createReadablePalette(theme.colors.bland, surface);
+  const bland = createReadablePalette(theme.bland, surface);
 
   return {
     root: css`
-      ${theme.fonts.caption};
-      transition: color ${theme.durations.standard};
+      ${theme.caption};
+      transition: color ${theme.duration.standard};
     `,
     focused: css`
       color: ${color.readable};
     `,
     hasError: css`
-      color: ${theme.colors.danger};
+      color: ${theme.danger};
     `,
     disabled: css`
-      color: ${transparentize(0.3, bland.readable)};
+      color: ${mix(bland.readable, surface, 0.3)};
       cursor: not-allowed;
     `,
   };

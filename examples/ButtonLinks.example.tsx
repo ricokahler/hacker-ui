@@ -64,7 +64,7 @@ function ButtonLinksExample(props: Props) {
             <Button
               className={styles.button}
               variant="filled"
-              color={theme.colors.brand}
+              color={theme.brand}
               component={Link}
               // @ts-ignore
               to="/components/buttons-and-links"

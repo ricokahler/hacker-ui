@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useMemo } from 'react';
-import { nanoid } from 'nanoid';
+import uid from 'uid';
 import {
   createStyles,
   PropsFromStyles,
@@ -39,11 +39,11 @@ const FormControl = forwardRef(
     const theme = useTheme();
 
     const color =
-      props.color ?? colorContext?.color.original ?? theme.colors.accent;
+      props.color ?? colorContext?.color.original ?? theme.accent;
     const surface =
-      props.surface ?? colorContext?.surface ?? theme.colors.surface;
+      props.surface ?? colorContext?.surface ?? theme.surface;
 
-    const id = useMemo(() => `hui-${nanoid()}`, []);
+    const id = useMemo(() => `hui-${uid()}`, []);
     const [focused, setFocused] = useState(false);
 
     const formControlContextValue = useMemo(

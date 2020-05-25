@@ -8,7 +8,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   list: css`
     box-shadow: ${theme.shadows.standard};
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     width: ${theme.block(2)};
   `,
   listItem: css`

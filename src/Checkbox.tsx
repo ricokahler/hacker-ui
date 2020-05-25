@@ -1,18 +1,22 @@
 import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import { transparentize } from 'polished';
 import {
   createStyles,
   createReadablePalette,
   PropsFromStyles,
+  mix,
+  transparentize,
 } from 'react-style-system';
 import FormControlContext from './FormControlContext';
 import { ReactComponent } from './types';
 import CheckIcon from './CheckIcon';
 
 const useStyles = createStyles(({ css, color, theme, surface }) => {
-  const bland = createReadablePalette(theme.colors.bland, surface);
-  const danger = createReadablePalette(theme.colors.danger, surface);
+  const mixWithSurface = (color: string, amount: number) =>
+    mix(color, surface, amount);
+
+  const bland = createReadablePalette(theme.bland, surface);
+  const danger = createReadablePalette(theme.danger, surface);
 
   const width = theme.space(2);
   const height = theme.space(2);
@@ -36,14 +40,14 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       }
       & .checkbox:focus ~ .facade {
         border: 2px solid ${danger.decorative};
-        background-color: ${transparentize(0.93, danger.decorative)};
+        background-color: ${mixWithSurface(danger.decorative, 0.93)};
       }
       & .checkbox:not([disabled]):hover ~ .facade {
-        border: 2px solid ${transparentize(0.3, danger.decorative)};
-        background-color: ${transparentize(0.93, danger.decorative)};
+        border: 2px solid ${transparentize(danger.decorative, 0.3)};
+        background-color: ${mixWithSurface(danger.decorative, 0.93)};
       }
       & .checkbox:active ~ .facade {
-        background-color: ${transparentize(0.9, danger.decorative)};
+        background-color: ${mixWithSurface(danger.decorative, 0.9)};
       }
     `,
     checkbox: css`
@@ -55,20 +59,20 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
 
       &:focus ~ .facade {
         border: 2px solid ${color.decorative};
-        background-color: ${transparentize(0.93, color.decorative)};
+        background-color: ${mixWithSurface(color.decorative, 0.93)};
       }
       &:hover ~ .facade {
-        border: 2px solid ${transparentize(0.3, color.decorative)};
-        background-color: ${transparentize(0.93, color.decorative)};
+        border: 2px solid ${transparentize(color.decorative, 0.3)};
+        background-color: ${mixWithSurface(color.decorative, 0.93)};
       }
       &:active ~ .facade {
-        background-color: ${transparentize(0.9, color.decorative)};
+        background-color: ${mixWithSurface(color.decorative, 0.9)};
       }
 
       &:disabled ~ .facade {
         cursor: not-allowed;
-        border: 2px solid ${transparentize(0.7, bland.decorative)};
-        background-color: ${transparentize(0.9, bland.decorative)};
+        border: 2px solid ${transparentize(bland.decorative, 0.7)};
+        background-color: ${mixWithSurface(bland.decorative, 0.9)};
       }
 
       &:disabled {
@@ -99,8 +103,8 @@ const useStyles = createStyles(({ css, color, theme, surface }) => {
       align-items: center;
       flex: 0 0 auto;
       background-color: white;
-      transition: border ${theme.durations.standard},
-        background-color ${theme.durations.standard};
+      transition: border ${theme.duration.standard},
+        background-color ${theme.duration.standard};
       border: 2px solid ${bland.decorative};
       background-color: ${surface};
       border-radius: ${theme.borderRadius};

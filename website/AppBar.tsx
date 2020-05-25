@@ -3,12 +3,13 @@ import { Tooltip, Button, useMediaQuery } from 'hacker-ui';
 import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import useDarkMode from './useDarkMode';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     height: ${theme.block(0.75)};
-    border-bottom: 1px solid ${theme.colors.bland};
+    border-bottom: 1px solid ${theme.bland};
     display: flex;
     align-items: center;
     padding: ${theme.space(1)};
@@ -18,7 +19,9 @@ const useStyles = createStyles(({ css, theme }) => ({
   `,
   githubButton: css`
     margin-left: auto;
+    margin-right: ${theme.space(1)};
   `,
+  darkModeButton: css``,
 }));
 
 interface Props extends PropsFromStyles<typeof useStyles> {
@@ -29,9 +32,8 @@ function AppBar(props: Props) {
   const { Root, styles, onOpenMobileNav } = useStyles(props);
   const theme = useTheme();
 
-  const isMobile = useMediaQuery(
-    theme.breakpoints.down(theme.breakpoints.tablet),
-  );
+  const isMobile = useMediaQuery(theme.media.down('tablet'));
+  const { darkMode, setDarkMode } = useDarkMode();
 
   return (
     <Root>
@@ -64,9 +66,22 @@ function AppBar(props: Props) {
             href="https://github.com/ricokahler/hacker-ui"
             {...tooltipProps}
           >
-            {/*
-            // @ts-ignore */}
-            <FontAwesomeIcon icon={faGithub} size="lg" />
+            <FontAwesomeIcon icon={faGithub} size="3x" />
+          </Button>
+        )}
+      </Tooltip>
+
+      <Tooltip title="Toggle dark mode" position="left">
+        {(tooltipProps) => (
+          <Button
+            className={styles.darkModeButton}
+            aria-label="Dark mode"
+            shape="icon"
+            color="black"
+            onClick={() => setDarkMode((darkMode) => !darkMode)}
+            {...tooltipProps}
+          >
+            <FontAwesomeIcon icon={darkMode ? faSun : faMoon} size="3x" />
           </Button>
         )}
       </Tooltip>

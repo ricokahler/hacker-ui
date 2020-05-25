@@ -1,11 +1,17 @@
 import React from 'react';
-import { createStyles, PropsFromStyles } from 'react-style-system';
-import { transparentize } from 'polished';
+import {
+  createStyles,
+  PropsFromStyles,
+  mix,
+  readableColor,
+  transparentize,
+} from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme }) => ({
+const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
+    color: ${readableColor(surface)};
     padding: ${theme.gap(1)};
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.media.down('tablet')} {
       padding: ${theme.space(1)};
     }
 
@@ -15,33 +21,28 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: calc(50vh - ${theme.block(2)});
 
     & > h1 {
-      ${theme.fonts.h3};
-
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-        ${theme.fonts.h4};
-      }
+      ${theme.h3};
+      margin-bottom: ${theme.space(0.5)};
     }
 
     & > h2 {
-      ${theme.fonts.h4};
-
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-        ${theme.fonts.h5};
-      }
+      ${theme.h5};
+      margin-top: ${theme.gap(1)};
+      margin-bottom: ${theme.space(1)};
     }
 
     & > h3 {
-      ${theme.fonts.h5};
+      ${theme.h6};
+    }
 
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-        ${theme.fonts.body1};
-        font-weight: 500;
-      }
+    & > p + h3 {
+      margin-top: ${theme.gap(1)};
     }
 
     & > p {
-      ${theme.fonts.body1};
+      ${theme.body1};
       max-width: ${theme.block(7)};
+      margin-bottom: ${theme.space(1)} !important;
     }
 
     & > pre {
@@ -57,12 +58,28 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
 
     & code {
-      background-color: ${transparentize(0.7, theme.colors.bland)};
+      background-color: ${mix(theme.bland, surface, 0.7)};
       padding: 0 ${theme.space(0.25)};
     }
 
-    & > *:not(:last-child) {
-      margin-bottom: ${theme.space(1)};
+    & ul {
+      & > * + * {
+        margin-top: ${theme.space(0.5)};
+      }
+    }
+
+    & a:not(.hui-anchor) {
+      color: ${theme.accent};
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    & > hr {
+      margin: ${theme.space(1.5)} 0;
+      border: 1px solid ${transparentize(readableColor(theme.surface), 0.9)};
     }
   `,
 }));

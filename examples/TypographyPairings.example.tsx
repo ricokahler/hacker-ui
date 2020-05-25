@@ -11,20 +11,14 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: ${theme.gap(1)};
   `,
   title: css`
-    ${theme.fonts.h2};
+    ${theme.h2};
     line-height: 1;
-
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-      ${theme.fonts.h3};
-    }
+    margin-bottom: ${theme.space(1)};
   `,
   subtitle: css`
-    ${theme.fonts.subtitle1};
+    ${theme.h4};
     line-height: 1;
-
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-      ${theme.fonts.subtitle2};
-    }
+    font-weight: ${theme.weight.normal};
   `,
   card: css`
     width: ${theme.block(5)};
@@ -32,23 +26,23 @@ const useStyles = createStyles(({ css, theme }) => ({
     margin-bottom: ${theme.gap(1)};
     max-width: 100%;
     padding: ${theme.space(1)};
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};
     display: flex;
     flex-direction: column;
   `,
   cardTitle: css`
-    ${theme.fonts.h4};
+    ${theme.h4};
   `,
   cardDescription: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
     margin-bottom: ${theme.space(1)};
   `,
   label: css`
-    font-weight: bold;
+    ${theme.overline};
   `,
   subtext: css`
-    ${theme.fonts.body2};
+    ${theme.body2};
     margin-bottom: ${theme.space(1)};
   `,
   formControl: css`
@@ -73,7 +67,7 @@ function TypographyPairingsExample(props: Props) {
     <Root>
       <section className={styles.pairing}>
         <h3 className={styles.title}>Hacker UI</h3>
-        <p className={styles.subtitle}>— a simple design system</p>
+        <p className={styles.subtitle}>— a simple component library</p>
       </section>
 
       <section className={styles.card}>
@@ -101,7 +95,7 @@ function TypographyPairingsExample(props: Props) {
         </FormControl>
 
         <div className={styles.actions}>
-          <Button color={theme.colors.bland}>Cancel</Button>
+          <Button color={theme.bland}>Cancel</Button>
           <Button variant="filled">Go!</Button>
         </div>
       </section>

@@ -1,12 +1,15 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import { transparentize } from 'polished';
 import { createPortal } from 'react-dom';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  transparentize,
+} from 'react-style-system';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};
     width: ${theme.block(3)};
     max-width: 100%;
@@ -27,7 +30,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: ${transparentize(0.5, 'black')};
+    background-color: ${transparentize('black', 0.5)};
     z-index: ${theme.zIndex.drawer};
   `,
 }));

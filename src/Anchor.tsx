@@ -1,16 +1,19 @@
 import React, { forwardRef } from 'react';
-import { transparentize } from 'polished';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import { createStyles, PropsFromStyles, mix } from 'react-style-system';
 import { ReactComponent } from './types';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css, theme, color, surface }) => ({
   root: css`
     color: ${color.readable};
-    text-decoration: underline;
-    transition: color ${theme.durations.standard};
+    text-decoration: none;
+    transition: color ${theme.duration.standard};
+
+    &:hover {
+      text-decoration: underline;
+    }
 
     &:active {
-      color: ${transparentize(0.5, color.readable)};
+      color: ${mix(color.readable, surface, 0.3)};
     }
   `,
 }));
@@ -26,7 +29,7 @@ const Anchor = forwardRef((props: Props, ref: React.Ref<HTMLAnchorElement>) => {
     props.component ?? 'a',
   );
 
-  return <Root ref={ref} {...restOfProps} />;
+  return <Root className="hui-anchor" ref={ref} {...restOfProps} />;
 });
 
 Anchor.displayName = 'Anchor';

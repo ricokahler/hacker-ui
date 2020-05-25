@@ -1,22 +1,26 @@
 import React, { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
-import { transparentize, readableColor } from 'polished';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  mix,
+  readableColor,
+} from 'react-style-system';
 import { TooltipProps } from './types';
 import delay from './delay';
 import useDebounce from './useDebounce';
 
 const useStyles = createStyles(({ css, theme, surface }) => ({
   root: css`
-    ${theme.fonts.caption};
+    ${theme.caption};
     position: absolute;
     pointer-events: auto;
     padding: ${theme.space(0.5)} ${theme.space(1)};
     min-width: ${theme.block(1)};
     text-align: center;
     color: ${readableColor(readableColor(surface))};
-    background-color: ${transparentize(0.2, readableColor(surface))};
+    background-color: ${mix(readableColor(surface), surface, 0.2)};
     z-index: ${theme.zIndex.tooltip};
   `,
   top: css`

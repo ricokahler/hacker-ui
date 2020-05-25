@@ -1,7 +1,11 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import { transparentize, readableColor } from 'polished';
 import { createPortal } from 'react-dom';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  transparentize,
+  readableColor,
+} from 'react-style-system';
 import { ReactComponent } from './types';
 
 const useStyles = createStyles(({ css, theme, staticVar }) => ({
@@ -9,8 +13,8 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     max-height: 90%;
     width: ${theme.block(8)};
     max-width: 100%;
-    background-color: ${theme.colors.surface};
-    color: ${readableColor(theme.colors.surface)};
+    background-color: ${theme.surface};
+    color: ${readableColor(theme.surface)};
     z-index: ${theme.zIndex.modal};
     margin: auto;
     overflow: hidden;
@@ -32,7 +36,7 @@ const useStyles = createStyles(({ css, theme, staticVar }) => ({
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: ${staticVar(transparentize(0.5, 'black'))};
+    background-color: ${staticVar(transparentize('black', 0.5))};
     z-index: ${theme.zIndex.modal};
   `,
 }));

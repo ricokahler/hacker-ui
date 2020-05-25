@@ -1,9 +1,12 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import { lighten } from 'polished';
-import { createStyles, PropsFromStyles } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  mix,
+} from 'react-style-system';
 
-const useStyles = createStyles(({ css, theme, color }) => ({
+const useStyles = createStyles(({ css, color, surface }) => ({
   // table row base styles
   root: css`
     > :first-child {
@@ -14,7 +17,7 @@ const useStyles = createStyles(({ css, theme, color }) => ({
     :hover {
       th,
       td {
-        background-color: ${lighten(0.35, color.decorative)} !important;
+        background-color: ${mix(color.decorative, surface, 0.75)} !important;
         transition: background-color 0.2s;
       }
     }

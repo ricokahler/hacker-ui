@@ -4,9 +4,10 @@ import { useTheme, createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    background-color: ${theme.colors.surface};
+    color: black;
+    background-color: white;
     margin: ${theme.gap(1)};
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.media.down('tablet')} {
       margin: ${theme.gap(1)} 0;
     }
     box-shadow: ${theme.shadows.standard};

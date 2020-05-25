@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { readableColor, darken, lighten } from 'polished';
 import {
   Link,
   MemoryRouter,
@@ -17,36 +16,42 @@ import {
   Drawer,
   Button,
 } from 'hacker-ui';
-import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
+import {
+  createStyles,
+  PropsFromStyles,
+  useTheme,
+  readableColorIsBlack,
+  darken,
+  lighten,
+} from 'react-style-system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
 const useStyles = createStyles(({ css, theme }) => {
-  const navBackgroundColor =
-    readableColor(theme.colors.surface) === '#000'
-      ? darken(0.03, theme.colors.surface)
-      : lighten(0.03, theme.colors.surface);
+  const navBackgroundColor = readableColorIsBlack(theme.surface)
+    ? darken(theme.surface, 0.03)
+    : lighten(theme.surface, 0.03);
 
   return {
     root: css`
       display: flex;
-      background-color: ${theme.colors.surface};
+      background-color: ${theme.surface};
       box-shadow: ${theme.shadows.standard};
       margin: ${theme.gap(1)};
       height: 500px;
 
-      ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+      ${theme.media.down('tablet')} {
         margin: ${theme.space(1)};
       }
     `,
     title: css`
-      ${theme.fonts.body1};
+      ${theme.body1};
       font-weight: bold;
       flex: 0 0 auto;
       height: ${theme.block(0.5)};
       padding: 0 ${theme.space(1)};
-      border-bottom: 1px solid ${theme.colors.bland};
+      border-bottom: 1px solid ${theme.bland};
       display: flex;
       align-items: center;
     `,
@@ -70,12 +75,12 @@ const useStyles = createStyles(({ css, theme }) => {
       flex-direction: column;
     `,
     header: css`
-      ${theme.fonts.body1};
+      ${theme.body1};
       font-family: monospace;
       flex: 0 0 auto;
       height: ${theme.block(0.5)};
       padding: 0 ${theme.space(1)};
-      border-bottom: 1px solid ${theme.colors.bland};
+      border-bottom: 1px solid ${theme.bland};
       display: flex;
       align-items: center;
     `,
@@ -86,13 +91,8 @@ const useStyles = createStyles(({ css, theme }) => {
       flex: 1 1 auto;
       display: flex;
       & > p {
-        ${theme.fonts.h2};
+        ${theme.h2};
         margin: auto;
-
-        ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-          ${theme.fonts.h3};
-          margin: auto;
-        }
       }
     `,
     listItemButton: css`
@@ -108,16 +108,16 @@ const useStyles = createStyles(({ css, theme }) => {
       margin-left: auto;
     `,
     itemActive: css`
-      background-color: ${darken(0.09, navBackgroundColor)};
+      background-color: ${darken(navBackgroundColor, 0.09)};
 
       &:focus {
-        background-color: ${darken(0.07, navBackgroundColor)};
+        background-color: ${darken(navBackgroundColor, 0.07)};
       }
       &:hover {
-        background-color: ${darken(0.05, navBackgroundColor)};
+        background-color: ${darken(navBackgroundColor, 0.05)};
       }
       &:active {
-        background-color: ${darken(0.03, navBackgroundColor)};
+        background-color: ${darken(navBackgroundColor, 0.03)};
       }
     `,
   };
@@ -231,9 +231,7 @@ function NavExample(props: Props) {
   const [collapsed, setCollapsed] = useState({} as { [key: string]: boolean });
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
-  const isMobile = useMediaQuery(
-    theme.breakpoints.down(theme.breakpoints.tablet),
-  );
+  const isMobile = useMediaQuery(theme.media.down('tablet'));
 
   /**
    * recursively creates

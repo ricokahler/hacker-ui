@@ -18,7 +18,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     display: flex;
     min-height: ${theme.block(3)};
 
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.media.down('tablet')} {
       flex-direction: column;
     }
   `,
@@ -87,7 +87,7 @@ function MenuExample(props: Props) {
             </Button>
             <Button
               shape="icon"
-              color={theme.colors.brand}
+              color={theme.brand}
               onClick={(e) => setAnchorEl(e.currentTarget)}
             >
               <FontAwesomeIcon icon={faEllipsisV} />

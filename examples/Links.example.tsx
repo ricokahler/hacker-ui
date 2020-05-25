@@ -24,20 +24,20 @@ function LinksExample(props: Props) {
 
       <div>
         You can also change the color of the link{' '}
-        <Anchor href="#" color={theme.colors.brand}>
+        <Anchor href="#" color={theme.brand}>
           link
         </Anchor>{' '}
         using the standard <code>color</code> prop.
       </div>
 
       <div>
-        <Anchor href="#" color={theme.colors.danger}>
+        <Anchor href="#" color={theme.danger}>
           Danger link
         </Anchor>{' '}
       </div>
 
       <div>
-        <Anchor href="#" color={theme.colors.warning}>
+        <Anchor href="#" color={theme.warning}>
           Warning link
         </Anchor>
       </div>

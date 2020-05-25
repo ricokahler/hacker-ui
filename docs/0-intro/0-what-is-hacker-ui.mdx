@@ -1,36 +1,54 @@
-import { Emoji } from 'hacker-ui';
+import { Emoji, Button } from 'hacker-ui';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-# What is Hacker UI?
+# Hacker UI
 
-Hacker UI is a **design system** for the **modern developer**.
+Hacker UI is a **lean** and **themable** library of primitive React components.
 
-## Why a design system for developers?
+It focuses on creating a very thin layer over standard HTML elements to keep the library fast, stable, and easy to use.
 
-**As developers,** certain ideas transform us into "hackers" who stop at nothing in order to bring their ideas to life.
+## <Emoji><span role="img" aria-label="">👩‍🎨</span></Emoji> Design Philosophy
 
-In this state, we don't always care about how things look. What we care about the most is finding the right set of tools that allows us to get the job done.
+Hacker UI was created out of the need for a vanilla component library that represents the modern web.
 
-This is the main goal of Hacker UI — **to be the hacker's go-to design system**.
+Of course there are many other great component libraries out there but in my opinion, they can be [too Googly](https://material-ui.com/), [too](https://blueprintjs.com/) [corporate](https://developer.microsoft.com/en-us/fluentui#/get-started/web), [too mid-2000s](https://react-bootstrap.github.io/), or [just too bloated](https://bundlephobia.com/result?p=antd).
 
-## What makes this design system different?
+Instead of trying to be a distinct brand or do too much, **Hacker UI simply tries to blend in and look good.** By default, Hacker UI aims to look like your standard modern web application.
 
-Design systems are typically coupled with a company's branding.
+However, don‘t forget that Hacker UI is **themable** making it a great **design system foundation**. You can choose to theme it to fit your brand or you can choose to leave it as is.
 
-So much so that building a product with that system can make it look like your product is the work of that company. This is where Hacker UI is completely different.
+## <Emoji><span role="img" aria-label="">🎯</span></Emoji> Focused on the Job
 
-Instead of trying to be distinct brand, **Hacker UI simply tries to blend in and look good.**
+Hacker UI’s core philosophy is built on **simplicity**.
 
-This system's brand is no brand.
+Simplicity keeps this library focused on doing what it does best. Hacker UI is just a library of atomic components. Instead of creating deep abstractions, Hacker UI **embraces composable, modern HTML and CSS** and moves on.
 
-## Why should I use this system?
+You'll find Hacker UI to be somewhat low-level, but this is on purpose. It's hard to predict how you’ll use these components or even how the web will evolve so we don’t.
 
-It's small, easy to learn, and just what you need in order to bring your idea to life <Emoji label="heart">❤️</Emoji>.
+We have one job and we do it well.
 
-Poke around in the examples and try it yourself.
+## <Emoji><span role="img" aria-label="">👩‍💻</span></Emoji> Ready to Hack
+
+Since Hacker UI is just a thin layer over HTML, if you know HTML and React, you know Hacker UI. This library is easy to use because it does what you expect.
+
+Hacker UI small, easy to learn, and just what you need in order to bring your idea to life <Emoji><span role="img" aria-label="Heart">❤️</span></Emoji>.
 
 ---
 
-**Be warned, this project is still very young.**
+## <Emoji><span role="img" aria-label="">⚠️</span></Emoji> Be warned, this project is still very young.
 
 Check out the the <Link to="/intro/help-wanted">Help Wanted</Link> page for more details.
+
+<br />
+
+<Button
+  variant="outlined"
+  size="large"
+  component={Link}
+  to="/intro/getting-started"
+>
+  <span>Get started</span>
+  <FontAwesomeIcon icon={faArrowRight} />
+</Button>

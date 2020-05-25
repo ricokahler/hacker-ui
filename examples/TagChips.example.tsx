@@ -5,28 +5,25 @@ import { createStyles, PropsFromStyles, useTheme } from 'react-style-system';
 const useStyles = createStyles(({ css, theme }) => ({
   root: css``,
   card: css`
-    width: ${theme.breakpoints.tablet};
+    width: ${theme.tablet};
     max-width: 100%;
 
     margin: ${theme.gap(1)} auto;
     padding: ${theme.gap(1)};
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
+    ${theme.media.down('tablet')} {
       padding: ${theme.space(1)};
     }
 
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     box-shadow: ${theme.shadows.standard};
     display: flex;
     flex-direction: column;
   `,
   title: css`
-    ${theme.fonts.h3};
-    ${theme.breakpoints.down(theme.breakpoints.tablet)} {
-      ${theme.fonts.h4};
-    }
+    ${theme.h3};
   `,
   subtitle: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
     margin-bottom: ${theme.space(1)};
   `,
   tags: css`
@@ -40,7 +37,8 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
   `,
   body: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
+    line-height: 1.7;
   `,
 }));
 
@@ -58,9 +56,9 @@ function TagChipsExample(props: Props) {
           By Rico Kahler | {new Date().toLocaleString()}
         </p>
         <div className={styles.tags}>
-          <Chip color={theme.colors.bland}>React.js</Chip>
-          <Chip color={theme.colors.bland}>JavaScript</Chip>
-          <Chip color={theme.colors.bland}>Programming</Chip>
+          <Chip color={theme.bland}>React.js</Chip>
+          <Chip color={theme.bland}>JavaScript</Chip>
+          <Chip color={theme.bland}>Programming</Chip>
         </div>
         <p className={styles.body}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

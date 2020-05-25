@@ -8,7 +8,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css``,
   list: css`
     width: ${theme.block(3)};
-    background-color: ${theme.colors.surface};
+    background-color: ${theme.surface};
     margin: ${theme.gap(1)} auto;
     box-shadow: ${theme.shadows.standard};
   `,
@@ -23,10 +23,10 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex: 1 1 auto;
   `,
   title: css`
-    ${theme.fonts.h5}
+    ${theme.h6}
   `,
   subtitle: css`
-    ${theme.fonts.caption}
+    ${theme.caption}
   `,
   icon: css`
     flex: 0 0 auto;

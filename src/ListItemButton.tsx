@@ -9,7 +9,7 @@ import Button from './Button';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    ${theme.fonts.body1}
+    ${theme.body2};
     align-items: flex-start;
     width: 100%;
     display: flex;
@@ -30,7 +30,7 @@ const ListItemButton = forwardRef(
       <Root
         ref={ref}
         variant="ghost"
-        color={theme.colors.bland}
+        color={theme.bland}
         {...restOfProps}
       />
     );

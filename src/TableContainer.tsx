@@ -7,7 +7,7 @@ const useStyles = createStyles(({ css, theme }) => ({
   root: css`
     border-radius: ${theme.borderRadius};
     margin: ${theme.space(1)} ${theme.space(0.5)};
-    box-shadow: 0px 2px 6px 0px ${theme.colors.bland};
+    box-shadow: 0px 2px 6px 0px ${theme.bland};
   `,
   responsive: css`
     overflow: auto;

@@ -4,7 +4,7 @@ import { createStyles, PropsFromStyles } from 'react-style-system';
 const useStyles = createStyles(({ css, theme }) => ({
   // table caption base styles
   root: css`
-    ${theme.fonts.caption}
+    ${theme.caption}
     display: table-caption;
     text-align: center;
     margin: ${theme.space(1)};

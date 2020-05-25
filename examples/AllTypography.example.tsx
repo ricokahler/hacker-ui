@@ -11,37 +11,43 @@ const useStyles = createStyles(({ css, theme }) => ({
     }
   `,
   heading1: css`
-    ${theme.fonts.h1};
+    ${theme.h1};
   `,
   heading2: css`
-    ${theme.fonts.h2};
+    ${theme.h2};
   `,
   heading3: css`
-    ${theme.fonts.h3};
+    ${theme.h3};
   `,
   heading4: css`
-    ${theme.fonts.h4};
+    ${theme.h4};
   `,
   heading5: css`
-    ${theme.fonts.h5};
+    ${theme.h5};
+  `,
+  heading6: css`
+    ${theme.h6};
   `,
   body1: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
   `,
   body2: css`
-    ${theme.fonts.body2};
+    ${theme.body2};
   `,
   caption: css`
-    ${theme.fonts.caption};
+    ${theme.caption};
   `,
   button: css`
-    ${theme.fonts.button};
+    ${theme.button};
   `,
   subtitle1: css`
-    ${theme.fonts.subtitle1};
+    ${theme.subtitle1};
   `,
   subtitle2: css`
-    ${theme.fonts.subtitle2};
+    ${theme.subtitle2};
+  `,
+  overline: css`
+    ${theme.overline};
   `,
 }));
 
@@ -50,9 +56,7 @@ interface Props extends PropsFromStyles<typeof useStyles> {}
 function AllTypographyExample(props: Props) {
   const { Root, styles } = useStyles(props);
   const theme = useTheme();
-  const isMobile = useMediaQuery(
-    theme.breakpoints.down(theme.breakpoints.tablet),
-  );
+  const isMobile = useMediaQuery(theme.media.down('tablet'));
 
   return (
     <Root>
@@ -61,6 +65,7 @@ function AllTypographyExample(props: Props) {
       <div className={styles.heading3}>Heading 3</div>
       <div className={styles.heading4}>Heading 4</div>
       <div className={styles.heading5}>Heading 5</div>
+      <div className={styles.heading6}>Heading 6</div>
       <div className={styles.body1}>
         <strong>body1: Use for normal text.</strong> Lorem ipsum dolor sit amet,
         consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -83,6 +88,7 @@ function AllTypographyExample(props: Props) {
       <div className={styles.button}>Button text</div>
       <div className={styles.subtitle1}>Subtitle 1</div>
       <div className={styles.subtitle2}>Subtitle 2</div>
+      <div className={styles.overline}>Overline</div>
     </Root>
   );
 }

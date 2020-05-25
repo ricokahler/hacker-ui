@@ -13,11 +13,12 @@ const useStyles = createStyles(({ css, theme }) => ({
     padding: ${theme.space(1)} 0;
   `,
   title: css`
-    ${theme.fonts.h4};
+    ${theme.h5};
     margin: 0 ${theme.space(1)};
+    margin-bottom: ${theme.space(1)};
   `,
   paragraph: css`
-    ${theme.fonts.body1};
+    ${theme.body1};
     margin: 0 ${theme.space(1)};
   `,
 }));
