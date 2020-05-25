@@ -3,7 +3,7 @@ import { createStyles, PropsFromStyles } from 'react-style-system';
 
 const useStyles = createStyles(({ css, theme }) => ({
   root: css`
-    ${theme.body1};
+    ${theme.body2};
     display: flex;
   `,
 }));
