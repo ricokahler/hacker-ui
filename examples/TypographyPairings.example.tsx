@@ -21,7 +21,7 @@ const useStyles = createStyles(({ css, theme }) => ({
     font-weight: ${theme.weight.normal};
   `,
   card: css`
-    width: ${theme.block(5)};
+    width: ${theme.block(4.5)};
     margin: 0 auto;
     margin-bottom: ${theme.gap(1)};
     max-width: 100%;
@@ -32,7 +32,8 @@ const useStyles = createStyles(({ css, theme }) => ({
     flex-direction: column;
   `,
   cardTitle: css`
-    ${theme.h4};
+    ${theme.h5};
+    margin-bottom: ${theme.space(1)};
   `,
   cardDescription: css`
     ${theme.body1};
@@ -96,7 +97,7 @@ function TypographyPairingsExample(props: Props) {
 
         <div className={styles.actions}>
           <Button color={theme.bland}>Cancel</Button>
-          <Button variant="filled">Go!</Button>
+          <Button variant="filled">Okay</Button>
         </div>
       </section>
     </Root>

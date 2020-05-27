@@ -90,7 +90,6 @@ const defaultTheme = {
     body1: css`
       font-size: 18px;
       line-height: 1.6;
-      letter-spacing: -0.333px;
       text-transform: none;
       font-weight: 400;
       margin: 0;
@@ -117,7 +116,7 @@ const defaultTheme = {
     overline: css`
       font-size: 12px;
       font-weight: 400;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       margin: 0;
     `,
@@ -202,12 +201,9 @@ const defaultTheme = {
   brand: '#000',
   get accent() {
     const accent = '#2962ff';
-    return readableColorIsBlack(this.surface) ? accent : lighten(accent, 0.1);
+    return readableColorIsBlack(this.surface) ? accent : lighten(accent, 0.2);
   },
-  get danger() {
-    const danger = '#eb002b';
-    return readableColorIsBlack(this.surface) ? danger : lighten(danger, 0.2);
-  },
+  danger: '#eb002b',
   warning: '#f56200',
   get bland() {
     return readableColorIsBlack(this.surface) ? '#ccc' : '#555';
