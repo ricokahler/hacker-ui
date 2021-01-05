@@ -1,3 +1,11 @@
+# ⚠️ Development on Hiauts
+
+The development of Hacker UI is currently on hiatus.
+
+My apologizes. Work has picked up and I currenlty don't have the appropirate time to dedicate to this project.
+
+Watch for releases to be notified when development picks back up. 
+
 # Hacker UI · [![Netlify Status](https://api.netlify.com/api/v1/badges/d09b66a1-a20c-47c6-8898-9da82093bed9/deploy-status)](https://app.netlify.com/sites/modest-turing-e60c5a/deploys)
 
 > Hacker UI is a **design system** for the **modern developer**.
