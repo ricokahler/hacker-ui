@@ -120,7 +120,7 @@ function Landing(props: Props) {
           <h1 className={styles.title}>Hacker UI</h1>
           <p className={styles.subtitle}>a simple component library</p>
           <p className={styles.description}>
-            It's lean, themable, and packed with examples.
+            ⚠ Development on Hiatus. Not ready for use.
           </p>
           <div className={styles.buttons}>
             <Button
