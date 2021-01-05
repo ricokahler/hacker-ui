@@ -1,4 +1,4 @@
-# ⚠️ Development on Hiauts
+# ⚠️ Development on Hiatus
 
 The development of Hacker UI is currently on hiatus.
 
